@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Manual React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -68,3 +68,15 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Manual Application
+
+### The App Idea
+
+The application is a interactive learining environment where students can learn the concepts of selfcorrecting codes. The application includes several exercises. The app is kept very simple. There is only one menu to navigate between tasks and the exercises to be solved.
+
+Everything is running in the frontend. This makes everything easier without the need of any backend logic and without the need to add security to the application.
+
+### Where to find stuff
+
+Everybody working on this application should only add / work on files found in the src folder. Some folders even contain a doc.md file acting as additional documentation.
