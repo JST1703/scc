@@ -12,9 +12,9 @@ function Menu() {
 
     return (
         <>
-          <div clasName="menu"> 
+          <div clasName="navbar"> 
             <Link to="#" clasName='menu-bars'>
-                <FaIcons.FaBars/>
+                <FaIcons.FaBars onClick={showSdiebar}/>
             </Link>
           </div> 
           <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>

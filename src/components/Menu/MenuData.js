@@ -7,18 +7,18 @@ export const MenuData = [
         title: 'Home',
         path: '/',
         icon: <AiIcons.AiFillHome/>,
-        cName: 'Home'
+        cName: 'nav-text'
     },
     {
         title: 'Task1',
         path: '/task1',
         icon: <FaIcons.FaIceCream/>,
-        cName: 'T1'
+        cName: 'nav-text'
     },
     {
         title: 'Task2',
         path: '/task2',
         icon: <FaIcons.FaJedi/>,
-        cName: 'T2'
+        cName: 'nav-text'
     },
 ]
