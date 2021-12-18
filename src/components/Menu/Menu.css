@@ -24,6 +24,7 @@
     transition: left 250ms;
 }
 
+/* hiding menu bar */
 .nav-menu.active {
     left: 0;
 }
@@ -49,6 +50,7 @@
     border-radius: 4px;
 }
 
+/* nice visual effect when hovering over a menu bar item */
 .nav-text a:hover{
     background-color: #5bece5;
 }

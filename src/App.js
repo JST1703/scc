@@ -12,9 +12,9 @@ function App() {
     <Router>
       <Menu/>
       <Routes>
-        <Route path='/' exact component={Home} />
-        <Route path='/task1' component={Task1} />
-        <Route path='/task2' component={Task2} />
+        <Route path="/" element={<Home />}/>
+        <Route path="/task1" element={<Task1 />}/>
+        <Route path="/task2" element={<Task2 />}/>
       </Routes>
     </Router>
     </>

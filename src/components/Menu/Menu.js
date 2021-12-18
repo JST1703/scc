@@ -7,18 +7,30 @@ import { IconContext } from 'react-icons';
 import './Menu.css';
 
 function Menu() {
-    const [sidebar, setSidebar] = useState(false);
 
+    // on and of state for either showing the menu bar or hiding it
+    const [sidebar, setSidebar] = useState(false); 
+
+    // function to switch the hiding/showing state of the menu bar
     const showSdiebar = () => setSidebar(!sidebar);
 
     return (
         <>
-        <IconContext.Provider value={{color: "#0e0585"}}>
+        {/* for changing the color of the icons in the menu bar */}
+        <IconContext.Provider value={{color: "#0e0585"}}>  
+          
+          {/* the hamburger sign from the menu */}
           <div className='navbar'> 
             <Link to='#' className='menu-bars'>
                 <FaIcons.FaBars onClick={showSdiebar}/>
             </Link>
           </div> 
+
+          {/* 
+          Listing the menu items, if sidebar is true.
+          the hiding logic is implemented in the Menu.css by setting the position value
+          and the attribute "active".
+          */}
           <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
               <ul className='nav-menu-items' onClick={showSdiebar}>
                   <li className='navbar-toggle'>
@@ -26,6 +38,8 @@ function Menu() {
                           <AiIcons.AiOutlineClose/>
                       </Link>
                   </li>
+
+                  {/* menu items from MenuData.js*/}
                   {MenuData.map((item, index) => {
                       return (
                           <li key={index} className={item.cName}>
@@ -36,6 +50,7 @@ function Menu() {
                       );
                   })}
               </ul>
+          
           </nav>
         </IconContext.Provider>
         </>

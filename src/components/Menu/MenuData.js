@@ -1,4 +1,4 @@
-import React from 'react'
+// Menu Bar items
 
 export const MenuData = [
     {
