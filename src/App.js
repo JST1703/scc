@@ -2,6 +2,9 @@ import React from 'react';
 import './App.css';
 import Menu from './components/Menu/Menu';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './components/Pages/Home';
+import Task1 from './components/Pages/Task1';
+import Task2 from './components/Pages/Task2';
 
 function App() {
   return (
@@ -9,7 +12,9 @@ function App() {
     <Router>
       <Menu/>
       <Routes>
-        <Route path='/' />
+        <Route path='/' exact component={Home} />
+        <Route path='/task1' component={Task1} />
+        <Route path='/task2' component={Task2} />
       </Routes>
     </Router>
     </>
