@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ChecksumExercise from "../ChecksumExercise";
-import checksum from "../../checksum/checksum";
+import ChecksumExercise from "../components/ChecksumExercise";
+import checksum from "../functions/checksum";
 
 function Task1() {
   const [numIncorrect, setNumIncorrect] = useState(0);

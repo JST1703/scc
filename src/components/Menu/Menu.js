@@ -7,7 +7,7 @@ import { IconContext } from "react-icons";
 import "./Menu.css";
 
 function Menu() {
-  // on and of state for either showing the menu bar or hiding it
+  // on and off state for either showing the menu bar or hiding it
   const [sidebar, setSidebar] = useState(false);
 
   // function to switch the hiding/showing state of the menu bar

@@ -79,4 +79,4 @@ Everything is running in the frontend. This makes everything easier without the 
 
 ### Where to find stuff
 
-Everybody working on this application should only add / work on files found in the src folder. Some folders even contain a doc.md file acting as additional documentation.
+Everybody working on this application should only add / work on files found in the src folder. There is an additonal doc file in the src fodler.
