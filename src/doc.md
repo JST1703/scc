@@ -16,18 +16,26 @@ The components give the application functionallity. Each task has several differ
 
 The menu component is used for navigation. It is used to switch betwenn pages. It is a simple drop out menu on the left.
 
+##### ChecksumExamples
+
+This component displays several examples of numbers and a checksum or a check symbol for the given numbers. It serves as the example for the ChecksumExercise. The checksum or checksymbol is different gitven the function.
+
 ##### ChecksumExercise
 
-This component displays an exercise. It displays several examples of numbers and a checksum or a check symbol for the given numbers. It also diplays several other numbers, where the user has to calculate the correct checksum or checksymbol like the examples. The checksum or checksymbol is different gitven the function. This can either be the sum of the individual digits or some other checksymbol. If the exercise is not correctly solved, then the solution is displayed.
+This component displays an exercise. It diplays several numbers, where the user has to calculate the correct checksum or checksymbol like the examples. The checksum or checksymbol is different gitven the function. This can either be the sum of the individual digits or some other checksymbol. If the exercise is not correctly solved, then the solution is displayed.
 
 ### Functions
 
 Functions are used for additional modularity for the code. See ChecksumExercise as an example.
 
+##### randomDigits
+
+Returns a random sequence of digits.
+
 ##### sumChecksum
 
-Given any digits, returns the sum of them.
+Given any sequence of digits, returns the sum of them.
 
 ##### nextTenChecksum
 
-Given any digits, returns (10 - sum % 10)
+Given any sequence of digits, returns (10 - sum % 10)

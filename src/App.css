@@ -9,7 +9,7 @@
 .task1,
 .task2 {
   padding-top: 50px;
-  padding-right: 50px;
+  padding-right: 300px;
   padding-bottom: 50px;
   padding-left: 50px;
   display: block;
@@ -17,4 +17,11 @@
   justify-content: center;
   font-size: 15pt;
   text-align: justify;
+}
+
+.home p,
+.task1 p,
+.task2 p {
+  padding-top: 20px;
+  padding-bottom: 10px;
 }
