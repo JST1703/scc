@@ -7,7 +7,7 @@ export const MenuData = [
     cName: "nav-text",
   },
   {
-    title: "Aufgabe 1 Prüfsymbole",
+    title: "Aufgabe 1 Prüfsummen",
     path: "/task1",
     cName: "nav-text",
   },

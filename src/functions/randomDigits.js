@@ -6,7 +6,7 @@ function randomDigits(arr) {
   const sol = [];
 
   for (let i = 0; i < length; i++) {
-    let temp = Math.floor(Math.random() * 9);
+    let temp = Math.floor(Math.random() * 8) + 1;
     sol[i] = temp;
   }
 

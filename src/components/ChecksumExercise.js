@@ -1,37 +1,43 @@
 import React, { useState } from "react";
+import randomDigits from "../functions/randomDigits";
 
-function ChecksumExercise({ onWrongAnswer, checksumFn, data }) {
-  const checksum = checksumFn(data);
-
+function ChecksumExercise({ checksumFunction, onWorong, onCorrect }) {
   const [value, setValue] = useState(0);
-
   const [correctState, setCorrectState] = useState("");
+  const [data] = useState(randomDigits);
+  const checksum = checksumFunction(data);
 
   const checkResult = () => {
     if (value.toString() === checksum) {
-      setCorrectState("correct");
+      setCorrectState(true);
+      onCorrect();
     } else {
-      setCorrectState("incorrect");
-      onWrongAnswer();
+      setCorrectState(false);
+      onWorong();
     }
   };
 
   return (
     <div>
-      <div>
+      <div className="example">
         {data.map(function (digit, index) {
           return <span key={index}>{digit}</span>;
         })}
         <input
           type="number"
           value={value}
-          disabled={correctState === "correct"}
+          disabled={correctState === true}
           onChange={(event) => setValue(event.currentTarget.valueAsNumber)}
         />
-        <button onClick={checkResult}>check</button>
+        <button onClick={checkResult} disabled={correctState === true}>
+          überprüfen
+        </button>
+        {correctState === false && (
+          <span style={{ color: "red" }}> falsch</span>
+        )}
+        {correctState && <span style={{ color: "green" }}> korrekt</span>}
       </div>
-
-      <div>{correctState === "correct" && "Correct"}</div>
+      <div className="example"></div>
     </div>
   );
 }

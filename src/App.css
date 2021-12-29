@@ -25,3 +25,9 @@
   padding-top: 20px;
   padding-bottom: 10px;
 }
+
+.task1 input {
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 70px;
+}
