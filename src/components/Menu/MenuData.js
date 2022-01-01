@@ -7,12 +7,17 @@ export const MenuData = [
     cName: "nav-text",
   },
   {
-    title: "Aufgabe 1 Prüfsummen",
+    title: "Prüfziffern und Fehlererkennung 1",
     path: "/task1",
     cName: "nav-text",
   },
   {
-    title: "Aufgabe 2 TODO",
+    title: "Prüfziffern und Fehlererkennung 2",
+    path: "/task2",
+    cName: "nav-text",
+  },
+  {
+    title: "Prüfziffern und Fehlererkennung 3",
     path: "/task2",
     cName: "nav-text",
   },

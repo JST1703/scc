@@ -5,8 +5,9 @@ import randomDigits from "../functions/randomDigits";
 This component always goes with the component ChecksumExample.
 The ChecksumExample takes any checksum method, i.e. sum of all digits,
 and displays a sequence of numbers and their checksum as an example.
-The ChecksumExercise displays questions in the form of a sequence of
-numbers, where one needs to calculate the checksum according to the examples.
+The ErrorExercise displays questions in the form of a sequence of
+numbers with a checksum. The user must state, if the checksum is
+correct or not
 */
 
 /*
@@ -16,9 +17,7 @@ onWorng and onCorrect are methods of the caller Component. These are used to
 reveal certain parts of the Task, i.e. the solution, if to many wrong answers
 have been given, or the next subtask, if all answers are correct.
 */
-function ChecksumExercise({ checksumFunction, onWorong, onCorrect }) {
-  // value of the input field
-  const [value, setValue] = useState(0);
+function ErrorExercise({ checksumFunction, onWorong, onCorrect }) {
   // variable for showing if the answer is correct or not
   const [correctState, setCorrectState] = useState("");
   // random generated sequence of numbers and their checksum
@@ -27,7 +26,7 @@ function ChecksumExercise({ checksumFunction, onWorong, onCorrect }) {
 
   // logic for comparing the given answer by the user and the correct answer
   const checkResult = () => {
-    if (value === checksum) {
+    if (value.toString() === checksum) {
       setCorrectState(true);
       onCorrect();
     } else {
@@ -61,4 +60,4 @@ function ChecksumExercise({ checksumFunction, onWorong, onCorrect }) {
   );
 }
 
-export default ChecksumExercise;
+export default ErrorExercise;

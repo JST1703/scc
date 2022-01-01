@@ -8,7 +8,7 @@ and how to navigate the application.
 function Home() {
   return (
     <div className="home">
-      <h1>Error-Correcting Codes</h1>
+      <h1>Selbstkorrigierende Kodierungen</h1>
 
       <p>
         Computer kommunizieren mittels Codes. Die Codes sind eine Übersetzung

@@ -2,13 +2,34 @@ import React, { useState } from "react";
 import ChecksumExample from "../components/ChecksumExample";
 import ChecksumExercise from "../components/ChecksumExercise";
 import sumChecksum from "../functions/sumChecksum";
-import nextTenChecksum from "../functions/nextTenChecksum";
+
+/*
+Task 1: Checksums
+
+Subtask A: Given some examples of a checksum method,
+calculate the checksum of other examples.
+
+Subtask B: Given some examples of a checksum different method
+than sin subtask A, calculate the checksum of other examples.
+*/
 
 function Task1() {
+  // number of examples displayed in the exercise
   const numOfExamples = 3;
+
+  // number of wrong answers, before solution is revealed
   const minWrongAnswers = 3;
+
+  // number of questions for each subtask to solve
   const numberOfTasks = 3;
 
+  /* 
+  Keeping track of number of correct solutions or wrong answers
+  for each subtask. If correctAnswersX === numberOfTasks, then
+  subtask X is solved and the next subtask is revealed.
+  If wrongAnswersX === minWrongAnswers, then solution for subtask
+  X is revealed.
+  */
   const [wrongAnswersA, setWrongAnswersA] = useState(0);
   const [correctAnswersA, setCorrectAnswersA] = useState(0);
   const [wrongAnswersB, setWrongAnswersB] = useState(0);
@@ -16,9 +37,17 @@ function Task1() {
 
   return (
     <div className="task1">
-      <h1>Aufgabe 1: Prüfsummen</h1>
+      <h1>Aufgabe 1: Prüfziffern und Fehlererkennung 1</h1>
       <div className="task1A">
-        <p>Todo Aufgabenstellung A</p>
+        <p>
+          Eine Möglichkeit um Fehler in Daten zu erkennen, ist es die Daten mit
+          weiteren Prüfziffern zu ergänzen. In diesem Beispiel haben wir einige
+          Folgen von Zahlen gegebn (hier in schwarz) und die dazugehörigen
+          Prüfziffern (hier in rot). Die Prüfziffer wird durch die Folge der
+          Zahlen festgelegt. Können Sie in diesem Beispiel herausfinden, wie man
+          aus der gegebenen Zahlenfolge die Prüfziffer berechnen kann? Ergänzen
+          Sie die weiteren Prüfziffern der gegebenen Zahlenfolgen.
+        </p>
         {[...Array(numOfExamples)].map(() => (
           <ChecksumExample checksumFunction={sumChecksum} />
         ))}
@@ -30,30 +59,16 @@ function Task1() {
           />
         ))}
         {wrongAnswersA >= minWrongAnswers && correctAnswersA != 3 && (
-          <p>Todo Lösung aufgabe A</p>
+          <p>
+            Das ist leider nicht korrekt. Die Lösung der Aufgabe ist, dass die
+            Prüfziffer die Summe der einzelnen Zahlen der Zahlenfolge ist. Um
+            fortfahren zu können, müssen Sie die Aufgabe korrekt lösen.
+          </p>
         )}
       </div>
       {correctAnswersA === numberOfTasks && (
         <div className="task1B">
           <p>Todo Aufgabenstellung B</p>
-          {[...Array(numOfExamples)].map(() => (
-            <ChecksumExample checksumFunction={nextTenChecksum} />
-          ))}
-          {[...Array(numberOfTasks)].map(() => (
-            <ChecksumExercise
-              checksumFunction={nextTenChecksum}
-              onWorong={() => setWrongAnswersB(wrongAnswersB + 1)}
-              onCorrect={() => setCorrectAnswersB(correctAnswersB + 1)}
-            />
-          ))}
-          {wrongAnswersB >= minWrongAnswers && correctAnswersB != 3 && (
-            <p>Lösung Aufgabe B</p>
-          )}
-        </div>
-      )}
-      {correctAnswersB === numberOfTasks && (
-        <div className="task1C">
-          <p>Todo Aufgabenstellung C</p>
         </div>
       )}
     </div>
