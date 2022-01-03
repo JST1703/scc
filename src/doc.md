@@ -24,6 +24,10 @@ This component displays an example of numbers and a checksum or a check symbol f
 
 This component displays an exercise. It diplays several numbers, where the user has to calculate the correct checksum or checksymbol like in the examples. The checksum or checksymbol is different gitven the function. This can either be the sum of the individual digits or some other checksymbol. If the exercise is not correctly solved, then the solution is displayed.
 
+##### YN
+
+This component is used for Yes or No questions, which the user must solve.
+
 ### Functions
 
 Functions are used for additional modularity for the code. See ChecksumExercise as an example.

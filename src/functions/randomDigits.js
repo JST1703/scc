@@ -1,7 +1,7 @@
 // returns a random sequence of digits
 function randomDigits(arr) {
-  // length is between 3 and 6
-  let length = Math.floor(Math.random() * 3) + 3;
+  // length is between 2 and 5
+  let length = Math.floor(Math.random() * 3) + 2;
 
   const sol = [];
 

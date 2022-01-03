@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ChecksumExample from "../components/ChecksumExample";
 import ChecksumExercise from "../components/ChecksumExercise";
+import YN from "../components/YN";
 import sumChecksum from "../functions/sumChecksum";
 
 /*
@@ -32,8 +33,6 @@ function Task1() {
   */
   const [wrongAnswersA, setWrongAnswersA] = useState(0);
   const [correctAnswersA, setCorrectAnswersA] = useState(0);
-  const [wrongAnswersB, setWrongAnswersB] = useState(0);
-  const [correctAnswersB, setCorrectAnswersB] = useState(0);
 
   return (
     <div className="task1">
@@ -58,17 +57,27 @@ function Task1() {
             onCorrect={() => setCorrectAnswersA(correctAnswersA + 1)}
           />
         ))}
-        {wrongAnswersA >= minWrongAnswers && correctAnswersA != 3 && (
-          <p>
-            Das ist leider nicht korrekt. Die Lösung der Aufgabe ist, dass die
-            Prüfziffer die Summe der einzelnen Zahlen der Zahlenfolge ist. Um
-            fortfahren zu können, müssen Sie die Aufgabe korrekt lösen.
-          </p>
-        )}
+        {wrongAnswersA >= minWrongAnswers &&
+          correctAnswersA != numberOfTasks && (
+            <p>
+              Das ist leider nicht korrekt. Die Lösung der Aufgabe ist, dass die
+              Prüfziffer die Summe der einzelnen Zahlen der Zahlenfolge ist. Um
+              fortfahren zu können, müssen Sie die Aufgabe korrekt lösen.
+            </p>
+          )}
       </div>
       {correctAnswersA === numberOfTasks && (
         <div className="task1B">
           <p>Todo Aufgabenstellung B</p>
+          <YN
+            question={"?"}
+            optionYes={"Yes!"}
+            optionNo={"No"}
+            textOnCorrect={"okay"}
+            textOnWrong={"not okay"}
+            solution={1}
+            callerFunction={() => {}}
+          />
         </div>
       )}
     </div>
