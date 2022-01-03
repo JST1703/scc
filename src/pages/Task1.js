@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ChecksumExample from "../components/ChecksumExample";
 import ChecksumExercise from "../components/ChecksumExercise";
+import MC from "../components/MC";
 import YN from "../components/YN";
 import sumChecksum from "../functions/sumChecksum";
 
@@ -22,7 +23,7 @@ function Task1() {
   const minWrongAnswers = 3;
 
   // number of questions for each subtask to solve
-  const numberOfTasks = 3;
+  const numberOfTasks = 1;
 
   /* 
   Keeping track of number of correct solutions or wrong answers
@@ -69,13 +70,12 @@ function Task1() {
       {correctAnswersA === numberOfTasks && (
         <div className="task1B">
           <p>Todo Aufgabenstellung B</p>
-          <YN
+          <MC
             question={"?"}
-            optionYes={"Yes!"}
-            optionNo={"No"}
+            options={["Yes", "No", "Maybe", "I dont know"]}
+            answerKey={[true, false, true, false]}
             textOnCorrect={"okay"}
             textOnWrong={"not okay"}
-            solution={1}
             callerFunction={() => {}}
           />
         </div>

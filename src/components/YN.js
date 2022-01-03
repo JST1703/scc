@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 /*
-This component displays a siple Yes or No question,
+This component displays a Yes or No question,
 or an A or B question, where exactly one answer is correct.
 */
 
@@ -31,6 +31,7 @@ function YN({
 }) {
   // value is the state of the Yes or No question
   const [value, setValue] = useState(1);
+
   /* this state is used to see, if this question has been answered or not
   if true, then one this component becomes disabled. */
   const [answered, setAnswered] = useState(false);
@@ -49,24 +50,27 @@ function YN({
   return (
     <div className="YN">
       <p>{question}</p>
-      {optionYes}
-      <input
-        type="radio"
-        checked={value === 1}
-        disabled={answered}
-        onChange={() => setValue(1)}
-      />
-      {optionNo}
-      <input
-        type="radio"
-        checked={value === 0}
-        disabled={answered}
-        onChange={() => setValue(0)}
-      />
+      <div>
+        <input
+          type="radio"
+          checked={value === 1}
+          disabled={answered}
+          onChange={() => setValue(1)}
+        />
+        {optionYes}
+      </div>
+      <div>
+        <input
+          type="radio"
+          checked={value === 0}
+          disabled={answered}
+          onChange={() => setValue(0)}
+        />
+        {optionNo}
+      </div>
       <button onClick={checkResult} disabled={answered}>
         überprüfen
       </button>
-
       {answered && correct && <p>{textOnCorrect}</p>}
       {answered && !correct && <p>{textOnWrong}</p>}
     </div>
