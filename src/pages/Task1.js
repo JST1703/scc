@@ -3,7 +3,10 @@ import ChecksumExample from "../components/ChecksumExample";
 import ChecksumExercise from "../components/ChecksumExercise";
 import MC from "../components/MC";
 import YN from "../components/YN";
+import randomDigits from "../functions/randomDigits";
 import sumChecksum from "../functions/sumChecksum";
+import arrayFiller from "../functions/arrayFiller";
+import errormaker from "../functions/errormaker";
 
 /*
 Task 1: Checksums
@@ -22,8 +25,9 @@ function Task1() {
   // number of wrong answers, before solution is revealed
   const minWrongAnswers = 3;
 
-  // number of questions for each subtask to solve
-  const numberOfTasks = 1;
+  // number of questions for subtasks to solve
+  const numberOfTasksA = 1;
+  const numberOfTasksB = 3;
 
   /* 
   Keeping track of number of correct solutions or wrong answers
@@ -34,6 +38,38 @@ function Task1() {
   */
   const [wrongAnswersA, setWrongAnswersA] = useState(0);
   const [correctAnswersA, setCorrectAnswersA] = useState(0);
+
+  // Stuff for task B
+  const [answeredB, setAnsweredB] = useState(false);
+  const [tempTaskB] = useState(
+    arrayFiller(numberOfTasksB, () => {
+      return errormaker(randomDigits, sumChecksum, 0);
+    })
+  );
+  const [mcOptionsTaskB] = useState(() => {
+    let sol = [];
+    for (let i = 0; i < numberOfTasksB; ++i) {
+      let element = tempTaskB[i];
+      let last = element.length - 1;
+      let temp = element.slice(0, last).join("");
+      sol[sol.length] = temp.toString() + " " + element[last].toString();
+    }
+    return sol;
+  });
+  const [mcAKTaskB] = useState(() => {
+    let sol = [];
+    for (let i = 0; i < numberOfTasksB; ++i) {
+      let element = tempTaskB[i];
+      let last = element.length - 1;
+      let temp = element.slice(0, last);
+      if (element[last] === sumChecksum(temp)) {
+        sol[sol.length] = true;
+      } else {
+        sol[sol.length] = false;
+      }
+    }
+    return sol;
+  });
 
   return (
     <div className="task1">
@@ -51,7 +87,7 @@ function Task1() {
         {[...Array(numOfExamples)].map(() => (
           <ChecksumExample checksumFunction={sumChecksum} />
         ))}
-        {[...Array(numberOfTasks)].map(() => (
+        {[...Array(numberOfTasksA)].map(() => (
           <ChecksumExercise
             checksumFunction={sumChecksum}
             onWorong={() => setWrongAnswersA(wrongAnswersA + 1)}
@@ -59,7 +95,7 @@ function Task1() {
           />
         ))}
         {wrongAnswersA >= minWrongAnswers &&
-          correctAnswersA != numberOfTasks && (
+          correctAnswersA !== numberOfTasksA && (
             <p>
               Das ist leider nicht korrekt. Die Lösung der Aufgabe ist, dass die
               Prüfziffer die Summe der einzelnen Zahlen der Zahlenfolge ist. Um
@@ -67,13 +103,29 @@ function Task1() {
             </p>
           )}
       </div>
-      {correctAnswersA === numberOfTasks && (
+      {correctAnswersA === numberOfTasksA && (
         <div className="task1B">
           <p>Todo Aufgabenstellung B</p>
           <MC
             question={"?"}
-            options={["Yes", "No", "Maybe", "I dont know"]}
-            answerKey={[true, false, true, false]}
+            options={mcOptionsTaskB}
+            answerKey={mcAKTaskB}
+            textOnCorrect={"okay"}
+            textOnWrong={"not okay"}
+            callerFunction={() => {
+              setAnsweredB(true);
+            }}
+          />
+        </div>
+      )}
+      {answeredB && (
+        <div className="task1C">
+          <p>Todo Aufgabenstellung C</p>
+          <YN
+            question={"Frage?"}
+            solution={1}
+            optionYes={"Yes"}
+            optionNo={"No"}
             textOnCorrect={"okay"}
             textOnWrong={"not okay"}
             callerFunction={() => {}}

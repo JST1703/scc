@@ -1,5 +1,5 @@
 // returns a random sequence of digits
-function randomDigits(arr) {
+function randomDigits() {
   // length is between 2 and 5
   let length = Math.floor(Math.random() * 3) + 2;
 

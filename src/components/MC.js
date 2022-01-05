@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import arrayFiller from "../functions/arrayFiller";
 
 /*
 This component displays a multiple choice question.
@@ -26,26 +27,12 @@ function MC({
   textOnWrong,
   textOnCorrect,
 }) {
-  // logic for initiate values for checkboxes
-  const initValues = () => {
-    let length = answerKey.length;
-    const temp = [];
-    for (let i = 0; i < length; i++) {
-      temp[i] = false;
-    }
-    return temp;
-  };
-
-  // logic to handle checkbox clicking
-  function handleChange(i) {
-    let temp = values;
-    temp[i] = !temp[i];
-    setValues(temp);
-    console.log(values);
-  }
-
   // value is the state of the Yes or No question
-  const [values, setValues] = useState(initValues);
+  const [values, setValues] = useState(
+    arrayFiller(answerKey.length, () => {
+      return false;
+    })
+  );
 
   /* this state is used to see, if this question has been answered or not
   if true, then one this component becomes disabled. */
@@ -68,6 +55,13 @@ function MC({
     setCorrect(temp);
     callerFunction();
   };
+
+  // logic to handle checkbox clicking
+  function handleChange(i) {
+    let temp = values;
+    temp[i] = !temp[i];
+    setValues(temp);
+  }
 
   return (
     <div className="MC">
