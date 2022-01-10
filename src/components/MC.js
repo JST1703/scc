@@ -27,7 +27,7 @@ function MC({
   textOnWrong,
   textOnCorrect,
 }) {
-  // value is the state of the Yes or No question
+  // values are the state of the Yes or No question logged by the user
   const [values, setValues] = useState(
     arrayFiller(answerKey.length, () => {
       return false;

@@ -33,7 +33,8 @@ function errormaker(seqGen, checkSumFunction, x) {
 
   switch (x) {
     case 0:
-      if (checksum % 2 === 1) {
+      let coin = Math.round(Math.random());
+      if (coin === 1) {
         randomErrorMaker();
       }
       break;
