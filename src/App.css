@@ -6,8 +6,7 @@
 }
 
 .home,
-.task1,
-.task2 {
+.task {
   padding-top: 50px;
   padding-right: 300px;
   padding-bottom: 50px;
@@ -20,13 +19,12 @@
 }
 
 .home p,
-.task1 p,
-.task2 p {
+.task p {
   padding-top: 20px;
   padding-bottom: 10px;
 }
 
-.task1 input {
+.task input {
   margin-left: 10px;
   margin-right: 10px;
   width: 70px;

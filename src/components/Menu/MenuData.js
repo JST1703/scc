@@ -17,8 +17,13 @@ export const MenuData = [
     cName: "nav-text",
   },
   {
-    title: "Prüfziffern und Fehlererkennung 3",
-    path: "/task2",
+    title: "EAN-Codes",
+    path: "/task3",
+    cName: "nav-text",
+  },
+  {
+    title: "Binäre Prüfziffern und Fehlererkennung",
+    path: "/task4",
     cName: "nav-text",
   },
 ];

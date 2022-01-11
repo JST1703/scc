@@ -23,7 +23,7 @@ function ChecksumExample({ checksumFunction }) {
         {data.map(function (digit, index) {
           return <span key={index}>{digit}</span>;
         })}
-        <span style={{ color: "red" }}>{" " + checksum}</span>
+        <span style={{ color: "red" }}>{checksum}</span>
       </div>
     </div>
   );
