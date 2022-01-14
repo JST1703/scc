@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import randomDigits from "../functions/randomDigits";
-
 /*
 This component always goes with the component ChecksumExercise.
 The ChecksumExample takes any checksum method, i.e. sum of all digits,
@@ -12,9 +10,9 @@ numbers, where one needs to calculate the checksum according to the examples.
 /*
 checksumFuncition is the chosen method for a checksum.
 */
-function ChecksumExample({ checksumFunction }) {
+function ChecksumExample({ checksumFunction, sequence }) {
   // random generated sequence of numbers and their checksum
-  const [data] = useState(randomDigits);
+  const [data] = useState(sequence);
   const checksum = checksumFunction(data);
 
   return (

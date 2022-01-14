@@ -23,7 +23,7 @@ of the given checksum.
 
 function Task2() {
   // number of examples displayed in the exercise
-  const numOfExamples = 3;
+  const numOfExamples = 5;
 
   // number of wrong answers, before solution is revealed
   const minWrongAnswers = 3;
@@ -82,7 +82,7 @@ function Task2() {
 
   return (
     <div className="task">
-      <h1>Aufgabe 2: Prüfziffern und Fehlererkennung 2</h1>
+      <h1>Aufgabe 2: Prüfziffer und Fehlererkennung 2</h1>
       <div className="task2A">
         <p>
           Hier haben wir ein anderes Beipiel einer anderen Prüfziffer. Erkennen
@@ -91,11 +91,15 @@ function Task2() {
           fehlenden Prüfziffern.
         </p>
         {[...Array(numOfExamples)].map(() => (
-          <ChecksumExample checksumFunction={nextTenChecksum} />
+          <ChecksumExample
+            checksumFunction={nextTenChecksum}
+            sequence={randomDigits}
+          />
         ))}
         {[...Array(numberOfTasksA)].map(() => (
           <ChecksumExercise
             checksumFunction={nextTenChecksum}
+            sequence={randomDigits}
             onWorong={() => setWrongAnswersA(wrongAnswersA + 1)}
             onCorrect={() => setCorrectAnswersA(correctAnswersA + 1)}
           />
@@ -107,7 +111,7 @@ function Task2() {
               können, muss man zuerst die Summe der Zahlenfolge berechnen. Die
               Prüfziffer ist dann das, was zum nächsten Zehner fehlt. Anders
               ausgedrückt: Quersumme der Zahlenfolge + Prüfziffer kann man durch
-              10 teilen und das ohne Rest.
+              10 teilen, und zwar ohne Rest.
             </p>
           )}
       </div>

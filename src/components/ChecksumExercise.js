@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import randomDigits from "../functions/randomDigits";
-
 /*
 This component always goes with the component ChecksumExample.
 The ChecksumExample takes any checksum method, i.e. sum of all digits,
@@ -16,13 +14,13 @@ onWorng and onCorrect are methods of the caller Component. These are used to
 reveal certain parts of the Task, i.e. the solution, if to many wrong answers
 have been given, or the next subtask, if all answers are correct.
 */
-function ChecksumExercise({ checksumFunction, onWorong, onCorrect }) {
+function ChecksumExercise({ checksumFunction, onWorong, onCorrect, sequence }) {
   // value of the input field
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState("");
   // variable for showing if the answer is correct or not
   const [correctState, setCorrectState] = useState("");
   // random generated sequence of numbers and their checksum
-  const [data] = useState(randomDigits);
+  const [data] = useState(sequence);
   const checksum = checksumFunction(data);
 
   // logic for comparing the given answer by the user and the correct answer
@@ -43,10 +41,10 @@ function ChecksumExercise({ checksumFunction, onWorong, onCorrect }) {
           return <span key={index}>{digit}</span>;
         })}
         <input
-          type="number"
+          type="text"
           value={value}
           disabled={correctState === true}
-          onChange={(event) => setValue(event.currentTarget.valueAsNumber)}
+          onChange={(event) => setValue(event.currentTarget.value)}
         />
         <button onClick={checkResult} disabled={correctState === true}>
           überprüfen

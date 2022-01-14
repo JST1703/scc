@@ -5,16 +5,16 @@ to the next 10 of the sum of
 the given digits
 */
 function nextTenChecksum(arr) {
-  let sum = 0;
+  let sol = 0;
   for (const item of arr) {
-    sum += item;
+    sol += item;
   }
-  const sol = 10 - (sum % 10);
+  sol = 10 - (sol % 10);
 
   if (sol === 10) {
-    return 0;
+    sol = 0;
   }
-  return sol;
+  return sol.toString();
 }
 
 export default nextTenChecksum;

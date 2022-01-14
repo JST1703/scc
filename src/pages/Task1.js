@@ -82,7 +82,7 @@ function Task1() {
 
   return (
     <div className="task">
-      <h1>Aufgabe 1: Prüfziffern und Fehlererkennung 1</h1>
+      <h1>Aufgabe 1: Prüfziffer und Fehlererkennung 1</h1>
       <div className="task1A">
         <p>
           Eine Möglichkeit um Fehler in Daten zu erkennen, ist es die Daten mit
@@ -94,11 +94,15 @@ function Task1() {
           Sie die weiteren Prüfziffern der gegebenen Zahlenfolgen.
         </p>
         {[...Array(numOfExamples)].map(() => (
-          <ChecksumExample checksumFunction={sumChecksum} />
+          <ChecksumExample
+            checksumFunction={sumChecksum}
+            sequence={randomDigits}
+          />
         ))}
         {[...Array(numberOfTasksA)].map(() => (
           <ChecksumExercise
             checksumFunction={sumChecksum}
+            sequence={randomDigits}
             onWorong={() => setWrongAnswersA(wrongAnswersA + 1)}
             onCorrect={() => setCorrectAnswersA(correctAnswersA + 1)}
           />

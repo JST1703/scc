@@ -6,7 +6,7 @@ function sumChecksum(arr) {
   for (const item of arr) {
     sum += item;
   }
-  return sum;
+  return sum.toString();
 }
 
 export default sumChecksum;
