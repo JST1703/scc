@@ -86,8 +86,8 @@ function Task2() {
       <div className="task2A">
         <p>
           Hier haben wir ein anderes Beipiel einer anderen Prüfziffer. Erkennen
-          Sie, wie man aus der Zahlenfolge (hier in schwarz) die Prüfziffer
-          (hier in rot) berechnen kann? Ergänzen Sie, wie im Beipiel, die
+          Sie, wie man aus der Zahlenfolge (hier in Schwarz) die Prüfziffer
+          (hier in Rot) berechnen kann? Ergänzen Sie, wie im Beipiel, die
           fehlenden Prüfziffern.
         </p>
         {[...Array(numOfExamples)].map(() => (
@@ -234,6 +234,21 @@ function Task2() {
             }
             textOnWrong={
               "Falsch. Die Ziffer 0 könnte weggelassen werden und die Summe bleibt gleich. Generell sagt die Prüfziffer nichts aus über die Anzahl Nullen in der Zahlenfolge. 1200000 hat die gleiche Prüfziffer wie 120. Wenn man 0 nicht erlaubt, dann hätten Sie recht."
+            }
+            callerFunction={() => {}}
+          />
+          <YN
+            question={
+              "Welche Fehlererkennungsmethode ist besser, diese Prüfiffer oder die Prüfsumme"
+            }
+            solution={1}
+            optionYes={"Prüfziffer"}
+            optionNo={"Prüfsumme"}
+            textOnCorrect={
+              "Richtig. Die Prüfziffer schafft das gleiche wie die Prüfsumme und das nur mit einer zusätzlichen Ziffer. Die Prüfsumme braucht mehrere zusätzliche Ziffern."
+            }
+            textOnWrong={
+              "Falsch. Die Prüfziffer schafft das gleiche wie die Prüfsumme und das nur mit einer zusätzlichen Ziffer. Die Prüfsumme braucht mehrere zusätzliche Ziffern."
             }
             callerFunction={() => {}}
           />

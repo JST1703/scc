@@ -9,6 +9,8 @@ numbers, where one needs to calculate the checksum according to the examples.
 
 /*
 checksumFuncition is the chosen method for a checksum.
+
+sequence is the string of numbers being used. This can either be a binary string or a integer string.
 */
 function ChecksumExample({ checksumFunction, sequence }) {
   // random generated sequence of numbers and their checksum

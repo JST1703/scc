@@ -87,8 +87,8 @@ function Task1() {
         <p>
           Eine Möglichkeit um Fehler in Daten zu erkennen, ist es die Daten mit
           weiteren Prüfziffern zu ergänzen. In diesem Beispiel haben wir einige
-          Folgen von Zahlen gegebn (hier in schwarz) und die dazugehörigen
-          Prüfziffern (hier in rot). Die Prüfziffer wird durch die Folge der
+          Folgen von Zahlen gegebn (hier in Schwarz) und die dazugehörigen
+          Prüfziffern (hier in Rot). Die Prüfziffer wird durch die Folge der
           Zahlen festgelegt. Können Sie in diesem Beispiel herausfinden, wie man
           aus der gegebenen Zahlenfolge die Prüfziffer berechnen kann? Ergänzen
           Sie die weiteren Prüfziffern der gegebenen Zahlenfolgen.

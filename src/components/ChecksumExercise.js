@@ -10,6 +10,8 @@ numbers, where one needs to calculate the checksum according to the examples.
 /*
 checksumFuncition is the chosen method for a checksum.
 
+sequence is the string of numbers being used. This can either be a binary string or a integer string.
+
 onWorng and onCorrect are methods of the caller Component. These are used to
 reveal certain parts of the Task, i.e. the solution, if to many wrong answers
 have been given, or the next subtask, if all answers are correct.

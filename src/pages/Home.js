@@ -18,18 +18,20 @@ function Home() {
         einen Tippfehler macht, oder aber auch, dass beim Übermitteln sich der
         Code verfälscht, wegen eines technischen Fehlers. Je mehr Daten man
         senden will, desto höher ist die Wahrscheinlichkeit solcher Fehler.
+        Fehler sind unumgänlich. Deswegen hat man veschiedene Methoden
+        entwickeld um solche Fehler zu entdecken, oder sogar korrigieren zu
+        können.
       </p>
 
       <p>
         In diesem Kapitel lernen Sie Methoden kennen, wie man Fehler in
-        einfachen Codes erkennen kann, und wie man diese zum Teil auch beheben
-        kann. Sie finden links im Menu Aufgaben zu diesem Thema. Die Aufgaben
-        bauen aufeinander auf. Deswegen empfiehlt es sich diese in der gegebenen
-        Reihenfolge zu machen. Die Aufgaben werden beim Laden der Webseite neu
+        einfachen Codes erkennen kann, und wie man diese zum Teil auch behebt.
+        Sie finden links im Menu Aufgaben zu diesem Thema. Die Aufgaben bauen
+        aufeinander auf. Deswegen empfiehlt es sich diese in der gegebenen
+        Reihenfolge zu lösen. Die Aufgaben werden beim Laden der Webseite neu
         gestaltet. Der Aufgabentyp bleibt der gleiche, jedoch wechseln die
         Beispiele, die Fragen und die entsprechenden Lösungen. Die Übungen
-        können somit mehrfach gelöst werden, weil man nicht jedes Mal die genau
-        gleichen Lösungen wiedergeben kann.
+        können somit mehrfach gelöst werden.
       </p>
     </div>
   );

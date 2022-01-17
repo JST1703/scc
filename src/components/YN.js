@@ -32,17 +32,12 @@ function YN({
   // value is the state of the Yes or No question
   const [value, setValue] = useState(1);
 
-  /* this state is used to see, if this question has been answered or not
-  if true, then one this component becomes disabled. */
-  const [answered, setAnswered] = useState(false);
-
   // this state is used to see, if the given answer is correct or not.
   const [correct, setCorrect] = useState("");
 
   /* logic for checking the user's answer to the solution
   and displaying the rest*/
   const checkResult = () => {
-    setAnswered(true);
     setCorrect(value === solution);
     callerFunction();
   };
@@ -54,7 +49,7 @@ function YN({
         <input
           type="radio"
           checked={value === 1}
-          disabled={answered}
+          disabled={correct === true || correct === false}
           onChange={() => setValue(1)}
         />
         {optionYes}
@@ -63,16 +58,19 @@ function YN({
         <input
           type="radio"
           checked={value === 0}
-          disabled={answered}
+          disabled={correct === true || correct === false}
           onChange={() => setValue(0)}
         />
         {optionNo}
       </div>
-      <button onClick={checkResult} disabled={answered}>
+      <button
+        onClick={checkResult}
+        disabled={correct === true || correct === false}
+      >
         überprüfen
       </button>
-      {answered && correct && <p>{textOnCorrect}</p>}
-      {answered && !correct && <p>{textOnWrong}</p>}
+      {correct === true && <p>{textOnCorrect}</p>}
+      {correct === false && <p>{textOnWrong}</p>}
     </div>
   );
 }

@@ -17,7 +17,7 @@ export const MenuData = [
     cName: "nav-text",
   },
   {
-    title: "Binäre Codes und Fehlererkennung",
+    title: "Binäre Kodirungen und Fehlererkennung",
     path: "/task3",
     cName: "nav-text",
   },
