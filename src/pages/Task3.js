@@ -5,6 +5,7 @@ import randomBinaryString from "../functions/randomBinaryString";
 import binaryCheckSymbol1 from "../functions/binaryCheckSymbol1";
 import binaryCheckSymbol2 from "../functions/binaryCheckSymbol2";
 import CompareExercise from "../components/CompareExercise";
+import nDigitComparer from "../functions/nDigitComparer";
 
 /*
 Task 3: Checksums with Binary Strings
@@ -12,10 +13,13 @@ Task 3: Checksums with Binary Strings
 Task A: Given a method for determine a check bit for a binary string,
 calculate the other check bits for the next examples.
 
+Task B: given the same checksum method and a binary string, change the given string such that it still fulfils the checksum.
+
 Task C: Given an other method for determine two check bits for a binary string,
 calculate the other check bits for the next examples.
 
-Task C: Different Yes and No Questions about the properties of the check bit methods
+Task D: given the same checksum method and a binary string, change the given string such that it still fulfils the checksum.
+
 */
 
 function Task3() {
@@ -52,6 +56,11 @@ function Task3() {
   */
   const [wrongAnswersC, setWrongAnswersC] = useState(0);
   const [correctAnswersC, setCorrectAnswersC] = useState(0);
+
+  /* 
+  if true, then next subtask is revealed.
+  */
+  const [answeredD, setAnsweredD] = useState(false);
 
   return (
     <div className="task">
@@ -100,14 +109,22 @@ function Task3() {
       </div>
       {correctAnswersA === numberOfTasks && (
         <div className="task3B">
-          <p>fjiwejfiweofjiewijo</p>
+          <p>
+            Diese Methode des Prüfbits ist sehr einfach, allerdings auch
+            limitiert. Gegeben ist eine weitere binäre Folge und deren Prüfbit.
+            Ändern sie die Gegebene Folge an genau zewi Stellen ab, so dass das
+            Prüfbit immernoch gültig ist. Geben Sie die neue Folge ohne Prüfbit
+            an.
+          </p>
           <CompareExercise
             checksumFunction={binaryCheckSymbol1}
-            sequence={randomBinaryString(0)}
-            textOnCorrect={"correct"}
-            textOnWrong={"wrong"}
+            sequence={randomBinaryString(4)}
+            textOnCorrect={"Korrekt."}
+            textOnWrong={
+              "Nicht korrekt. Ihre Angegebene Folge hat entweder mehr als 2 Änderungen oder erfüllt nicht mehr das gegebe Prüfbit."
+            }
             comparer={(a, b, c, d) => {
-              return false; // TODO Here
+              return nDigitComparer(a, b, c, d, 2);
             }}
             callerFunction={() => {
               setAnsweredB(true);
@@ -117,7 +134,19 @@ function Task3() {
       )}
       {answeredB && (
         <div className="task3C">
-          <p>bla bla bla</p>
+          <p>
+            Ähnlich wie bei der Prüfsumme können mit dieser Methode nur einzelne
+            Fehler erkannt werden. Wenn sich mehr als 2 Bits ändern, kann man
+            den Fehler, mit dieser Methode, nicht mehr erkennen. Es ist auch
+            wahrscheinlicher, dass Fehler bei 2 benachbarten Bits gleichzeitig
+            auftreten, z.B. durch das Vertauschen von Bits. Dafür gibt es eine
+            weitere Methode um solchen Fehler entgegenzuwirken. Man benötigt
+            dafür zwei Prüfbits. Gegeben sind einige binäre Foglen und deren
+            Prüfbits. Berechnen Sie anhand der Beispiele die Prügbits der
+            restlichen Folgen. Hinweis: Diese Methode ist sehr ähnlich zur
+            vorherigen Methode und kann speziell den Fehler von vertauschten
+            Bits erkennen.
+          </p>
           {[...Array(numOfExamples)].map(() => (
             <ChecksumExample
               checksumFunction={binaryCheckSymbol2}
@@ -133,13 +162,67 @@ function Task3() {
             />
           ))}
           {wrongAnswersC >= minWrongAnswers &&
-            correctAnswersC !== numberOfTasks && <p>Wrong</p>}
+            correctAnswersC !== numberOfTasks && (
+              <p>
+                Das ist leider nicht korrekt. Für as erste Bit müssen Sie die
+                vorherige Prüfbitmethode anwenden und zwar auf jedes zweite Bit
+                der binären Folge. Das gleiche gilt für das zweite Prüfbit, nur
+                mit den anderen Bits der binären Folge. Beispiel, gegeben sei
+                die Folge <span style={{ color: "red" }}>{1}</span>
+                <span style={{ color: "green" }}>{1}</span>
+                <span style={{ color: "red" }}>{1}</span>
+                <span style={{ color: "green" }}>{0}</span>, dann sind die
+                Prüfbits <span style={{ color: "red" }}>{0}</span>
+                <span style={{ color: "green" }}>{1}</span>. Das erste Prüfbit
+                ergibt sich mit den Bits an der ersten und der dritten Stelle,
+                das zweite Prüfbit aus den Bits an der zewiten und vierten
+                Stelle. Ergänzen Sie die restlichen Prüfbits um fortfahren zu
+                können.
+              </p>
+            )}
         </div>
       )}
       {correctAnswersC === numberOfTasks && (
-        <div>
-          {" "}
-          <p>Swaaag</p>
+        <div className="task3D">
+          <p>
+            Diese Methode ist um einiges besser als die vorherige Methode. Das
+            Vertauschen von Bits fällt natürlich auf. Wenn zwei bits von den
+            Jeweiligen gruppen Falsch sind, dann stimmt das nicht mehr mit den
+            Prüfbits überein und somit kann man auch 2 Fehler erkennen.
+            Allerdings muss das nicht immer der Fall sein. Gegeben ist eine
+            weitere binäre Folge und deren Prüfbits. Ändern sie die Gegebene
+            Folge an genau zewi Stellen ab, so dass die Prüfbits immernoch
+            gültig ist. Geben Sie die neue Folge ohne Prüfbits an.
+          </p>
+          <CompareExercise
+            checksumFunction={binaryCheckSymbol2}
+            sequence={randomBinaryString(6)}
+            textOnCorrect={"Korrekt."}
+            textOnWrong={
+              "Nicht korrekt. Ihre Angegebene Folge hat entweder mehr als 2 Änderungen oder erfüllt nicht mehr die gegeben Prüfbits."
+            }
+            comparer={(a, b, c, d) => {
+              return nDigitComparer(a, b, c, d, 2);
+            }}
+            callerFunction={() => {
+              setAnsweredD(true);
+            }}
+          />
+        </div>
+      )}
+      {answeredD && (
+        <div className="task3E">
+          <p>
+            Wenn in der binären Folge zwei Fehler passieren, bei Bits, welche zm
+            gleichen Prüfbit beitragen, dann kann man den Fehler nicht erkennen.
+            Die zweite Mehtode ist besser, als die erste Methode, da diese mehr
+            Fehler erkennen kann. Die zweite Methode kann den Fehler auch
+            eingernzen. Ist zum Beispiel das erste Prüfbit nicht erfüllt, dann
+            weiss man, dass eines der Bits an den ungeraden Stellen der Folge
+            falsch sein muss. Das ist allerdings noch zu ungenau um ermitteln zu
+            können, welches Bit nun falsch ist. Um Fehler korigieren zu können,
+            braucht es mehr Informationen.
+          </p>
         </div>
       )}
     </div>

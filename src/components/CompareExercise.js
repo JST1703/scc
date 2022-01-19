@@ -39,8 +39,6 @@ function CompareExercise({
   const checkResult = () => {
     let data2 = stringToArray(value);
 
-    console.log(data2);
-
     if (comparer(data, data2, checksum, checksumFunction(data2))) {
       setCorrect(true);
     } else {

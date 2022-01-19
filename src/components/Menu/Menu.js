@@ -16,7 +16,7 @@ function Menu() {
   return (
     <>
       {/* for changing the color of the icons in the menu bar */}
-      <IconContext.Provider value={{ color: "#0e0585" }}>
+      <IconContext.Provider value={{ color: "#FFFFFF" }}>
         {/* the hamburger sign from the menu */}
         <div className="navbar">
           <Link to="#" className="menu-bars">

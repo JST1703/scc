@@ -20,6 +20,11 @@ This component displays an example of numbers and a checksum or a check symbol f
 
 This component displays an exercise. It displays several numbers, where the user has to calculate the correct checksum or check symbol like in the examples.
 
+##### CompareExecise
+
+A component used for an exercise. Given a sequence and its checksum, the user has to give an input, which will be compared to the given sequence and checksum.
+For example given the sequence 110101 and the check bit 0, change the sequence such that it still fulfills the given check bit.
+
 ##### MC
 
 This component is used for Yes or No questions, which the user must solve.
@@ -52,6 +57,10 @@ given a binary string, returns a two digit number xy, where x is 1, if the numbe
 
 Used for MC or YN questions. Generates a sequence of numbers and a checksum, where the checksum can be wrong.
 
+##### nDigitComparer
+
+given two sequences of equal length, their checksums and a number x,returns true if the two sequences have a distance of exactly x and their checksums match, else returns false.
+
 ##### nextTenChecksum
 
 Given any sequence of digits, returns x, (where x + sum of sequence) % 10 === 0.
@@ -59,6 +68,10 @@ Given any sequence of digits, returns x, (where x + sum of sequence) % 10 === 0.
 ##### randomDigits
 
 Returns a random sequence of digits.
+
+##### stringToArray
+
+takes a string of numbers and returns the array of the individual digits
 
 ##### sumChecksum
 

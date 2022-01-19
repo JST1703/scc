@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #34c4bc;
+  background-color: #2d5a9e;
   height: 80px;
   display: flex;
   justify-content: start;
@@ -13,7 +13,7 @@
 }
 
 .nav-menu {
-  background-color: #34c4bc;
+  background-color: #2d5a9e;
   width: 250px;
   height: 100vh;
   display: flex;
@@ -40,7 +40,7 @@
 
 .nav-text a {
   text-decoration: none;
-  color: #0e0585;
+  color: #ffffff;
   font-size: 20px;
   width: 95%;
   height: 100%;
@@ -52,7 +52,7 @@
 
 /* nice visual effect when hovering over a menu bar item */
 .nav-text a:hover {
-  background-color: #5bece5;
+  background-color: #172d52;
 }
 
 .nav-menu-items {
@@ -60,7 +60,7 @@
 }
 
 .navbar-toggle {
-  background-color: #34c4bc;
+  background-color: #2d5a9e;
   width: 100%;
   height: 80px;
   display: flex;
