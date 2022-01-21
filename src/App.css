@@ -29,3 +29,9 @@
   margin-right: 10px;
   width: 70px;
 }
+
+.task th,
+.task td {
+  padding-left: 30px;
+  text-align: center;
+}
