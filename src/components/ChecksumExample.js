@@ -15,7 +15,9 @@ sequence is the string of numbers being used. This can either be a binary string
 function ChecksumExample({ checksumFunction, sequence }) {
   // random generated sequence of numbers and their checksum
   const [data] = useState(sequence);
-  const checksum = checksumFunction(data);
+  const [checksum] = useState(() => {
+    return checksumFunction(data);
+  });
 
   return (
     <div>

@@ -45,40 +45,27 @@ function Task2() {
   // if answeredB === true, then task C is revealed.
   const [answeredB, setAnsweredB] = useState(false);
 
-  // intermediate array for MC part in task B
-  const [tempTaskB] = useState(
-    arrayFiller(numberOfTasksB, () => {
-      return errormaker(randomDigits, nextTenChecksum, 0);
-    })
-  );
+  // mc questions and answer keys for task B
+  const [BTemp] = useState(() => {
+    let sol = arrayFiller(numberOfTasksB, () => {
+      let seq1 = randomDigits();
+      let cs1 = nextTenChecksum(seq1);
+      errormaker(seq1, 0);
+      let cs2 = nextTenChecksum(seq1);
 
-  // Answer options for MC part in task B
-  const [mcOptionsTaskB] = useState(() => {
-    let sol = [];
-    for (let i = 0; i < numberOfTasksB; ++i) {
-      let element = tempTaskB[i];
-      let last = element.length - 1;
-      let temp = element.slice(0, last).join("");
-      sol[sol.length] = temp.toString() + element[last].toString();
-    }
+      return [seq1.join("") + cs1, cs1 !== cs2];
+    });
     return sol;
   });
 
-  // Answer key in MC part in task B
-  const [mcAKTaskB] = useState(() => {
-    let sol = [];
-    for (let i = 0; i < numberOfTasksB; ++i) {
-      let element = tempTaskB[i];
-      let last = element.length - 1;
-      let temp = element.slice(0, last);
-      if (element[last] === nextTenChecksum(temp)) {
-        sol[sol.length] = false;
-      } else {
-        sol[sol.length] = true;
-      }
-    }
-    return sol;
-  });
+  let mcOptionsTaskB = [];
+  let mcAKTaskB = [];
+
+  for (let i = 0; i < numberOfTasksB; ++i) {
+    let elemet = BTemp[i];
+    mcOptionsTaskB[i] = elemet[0];
+    mcAKTaskB[i] = elemet[1];
+  }
 
   return (
     <div className="task">

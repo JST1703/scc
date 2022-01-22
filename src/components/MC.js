@@ -33,18 +33,12 @@ function MC({
       return false;
     })
   );
-
-  /* this state is used to see, if this question has been answered or not
-  if true, then one this component becomes disabled. */
-  const [answered, setAnswered] = useState(false);
-
   // this state is used to see, if the given answer is correct or not.
   const [correct, setCorrect] = useState("");
 
   /* logic for checking the user's answer to the solution
   and displaying the rest*/
   const checkResult = () => {
-    setAnswered(true);
     let temp = true;
     for (let i = 0; i < answerKey.length; ++i) {
       if (!temp) {
@@ -71,18 +65,21 @@ function MC({
           <div className="mc">
             <input
               type="checkbox"
-              disabled={answered}
+              disabled={correct === true || correct === false}
               onChange={() => handleChange(index)}
             />
             <span key={index}>{element}</span>
           </div>
         );
       })}
-      <button onClick={checkResult} disabled={answered}>
+      <button
+        onClick={checkResult}
+        disabled={correct === true || correct === false}
+      >
         überprüfen
       </button>
-      {answered && correct && <p>{textOnCorrect}</p>}
-      {answered && !correct && <p>{textOnWrong}</p>}
+      {correct === true && <p>{textOnCorrect}</p>}
+      {correct === false && <p>{textOnWrong}</p>}
     </div>
   );
 }

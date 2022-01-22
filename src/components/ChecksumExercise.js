@@ -23,7 +23,9 @@ function ChecksumExercise({ checksumFunction, onWorong, onCorrect, sequence }) {
   const [correctState, setCorrectState] = useState("");
   // random generated sequence of numbers and their checksum
   const [data] = useState(sequence);
-  const checksum = checksumFunction(data);
+  const [checksum] = useState(() => {
+    return checksumFunction(data);
+  });
 
   // logic for comparing the given answer by the user and the correct answer
   const checkResult = () => {

@@ -1,52 +1,91 @@
 /*
-given a sequence generator seqGen, a checksum function checkSumFunction and a state x
+given a sequence and a state x
 
-returns an array, where the first elements are the elements of the sequence from the 
-sequence generator, and the last element being the checksum of this sequence from
-the checkSumFunction.
+returns a changed sequence depending on the value of x
 
-if x is 0, then with a 50% chance one of the elements of the sequence will be altered
-such that it does no longer match the checksum.
+default: changes one digit of the sequence with probability of 50%
 
-if x is not 0, then with a 100% chance one of the elements of the sequence will be altered
-such that it does no longer match the checksum.
+case x === 1: changes one digit of the sequence
+
+case x === 2: changes two different digits of the sequence
+
+case x === 3: changes two different digits of the sequence
 */
 
-function errormaker(seqGen, checkSumFunction, x) {
-  const arr = seqGen();
-  const checksum = checkSumFunction(arr);
+// changes the number n
+function changeNumber(n) {
+  let temp = n;
+  if (temp === 0) {
+    temp = 1;
+  } else if (temp === 1) {
+    temp = 0;
+  } else if (temp <= 6) {
+    temp = temp + Math.floor(Math.random() * 2) + 1;
+  } else {
+    temp = Math.floor(Math.random() * 5) + 1;
+  }
+  return temp;
+}
 
-  const randomErrorMaker = () => {
-    let randomPos = Math.floor(Math.random() * (arr.length - 1));
-    let temp = arr[randomPos];
-    if (temp === 0) {
-      temp = 1;
-    } else if (temp === 1) {
-      temp = 0;
-    } else if (temp <= 6) {
-      temp = temp + Math.floor(Math.random() * 2) + 1;
-    } else {
-      temp = Math.floor(Math.random() * 5) + 1;
-    }
-    arr[randomPos] = temp;
-  };
+// makes one random change in the sequence
+function randomErrorMaker1(seq) {
+  let randomPos = Math.floor(Math.random() * (seq.length - 1));
+  seq[randomPos] = changeNumber(seq[randomPos]);
+  return;
+}
 
+// makes two random changes in the sequence
+function randomErrorMaker2(seq) {
+  let randomPos1 = Math.floor(Math.random() * (seq.length - 1));
+  let randomPos2 = Math.floor(Math.random() * (seq.length - 1));
+  while (randomPos2 === randomPos1) {
+    randomPos2 = Math.floor(Math.random() * (seq.length - 1));
+  }
+  seq[randomPos1] = changeNumber(seq[randomPos1]);
+  seq[randomPos2] = changeNumber(seq[randomPos2]);
+  return;
+}
+
+// makes three random changes in the sequence
+function randomErrorMaker3(seq) {
+  let randomPos1 = Math.floor(Math.random() * (seq.length - 1));
+  let randomPos2 = Math.floor(Math.random() * (seq.length - 1));
+  let randomPos3 = Math.floor(Math.random() * (seq.length - 1));
+  while (randomPos2 === randomPos1) {
+    randomPos2 = Math.floor(Math.random() * (seq.length - 1));
+  }
+  while (randomPos3 === randomPos1 || randomPos3 === randomPos2) {
+    randomPos3 = Math.floor(Math.random() * (seq.length - 1));
+  }
+  seq[randomPos1] = changeNumber(seq[randomPos1]);
+  seq[randomPos2] = changeNumber(seq[randomPos2]);
+  seq[randomPos3] = changeNumber(seq[randomPos3]);
+  return;
+}
+
+function errormaker(seq, x) {
   switch (x) {
-    case 0:
-      let coin = Math.round(Math.random());
-      if (coin === 1) {
-        randomErrorMaker();
-      }
+    case 1:
+      randomErrorMaker1(seq);
+      break;
+
+    case 2:
+      randomErrorMaker2(seq);
+      break;
+
+    case 3:
+      randomErrorMaker3(seq);
       break;
 
     default:
-      randomErrorMaker();
+      let coin = Math.round(Math.random());
+      if (coin === 1) {
+        randomErrorMaker1(seq);
+      }
       break;
   }
 
-  arr[arr.length] = checksum;
-
-  return arr;
+  return;
 }
 
 export default errormaker;

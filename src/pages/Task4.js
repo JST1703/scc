@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import MC from "../components/MC";
 import arrayFiller from "../functions/arrayFiller";
+import errormaker from "../functions/errormaker";
 
 /*
 Task 4: codes ans error correction
 
 */
 
+// Table content
+const words = ["Hund", "Mond", "Pizza", "Auto"];
+const binaryRep = ["00", "01", "10", "11"];
+const encoding = [
+  [0, 0, 0, 0, 0, 0],
+  [0, 1, 0, 1, 0, 1],
+  [1, 0, 1, 0, 1, 0],
+  [1, 1, 1, 1, 1, 1],
+];
+
 function Task4() {
-  // Table content
-  const words = ["Hund", "Mond", "Pizza", "Auto"];
-  const binaryRep = ["00", "01", "10", "11"];
-  const encoding = [
-    [0, 0, 0, 0, 0, 0],
-    [0, 1, 0, 1, 0, 1],
-    [1, 0, 1, 0, 1, 0],
-    [1, 1, 1, 1, 1, 1],
-  ];
+  const numberOfTasks = 3;
+
+  // keeping track of the number of answers given in each task
+  const [answersA, setAnswersA] = useState(0);
+  const [answersB, setAnswersB] = useState(0);
+  const [answersC, setAnswersC] = useState(0);
 
   // Table for encoding
   const table = [];
@@ -41,30 +49,81 @@ function Task4() {
     );
   }
 
-  // MC Questions task4A
-  const mc4A = [];
-
-  // questions with one error
-  for (let i = 0; i < 2; ++i) {
-    // random encoding being chosen
-    let k = Math.floor(Math.random() * 4);
-    if (k === 4) {
-      k = 3;
-    }
-
-    // for answer key
-    let key = arrayFiller(4, () => {
-      return false;
+  // Temp for MC Questions
+  const [mcTemp] = useState(() => {
+    let sol = arrayFiller(3 * numberOfTasks, () => {
+      // random encoding being chosen
+      let k = Math.floor(Math.random() * 4);
+      if (k === 4) {
+        k = 3;
+      }
+      return k;
     });
-    key[k] = true;
+    return sol;
+  });
+
+  console.log(mcTemp);
+
+  // MC Questions
+  let mc4A = []; // one error
+  let mc4B = []; // two errors
+  let mc4C = []; // three errors
+
+  // for answer key
+  let key = arrayFiller(4, () => {
+    return false;
+  });
+
+  for (let i = 0; i < 3 * numberOfTasks; i += 3) {
+    let k1 = mcTemp[i];
+    let k2 = mcTemp[i + 1];
+    let k3 = mcTemp[i + 2];
+
+    let key1 = [...key];
+    let key2 = [...key];
+    let key3 = [...key];
+
+    key1[k1] = true;
+    key2[k2] = true;
+    key3[k3] = true;
+
+    let seqTemp1 = [...encoding[k1]];
+    let seqTemp2 = [...encoding[k2]];
+    let seqTemp3 = [...encoding[k3]];
+
+    errormaker(seqTemp1, 1);
+    errormaker(seqTemp2, 2);
+    errormaker(seqTemp3, 3);
 
     mc4A.push(
       <MC
-        callerFunction={() => {}}
-        question={"Nachricht: " + encoding[k].join("")}
+        callerFunction={() => setAnswersA(answersA + 1)}
+        question={"Nachricht: " + seqTemp1.join("")}
         options={words}
-        answerKey={key}
-        textOnWrong={"Falsch. Die richtige antwort lautet " + words[k]}
+        answerKey={key1}
+        textOnWrong={"Falsch. Die richtige antwort lautet " + words[k1] + "."}
+        textOnCorrect="Korrekt."
+      />
+    );
+
+    mc4B.push(
+      <MC
+        callerFunction={() => setAnswersB(answersB + 1)}
+        question={"Nachricht: " + seqTemp2.join("")}
+        options={words}
+        answerKey={key2}
+        textOnWrong={"Falsch. Die richtige antwort lautet " + words[k2] + "."}
+        textOnCorrect="Korrekt."
+      />
+    );
+
+    mc4C.push(
+      <MC
+        callerFunction={() => setAnswersC(answersC + 1)}
+        question={"Nachricht: " + seqTemp3.join("")}
+        options={words}
+        answerKey={key3}
+        textOnWrong={"Falsch. Die richtige antwort lautet " + words[k3] + "."}
         textOnCorrect="Korrekt."
       />
     );
@@ -97,6 +156,8 @@ function Task4() {
           die ursprüngliche Nachricht war.
         </p>
         {mc4A}
+        {answersA === numberOfTasks && mc4B}
+        {answersB === numberOfTasks && mc4C}
       </div>
     </div>
   );

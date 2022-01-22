@@ -55,7 +55,7 @@ given a binary string, returns a two digit number xy, where x is 1, if the numbe
 
 ##### errormaker
 
-Used for MC or YN questions. Generates a sequence of numbers and a checksum, where the checksum can be wrong.
+Used for MC or YN questions. Changes a sequence depending on the question to solve.
 
 ##### nDigitComparer
 

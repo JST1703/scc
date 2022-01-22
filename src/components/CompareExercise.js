@@ -27,7 +27,9 @@ function CompareExercise({
 }) {
   // random generated sequence of numbers and their checksum
   const [data] = useState(sequence);
-  const checksum = checksumFunction(data);
+  const [checksum] = useState(() => {
+    return checksumFunction(data);
+  });
 
   // this state is used to see, if the given answer is correct or not.
   const [correct, setCorrect] = useState("");
