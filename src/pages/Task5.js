@@ -5,7 +5,7 @@ import arrayFiller from "../functions/arrayFiller";
 import errormaker from "../functions/errormaker";
 
 /*
-Task 4: codes and error correction
+Task 5: codes and error correction
 
 Task A: given an encoding. The user is given a few messages with one error. He must find the original message.
 
@@ -14,7 +14,8 @@ Task B: given an encoding. The user is given a few messages with two errors. He 
 Task C: given an encoding. The user is given a few messages with one error. He must find the original message, which he might fail.
 
 Task D: Y and N questions about the property of this encoding. The user should realise after the pervious exercises that with this encoding 
-you can detect 2 errors, but only correct one error.
+you can detect 2 errors, but only correct one error. With task 4, he realizes, that there are different ways of encoding. He should learn in
+the next exercise that it is about the distance between the code words.
 
 */
 
@@ -22,13 +23,13 @@ you can detect 2 errors, but only correct one error.
 const words = ["Hund", "Mond", "Pizza", "Auto"];
 const binaryRep = ["00", "01", "10", "11"];
 const encoding = [
-  [0, 0, 0, 0, 0, 0],
-  [0, 1, 0, 1, 0, 1],
-  [1, 0, 1, 0, 1, 0],
-  [1, 1, 1, 1, 1, 1],
+  [0, 0, 0, 0, 0],
+  [0, 1, 0, 1, 1],
+  [1, 0, 1, 0, 1],
+  [1, 1, 1, 1, 0],
 ];
 
-function Task4() {
+function Task5() {
   const numberOfTasks = 3;
 
   // keeping track of the number of answers given in each task
@@ -73,9 +74,9 @@ function Task4() {
   });
 
   // MC Questions
-  let mc4A = []; // one error
-  let mc4B = []; // two errors
-  let mc4C = []; // three errors
+  let mc5A = []; // one error
+  let mc5B = []; // two errors
+  let mc5C = []; // three errors
 
   // for answer key
   let key = arrayFiller(4, () => {
@@ -103,7 +104,7 @@ function Task4() {
     errormaker(seqTemp2, 2);
     errormaker(seqTemp3, 3);
 
-    mc4A.push(
+    mc5A.push(
       <MC
         callerFunction={() => setAnswersA(answersA + 1)}
         question={"Nachricht: " + seqTemp1.join("")}
@@ -114,7 +115,7 @@ function Task4() {
       />
     );
 
-    mc4B.push(
+    mc5B.push(
       <MC
         callerFunction={() => setAnswersB(answersB + 1)}
         question={"Nachricht: " + seqTemp2.join("")}
@@ -129,7 +130,7 @@ function Task4() {
       />
     );
 
-    mc4C.push(
+    mc5C.push(
       <MC
         callerFunction={() => setAnswersC(answersC + 1)}
         question={"Nachricht: " + seqTemp3.join("")}
@@ -147,15 +148,11 @@ function Task4() {
 
   return (
     <div className="task">
-      <h1>Aufgabe 4: Kodierungen und Fehlerkorrektur 1</h1>
-      <div className="task4A">
+      <h1>Aufgabe 5: Kodierungen und Fehlerkorrektur 2</h1>
+      <div className="task5A">
         <p>
-          Wir haben verschiedene Methoden kennen gelehrnt, um Fehler erkennen zu
-          können. Diese waren sehr simpel, aber dafür auch sehr Limitiert.
-          Bisher konnten wir nur einzelne Fehler erkennen, allerdings nicht of
-          nicht mehr als einer, und wir können bisher auch keine Fehler
-          korrigieren. Wir wollen nun Kodierungssysteme anschauen, mit denen wir
-          auch Fehler korrigieren können.
+          Wir haben gesehn, dass man mit Kodierungen Fehler in Nachrichten
+          erkennen kann, aber auch korrigieren
         </p>
         <p>
           Gegeben sind 4 Wörter, welche wir einer binären Darstellung zuordnen.
@@ -171,7 +168,7 @@ function Task4() {
           genau einen Fehler beinhalten. Geben Sie das Wort an, was am
           wahrscheinlichsten die ursprüngliche Nachricht war.
         </p>
-        {mc4A}
+        {mc5A}
         {answersA === numberOfTasks && (
           <p>
             Gegeben sind Nachrichten, welche nun zwei Fehler beinhalten. Können
@@ -179,7 +176,7 @@ function Task4() {
             Sie es aus.
           </p>
         )}
-        {answersA === numberOfTasks && mc4B}
+        {answersA === numberOfTasks && mc5B}
         {answersB === numberOfTasks && (
           <p>
             Als letztes versuchen wir Nachrichten zu korrigieren, welche nun
@@ -187,7 +184,7 @@ function Task4() {
             Nachricht identifizieren? Probieren Sie es aus.
           </p>
         )}
-        {answersB === numberOfTasks && mc4C}
+        {answersB === numberOfTasks && mc5C}
 
         {answersC === numberOfTasks && (
           <div>
@@ -283,4 +280,4 @@ function Task4() {
   );
 }
 
-export default Task4;
+export default Task5;

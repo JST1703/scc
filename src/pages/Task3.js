@@ -64,7 +64,7 @@ function Task3() {
 
   return (
     <div className="task">
-      <h1>Aufgabe 3: Binäre Kodirungen und Fehlererkennung</h1>
+      <h1>Aufgabe 3: Binäre Folgen und Fehlererkennung</h1>
       <div className="task3A">
         <p>
           Computer verwenden nur binäre Daten. Aber besoders da können schneller

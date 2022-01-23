@@ -7,10 +7,10 @@
 
 .home,
 .task {
-  padding-top: 50px;
-  padding-right: 300px;
-  padding-bottom: 50px;
-  padding-left: 50px;
+  padding-top: 5%;
+  padding-right: 30%;
+  padding-bottom: 5%;
+  padding-left: 5%;
   display: block;
   align-items: center;
   justify-content: center;
@@ -21,7 +21,7 @@
 .home p,
 .task p {
   padding-top: 20px;
-  padding-bottom: 10px;
+  padding-bottom: 20px;
 }
 
 .task input {

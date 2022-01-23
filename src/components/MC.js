@@ -33,6 +33,10 @@ function MC({
       return false;
     })
   );
+
+  // question in useState, to avoid undesired Behavior
+  const [stateQuestion] = useState(question);
+
   // this state is used to see, if the given answer is correct or not.
   const [correct, setCorrect] = useState("");
 
@@ -59,7 +63,7 @@ function MC({
 
   return (
     <div className="MC">
-      <p>{question}</p>
+      <p>{stateQuestion}</p>
       {options.map(function (element, index) {
         return (
           <div className="mc">
