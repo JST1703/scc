@@ -123,7 +123,7 @@ function Task4() {
         textOnWrong={
           "Falsch. Die richtige antwort lautet " +
           words[k2] +
-          ". Vergessen Sie nicht, dass es nun 2 Fehler in den Nachrichten gibt,"
+          ". Vergessen Sie nicht, dass es nun 2 Fehler in den Nachrichten gibt."
         }
         textOnCorrect="Korrekt."
       />
@@ -160,7 +160,11 @@ function Task4() {
         <p>
           Gegeben sind 4 Wörter, welche wir einer binären Darstellung zuordnen.
           Weiter kodieren wir die binäre Darstellungen, in dem wir diese jeweils
-          3mal wiederholen.
+          3mal wiederholen. Beispielsweise wird {binaryRep[1]} zu
+          {binaryRep[1]}
+          <span style={{ color: "red" }}>{binaryRep[1]}</span>
+          <span style={{ color: "green" }}>{binaryRep[1]}</span>
+          kodiert.
         </p>
         <table>{table}</table>
         <p>

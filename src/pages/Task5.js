@@ -124,7 +124,7 @@ function Task5() {
         textOnWrong={
           "Falsch. Die richtige antwort lautet " +
           words[k2] +
-          ". Vergessen Sie nicht, dass es nun 2 Fehler in den Nachrichten gibt,"
+          ". Vergessen Sie nicht, dass es nun 2 Fehler in den Nachrichten gibt."
         }
         textOnCorrect="Korrekt."
       />
@@ -152,21 +152,20 @@ function Task5() {
       <div className="task5A">
         <p>
           Wir haben gesehn, dass man mit Kodierungen Fehler in Nachrichten
-          erkennen kann, aber auch korrigieren
-        </p>
-        <p>
-          Gegeben sind 4 Wörter, welche wir einer binären Darstellung zuordnen.
-          Weiter kodieren wir die binäre Darstellungen, in dem wir diese jeweils
-          3mal wiederholen.
+          erkennen und auch korrigieren kann. Das wollen wir noch genauer
+          untersuchen. Wir nehmen eine ähnliche Kodierung wie zuvor. Diesesmal
+          wird die binäre Darstellung verdoppelt und es wird ein weiteres Bit
+          angefügt. Das angefügte Bit wird so gesetzt, dass die Anzahl Einsen in
+          der binären Darstellung und diesem Bit gerade ist.
         </p>
         <table>{table}</table>
         <p>
-          Wenn Sie nun ein bestimmtes Wort kommunizieren wollen, dann versenden
-          Sie die entsprechende Kodierung. Wenn Sie "{words[1]}" als Nachricht
-          verschicken wollen, dann senden Sie die Kodierung "{encoding[1]}".
-          Auch da können Fehler auftreten. Gegeben sind Nachrichten, welche
-          genau einen Fehler beinhalten. Geben Sie das Wort an, was am
-          wahrscheinlichsten die ursprüngliche Nachricht war.
+          Wie zuvor, wenn Sie nun ein bestimmtes Wort kommunizieren wollen, dann
+          versenden Sie die entsprechende Kodierung. Wenn Sie "{words[2]}" als
+          Nachricht verschicken wollen, dann senden Sie die Kodierung "
+          {encoding[2]}". Auch da können Fehler auftreten. Gegeben sind
+          Nachrichten, welche genau einen Fehler beinhalten. Geben Sie das Wort
+          an, was am wahrscheinlichsten die ursprüngliche Nachricht war.
         </p>
         {mc5A}
         {answersA === numberOfTasks && (
@@ -251,10 +250,10 @@ function Task5() {
               optionYes={"Ja"}
               optionNo={"Nein"}
               textOnWrong={
-                "Falsh. 010101 könnte sich per Zufall bei 3 Fehlern zu 000000 umwandeln, was man nicht als Fehler erkennen kann."
+                "Falsh. 01011 könnte sich per Zufall bei 3 Fehlern zu 00000 umwandeln, was man nicht als Fehler erkennen kann."
               }
               textOnCorrect={
-                "Richtig. 010101 könnte sich per Zufall bei 3 Fehlern zu 000000 umwandeln, was man nicht als Fehler erkennen kann."
+                "Richtig. 01011 könnte sich per Zufall bei 3 Fehlern zu 00000 umwandeln, was man nicht als Fehler erkennen kann."
               }
               solution={0}
             />
@@ -270,6 +269,19 @@ function Task5() {
               }
               textOnCorrect={
                 "Richtig. Man kann unter umständen die Fehler nicht erkennen und darum erst gar nicht korrigieren."
+              }
+              solution={0}
+            />
+            <YN
+              callerFunction={() => {}}
+              question={"Ist diese Kodierung besser als die Vorherige?"}
+              optionYes={"Ja"}
+              optionNo={"Nein"}
+              textOnWrong={
+                "Flasch. Beide Kodierungen haben die gleichen Eigenschaften. Diese ist zwar 1 Bit kürzer und somit effizienter, aber das ist hier vernachlässigbar."
+              }
+              textOnCorrect={
+                "Richtig. Beide Kodierungen haben die gleichen Eigenschaften. Diese ist zwar 1 Bit kürzer und somit effizienter, aber das ist hier vernachlässigbar."
               }
               solution={0}
             />
