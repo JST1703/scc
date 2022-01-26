@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import MC from "../components/MC";
 import YN from "../components/YN";
-import arrayFiller from "../functions/arrayFiller";
 import errormaker from "../functions/errormaker";
 
 /*
@@ -61,17 +60,16 @@ function Task5() {
   }
 
   // Temp for MC Questions
-  const [mcTemp] = useState(() => {
-    let sol = arrayFiller(3 * numberOfTasks, () => {
+  const [mcTemp] = useState(
+    Array.from({ length: 3 * numberOfTasks }, () => {
       // random encoding being chosen
       let k = Math.floor(Math.random() * 4);
       if (k === 4) {
         k = 3;
       }
       return k;
-    });
-    return sol;
-  });
+    })
+  );
 
   // MC Questions
   let mc5A = []; // one error
@@ -79,9 +77,7 @@ function Task5() {
   let mc5C = []; // three errors
 
   // for answer key
-  let key = arrayFiller(4, () => {
-    return false;
-  });
+  let key = Array(4).fill(false);
 
   for (let i = 0; i < 3 * numberOfTasks; i += 3) {
     let k1 = mcTemp[i];
@@ -122,7 +118,7 @@ function Task5() {
         options={words}
         answerKey={key2}
         textOnWrong={
-          "Falsch. Die richtige antwort lautet " +
+          "Falsch. Die richtige Antwort lautet " +
           words[k2] +
           ". Vergessen Sie nicht, dass es nun 2 Fehler in den Nachrichten gibt."
         }
@@ -137,7 +133,7 @@ function Task5() {
         options={words}
         answerKey={key3}
         textOnWrong={
-          "Falsch. Die richtige antwort lautet " +
+          "Falsch. Die richtige Antwort lautet " +
           words[k3] +
           ". 3 Fehler sind aber fast unmöglich zu Korrigieren."
         }
@@ -156,7 +152,11 @@ function Task5() {
           untersuchen. Wir nehmen eine ähnliche Kodierung wie zuvor. Diesesmal
           wird die binäre Darstellung verdoppelt und es wird ein weiteres Bit
           angefügt. Das angefügte Bit wird so gesetzt, dass die Anzahl Einsen in
-          der binären Darstellung und diesem Bit gerade ist.
+          der binären Darstellung und diesem Bit gerade ist. Beispielsweise wird{" "}
+          {binaryRep[2]} zu
+          {" " + binaryRep[2]}
+          <span style={{ color: "red" }}>{binaryRep[2]}</span>
+          <span style={{ color: "green" }}>{1 + " "}</span> kodiert.
         </p>
         <table>{table}</table>
         <p>

@@ -5,7 +5,6 @@ import MC from "../components/MC";
 import YN from "../components/YN";
 import randomDigits from "../functions/randomDigits";
 import sumChecksum from "../functions/sumChecksum";
-import arrayFiller from "../functions/arrayFiller";
 import errormaker from "../functions/errormaker";
 
 /*
@@ -46,16 +45,15 @@ function Task1() {
   const [answeredB, setAnsweredB] = useState(false);
 
   // mc questions and answer keys for task B
-  const [BTemp] = useState(() => {
-    let sol = arrayFiller(numberOfTasksB, () => {
+  const [BTemp] = useState(
+    Array.from({ length: numberOfTasksB }, () => {
       let seq1 = randomDigits();
       let cs1 = sumChecksum(seq1);
       errormaker(seq1, 0);
       let cs2 = sumChecksum(seq1);
       return [seq1.join("") + " " + cs1, cs1 !== cs2];
-    });
-    return sol;
-  });
+    })
+  );
 
   let mcOptionsTaskB = [];
   let mcAKTaskB = [];

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import MC from "../components/MC";
 import YN from "../components/YN";
-import arrayFiller from "../functions/arrayFiller";
 import errormaker from "../functions/errormaker";
 
 /*
@@ -60,17 +59,16 @@ function Task4() {
   }
 
   // Temp for MC Questions
-  const [mcTemp] = useState(() => {
-    let sol = arrayFiller(3 * numberOfTasks, () => {
+  const [mcTemp] = useState(
+    Array.from({ length: 3 * numberOfTasks }, () => {
       // random encoding being chosen
       let k = Math.floor(Math.random() * 4);
       if (k === 4) {
         k = 3;
       }
       return k;
-    });
-    return sol;
-  });
+    })
+  );
 
   // MC Questions
   let mc4A = []; // one error
@@ -78,9 +76,7 @@ function Task4() {
   let mc4C = []; // three errors
 
   // for answer key
-  let key = arrayFiller(4, () => {
-    return false;
-  });
+  let key = Array(4).fill(false);
 
   for (let i = 0; i < 3 * numberOfTasks; i += 3) {
     let k1 = mcTemp[i];
@@ -109,7 +105,7 @@ function Task4() {
         question={"Nachricht: " + seqTemp1.join("")}
         options={words}
         answerKey={key1}
-        textOnWrong={"Falsch. Die richtige antwort lautet " + words[k1] + "."}
+        textOnWrong={"Falsch. Die richtige Antwort lautet " + words[k1] + "."}
         textOnCorrect="Korrekt."
       />
     );
@@ -136,7 +132,7 @@ function Task4() {
         options={words}
         answerKey={key3}
         textOnWrong={
-          "Falsch. Die richtige antwort lautet " +
+          "Falsch. Die richtige Antwort lautet " +
           words[k3] +
           ". 3 Fehler sind aber fast unmöglich zu Korrigieren."
         }
@@ -161,10 +157,9 @@ function Task4() {
           Gegeben sind 4 Wörter, welche wir einer binären Darstellung zuordnen.
           Weiter kodieren wir die binäre Darstellungen, in dem wir diese jeweils
           3mal wiederholen. Beispielsweise wird {binaryRep[1]} zu
-          {binaryRep[1]}
+          {" " + binaryRep[1]}
           <span style={{ color: "red" }}>{binaryRep[1]}</span>
-          <span style={{ color: "green" }}>{binaryRep[1]}</span>
-          kodiert.
+          <span style={{ color: "green" }}>{binaryRep[1] + " "}</span> kodiert.
         </p>
         <table>{table}</table>
         <p>

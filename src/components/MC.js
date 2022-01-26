@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import arrayFiller from "../functions/arrayFiller";
-
 /*
 This component displays a multiple choice question.
 */
@@ -28,11 +26,7 @@ function MC({
   textOnCorrect,
 }) {
   // values are the state of the Yes or No question logged by the user
-  const [values, setValues] = useState(
-    arrayFiller(answerKey.length, () => {
-      return false;
-    })
-  );
+  const [values, setValues] = useState(Array(answerKey.length).fill(false));
 
   // question in useState, to avoid undesired Behavior
   const [stateQuestion] = useState(question);
