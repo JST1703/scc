@@ -197,10 +197,10 @@ function Task4() {
               optionYes={"Ja"}
               optionNo={"Nein"}
               textOnWrong={
-                "Flasch. Wenn ein Fehler auftrit, dann ist die fehlerhafte Nachricht gar nicht eines unserer Kode-Wörter."
+                "Flasch. Wenn ein Fehler auftrit, dann ist die fehlerhafte Nachricht gar nicht eines unserer Code-Wörter."
               }
               textOnCorrect={
-                "Richtig. Wenn ein Fehler auftrit, dann ist die fehlerhafte Nachricht gar nicht eines unserer Kode-Wörter."
+                "Richtig. Wenn ein Fehler auftrit, dann ist die fehlerhafte Nachricht gar nicht eines unserer Code-Wörter."
               }
               solution={1}
             />
@@ -210,10 +210,10 @@ function Task4() {
               optionYes={"Ja"}
               optionNo={"Nein"}
               textOnWrong={
-                "Flasch. Unsere Kode-Wörter unterscheiden sich in mindesten an 3 Stellen. Die fehlerhafte Nachricht unterscheidet sich mit einem Fehler nur an einer Stelle zu einem Kode-Wort und zu allen anderen in mintesten zwei Stellen. Man kan somit die Feherhafte nachricht eindeutig zuordnen."
+                "Flasch. Unsere Code-Wörter unterscheiden sich in mindesten an 3 Stellen. Die fehlerhafte Nachricht unterscheidet sich mit einem Fehler nur an einer Stelle zu einem Code-Wort und zu allen anderen in mintesten zwei Stellen. Man kan somit die Feherhafte nachricht eindeutig zuordnen."
               }
               textOnCorrect={
-                "Richtig. Unsere Kode-Wörter unterscheiden sich in mindesten an 3 Stellen. Die fehlerhafte Nachricht unterscheidet sich mit einem Fehler nur an einer Stelle zu einem Kode-Wort und zu allen anderen in mintesten zwei Stellen. Man kan somit die Feherhafte nachricht eindeutig zuordnen."
+                "Richtig. Unsere Code-Wörter unterscheiden sich in mindesten an 3 Stellen. Die fehlerhafte Nachricht unterscheidet sich mit einem Fehler nur an einer Stelle zu einem Code-Wort und zu allen anderen in mintesten zwei Stellen. Man kan somit die Feherhafte nachricht eindeutig zuordnen."
               }
               solution={1}
             />
@@ -224,10 +224,10 @@ function Task4() {
               optionYes={"Ja"}
               optionNo={"Nein"}
               textOnWrong={
-                "Falsh. Wenn zewi Fehler auftreten, dann ist die fehlerhafte Nachricht gar nicht eines unserer Kode-Wörter."
+                "Falsh. Wenn zewi Fehler auftreten, dann ist die fehlerhafte Nachricht gar nicht eines unserer Code-Wörter."
               }
               textOnCorrect={
-                "Richtig. Wenn zewi Fehler auftreten, dann ist die fehlerhafte Nachricht gar nicht eines unserer Kode-Wörter."
+                "Richtig. Wenn zewi Fehler auftreten, dann ist die fehlerhafte Nachricht gar nicht eines unserer Code-Wörter."
               }
               solution={1}
             />

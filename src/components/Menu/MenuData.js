@@ -42,18 +42,8 @@ export const MenuData = [
     cName: "nav-text",
   },
   {
-    title: "Quadrate",
+    title: "Abstand in Kodierungen 3",
     path: "/task8",
-    cName: "nav-text",
-  },
-  {
-    title: "Hamming-Codes",
-    path: "/task9",
-    cName: "nav-text",
-  },
-  {
-    title: "Systematische Kodierung",
-    path: "/task10",
     cName: "nav-text",
   },
 ];
