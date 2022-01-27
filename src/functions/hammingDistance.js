@@ -1,22 +1,10 @@
+import distance from "./distance";
+
 /* 
 given an array of arrays of equal length
 returns the hamming distance of the array
 */
 
-// calculates the hamming distance between 2 elements
-function distance(x, y) {
-  let d = 0;
-
-  for (let i = 0; i < x.length; ++i) {
-    if (x[i] !== y[i]) {
-      d += 1;
-    }
-  }
-
-  return d;
-}
-
-// calculates the hamming distance of data
 function hammingDistance(data) {
   let hd = Infinity;
 

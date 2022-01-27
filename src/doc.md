@@ -25,9 +25,13 @@ This component displays an exercise. It displays several numbers, where the user
 A component used for an exercise. Given a sequence and its checksum, the user has to give an input, which will be compared to the given sequence and checksum.
 For example given the sequence 110101 and the check bit 0, change the sequence such that it still fulfills the given check bit.
 
+##### EncodingDistanceExercise
+
+An exercise type. Given a code, the user must first determine it's hamming distance and then answer some MCs about some properties.
+
 ##### MC
 
-This component is used for Yes or No questions, which the user must solve.
+This component is used for Multiple Choice Yes or No questions, which the user must solve.
 
 ##### Menu
 
@@ -35,7 +39,7 @@ The menu component is used for navigation. It is used to switch between pages. I
 
 ##### YN
 
-This component is used for Yes or No questions, which the user must solve.
+This component is a single Yes or No question, which the user must solve.
 
 ### Functions
 
@@ -43,15 +47,23 @@ Functions are used for additional modularity for the code. See ChecksumExercise 
 
 ##### binaryCheckSymbol1
 
-given a binary string, returns x, where x is 1, if the number of ones in the string is odd. Else x is 0.
+Given a binary string, returns x, where x is 1, if the number of ones in the string is odd. Else x is 0.
 
 ##### binaryCheckSymbol2
 
-given a binary string, returns a two digit number xy, where x is 1, if the number of ones in the string at every even position is odd, else x is 0, and where y is 1, if the number of ones in the string at every odd position is odd, else y is 0.
+Given a binary string, returns a two digit number xy, where x is 1, if the number of ones in the string at every even position is odd, else x is 0, and where y is 1, if the number of ones in the string at every odd position is odd, else y is 0.
+
+##### distance
+
+Calculates the hamming distance between two sequences of equal length.
 
 ##### errormaker
 
 Used for MC or YN questions. Changes a sequence depending on the question to solve.
+
+##### hammingDistance
+
+Calculates the hamming distance of an array of sequences of equal length. This can be a code.
 
 ##### nDigitComparer
 

@@ -60,7 +60,7 @@ function MC({
       <p>{stateQuestion}</p>
       {options.map(function (element, index) {
         return (
-          <div className="mc">
+          <div className="mc" key={index}>
             <input
               type="checkbox"
               disabled={correct === true || correct === false}
