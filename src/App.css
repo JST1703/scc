@@ -7,10 +7,10 @@
 
 .home,
 .task {
-  padding-top: 5%;
-  padding-right: 30%;
+  padding-top: 3%;
+  padding-left: 21%;
+  padding-right: 15%;
   padding-bottom: 5%;
-  padding-left: 5%;
   display: block;
   align-items: center;
   justify-content: center;
@@ -44,4 +44,10 @@
 
 .EDE {
   padding-top: 15px;
+}
+
+.node {
+  height: 5rem;
+  width: 5rem;
+  position: static;
 }

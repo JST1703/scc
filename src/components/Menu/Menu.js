@@ -4,6 +4,7 @@ import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { MenuData } from "./MenuData";
 import { IconContext } from "react-icons";
+import ScrollButton from "./ScorllButton";
 import "./Menu.css";
 
 function Menu() {
@@ -50,6 +51,7 @@ function Menu() {
           </ul>
         </nav>
       </IconContext.Provider>
+      <ScrollButton />
     </>
   );
 }
