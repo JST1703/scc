@@ -16,6 +16,7 @@ function Menu() {
 
   return (
     <>
+      <ScrollButton />
       {/* for changing the color of the icons in the menu bar */}
       <IconContext.Provider value={{ color: "#FFFFFF" }}>
         {/* the hamburger sign from the menu */}
@@ -51,7 +52,6 @@ function Menu() {
           </ul>
         </nav>
       </IconContext.Provider>
-      <ScrollButton />
     </>
   );
 }

@@ -1,21 +1,22 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
   font-family: "Lato", sans-serif;
 }
 
 .home,
 .task {
   padding-top: 3%;
-  padding-left: 21%;
-  padding-right: 15%;
+  padding-left: 23vw;
+  padding-right: 10vw;
   padding-bottom: 5%;
   display: block;
   align-items: center;
   justify-content: center;
   font-size: 15pt;
   text-align: justify;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .home p,
@@ -37,17 +38,24 @@
 }
 
 .task svg {
-  min-height: 23vh;
-  max-height: 40vh;
-  width: auto;
+  width: 60vw;
 }
 
 .EDE {
-  padding-top: 15px;
+  padding-top: 13px;
+}
+
+.graphGrid {
+  text-align: center;
+}
+
+.row {
+  padding-top: 5%;
+  width: 100%;
 }
 
 .node {
-  height: 5rem;
-  width: 5rem;
-  position: static;
+  height: 4rem;
+  width: fit-content;
+  font-size: 3vw;
 }

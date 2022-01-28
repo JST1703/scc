@@ -1,36 +1,59 @@
-import React, { useState } from "react";
-import EncodingDistanceExercise from "../components/EncodingDistanceExercise";
+import React from "react";
 
 /*
-Task 7: Distances in Encodings
-
-Given some random encodings, determine
-- the distance of the code
-- it's properties
+Task 7: 
 */
 
 function Task7() {
-  // number of tasks in this exercise
-  const numberOfTasks = 5;
-
-  const taskRender = [];
-  for (let i = 0; i < numberOfTasks; ++i) {
-    taskRender.push(
-      <div className="EDE">
-        <EncodingDistanceExercise />
-      </div>
-    );
-  }
-
   return (
     <div className="task">
       <h1>Aufgabe 7: Abstand in Kodierungen 2</h1>
-      <p>
-        In einem Code mit Hamming-Abstand d kann man bis zu (d-1) Fehler
-        erkennen und maximal (d-1)/2 Fehler korrigieren. Bestimmen sie für die
-        gegebenen Kodierungen deren Hamming Abstand und deren Eigenschaften.
-      </p>
-      {taskRender}
+      <div className="graphGrid">
+        <div className="row">
+          <button className="node">11111</button>
+        </div>
+        <div className="row">
+          <button className="node">01111</button>
+          <button className="node">10111</button>
+          <button className="node">11011</button>
+          <button className="node">11101</button>
+          <button className="node">11110</button>
+        </div>
+        <div className="row">
+          <button className="node">00111</button>
+          <button className="node">01011</button>
+          <button className="node">01101</button>
+          <button className="node">01110</button>
+          <button className="node">10011</button>
+          <button className="node">10101</button>
+          <button className="node">10110</button>
+          <button className="node">11001</button>
+          <button className="node">11010</button>
+          <button className="node">11100</button>
+        </div>
+        <div className="row">
+          <button className="node">00011</button>
+          <button className="node">00101</button>
+          <button className="node">01001</button>
+          <button className="node">10001</button>
+          <button className="node">00110</button>
+          <button className="node">01010</button>
+          <button className="node">10010</button>
+          <button className="node">01100</button>
+          <button className="node">10100</button>
+          <button className="node">11000</button>
+        </div>
+        <div className="row">
+          <button className="node">00001</button>
+          <button className="node">00010</button>
+          <button className="node">00100</button>
+          <button className="node">01000</button>
+          <button className="node">10000</button>
+        </div>
+        <div className="row">
+          <button className="node">00000</button>
+        </div>
+      </div>
     </div>
   );
 }
