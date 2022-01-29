@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { MenuData } from "./MenuData";
 import { IconContext } from "react-icons";
 import ScrollButton from "./ScorllButton";
+import NextPrevButton from "./NextPrevButton";
 import "./Menu.css";
 
 function Menu() {
@@ -15,8 +16,11 @@ function Menu() {
   const showSdiebar = () => setSidebar(!sidebar);
 
   return (
-    <>
-      <ScrollButton />
+    <div className="menuBox">
+      <div className="arrows">
+        <ScrollButton />
+        <NextPrevButton />
+      </div>
       {/* for changing the color of the icons in the menu bar */}
       <IconContext.Provider value={{ color: "#FFFFFF" }}>
         {/* the hamburger sign from the menu */}
@@ -52,7 +56,7 @@ function Menu() {
           </ul>
         </nav>
       </IconContext.Provider>
-    </>
+    </div>
   );
 }
 

@@ -37,6 +37,10 @@ This component is used for Multiple Choice Yes or No questions, which the user m
 
 The menu component is used for navigation. It is used to switch between pages. It is a simple drop out menu on the left.
 
+##### NextPrevButton
+
+This is used for switching between pages, but only back and forth.
+
 ##### ScrollButton
 
 This is used for scrolling back to top, if the user has scrolled a certain distance down.
