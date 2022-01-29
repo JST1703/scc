@@ -35,6 +35,7 @@ function NextPrevButton() {
       tempLink += "task" + pageNumber.toString();
     }
     navigate(tempLink);
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, [pageNumber]);
 
   useEffect(() => {

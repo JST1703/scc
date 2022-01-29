@@ -46,16 +46,30 @@
 }
 
 .graphGrid {
-  text-align: center;
+  padding-top: 5%;
+  position: relative;
+  height: 900px;
+  width: inherit;
 }
 
 .row {
-  padding-top: 5%;
-  width: 100%;
+  margin-top: 1%;
+  width: inherit;
+  height: 15%;
+  text-align: center;
 }
 
 .node {
-  height: 4rem;
-  width: fit-content;
-  font-size: 3vw;
+  background-color: #ffffff;
+  color: #000000;
+  border-width: 1px;
+  margin: 1%;
+  height: 80%;
+  width: 8%;
+  font-size: 80%;
+  border-radius: 50%;
+}
+
+.node:hover {
+  border-width: 5px;
 }
