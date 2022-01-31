@@ -59,17 +59,33 @@
   text-align: center;
 }
 
-.node {
-  background-color: #ffffff;
-  color: #000000;
+.node0,
+.node1,
+.node2 {
   border-width: 1px;
   margin: 1%;
   height: 80%;
   width: 8%;
   font-size: 80%;
   border-radius: 50%;
+  color: #000000;
+  border-color: #000000;
 }
 
-.node:hover {
+.node0 {
+  background-color: #e9e9e9;
+}
+
+.node1 {
+  background-color: #44ffb1;
+}
+
+.node2 {
+  background-color: #ff9b9b;
+}
+
+.node0:hover,
+.node1:hover,
+.node2:hover {
   border-width: 5px;
 }

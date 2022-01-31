@@ -13,12 +13,27 @@ function Task8() {
   // number of tasks in this exercise
   const numberOfTasks = 5;
 
+  // if true, next task is revealed
+  const [task, setTask] = useState(() => {
+    let sol = Array(numberOfTasks + 1).fill(false);
+    sol[0] = true;
+    return sol;
+  });
+
+  const handleTask = (index) => {
+    let temp = [...task];
+    temp[index] = true;
+    setTask(temp);
+  };
+
   const taskRender = [];
   for (let i = 0; i < numberOfTasks; ++i) {
     taskRender.push(
-      <div className="EDE">
-        <EncodingDistanceExercise />
-      </div>
+      task[i] && (
+        <div className="EDE">
+          <EncodingDistanceExercise callerFunction={() => handleTask(i + 1)} />
+        </div>
+      )
     );
   }
 

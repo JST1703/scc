@@ -33,7 +33,7 @@ const props = [
 /*
 callerFunction is a function used by the caller component after this exercise has been solved
 */
-function EncodingDistanceExercise() {
+function EncodingDistanceExercise({ callerFunction }) {
   // Length of the code words, between 4 and 9
   const [codeLength] = useState(Math.floor(Math.random() * 5) + 4);
 
@@ -145,7 +145,7 @@ function EncodingDistanceExercise() {
       {solvedA === true && (
         <div>
           <MC
-            callerFunction={() => {}}
+            callerFunction={callerFunction}
             question={"Mit dieser Kodierung kann mann..."}
             options={mcQuestions}
             answerKey={mcAnswerkey}

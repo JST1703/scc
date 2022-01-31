@@ -1,7 +1,7 @@
 import distance from "./distance";
 
 /* 
-given an array of arrays of equal length
+given an array of arrays or strings of equal length,
 returns the hamming distance of the array
 */
 
