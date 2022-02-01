@@ -40,12 +40,18 @@ function NextPrevButton() {
 
   useEffect(() => {
     let tempPathName = window.location.pathname;
-    let tempPathChar = tempPathName[tempPathName.length - 1];
-    if (tempPathChar === "/") {
+    let tempPathChar1 = tempPathName[tempPathName.length - 1];
+    if (tempPathChar1 === "/") {
       setPageNumber(0);
     } else {
-      setPageNumber(parseInt(tempPathChar));
+      let tempPathChar2 = tempPathName[tempPathName.length - 2];
+      if (tempPathChar2 === "k") {
+        setPageNumber(parseInt(tempPathChar1));
+      } else {
+        setPageNumber(parseInt(tempPathChar2 + tempPathChar1));
+      }
     }
+    console.log(pageNumber);
   }, [window.location.pathname]);
 
   return (
