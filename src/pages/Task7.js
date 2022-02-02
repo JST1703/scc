@@ -45,6 +45,42 @@ function Task7() {
     "11111",
   ];
 
+  // used for toggle
+  const correlationList = [
+    [0, 1, 2, 3, 4, 5],
+    [0, 1, 6, 7, 8, 9],
+    [0, 2, 6, 10, 11, 12],
+    [0, 3, 7, 10, 13, 14],
+    [0, 4, 8, 11, 13, 15],
+    [0, 5, 9, 12, 14, 15],
+    [1, 2, 6, 16, 17, 18],
+    [1, 3, 7, 16, 19, 20],
+    [1, 4, 8, 17, 19, 21],
+    [1, 5, 9, 18, 20, 21],
+    [2, 3, 10, 16, 22, 23],
+    [2, 4, 11, 17, 22, 24],
+    [2, 5, 12, 18, 23, 24],
+    [3, 4, 13, 19, 22, 25],
+    [3, 5, 14, 20, 23, 25],
+    [4, 5, 15, 21, 24, 25],
+    [6, 7, 10, 16, 26, 27],
+    [6, 8, 11, 17, 26, 28],
+    [6, 9, 12, 18, 27, 28],
+    [7, 8, 13, 19, 26, 29],
+    [7, 9, 14, 20, 27, 29],
+    [8, 9, 15, 21, 28, 29],
+    [10, 11, 13, 22, 26, 30],
+    [10, 12, 14, 23, 27, 30],
+    [11, 12, 15, 24, 28, 30],
+    [13, 14, 15, 25, 29, 30],
+    [16, 17, 19, 22, 26, 31],
+    [16, 18, 20, 23, 27, 31],
+    [17, 18, 21, 24, 28, 31],
+    [17, 18, 21, 25, 29, 31],
+    [22, 23, 24, 25, 30, 31],
+    [26, 27, 28, 29, 30, 31],
+  ];
+
   /* all possible task, one of which is chosen at random
   given in a triplet: task, solution of hamming distance, solution of number of code words
   */
@@ -74,6 +110,18 @@ function Task7() {
   // number of words in code, known from the beginning
   const codeSize = 32;
 
+  // toggle status of each node
+  const [toggle, setToggle] = useState(Array(codeSize).fill(false));
+
+  const handleToggle = (arr) => {
+    let temp = [...toggle];
+    for (let i = 0; i < arr.length; ++i) {
+      let tempIndex = arr[i];
+      temp[tempIndex] = !temp[tempIndex];
+    }
+    setToggle(temp);
+  };
+
   /* 
   status of each button, whether it is selected, neutral or unselected
   neutral and unselected are equal in the logic of the code, but gives
@@ -101,9 +149,11 @@ function Task7() {
 
   // logic for changing the button status
   const changeButtonStatus = (index) => {
-    let temp = [...buttonStatus];
-    temp[index] = (temp[index] + 1) % 3;
-    setButoonStatus(temp);
+    if (buttonStatus[index] !== 4) {
+      let temp = [...buttonStatus];
+      temp[index] = (temp[index] + 1) % 3;
+      setButoonStatus(temp);
+    }
   };
 
   // logic for submitting answer
@@ -128,6 +178,34 @@ function Task7() {
     setCorrextAnswer(sol);
   };
 
+  // node render
+  let nodeRender = [];
+  for (let i = 0; i < codeSize; ++i) {
+    nodeRender.push(
+      <button
+        className={
+          buttonStatus[i] === 0
+            ? toggle[i]
+              ? "node0 nodeToggle "
+              : "node0"
+            : buttonStatus[i] % 3 === 1
+            ? toggle[i]
+              ? "node1 nodeToggle "
+              : "node1"
+            : toggle[i]
+            ? "node2 nodeToggle "
+            : "node2"
+        }
+        disabled={correctAnswer === true}
+        onMouseOver={() => handleToggle(correlationList[i])}
+        onMouseOut={() => handleToggle(correlationList[i])}
+        onClick={() => changeButtonStatus(i)}
+      >
+        {words[i]}
+      </button>
+    );
+  }
+
   return (
     <div className="task">
       <h1>Aufgabe 7: Abstand in Kodierungen 2</h1>
@@ -138,441 +216,54 @@ function Task7() {
       </p>
       <h4>{possibleTasks[taskNumber][0]}</h4>
       <p>
-        Ein Wort ist dabei bereits vorgegeben. Alle Wörter in gürn sind in Ihrer
-        Auswahl. Rote und graue Wörter sind biede nicht in der Auswahl. Rot ist
+        Ein Wort ist dabei bereits vorgegeben. Alle Wörter in grün sind in Ihrer
+        Auswahl. Rote und blaue Wörter sind biede nicht in der Auswahl. Rot ist
         nur eine visuelle Hilfe, z.B. können Sie alle Wörter rot markieren, die
         Sie mit sicherheit ausschliessen wollen. Es wird nur das gewerted, was
-        gürn ist.
+        gürn ist. Weiter werden immer alle Wörter hervorgehoben, weleche einen
+        Abstand von 1 zum aktuellen Wort haben.
       </p>
       <div className="graphGrid">
+        <div className="row">{nodeRender[0]}</div>
         <div className="row">
-          <button
-            className={
-              buttonStatus[0] === 0
-                ? "node0"
-                : buttonStatus[0] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[0] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(0)}
-          >
-            {words[0]}
-          </button>
+          {nodeRender[1]}
+          {nodeRender[2]}
+          {nodeRender[3]}
+          {nodeRender[4]}
+          {nodeRender[5]}
         </div>
         <div className="row">
-          <button
-            className={
-              buttonStatus[1] === 0
-                ? "node0"
-                : buttonStatus[1] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[1] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(1)}
-          >
-            {words[1]}
-          </button>
-          <button
-            className={
-              buttonStatus[2] === 0
-                ? "node0"
-                : buttonStatus[2] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[2] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(2)}
-          >
-            {words[2]}
-          </button>
-          <button
-            className={
-              buttonStatus[3] === 0
-                ? "node0"
-                : buttonStatus[3] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[3] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(3)}
-          >
-            {words[3]}
-          </button>
-          <button
-            className={
-              buttonStatus[4] === 0
-                ? "node0"
-                : buttonStatus[4] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[4] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(4)}
-          >
-            {words[4]}
-          </button>
-          <button
-            className={
-              buttonStatus[5] === 0
-                ? "node0"
-                : buttonStatus[5] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[5] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(5)}
-          >
-            {words[5]}
-          </button>
+          {nodeRender[6]}
+          {nodeRender[7]}
+          {nodeRender[8]}
+          {nodeRender[9]}
+          {nodeRender[10]}
+          {nodeRender[11]}
+          {nodeRender[12]}
+          {nodeRender[13]}
+          {nodeRender[14]}
+          {nodeRender[15]}
         </div>
         <div className="row">
-          <button
-            className={
-              buttonStatus[6] === 0
-                ? "node0"
-                : buttonStatus[6] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[6] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(6)}
-          >
-            {words[6]}
-          </button>
-          <button
-            className={
-              buttonStatus[7] === 0
-                ? "node0"
-                : buttonStatus[7] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[7] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(7)}
-          >
-            {words[7]}
-          </button>
-          <button
-            className={
-              buttonStatus[8] === 0
-                ? "node0"
-                : buttonStatus[8] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[8] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(8)}
-          >
-            {words[8]}
-          </button>
-          <button
-            className={
-              buttonStatus[9] === 0
-                ? "node0"
-                : buttonStatus[9] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[9] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(9)}
-          >
-            {words[9]}
-          </button>
-          <button
-            className={
-              buttonStatus[10] === 0
-                ? "node0"
-                : buttonStatus[10] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[10] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(10)}
-          >
-            {words[10]}
-          </button>
-          <button
-            className={
-              buttonStatus[11] === 0
-                ? "node0"
-                : buttonStatus[11] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[11] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(11)}
-          >
-            {words[11]}
-          </button>
-          <button
-            className={
-              buttonStatus[12] === 0
-                ? "node0"
-                : buttonStatus[12] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[12] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(12)}
-          >
-            {words[12]}
-          </button>
-          <button
-            className={
-              buttonStatus[13] === 0
-                ? "node0"
-                : buttonStatus[13] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[13] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(13)}
-          >
-            {words[13]}
-          </button>
-          <button
-            className={
-              buttonStatus[14] === 0
-                ? "node0"
-                : buttonStatus[14] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[14] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(14)}
-          >
-            {words[14]}
-          </button>
-          <button
-            className={
-              buttonStatus[15] === 0
-                ? "node0"
-                : buttonStatus[15] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[15] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(15)}
-          >
-            {words[15]}
-          </button>
+          {nodeRender[16]}
+          {nodeRender[17]}
+          {nodeRender[18]}
+          {nodeRender[19]}
+          {nodeRender[20]}
+          {nodeRender[21]}
+          {nodeRender[22]}
+          {nodeRender[23]}
+          {nodeRender[24]}
+          {nodeRender[25]}
         </div>
         <div className="row">
-          <button
-            className={
-              buttonStatus[16] === 0
-                ? "node0"
-                : buttonStatus[16] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[16] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(16)}
-          >
-            {words[16]}
-          </button>
-          <button
-            className={
-              buttonStatus[17] === 0
-                ? "node0"
-                : buttonStatus[17] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[17] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(17)}
-          >
-            {words[17]}
-          </button>
-          <button
-            className={
-              buttonStatus[18] === 0
-                ? "node0"
-                : buttonStatus[18] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[18] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(18)}
-          >
-            {words[18]}
-          </button>
-          <button
-            className={
-              buttonStatus[19] === 0
-                ? "node0"
-                : buttonStatus[19] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[19] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(19)}
-          >
-            {words[19]}
-          </button>
-          <button
-            className={
-              buttonStatus[20] === 0
-                ? "node0"
-                : buttonStatus[20] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[20] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(20)}
-          >
-            {words[20]}
-          </button>
-          <button
-            className={
-              buttonStatus[21] === 0
-                ? "node0"
-                : buttonStatus[21] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[21] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(21)}
-          >
-            {words[21]}
-          </button>
-          <button
-            className={
-              buttonStatus[22] === 0
-                ? "node0"
-                : buttonStatus[22] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[22] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(22)}
-          >
-            {words[22]}
-          </button>
-          <button
-            className={
-              buttonStatus[23] === 0
-                ? "node0"
-                : buttonStatus[23] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[23] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(23)}
-          >
-            {words[23]}
-          </button>
-          <button
-            className={
-              buttonStatus[24] === 0
-                ? "node0"
-                : buttonStatus[24] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[24] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(24)}
-          >
-            {words[24]}
-          </button>
-          <button
-            className={
-              buttonStatus[25] === 0
-                ? "node0"
-                : buttonStatus[25] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[25] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(25)}
-          >
-            {words[25]}
-          </button>
+          {nodeRender[26]}
+          {nodeRender[27]}
+          {nodeRender[28]}
+          {nodeRender[29]}
+          {nodeRender[30]}
         </div>
-        <div className="row">
-          <button
-            className={
-              buttonStatus[26] === 0
-                ? "node0"
-                : buttonStatus[26] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[26] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(26)}
-          >
-            {words[26]}
-          </button>
-          <button
-            className={
-              buttonStatus[27] === 0
-                ? "node0"
-                : buttonStatus[27] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[27] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(27)}
-          >
-            {words[27]}
-          </button>
-          <button
-            className={
-              buttonStatus[28] === 0
-                ? "node0"
-                : buttonStatus[28] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[28] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(28)}
-          >
-            {words[28]}
-          </button>
-          <button
-            className={
-              buttonStatus[29] === 0
-                ? "node0"
-                : buttonStatus[29] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[29] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(29)}
-          >
-            {words[29]}
-          </button>
-          <button
-            className={
-              buttonStatus[30] === 0
-                ? "node0"
-                : buttonStatus[30] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[30] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(30)}
-          >
-            {words[30]}
-          </button>
-        </div>
-        <div className="row">
-          <button
-            className={
-              buttonStatus[31] === 0
-                ? "node0"
-                : buttonStatus[31] % 3 === 1
-                ? "node1"
-                : "node2"
-            }
-            disabled={buttonStatus[31] === 4 || correctAnswer === true}
-            onClick={() => changeButtonStatus(31)}
-          >
-            {words[31]}
-          </button>
-        </div>
+        <div className="row">{nodeRender[31]}</div>
         <button
           disabled={correctAnswer === true}
           onClick={() => handleAnswer()}

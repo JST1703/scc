@@ -51,7 +51,6 @@ function NextPrevButton() {
         setPageNumber(parseInt(tempPathChar2 + tempPathChar1));
       }
     }
-    console.log(pageNumber);
   }, [window.location.pathname]);
 
   return (
