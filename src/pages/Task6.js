@@ -1,73 +1,209 @@
-import React from "react";
+import React, { useState } from "react";
+import MC from "../components/MC";
+import YN from "../components/YN";
+import { ReactComponent as G0 } from "../graphics/Graph_0_T6.svg";
 import { ReactComponent as G1 } from "../graphics/Graph_1_T6.svg";
 import { ReactComponent as G2 } from "../graphics/Graph_2_T6.svg";
 import { ReactComponent as G3 } from "../graphics/Graph_3_T6.svg";
 import { ReactComponent as G4 } from "../graphics/Graph_4_T6.svg";
-import { ReactComponent as G5 } from "../graphics/Graph_5_T6.svg";
 
 /*
 Task 6: Distances in Encodings
-just theory  
+just theory and some MC questions about Hamming-Distance.
 */
 
 function Task6() {
+  // keeping track which task has already been solved
+  const [taskTracker, setTaskTracker] = useState(Array(9).fill(false));
+
+  // updating task tracker
+  const updateTaskTracker = (index) => {
+    let temp = [...taskTracker];
+    temp[index] = true;
+    setTaskTracker(temp);
+  };
+
   return (
     <div className="task">
       <h1>Aufgabe 6: Abstand in Kodierungen 1</h1>
       <p>
         Wir möchten nun genauer untersuchen, wass eine Kodierung erfüllen muss,
-        damit man Fehler bemerken und korrigieren kann. Dafür ist der Abstand
-        der Codewörter massgebend. Abhänig davon kann man eine bestimmte Anzahl
-        Fehler erkennen oder eine bestimmte Anzahl Fehler korrigieren. Der
-        Abstand zwischen zwei Codewörter ist definiert als die Anzahl Stellen,
-        an denen sich die wörter unterscheiden. Beispielsweise haben die Wörter
-        10010 und 10100 den Abstand 3, da sich die letzten 3 bits unterscheiden.
-        Dieser Abstand wird auch Hamming-Abstand oder Hamming-Distanz genannt.
+        damit man Fehler erkennen und korrigieren kann. Fangen wir bei einem
+        sehr einfachen Beispiel an. Gegeben sind die Wörter 0 und 1 in unserer
+        Kodierung.
       </p>
-      <p>
-        Betrachten wir im ersten einfachen Beispiel die gegebenen Codewörter (in
-        Grün). Diese haben einen Abstand von 1. Sollte sich durch einen Fehler
-        das eine Wort zum anderen Abändern, wenn hier das letzte Bit sich
-        ändert, dann würde der Feher unbermerkt bleiben. Man kann in diesem Fall
-        keine Fehler zwischen den Wörtern erkennen.
-      </p>
-      <G1 />
-      <p>
-        Im zweiten Beipiel haben wir zwei Codewörter mit einer Distanz von 2.
-        Sollte nun ein Fehler auftreten, dann fällt das auf. 00001 gehört nicht
-        zum Code und somit muss da ein Fehler vorgefallen sein. Wir können den
-        Fehler leider nicht beheben. Beide Codewörter liegen gleich nahe zum
-        falschen Wort. Eine eindeutige Korrektur ist nicht möglich.
-      </p>
-      <G2 />
-      <p>
-        Im dritten Beipiel haben wir zwei Codewörter mit einer Distanz von 4.
-        Sollte hier ein Fehler auftreten, dann können wir den auch korrigieren.
-        00001 und 00111 sind die einzigen Wörter, die wir mit einer Änderung
-        erreichen können. 00001 liegt eindeutig näher bei 00000 und somit ist
-        eine Korrektur möglich. 2 Fehler können wir nicht mehr korrigieren. Das
-        Wort 00011 hat wieder die gleiche Distanz zu den Codewörter. Allerdigns
-        können wir den Fehler von 2 erkennen. Auch wenn 3 Fehler auftreten,
-        können wir das erkennen. 00000 kann sich mit 3 Fehlern zu 00111
-        umwandeln. Dann würden wir allerdings das fälschlicherweise zu 01111
-        korrigieren. Deswegen können wir hier nur bis zu 3 Fehler erkennen. Bei
-        4 Fehlern könnte sich 00000 zu 01111 umwandeln, was wir nicht als Fehler
-        registrieren würden. Zusammengefasst können wir mit einem Abstand 4 bis
-        zu 3 Fehler erkennen und bis zu 1 Fehler korrigieren.
-      </p>
-      <G3 />
-      <p>
-        Im letzten Beispiel haben wir eine Distanz von 5. Damit können wir bis
-        zu 2 Fehler korrigieren und bis zu 4 Fehler erkennen.
-      </p>
-      <G4 />
-      <p>
-        Damit man eine bestimmte Anzahl Fehler korrigieren und/oder erkennen
-        kann, ist der kleinste Abstand zwischen allen Codewörter massgebend.
-        Hier haben wir einen Code mit einem Abstand von 2. Damit können wir im
-        gesammten Code jeweils nur einzelne Fehler erkennen.
-      </p>
-      <G5 />
+      <G0 />
+      <YN
+        callerFunction={() => updateTaskTracker(0)}
+        question={
+          "Kann man erkennen, ob ein Fehler aufgetreten ist, wenn eines der beiden Wörter als Nachricht ankommt?"
+        }
+        solution={0}
+        optionYes={"Ja"}
+        optionNo={"Nein"}
+        textOnCorrect={
+          "Richtig. 0 kann sich durch einen einzigen Fehler zu 1 umwandeln und andersrum."
+        }
+        textOnWrong={
+          "Falsch. 0 kann sich durch einen einzigen Fehler zu 1 umwandeln und andersrum."
+        }
+      />
+
+      {taskTracker[0] && (
+        <div>
+          <p>
+            Im zweiten Beispiel sind nun die Wörter 00 und 11 in der Kodierung
+            gegeben (in Grün). Eine der beiden möglichen Transformationen von
+            einem zum anderen Wort ist hier dargestellt.
+          </p>
+          <G1 />
+          <YN
+            callerFunction={() => updateTaskTracker(1)}
+            question={
+              "Erkennt man den Fehler, wenn das Fehlerhafte Wort als Nachricht erhalten wird?"
+            }
+            solution={1}
+            optionYes={"Ja"}
+            optionNo={"Nein"}
+            textOnCorrect={
+              "Richtig. 01 ist nicht in unserer Kodierung und kann desswegen nicht richtig sein."
+            }
+            textOnWrong={
+              "Falsch. 01 ist nicht in unserer Kodierung und kann desswegen nicht richtig sein."
+            }
+          />
+          <YN
+            callerFunction={() => updateTaskTracker(2)}
+            question={"Können sie diesen Fehler korrigieren?"}
+            solution={0}
+            optionYes={"Ja"}
+            optionNo={"Nein"}
+            textOnCorrect={
+              "Richtig. Beide Wörter haben den selben Abstannt zum fehlerhaften Wort. Eine eindeutige Zuordnung ist deswegen nicht möglich."
+            }
+            textOnWrong={
+              "Falsch. Beide Wörter haben den selben Abstannt zum fehlerhaften Wort. Eine eindeutige Zuordnung ist deswegen nicht möglich."
+            }
+          />
+        </div>
+      )}
+
+      {taskTracker[1] && taskTracker[2] && (
+        <div>
+          <p>
+            Gegeben sind wieder zwei Codewörter 0000 und 1111 und eine mögliche
+            Transformation von einem zum anderen Wort.
+          </p>
+          <G2 />
+          <MC
+            callerFunction={() => updateTaskTracker(3)}
+            question={"Wie viele Codewörter erkkenen Sie als Fehler?"}
+            options={["1", "2", "3"]}
+            answerKey={[false, false, true]}
+            textOnCorrect={
+              "Richtig. Alle 3 Wörter dazwischen liegen nicht in der Kodierung."
+            }
+            textOnWrong={
+              "Falsch. Alle 3 Wörter dazwischen liegen nicht in der Kodierung."
+            }
+          />
+          <MC
+            callerFunction={() => updateTaskTracker(4)}
+            question={"Wie viele Codewörter können Sie korrigieren?"}
+            options={["1", "2", "3"]}
+            answerKey={[false, true, false]}
+            textOnCorrect={
+              "Richtig. 0011 kann man nicht eindeutig 0000 oder 1111 zurdnen."
+            }
+            textOnWrong={
+              "Falsch. Nur 0001 und 0111 kann man den Wörter in unserer Kodierung eindeutig zuordnen."
+            }
+          />
+          <MC
+            callerFunction={() => updateTaskTracker(5)}
+            question={
+              "Wie viele Fehler kann in einem Wort vorfallen, so dass man das noch als Fehler erkennt?"
+            }
+            options={["1", "2", "3"]}
+            answerKey={[false, false, true]}
+            textOnCorrect={
+              "Richtig. Da die Wörter Abstand 4 haben, können bis zu 3 Fehler auftreten, die man noch erkennt. Bei 4 Fehler würde man das erhaltene Wort fälschlicher weise als korrekt betrachten."
+            }
+            textOnWrong={
+              "Falsch. Da die Wörter Abstand 4 haben, können bis zu 3 Fehler auftreten, die man noch erkennt. Bei 4 Fehler würde man das erhaltene Wort fälschlicher weise als korrekt betrachten."
+            }
+          />
+          <MC
+            callerFunction={() => updateTaskTracker(6)}
+            question={
+              "Wie viele Fehler können insgesammt bei unseren Codewörtern auftreten, so dass man das felerhafte Wort korrigieren kann?"
+            }
+            options={["1", "2", "3"]}
+            answerKey={[true, false, false]}
+            textOnCorrect={
+              "Richtig. Bei 2 Fehlern erhält man ein Wort, welches man nicht mehr zuorden kann. Bei mehr Fehlern korrigieren wir falsch."
+            }
+            textOnWrong={
+              "Falsch. Bei 2 Fehlern erhält man ein Wort, welches man nicht mehr zuorden kann. Bei mehr Fehlern korrigieren wir falsch."
+            }
+          />
+        </div>
+      )}
+
+      {taskTracker[3] && taskTracker[4] && taskTracker[5] && taskTracker[6] && (
+        <div>
+          <p>Letztes Beispiel.</p>
+          <G3 />
+          <MC
+            callerFunction={() => updateTaskTracker(7)}
+            question={
+              "Wie viele Fehler kann in einem Wort vorfallen, dass man das noch als Fehler erkennt?"
+            }
+            options={["2", "3", "4", "5"]}
+            answerKey={[false, false, true, false]}
+            textOnCorrect={"Richtig."}
+            textOnWrong={
+              "Falsch. Bis zu 4 Fehler können passieren. Die Wörter haben einen Abstand von 5 und deswegen würde erst ab 5 Fehlern das nicht mehr als falsch betrachted werden."
+            }
+          />
+          <MC
+            callerFunction={() => updateTaskTracker(8)}
+            question={
+              "Wie viele Fehler können insgesammt bei unseren Codewörtern auftreten, so dass man das felerhafte Wort korrigieren kann?"
+            }
+            options={["1", "2", "3", "4"]}
+            answerKey={[false, true, false, false]}
+            textOnCorrect={
+              "Richtig. Bei 2 Fehlern erhält man ein Wort, welches man immernoch eindeudig zuorden kann. Bei mehr Fehlern korrigieren wir falsch."
+            }
+            textOnWrong={
+              "Falsch. Bei 2 Fehlern erhält man ein Wort, welches man immernoch eindeudig zuorden kann. Bei mehr Fehlern korrigieren wir falsch."
+            }
+          />
+        </div>
+      )}
+
+      {taskTracker[7] && taskTracker[8] && (
+        <div>
+          <p>
+            Der Abstand der Codewörter ist entscheident. Abhänig davon kann man
+            eine bestimmte Anzahl Fehler erkennen oder eine bestimmte Anzahl
+            Fehler korrigieren. Der Abstand zwischen zwei Codewörter ist
+            definiert als die Anzahl Stellen, an denen sich die wörter
+            unterscheiden. Beispielsweise haben die Wörter 10010 und 10100 den
+            Abstand 3, da sich die letzten 3 bits unterscheiden. Dieser Abstand
+            wird auch Hamming-Abstand oder Hamming-Distanz genannt.
+          </p>
+          <p>
+            Damit man innerhalb einer Kodierung immer eine bestimmte Anzahl
+            Fehler korrigieren oder erkennen kann, so muss der Abstand zwischen
+            allen Wörter-Paare in der Kodierung eine bestimmte grösse haben. Das
+            Beispiel hier zeig eine Kodierung mit Wörter der länge 3 an und mit
+            einem gesammten Abstand von 2.
+          </p>
+          <G4 />
+        </div>
+      )}
     </div>
   );
 }

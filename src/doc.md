@@ -45,6 +45,14 @@ This is used for switching between pages, but only back and forth.
 
 This is used for scrolling back to top, if the user has scrolled a certain distance down.
 
+###### SquareExercise
+
+This component always goes with the component squareExerciseExample. Given is a 4x4 square where each square has a digit 0 or 1. Some squares serve as control bits. The number of ones is always even in each row and column. In the exercise, the user is given squares containing exact one error that must be found.
+
+###### SquareExerciseExample
+
+This component always goes with the component squareExercise as the example to follow.
+
 ##### YN
 
 This component is a single Yes or No question, which the user must solve.
