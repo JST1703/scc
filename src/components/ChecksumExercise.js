@@ -39,26 +39,21 @@ function ChecksumExercise({ checksumFunction, onWorong, onCorrect, sequence }) {
   };
 
   return (
-    <div>
-      <div className="example">
-        {data.map(function (digit, index) {
-          return <span key={index}>{digit}</span>;
-        })}
-        <input
-          type="text"
-          value={value}
-          disabled={correctState === true}
-          onChange={(event) => setValue(event.currentTarget.value)}
-        />
-        <button onClick={checkResult} disabled={correctState === true}>
-          überprüfen
-        </button>
-        {correctState === false && (
-          <span style={{ color: "red" }}> falsch</span>
-        )}
-        {correctState && <span style={{ color: "green" }}> korrekt</span>}
-      </div>
-      <div className="example"></div>
+    <div className="example">
+      {data.map(function (digit, index) {
+        return <span key={index}>{digit}</span>;
+      })}
+      <input
+        type="text"
+        value={value}
+        disabled={correctState === true}
+        onChange={(event) => setValue(event.currentTarget.value)}
+      />
+      <button onClick={checkResult} disabled={correctState === true}>
+        überprüfen
+      </button>
+      {correctState === false && <span style={{ color: "red" }}> Falsch</span>}
+      {correctState && <span style={{ color: "green" }}> Korrekt</span>}
     </div>
   );
 }

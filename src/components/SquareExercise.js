@@ -12,9 +12,11 @@ is given squares containing exact one error that must be found.
 */
 
 /*
-callerFunction is the function being used by the calling Component.
+onWorng and onCorrect are methods of the caller Component. These are used to
+reveal certain parts of the Task, i.e. the solution, if to many wrong answers
+have been given, or the next subtask, if all answers are correct.
 */
-function SquareExecise({ callerFunction }) {
+function SquareExecise({ onWorong, onCorrect }) {
   // used for evaluating the given answer
   const correlationList = [
     [0, 1, 2, 9, 0, 3, 6, 12],
@@ -34,6 +36,9 @@ function SquareExecise({ callerFunction }) {
     [12, 13, 14, 15, 2, 5, 8, 14],
     [12, 13, 14, 15, 9, 10, 11, 15],
   ];
+
+  // indicator for which button has been pressed the last
+  const [pressed, setPressed] = useState(Array(16).fill(false));
 
   // data of square
   const [data] = useState(() => {
@@ -58,7 +63,11 @@ function SquareExecise({ callerFunction }) {
   const [correctAnswer, setCorrectAnswer] = useState("");
 
   // checks the result of the user
-  const checkResult = (arr) => {
+  const checkResult = (arr, index) => {
+    let tempPressed = Array(16).fill(false);
+    tempPressed[index] = true;
+    setPressed(tempPressed);
+
     let arr1 = [];
     let arr2 = [];
 
@@ -71,15 +80,20 @@ function SquareExecise({ callerFunction }) {
       binaryCheckSymbol1(arr1) === "1" && binaryCheckSymbol1(arr2) === "1"
     );
 
-    console.log(correctAnswer);
+    if (correctAnswer === true) {
+      onCorrect();
+    } else if (correctAnswer === false) {
+      onWorong();
+    }
   };
 
   let renderButtons = [];
   for (let index = 0; index < data.length; index++) {
     renderButtons.push(
       <button
-        className="squareBit"
-        onClick={() => checkResult(correlationList[index])}
+        className={pressed[index] ? "squareBit1 " : "squareBit"}
+        disabled={correctAnswer}
+        onClick={() => checkResult(correlationList[index], index)}
       >
         {data[index]}
       </button>
@@ -87,7 +101,7 @@ function SquareExecise({ callerFunction }) {
   }
 
   return (
-    <div>
+    <div className="example1">
       <div className="squareRow">
         {renderButtons[12]}
         {renderButtons[13]}
@@ -112,6 +126,8 @@ function SquareExecise({ callerFunction }) {
         {renderButtons[8]}
         {renderButtons[11]}
       </div>
+      {correctAnswer === false && <h3 style={{ color: "red" }}>Falsch</h3>}
+      {correctAnswer && <h3 style={{ color: "green" }}>Korrekt</h3>}
     </div>
   );
 }

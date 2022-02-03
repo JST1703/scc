@@ -20,7 +20,8 @@
 }
 
 .home p,
-.task p {
+.task p,
+.task h3 {
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -72,6 +73,11 @@
   border-color: #000000;
 }
 
+.example1 {
+  text-align: center;
+  margin-top: 3%;
+}
+
 .node0 {
   background-color: #2d5a9e52;
 }
@@ -94,7 +100,8 @@
   text-align: center;
 }
 
-.squareBit {
+.squareBit,
+.squareBit1 {
   border-width: 1px;
   height: inherit;
   width: 10%;
@@ -113,11 +120,13 @@
   border-color: #000000;
 }
 
-.activeSquare {
+.activeSquare,
+.squareBit {
   background-color: #e9e9e9;
 }
 
-.inactiveSquare {
+.inactiveSquare,
+.squareBit1 {
   background-color: #2d5a9e52;
 }
 
