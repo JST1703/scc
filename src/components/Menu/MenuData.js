@@ -47,17 +47,17 @@ export const MenuData = [
     cName: "nav-text",
   },
   {
-    title: "Kodierungen und Kontrollbits 1",
+    title: "Effiziente Kodierung 1",
     path: "/task9",
     cName: "nav-text",
   },
   {
-    title: "Kodierungen und Kontrollbits 2",
+    title: "Effiziente Kodierung 2",
     path: "/task10",
     cName: "nav-text",
   },
   {
-    title: "Kodierungen und Kontrollbits 3",
+    title: "Effiziente Kodierung  3",
     path: "/task11",
     cName: "nav-text",
   },

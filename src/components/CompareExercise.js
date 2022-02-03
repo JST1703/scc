@@ -39,7 +39,11 @@ function CompareExercise({
 
   // logic for comparing the given answer by the user and the correct answer
   const checkResult = () => {
-    let data2 = stringToArray(value);
+    let temp = value.replace(/\s/g, "");
+
+    setValue(temp);
+
+    let data2 = stringToArray(temp);
 
     if (comparer(data, data2, checksum, checksumFunction(data2))) {
       setCorrect(true);

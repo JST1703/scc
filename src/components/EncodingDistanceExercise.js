@@ -34,11 +34,11 @@ const props = [
 callerFunction is a function used by the caller component after this exercise has been solved
 */
 function EncodingDistanceExercise({ callerFunction }) {
-  // Length of the code words, between 4 and 9
-  const [codeLength] = useState(Math.floor(Math.random() * 5) + 4);
+  // Length of the code words, between 5 and 9
+  const [codeLength] = useState(Math.floor(Math.random() * 5) + 5);
 
   // Number of elements in the code, between 3 and 5
-  const [codeSize, setCodeSize] = useState(Math.floor(Math.random() * 2) + 3);
+  const [codeSize, setCodeSize] = useState(Math.floor(Math.random() * 3) + 3);
 
   // the code
   const [encoding, setEncoding] = useState(
@@ -64,7 +64,7 @@ function EncodingDistanceExercise({ callerFunction }) {
       case 5:
         return [true, true, true, true, true, true];
       default:
-        return [0, 0, 0, 0, 0, 0];
+        return [false, false, false, false, false, false];
     }
   });
 
@@ -93,7 +93,7 @@ function EncodingDistanceExercise({ callerFunction }) {
     setEncoding(backupEncoding);
     setHD(5);
     setCodeSize(3);
-    setAnswerKey([1, 1, 1, 1, 1, 1]);
+    setAnswerKey([true, true, true, true, true, true]);
   }
 
   const encodingRender = () => {
@@ -146,7 +146,7 @@ function EncodingDistanceExercise({ callerFunction }) {
         <div>
           <MC
             callerFunction={callerFunction}
-            question={"Mit dieser Kodierung kann mann..."}
+            question={"Mit dieser Kodierung kann man..."}
             options={mcQuestions}
             answerKey={mcAnswerkey}
             textOnCorrect={"Korrekt."}

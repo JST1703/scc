@@ -7,7 +7,7 @@ Task 11:
 function Task11() {
   return (
     <div className="task">
-      <h1>Aufgabe 11: Kodierungen und Kontrollbits 3</h1>
+      <h1>Aufgabe 11: Effiziente Kodierung 3</h1>
     </div>
   );
 }

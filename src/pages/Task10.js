@@ -78,7 +78,7 @@ function Task10() {
 
   return (
     <div className="task">
-      <h1>Aufgabe 10: Kodierungen und Kontrollbits 2</h1>
+      <h1>Aufgabe 10: Effiziente Kodierung 2</h1>
       <div className="containerSquares">{renderButtons}</div>
     </div>
   );

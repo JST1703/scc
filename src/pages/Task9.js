@@ -27,16 +27,19 @@ function Task9() {
 
   return (
     <div className="task">
-      <h1>Aufgabe 9: Kodierungen und Kontrollbits 1</h1>
+      <h1>Aufgabe 9: Effiziente Kodierung 1</h1>
       <p>
-        Wir wollen uns nun einer weiteren Methode widmen, um Feher in Codes zu
-        erkennen und zu korrigieren. Gegeben ist ein 4 mal 4 Rechteck, wobei
-        jede Zelle ein eigenes Bit repräsentiert. Diese Bits sind nicht alle
-        Zufällig gewählt. Einige von ihnen sind, wie wir das zu Beginn gesehen
-        haben, Prüfbits oder auch Kontrollbits genannt. Das gegebene Rechteck
-        erfüllt eine bestimmte Eigenschaft. Wenn ein Bit nicht mehr korrekt sein
-        sollte, dann können wir es dank dieser Eigenschaft finden und auch
-        korrigieren.
+        Wir wollen nun eine Methode anschauen um Kodierungen finden zu können,
+        welche möglichst wenig Bits benötigen und dennoch Fehler erkennen und
+        korrigieren kann. Dazu schauen wir zunächst eine kleine Aufgabe an.
+      </p>
+      <p>
+        Gegeben ist ein 4 mal 4 Rechteck, wobei jede Zelle ein eigenes Bit
+        repräsentiert. Diese Bits sind nicht alle Zufällig gewählt. Einige von
+        ihnen sind, wie wir das zu Beginn gesehen haben, Prüfbits oder auch
+        Kontrollbits genannt. Das gegebene Rechteck erfüllt eine bestimmte
+        Eigenschaft. Wenn ein Bit nicht mehr korrekt sein sollte, dann können
+        wir es dank dieser Eigenschaft finden und auch korrigieren.
       </p>
       <SquareExeciseExample />
       <p>

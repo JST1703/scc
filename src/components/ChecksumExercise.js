@@ -23,13 +23,20 @@ function ChecksumExercise({ checksumFunction, onWorong, onCorrect, sequence }) {
   const [correctState, setCorrectState] = useState("");
   // random generated sequence of numbers and their checksum
   const [data] = useState(sequence);
-  const [checksum] = useState(() => {
-    return checksumFunction(data);
-  });
+  const [checksum] = useState(checksumFunction(data));
 
   // logic for comparing the given answer by the user and the correct answer
   const checkResult = () => {
-    if (value === checksum) {
+    // bugfix for task 8, for when the answer is k+1 and all similar answers should also be correct
+    let temp = value.replace(/\s/g, "");
+    temp = temp.toLowerCase();
+    if (temp === "1+k") {
+      temp = "k+1";
+    }
+
+    setValue(temp);
+
+    if (temp === checksum) {
       setCorrectState(true);
       onCorrect();
     } else {

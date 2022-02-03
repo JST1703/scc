@@ -186,19 +186,20 @@ function Task6() {
       {taskTracker[7] && taskTracker[8] && (
         <div>
           <p>
-            Der Abstand der Codewörter ist entscheident. Abhänig davon kann man
-            eine bestimmte Anzahl Fehler erkennen oder eine bestimmte Anzahl
-            Fehler korrigieren. Der Abstand zwischen zwei Codewörter ist
-            definiert als die Anzahl Stellen, an denen sich die wörter
-            unterscheiden. Beispielsweise haben die Wörter 10010 und 10100 den
-            Abstand 3, da sich die letzten 3 bits unterscheiden. Dieser Abstand
-            wird auch Hamming-Abstand oder Hamming-Distanz genannt.
+            Der Abstand der Codewörter ist also die entscheidende Grösse.
+            Abhänig davon kann man eine bestimmte Anzahl Fehler erkennen oder
+            eine bestimmte Anzahl Fehler korrigieren. Der Abstand zwischen zwei
+            Codewörter ist definiert als die Anzahl Stellen, an denen sich die
+            wörter unterscheiden. Beispielsweise haben die Wörter 10010 und
+            10100 den Abstand 3, da sich die letzten 3 bits unterscheiden.
+            Dieser Abstand wird auch Hamming-Abstand oder Hamming-Distanz
+            genannt.
           </p>
           <p>
             Damit man innerhalb einer Kodierung immer eine bestimmte Anzahl
             Fehler korrigieren oder erkennen kann, so muss der Abstand zwischen
             allen Wörter-Paare in der Kodierung eine bestimmte grösse haben. Das
-            Beispiel hier zeig eine Kodierung mit Wörter der länge 3 an und mit
+            Beispiel hier zeig eine Kodierung mit Wörter der länge 3 an, mit
             einem gesammten Abstand von 2.
           </p>
           <G4 />
