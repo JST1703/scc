@@ -61,9 +61,4 @@ export const MenuData = [
     path: "/task11",
     cName: "nav-text",
   },
-  {
-    title: "Kodierungen und Kontrollbits 4",
-    path: "/task12",
-    cName: "nav-text",
-  },
 ];

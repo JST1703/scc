@@ -88,6 +88,21 @@
   border-width: 5px;
 }
 
+.squareRow {
+  width: inherit;
+  height: 15%;
+  text-align: center;
+}
+
+.squareBit {
+  border-width: 1px;
+  height: inherit;
+  width: 10%;
+  font-size: 100%;
+  color: #000000;
+  border-color: #000000;
+}
+
 .activeSquare,
 .inactiveSquare {
   border-width: 1px;
