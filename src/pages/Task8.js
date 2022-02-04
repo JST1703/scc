@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import EncodingDistanceExercise from "../components/EncodingDistanceExercise";
 import { ReactComponent as G3 } from "../graphics/Graph_3_T6.svg";
-import ChecksumExercise from "../components/ChecksumExercise";
 import MC from "../components/MC";
 
 /*
@@ -40,9 +39,20 @@ function Task8() {
     <div>111111</div>,
   ];
 
+  // variable for task A for input field
+  const [value, setValue] = useState("");
+
   // variable for showing if the answer in task A is correct or not
-  const [correctStateA, setCorrectStateA] = useState("");
-  const [correctStateB, setCorrectStateB] = useState(false);
+  const [correctState1, setCorrectState1] = useState("");
+  const [correctState2, setCorrectState2] = useState(false);
+
+  // logic for evaluating input field
+  const checkInput = () => {
+    let temp = value.replace(/\s/g, "");
+    temp = temp.toLocaleLowerCase();
+    setValue(temp);
+    setCorrectState1(temp === "k+1" || temp === "1+k");
+  };
 
   // number of simple tasks in B
   const numberOfTasks = 4;
@@ -80,28 +90,33 @@ function Task8() {
         erkennen kann. Wie gross muss der Abstand d midestends sein abhängig von
         k?
       </p>
-      <ChecksumExercise
-        onCorrect={() => setCorrectStateA(true)}
-        onWorong={() => setCorrectStateA(false)}
-        checksumFunction={(x) => {
-          return "k+1";
-        }}
-        sequence={["d", " ", "=", " "]}
+      <input
+        type="text"
+        value={value}
+        disabled={correctState1 === true || correctState1 === false}
+        onChange={(event) => setValue(event.currentTarget.value)}
       />
-      {correctStateA === false && <p>Richtig ist d = k + 1.</p>}
-      {(correctStateA === false || correctStateA === true) && (
+      <button
+        onClick={checkInput}
+        disabled={correctState1 === true || correctState1 === false}
+      >
+        überprüfen
+      </button>
+      {correctState1 === false && <p>Falsch. d = k + 1 wäre Korrekt.</p>}
+      {correctState1 === true && <p>Richtig.</p>}
+      {(correctState1 === false || correctState1 === true) && (
         <MC
-          callerFunction={() => setCorrectStateB(true)}
+          callerFunction={() => setCorrectState2(true)}
           question={
             "Angenommen, wir wollen eine Kodierungen haben, die bis zu k Fehler korrigieren kann. Wie gross muss der Abstand d mindistends sein abhängig von k?"
           }
           options={["d = 2k + 1", "d = 2k", "d = 2k - 1"]}
           answerKey={[true, false, false]}
           textOnCorrect={"Richtig."}
-          textOnWrong={"Falsch. 2k + 1 wäre die richtige Lösung."}
+          textOnWrong={"Falsch. d = 2k + 1 wäre die richtige Lösung."}
         />
       )}
-      {correctStateB && (
+      {correctState2 && (
         <div>
           <p>
             Gegeben sind enige Kodierungen. Bestimmen Sie jeweils den Abstand

@@ -27,13 +27,7 @@ function ChecksumExercise({ checksumFunction, onWorong, onCorrect, sequence }) {
 
   // logic for comparing the given answer by the user and the correct answer
   const checkResult = () => {
-    // bugfix for task 8, for when the answer is k+1 and all similar answers should also be correct
     let temp = value.replace(/\s/g, "");
-    temp = temp.toLowerCase();
-    if (temp === "1+k") {
-      temp = "k+1";
-    }
-
     setValue(temp);
 
     if (temp === checksum) {

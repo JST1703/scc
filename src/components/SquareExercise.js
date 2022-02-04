@@ -77,13 +77,14 @@ function SquareExecise({ onWorong, onCorrect }) {
       arr2[i] = data[arr[i + 4]];
     }
 
-    setCorrectAnswer(
-      binaryCheckSymbol1(arr1) === "1" && binaryCheckSymbol1(arr2) === "1"
-    );
+    let temp =
+      binaryCheckSymbol1(arr1) === "1" && binaryCheckSymbol1(arr2) === "1";
 
-    if (correctAnswer === true) {
+    setCorrectAnswer(temp);
+
+    if (temp === true) {
       onCorrect();
-    } else if (correctAnswer === false) {
+    } else if (temp === false) {
       onWorong();
     }
   };
