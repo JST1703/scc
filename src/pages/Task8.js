@@ -90,6 +90,7 @@ function Task8() {
         erkennen kann. Wie gross muss der Abstand d midestends sein abhängig von
         k?
       </p>
+      <span>d =</span>
       <input
         type="text"
         value={value}

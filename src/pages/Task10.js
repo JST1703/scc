@@ -79,6 +79,13 @@ function Task10() {
   return (
     <div className="task">
       <h1>Aufgabe 10: Effiziente Kodierung 2</h1>
+      <p>
+        Wir haben erneut unsere 9 Bits für die Nachricht und die dazugeörigen
+        Kontrollbits. Diese sind in einer Reihe angeordet, so wie ein Computer
+        die Bits auch liest. Jedes Bit ist immernoch Teil einer Zeile und
+        Spalte. Sie können hier auprobieren, welche Bits welche Kontrollbits
+        beeinflussen und andersrum.
+      </p>
       <div className="containerSquares">{renderButtons}</div>
     </div>
   );

@@ -81,7 +81,7 @@ function Task9() {
           </p>
         )}
 
-      {true && (
+      {correctAnswersA === numberOfTasksA && (
         <div>
           <p>
             Wir haben zwei arten von Bits. Die einen sind die normalen Bits B
@@ -93,7 +93,7 @@ function Task9() {
             <S0 />
           </div>
           <p>
-            Die Korrekturbits sind so gesetzt, dass jede Zeile und Spalte eine
+            Die Kontrollbits sind so gesetzt, dass jede Zeile und Spalte eine
             gerade Anzahl an Einsen hat. Bei einem Fehler finden wir das
             Fehlerhafte bit, indem wir die Zeile und Spalte finden, wo die
             Eigenschaft nicht mehr erfüllt ist. Dort wo diese sich kreuzen, da
