@@ -271,7 +271,21 @@ function Task7() {
           <h2>überprüfen</h2>
         </button>
         {correctAnswer === false && <p style={{ color: "red" }}>{text}</p>}
-        {correctAnswer === true && <p style={{ color: "green" }}>{text}</p>}
+        {correctAnswer === true && (
+          <div>
+            <p style={{ color: "green" }}>{text}</p>
+            <p>
+              Mit dieser Methode lässt sich einfach eine Kodierung finden,
+              welche eine bestimmte eigenschaft erfüllen soll. Will man eine
+              Kodierung mit einem Abstand von k haben, so beginnt man bei einem
+              Wort und streicht alle Wörter weg, welche einen Abstand kleiner
+              als k zum Anfangswort haben. Dann sucht man sich ein neues Wort
+              aus und streicht von dort aus alle Wörter weg, welche einen
+              Abstand kleiner als k zu diesem Wort haben, usw., bis man keine
+              Wörter mehr streichen kann.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -53,6 +53,10 @@ This component always goes with the component squareExerciseExample. Given is a 
 
 This component always goes with the component squareExercise as the example to follow.
 
+##### TextExecise
+
+simple text exercise where the answer is of the form of a small input field from the user.
+
 ##### YN
 
 This component is a single Yes or No question, which the user must solve.

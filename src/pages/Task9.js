@@ -13,11 +13,39 @@ is given squares containing exact one error that must be found.
 */
 
 function Task9() {
+  // used for theory at the beginning
+  const binaryRep = ["00", "01", "10", "11"];
+
   // number of questions for subtasks to solve
   const numberOfTasksA = 3;
   const minWrongAnswers1 = 3;
   const minWrongAnswers2 = 5;
   const minWrongAnswers3 = 7;
+
+  // Table for encoding
+  const table = [];
+
+  // Table Head
+  table.push(
+    <tr>
+      <th>Binäre Darstellung</th>
+      <th>Kodierung</th>
+    </tr>
+  );
+
+  // Table items
+  for (let i = 0; i < 4; ++i) {
+    table.push(
+      <tr>
+        <td>{binaryRep[i]}</td>
+        <td>
+          {binaryRep[i]}
+          <span style={{ color: "red" }}>{binaryRep[i]}</span>
+          <span style={{ color: "green" }}>{binaryRep[i] + " "}</span>
+        </td>
+      </tr>
+    );
+  }
 
   /* 
   Keeping track of number of correct solutions or wrong answers
@@ -33,12 +61,28 @@ function Task9() {
     <div className="task">
       <h1>Aufgabe 9: Effiziente Kodierung 1</h1>
       <p>
-        Wir wollen nun eine Methode anschauen, mit der wir Kodierungen finden zu
-        können, welche möglichst wenig Bits benötigen, und dennoch Fehler
-        erkennen und korrigieren können. Dazu schauen wir zunächst eine kleine
-        Aufgabe an.
+        Bei der Konstruktion einer Kodierung ist uns der Abstand sehr wichtig.
+        Der Abstand ist massgebend, weiviele Fehler wir erkennen oder
+        korrigieren können. Wenn wir z.B. eine Kodierung mit 4 Wörtern und einem
+        Abstand von 3 haben wollen, so dass wir einzelne Fehler korrigieren
+        können, dann können wir ganz einfach die Wörter verdreifachen. Im
+        gegebenen Beispiel haben wir die 4 Wörter, welche einen Abstand von 1
+        Haben. Durch die Verdreifachung haben die Wörter einen Abstand von 1 in
+        jeder Sektion (Schwarz, Rot, Grün), was einen totalen Abstand von 3
+        ergibt.
+      </p>
+      {table}
+      <p>
+        Mit der Verdreifachung können wir immer eine Kodierung schaffen, mit
+        Abstand 3 und das für jede Wortlänge. Das ist alllerdings nicht
+        effizient. Die Nachrichten werden somit 3 mal so lang, wobei wir jeweils
+        nur Fehler korrigieren können, wenn maximal einer auftritt. Werden die
+        Nachrichten zu Lang, dann erhöt sich die Wahrscheinlichkeit, dass
+        mehrere Fehler auftreten.
       </p>
       <p>
+        Wir wollen uns dazu andere Methoden anschauen, um effizientere
+        Kodierungen zu finden. Dazu fangen wir mit einer kleinen Aufgabe an.
         Gegeben ist ein 4 mal 4 Rechteck, wobei jede Zelle ein eigenes Bit
         repräsentiert. Diese Bits sind nicht alle Zufällig gewählt. Einige von
         ihnen sind, wie wir das zu Beginn gesehen haben, Prüfbits oder auch
