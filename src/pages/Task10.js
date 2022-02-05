@@ -177,8 +177,9 @@ function Task10() {
         <div>
           <p>
             Bei einer Nachrichtlänge von n können a und b so gewählt werden,
-            dass n &gt; a und n &gt; b gilt. Damit gilt auch n &gt; a + b + 1,
-            was uns eine effiziente Kodierung mit Abstand 3 gibt.
+            dass n &gt; a und n &gt; b gilt. Damit gilt auch n &gt; a + b + 1.
+            Diese Rechteckmethode liefert uns somit eine recht effiziente
+            Kodieren um einzelne Fehler zu korrigieren.
           </p>
         </div>
       )}
