@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import EncodingDistanceExercise from "../components/EncodingDistanceExercise";
 import { ReactComponent as G3 } from "../graphics/Graph_3_T6.svg";
 import MC from "../components/MC";
-import TextExecise from "../components/TextExercise";
+import TextExercise from "../components/TextExercise";
 
 /*
 Task 8: Distances in Encodings
@@ -51,7 +51,7 @@ function Task8() {
     <div className="task">
       <h1>Aufgabe 8: Abstand in Kodierungen 3</h1>
       <G3 />
-      <TextExecise
+      <TextExercise
         callerFunction={() => setState1(true)}
         question={
           "Angenommen, wir wollen eine Kodierungen haben, die bis zu k Fehler erkennen kann. Wie gross muss der Abstand d midestends sein abhängig von k?"

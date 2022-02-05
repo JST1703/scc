@@ -25,6 +25,11 @@ This component displays an exercise. It displays several numbers, where the user
 A component used for an exercise. Given a sequence and its checksum, the user has to give an input, which will be compared to the given sequence and checksum.
 For example given the sequence 110101 and the check bit 0, change the sequence such that it still fulfills the given check bit.
 
+##### CorrectionBitsExercise
+
+Given is a bit string with some normal bits and some control bits.
+In the exercise, the user is given sequences containing exact one error that must be found.
+
 ##### EncodingDistanceExercise
 
 An exercise type. Given a code, the user must first determine it's hamming distance and then answer some MCs about some properties.
@@ -53,7 +58,7 @@ This component always goes with the component squareExerciseExample. Given is a 
 
 This component always goes with the component squareExercise as the example to follow.
 
-##### TextExecise
+##### TextExercise
 
 simple text exercise where the answer is of the form of a small input field from the user.
 

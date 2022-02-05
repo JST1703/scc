@@ -18,7 +18,7 @@ should still result in a correct answer. Hence, multiple solutions are possible.
 textOnCorrect and textOnWrong are displayed depending on the correctness of the user's answer.
 */
 
-function TextExecise({
+function TextExercise({
   callerFunction,
   question,
   text,
@@ -71,4 +71,4 @@ function TextExecise({
   );
 }
 
-export default TextExecise;
+export default TextExercise;
