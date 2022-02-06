@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import TextExercise from "../components/TextExercise";
 import MC from "../components/MC";
 import CorrectionBitsExercise2 from "../components/CorrectionBitsExercise2";
+import sumChecksum from "../functions/sumChecksum";
 
 /*
 Task 11: Hamming-Codes
@@ -12,6 +13,9 @@ Task B: The user must set the correlation matrix for the control bits of a Hammi
 */
 
 function Task11() {
+  // used for checking if answer by the user to the matrix was correct or not
+  const [matrixSolution, setMatrixSolution] = useState("");
+
   // keeping track if task B is solved or not
   const [stateA, setStateA] = useState(Array(4).fill(false));
 
@@ -143,6 +147,7 @@ function Task11() {
     matrixButtons.push(
       <button
         key={i + 8}
+        disabled={matrixSolution === true}
         className={"activeSquare"}
         onClick={() => handleMatrixValue(1, i)}
       >
@@ -172,6 +177,7 @@ function Task11() {
     matrixButtons.push(
       <button
         key={i + 16}
+        disabled={matrixSolution === true}
         className={"activeSquare"}
         onClick={() => handleMatrixValue(2, i)}
       >
@@ -201,6 +207,7 @@ function Task11() {
     matrixButtons.push(
       <button
         key={i + 24}
+        disabled={matrixSolution === true}
         className={"activeSquare"}
         onClick={() => handleMatrixValue(3, i)}
       >
@@ -217,6 +224,62 @@ function Task11() {
       </button>
     );
   }
+
+  // for checking the matrix solution
+  const checkMartix = () => {
+    console.log(matrixValues);
+
+    let sumR1 = sumChecksum([...matrixValues[1]].splice(1, 4));
+    let sumR2 = sumChecksum([...matrixValues[2]].splice(1, 4));
+    let sumR3 = sumChecksum([...matrixValues[3]].splice(1, 4));
+
+    let sumC1 = sumChecksum([
+      matrixValues[1][1],
+      matrixValues[2][1],
+      matrixValues[3][1],
+    ]);
+    let sumC2 = sumChecksum([
+      matrixValues[1][2],
+      matrixValues[2][2],
+      matrixValues[3][2],
+    ]);
+    let sumC3 = sumChecksum([
+      matrixValues[1][3],
+      matrixValues[2][3],
+      matrixValues[3][3],
+    ]);
+    let sumC4 = sumChecksum([
+      matrixValues[1][4],
+      matrixValues[2][4],
+      matrixValues[3][4],
+    ]);
+
+    console.log(sumR1);
+    console.log(sumR2);
+    console.log(sumR3);
+    console.log(sumC1);
+    console.log(sumC2);
+    console.log(sumC3);
+    console.log(sumC4);
+
+    // all rows must add up to 3
+    let temp1 = sumR1 === "3" && sumR2 === "3" && sumR3 === "3";
+
+    // all rows add up to 2 except one adds to 3
+    let temp2 =
+      sumC1 === "2" && sumC2 === "2" && sumC3 === "2" && sumC4 === "3";
+    let temp3 =
+      sumC1 === "2" && sumC2 === "2" && sumC3 === "3" && sumC4 === "2";
+    let temp4 =
+      sumC1 === "2" && sumC2 === "3" && sumC3 === "2" && sumC4 === "2";
+    let temp5 =
+      sumC1 === "3" && sumC2 === "2" && sumC3 === "2" && sumC4 === "2";
+
+    let temp6 = temp2 || temp3 || temp4 || temp5;
+    let tempFinal = temp1 && temp6;
+
+    setMatrixSolution(tempFinal);
+  };
 
   return (
     <div className="task">
@@ -295,7 +358,7 @@ function Task11() {
           />
         </div>
       )}
-      {true && (
+      {stateA[3] && (
         <div>
           <p>
             Gegeben ist eine Tabelle, bei welcher Sie die Korrelationen setzen
@@ -303,7 +366,7 @@ function Task11() {
             Lage sind, Fehler der grösse 1 zu korrigieren. Alles was Sie in die
             Tabelle einfügen, wird vom Code unten direckt übernommen. Sie können
             zur Überprüfung Ihrer Lösung schauen, ob Sie die Nachricht mit einem
-            Fehler korrigieren können. Für diese Aufgabe gibt es 4 verschiedene
+            Fehler korrigieren können. Für diese Aufgabe gibt es verschiedene
             Lösungen. Es kann sein, dass Ihre lösung nicht mit derjenigen
             übereinstimmt, welche zum generieren der fehelrhaften Wörtern
             genutzt wird.
@@ -351,8 +414,27 @@ function Task11() {
               {matrixButtons[31]}
             </div>
           </div>
+          <div>
+            <button
+              disabled={matrixSolution === true}
+              onClick={() => checkMartix()}
+            >
+              überprüfe Tabelle
+            </button>
+          </div>
+          {matrixSolution === false && (
+            <div className="containerSquares">
+              <h3 style={{ color: "red" }}>Falsch</h3>
+            </div>
+          )}
+          {matrixSolution && (
+            <div className="containerSquares">
+              <h3 style={{ color: "green" }}>Korrekt</h3>
+            </div>
+          )}
           <p></p>
           <h4>Kodierung nach der Tabelle:</h4>
+          <p></p>
           <div className="containerSquares">
             <div className="squareRow">{renderButtons}</div>
           </div>
