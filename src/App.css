@@ -69,7 +69,7 @@
 .node0,
 .node1,
 .node2 {
-  border-width: 1px;
+  border-width: 0.1vw;
   margin: 1%;
   height: 80%;
   width: 8%;
@@ -97,7 +97,7 @@
 }
 
 .nodeToggle {
-  border-width: 5px;
+  border-width: 0.5vw;
 }
 
 .squareRow {
@@ -119,9 +119,9 @@
 .activeSquare,
 .inactiveSquare {
   border-width: 1px;
-  height: 20%;
+  height: 30%;
   width: 6%;
-  font-size: 100%;
+  font-size: 1.6vw;
   color: #000000;
   border-color: #000000;
 }
@@ -137,6 +137,6 @@
 }
 
 .toggleSquare {
-  border-width: 5px;
+  border-width: 0.4vw;
   border-color: #2d5a9e;
 }

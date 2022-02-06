@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import TextExercise from "../components/TextExercise";
 import MC from "../components/MC";
+import CorrectionBitsExercise2 from "../components/CorrectionBitsExercise2";
 
 /*
 Task 11: Hamming-Codes
@@ -112,8 +113,9 @@ function Task11() {
     } else {
       tempM[i][j] = 0;
       tempCL[i + 3] = tempC.splice(tempC.indexOf(j - 1), 1);
-      tempCL[j - 1] = tempB.splice(tempC.indexOf(i + 3), 1);
+      tempCL[j - 1] = tempB.splice(tempB.indexOf(i + 3), 1);
     }
+
     setMatrixValues(tempM);
   };
 
@@ -129,7 +131,7 @@ function Task11() {
     );
   }
 
-  // c1 deko button 1
+  // c1 deko button
   matrixButtons.push(
     <button key={8} disabled className={"inactiveSquare"}>
       {matrixValues[1][0]}
@@ -149,27 +151,16 @@ function Task11() {
     );
   }
 
-  // c1 deko button 2
-  matrixButtons.push(
-    <button key={13} disabled className={"inactiveSquare"}>
-      {matrixValues[1][5]}
-    </button>
-  );
-
-  // real buttons row 1
-  for (let i = 6; i < 8; ++i) {
+  // deko buttons row 1
+  for (let i = 5; i < 8; ++i) {
     matrixButtons.push(
-      <button
-        key={i + 8}
-        className={"activeSquare"}
-        onClick={() => handleMatrixValue(1, i)}
-      >
+      <button key={i + 8} disabled className={"inactiveSquare"}>
         {matrixValues[1][i]}
       </button>
     );
   }
 
-  // c2 deko button 1
+  // c2 deko button
   matrixButtons.push(
     <button key={16} disabled className={"inactiveSquare"}>
       {matrixValues[2][0]}
@@ -177,7 +168,7 @@ function Task11() {
   );
 
   // real buttons row 2
-  for (let i = 1; i < 6; ++i) {
+  for (let i = 1; i < 5; ++i) {
     matrixButtons.push(
       <button
         key={i + 16}
@@ -189,35 +180,24 @@ function Task11() {
     );
   }
 
-  // c2 deko button 2
-  matrixButtons.push(
-    <button key={22} disabled className={"inactiveSquare"}>
-      {matrixValues[2][6]}
-    </button>
-  );
-
-  // real buttons row 2
-  for (let i = 7; i < 8; ++i) {
+  // deko buttons row 2
+  for (let i = 5; i < 8; ++i) {
     matrixButtons.push(
-      <button
-        key={i + 16}
-        className={"activeSquare"}
-        onClick={() => handleMatrixValue(2, i)}
-      >
+      <button key={i + 16} disabled className={"inactiveSquare"}>
         {matrixValues[2][i]}
       </button>
     );
   }
 
-  // c3 deko button 1
+  // c3 deko button
   matrixButtons.push(
     <button key={24} disabled className={"inactiveSquare"}>
       {matrixValues[3][0]}
     </button>
   );
 
-  // real buttons row 3
-  for (let i = 1; i < 7; ++i) {
+  // real buttons row 2
+  for (let i = 1; i < 5; ++i) {
     matrixButtons.push(
       <button
         key={i + 24}
@@ -229,12 +209,14 @@ function Task11() {
     );
   }
 
-  // c3 deko button 2
-  matrixButtons.push(
-    <button key={31} disabled className={"inactiveSquare"}>
-      {matrixValues[3][7]}
-    </button>
-  );
+  // deko buttons row 2
+  for (let i = 5; i < 8; ++i) {
+    matrixButtons.push(
+      <button key={i + 24} disabled className={"inactiveSquare"}>
+        {matrixValues[3][i]}
+      </button>
+    );
+  }
 
   return (
     <div className="task">
@@ -313,18 +295,18 @@ function Task11() {
           />
         </div>
       )}
-      {stateA[3] && (
+      {true && (
         <div>
           <p>
-            Gegeben ist eine Tabelle, bei Welcher Sie die Korrelationen
-            setzenmüssen, damit Sie einen Hamming-Code haben, mit welchem Sie in
-            der Lage sind, Fehler der grösse 1 zu korrigieren. Alles was Sie in
-            die Tabelle einfügen wird vom Code unten direckt übernommen. Sie
-            können zur Überprüfung ihrer Lösung schauen, ob Sie die Nachricht
-            mit einem Fehler korrigieren können. Für diese Aufgabe gibt es 4
-            verschiedene Lösungen. Es kann sein, dass Ihre lösung nicht mit
-            derjenigen übereinstimmt, welche zum generieren der fehelrhaften
-            Wörtern genutzt wird.
+            Gegeben ist eine Tabelle, bei welcher Sie die Korrelationen setzen
+            müssen, damit Sie einen Hamming-Code haben, mit welchem Sie in der
+            Lage sind, Fehler der grösse 1 zu korrigieren. Alles was Sie in die
+            Tabelle einfügen, wird vom Code unten direckt übernommen. Sie können
+            zur Überprüfung Ihrer Lösung schauen, ob Sie die Nachricht mit einem
+            Fehler korrigieren können. Für diese Aufgabe gibt es 4 verschiedene
+            Lösungen. Es kann sein, dass Ihre lösung nicht mit derjenigen
+            übereinstimmt, welche zum generieren der fehelrhaften Wörtern
+            genutzt wird.
           </p>
           <h4>Korrelations-Tabelle:</h4>
           <div>
@@ -376,6 +358,7 @@ function Task11() {
           </div>
           <p></p>
           <h4>Wort mit einem Fehler:</h4>
+          <CorrectionBitsExercise2 />
         </div>
       )}
     </div>

@@ -25,10 +25,10 @@ This component displays an exercise. It displays several numbers, where the user
 A component used for an exercise. Given a sequence and its checksum, the user has to give an input, which will be compared to the given sequence and checksum.
 For example given the sequence 110101 and the check bit 0, change the sequence such that it still fulfills the given check bit.
 
-##### CorrectionBitsExercise
+##### CorrectionBitsExercise / CorrectionBitsExercise2
 
 Given is a bit string with some normal bits and some control bits.
-In the exercise, the user is given sequences containing exact one error that must be found.
+In the exercise, the user is given sequences containing exact one error that must be found. One has more bits than the other, used for different tasks.
 
 ##### EncodingDistanceExercise
 
