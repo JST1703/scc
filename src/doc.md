@@ -109,3 +109,7 @@ takes a string of numbers and returns the array of the individual digits
 ##### sumChecksum
 
 Given any sequence of digits, returns the sum of them.
+
+### graphics
+
+Each graphic is a SVG format. Each one has a TX in the name, which stands for Task number X.

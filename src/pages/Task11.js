@@ -28,22 +28,15 @@ function Task11() {
   const numButtons = 7;
 
   // used for toggle and setting the values for the control bits
-  const [correlationList, setCorrelationList] = useState([
-    [0],
-    [1],
-    [2],
-    [3],
-    [4],
-    [5],
-    [6],
-  ]);
+  const [correlationList] = useState([[0], [1], [2], [3], [4], [5], [6]]);
 
   // toggle status of each button
   const [toggle, setToggle] = useState(Array(numButtons).fill(false));
 
-  // value of each button
+  // value of each button, 0 or 1
   const [values, setValues] = useState(Array(numButtons).fill(0));
 
+  // changing values
   const handleValues = (arr) => {
     let temp = [...values];
     for (let i = 0; i < arr.length; ++i) {
@@ -53,6 +46,7 @@ function Task11() {
     setValues(temp);
   };
 
+  // toggle function over the buttons
   const handleToggle = (arr) => {
     let temp = [...toggle];
     for (let i = 0; i < arr.length; ++i) {
@@ -62,7 +56,10 @@ function Task11() {
     setToggle(temp);
   };
 
+  // renderung the buttons
   let renderButtons = [];
+
+  // only normal bits can be clicked, but both can be toggled
   for (let i = 0; i < 4; ++i) {
     renderButtons.push(
       <button
@@ -76,6 +73,7 @@ function Task11() {
       </button>
     );
   }
+  // control bits can't be clicked, but both can be toggled
   for (let i = 4; i < numButtons; ++i) {
     renderButtons.push(
       <button
@@ -103,9 +101,11 @@ function Task11() {
     // reset values, otherwise leads to false results
     setValues(Array(7).fill(0));
 
+    // changing matrix values
     let tempM = [...matrixValues];
     let temp = tempM[i][j];
 
+    // changing correlation lists
     let tempCL = [...correlationList];
     let tempC = tempCL[i + 3];
     let tempB = tempCL[j - 1];
@@ -254,14 +254,6 @@ function Task11() {
       matrixValues[3][4],
     ]);
 
-    console.log(sumR1);
-    console.log(sumR2);
-    console.log(sumR3);
-    console.log(sumC1);
-    console.log(sumC2);
-    console.log(sumC3);
-    console.log(sumC4);
-
     // all rows must add up to 3
     let temp1 = sumR1 === "3" && sumR2 === "3" && sumR3 === "3";
 
@@ -286,9 +278,9 @@ function Task11() {
       <h1>Aufgabe 11: Effiziente Kodierung 3</h1>
       <p>
         Tatsächlich können wir noch kürzere Kodierungen erzeugen, mit welchen
-        wir immer Fehler der grösse 1 korrigieren können. Angenommen wir wollen
-        eine Kodierung mit 2^4 = 16 Wörtern mit Abstand 3. Durch Verdreifachen
-        haben wir 8 zusätzliche Bits. Mit der Rechteckmethode hahben wir 2 + 2 +
+        wir immer Fehler der Grösse 1 korrigieren können. Angenommen wir wollen
+        eine Kodierung mit 2^4 = 16 Wörtern, mit Abstand 3. Durch Verdreifachen
+        haben wir 8 zusätzliche Bits. Mit der Rechteckmethode haben wir 2 + 2 +
         1 = 5 zusätzliche Bits. Der sogenannte Hamming-Code benutzt nur 3
         zusätzliche Kontrollbits.
       </p>
@@ -363,12 +355,12 @@ function Task11() {
           <p>
             Gegeben ist eine Tabelle, bei welcher Sie die Korrelationen setzen
             müssen, damit Sie einen Hamming-Code haben, mit welchem Sie in der
-            Lage sind, Fehler der grösse 1 zu korrigieren. Alles was Sie in die
-            Tabelle einfügen, wird vom Code unten direckt übernommen. Sie können
+            Lage sind, Fehler der Grösse 1 zu korrigieren. Alles, was Sie in die
+            Tabelle einfügen, wird vom Code unten direkt übernommen. Sie können
             zur Überprüfung Ihrer Lösung schauen, ob Sie die Nachricht mit einem
             Fehler korrigieren können. Für diese Aufgabe gibt es verschiedene
-            Lösungen. Es kann sein, dass Ihre lösung nicht mit derjenigen
-            übereinstimmt, welche zum generieren der fehelrhaften Wörtern
+            Lösungen. Es kann sein, dass Ihre Lösung nicht mit derjenigen
+            übereinstimmt, welche zum Generieren den fehlerhaften Wörtern
             genutzt wird.
           </p>
           <h4>Korrelations-Tabelle:</h4>
@@ -430,6 +422,13 @@ function Task11() {
           {matrixSolution && (
             <div className="containerSquares">
               <h3 style={{ color: "green" }}>Korrekt</h3>
+              <p>
+                Nun haben Sie eine Methode um effiziente Kodierungen zu
+                konstruieren, welche einzelne Fehler korrigieren können. Man
+                stellt genau so eine Tabelle auf und schaut, dass jede Spalte
+                eindeutig mit den Kontrollbits korreliert, d.h. bei zwei
+                verschiedenen Spalten sind die Werte nie gleich.
+              </p>
             </div>
           )}
           <p></p>

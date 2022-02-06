@@ -40,7 +40,7 @@ function Task8() {
   for (let i = 0; i < numberOfTasks; ++i) {
     taskRender.push(
       task[i] && (
-        <div className="EDE">
+        <div className="EDE" key={i}>
           <EncodingDistanceExercise callerFunction={() => handleTask(i + 1)} />
         </div>
       )
@@ -70,8 +70,8 @@ function Task8() {
           }
           options={["d = 2k + 1", "d = 2k", "d = 2k - 1"]}
           answerKey={[true, false, false]}
-          textOnCorrect={"Richtig."}
-          textOnWrong={"Falsch. d = 2k + 1 wäre die richtige Lösung."}
+          textOnCorrect={""}
+          textOnWrong={" d = 2k + 1 wäre die richtige Lösung."}
         />
       )}
       {state2 && (

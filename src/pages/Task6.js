@@ -9,7 +9,7 @@ import { ReactComponent as G4 } from "../graphics/Graph_4_T6.svg";
 
 /*
 Task 6: Distances in Encodings
-just theory and some MC questions about Hamming-Distance.
+just theory and some YN/MC questions about Hamming-Distance.
 */
 
 function Task6() {
@@ -42,10 +42,10 @@ function Task6() {
         optionYes={"Ja"}
         optionNo={"Nein"}
         textOnCorrect={
-          "Richtig. 0 kann sich durch einen einzigen Fehler zu 1 umwandeln und andersrum."
+          "0 kann sich durch einen einzigen Fehler zu 1 umwandeln und andersrum."
         }
         textOnWrong={
-          "Falsch. 0 kann sich durch einen einzigen Fehler zu 1 umwandeln und andersrum."
+          "0 kann sich durch einen einzigen Fehler zu 1 umwandeln und andersrum."
         }
       />
 
@@ -66,10 +66,10 @@ function Task6() {
             optionYes={"Ja"}
             optionNo={"Nein"}
             textOnCorrect={
-              "Richtig. 01 ist nicht in unserer Kodierung und kann desswegen nicht richtig sein."
+              "01 ist nicht in unserer Kodierung und kann desswegen nicht richtig sein."
             }
             textOnWrong={
-              "Falsch. 01 ist nicht in unserer Kodierung und kann desswegen nicht richtig sein."
+              "01 ist nicht in unserer Kodierung und kann desswegen nicht richtig sein."
             }
           />
           <YN
@@ -79,10 +79,10 @@ function Task6() {
             optionYes={"Ja"}
             optionNo={"Nein"}
             textOnCorrect={
-              "Richtig. Beide Wörter haben den selben Abstannt zum fehlerhaften Wort. Eine eindeutige Zuordnung ist deswegen nicht möglich."
+              "Beide Wörter haben den selben Abstannt zum fehlerhaften Wort. Eine eindeutige Zuordnung ist deswegen nicht möglich."
             }
             textOnWrong={
-              "Falsch. Beide Wörter haben den selben Abstannt zum fehlerhaften Wort. Eine eindeutige Zuordnung ist deswegen nicht möglich."
+              "Beide Wörter haben den selben Abstannt zum fehlerhaften Wort. Eine eindeutige Zuordnung ist deswegen nicht möglich."
             }
           />
         </div>
@@ -101,10 +101,10 @@ function Task6() {
             options={["1", "2", "3"]}
             answerKey={[false, false, true]}
             textOnCorrect={
-              "Richtig. Alle 3 Wörter dazwischen liegen nicht in der Kodierung."
+              "Alle 3 Wörter dazwischen liegen nicht in der Kodierung."
             }
             textOnWrong={
-              "Falsch. Alle 3 Wörter dazwischen liegen nicht in der Kodierung."
+              "Alle 3 Wörter dazwischen liegen nicht in der Kodierung."
             }
           />
           <MC
@@ -113,10 +113,10 @@ function Task6() {
             options={["1", "2", "3"]}
             answerKey={[false, true, false]}
             textOnCorrect={
-              "Richtig. 0011 kann man nicht eindeutig 0000 oder 1111 zurdnen."
+              "0011 kann man nicht eindeutig 0000 oder 1111 zurdnen."
             }
             textOnWrong={
-              "Falsch. Nur 0001 und 0111 kann man den Wörter in unserer Kodierung eindeutig zuordnen."
+              "Nur 0001 und 0111 kann man den Wörter in unserer Kodierung eindeutig zuordnen."
             }
           />
           <MC
@@ -127,10 +127,10 @@ function Task6() {
             options={["1", "2", "3"]}
             answerKey={[false, false, true]}
             textOnCorrect={
-              "Richtig. Da die Wörter Abstand 4 haben, können bis zu 3 Fehler auftreten, die man noch erkennt. Bei 4 Fehler würde man das erhaltene Wort fälschlicher weise als korrekt betrachten."
+              "Da die Wörter Abstand 4 haben, können bis zu 3 Fehler auftreten, die man noch erkennt. Bei 4 Fehler würde man das erhaltene Wort fälschlicher weise als korrekt betrachten."
             }
             textOnWrong={
-              "Falsch. Da die Wörter Abstand 4 haben, können bis zu 3 Fehler auftreten, die man noch erkennt. Bei 4 Fehler würde man das erhaltene Wort fälschlicher weise als korrekt betrachten."
+              "Da die Wörter Abstand 4 haben, können bis zu 3 Fehler auftreten, die man noch erkennt. Bei 4 Fehler würde man das erhaltene Wort fälschlicher weise als korrekt betrachten."
             }
           />
           <MC
@@ -141,10 +141,10 @@ function Task6() {
             options={["1", "2", "3"]}
             answerKey={[true, false, false]}
             textOnCorrect={
-              "Richtig. Bei 2 Fehlern erhält man ein Wort, welches man nicht mehr zuorden kann. Bei mehr Fehlern korrigieren wir falsch."
+              "Bei 2 Fehlern erhält man ein Wort, welches man nicht mehr zuorden kann. Bei mehr Fehlern korrigieren wir falsch."
             }
             textOnWrong={
-              "Falsch. Bei 2 Fehlern erhält man ein Wort, welches man nicht mehr zuorden kann. Bei mehr Fehlern korrigieren wir falsch."
+              "Bei 2 Fehlern erhält man ein Wort, welches man nicht mehr zuorden kann. Bei mehr Fehlern korrigieren wir falsch."
             }
           />
         </div>
@@ -161,9 +161,9 @@ function Task6() {
             }
             options={["2", "3", "4", "5"]}
             answerKey={[false, false, true, false]}
-            textOnCorrect={"Richtig."}
+            textOnCorrect={""}
             textOnWrong={
-              "Falsch. Bis zu 4 Fehler können passieren. Die Wörter haben einen Abstand von 5 und deswegen würde erst ab 5 Fehlern das nicht mehr als falsch betrachted werden."
+              "Bis zu 4 Fehler können passieren. Die Wörter haben einen Abstand von 5 und deswegen würde erst ab 5 Fehlern das nicht mehr als falsch betrachted werden."
             }
           />
           <MC
@@ -174,10 +174,10 @@ function Task6() {
             options={["1", "2", "3", "4"]}
             answerKey={[false, true, false, false]}
             textOnCorrect={
-              "Richtig. Bei 2 Fehlern erhält man ein Wort, welches man immernoch eindeudig zuorden kann. Bei mehr Fehlern korrigieren wir falsch."
+              "Bei 2 Fehlern erhält man ein Wort, welches man immernoch eindeudig zuorden kann. Bei mehr Fehlern korrigieren wir falsch."
             }
             textOnWrong={
-              "Falsch. Bei 2 Fehlern erhält man ein Wort, welches man immernoch eindeudig zuorden kann. Bei mehr Fehlern korrigieren wir falsch."
+              "Bei 2 Fehlern erhält man ein Wort, welches man immernoch eindeudig zuorden kann. Bei mehr Fehlern korrigieren wir falsch."
             }
           />
         </div>
@@ -187,20 +187,20 @@ function Task6() {
         <div>
           <p>
             Der Abstand der Codewörter ist also die entscheidende Grösse.
-            Abhänig davon kann man eine bestimmte Anzahl Fehler erkennen oder
+            Abhängig davon kann man eine bestimmte Anzahl Fehler erkennen oder
             eine bestimmte Anzahl Fehler korrigieren. Der Abstand zwischen zwei
             Codewörter ist definiert als die Anzahl Stellen, an denen sich die
-            wörter unterscheiden. Beispielsweise haben die Wörter 10010 und
-            10100 den Abstand 3, da sich die letzten 3 bits unterscheiden.
+            Wörter unterscheiden. Beispielsweise haben die Wörter 10010 und
+            10100 den Abstand 3, da sich die letzten 3 Bits unterscheiden.
             Dieser Abstand wird auch Hamming-Abstand oder Hamming-Distanz
             genannt.
           </p>
           <p>
             Damit man innerhalb einer Kodierung immer eine bestimmte Anzahl
             Fehler korrigieren oder erkennen kann, so muss der Abstand zwischen
-            allen Wörter-Paare in der Kodierung eine bestimmte grösse haben. Das
-            Beispiel hier zeig eine Kodierung mit Wörter der länge 3 an, mit
-            einem gesammten Abstand von 2.
+            allen Wörter-Paare in der Kodierung eine bestimmte Grösse haben. Das
+            Beispiel hier zeig eine Kodierung mit Wörter der Länge 3 an, mit
+            einem gerammten Abstand von 2.
           </p>
           <G4 />
         </div>

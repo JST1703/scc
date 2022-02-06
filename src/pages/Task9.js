@@ -27,7 +27,7 @@ function Task9() {
 
   // Table Head
   table.push(
-    <tr>
+    <tr key={4}>
       <th>Binäre Darstellung</th>
       <th>Kodierung</th>
     </tr>
@@ -36,7 +36,7 @@ function Task9() {
   // Table items
   for (let i = 0; i < 4; ++i) {
     table.push(
-      <tr>
+      <tr key={i}>
         <td>{binaryRep[i]}</td>
         <td>
           {binaryRep[i]}
@@ -62,16 +62,18 @@ function Task9() {
       <h1>Aufgabe 9: Effiziente Kodierung 1</h1>
       <p>
         Bei der Konstruktion einer Kodierung ist uns der Abstand sehr wichtig.
-        Der Abstand ist massgebend, weiviele Fehler wir erkennen oder
+        Der Abstand ist massgebend, wie viele Fehler wir erkennen oder
         korrigieren können. Wenn wir z.B. eine Kodierung mit 4 Wörtern und einem
-        Abstand von 3 haben wollen, so dass wir einzelne Fehler korrigieren
+        Abstand von 3 haben wollen, sodass wir einzelne Fehler korrigieren
         können, dann können wir ganz einfach die Wörter verdreifachen. Im
         gegebenen Beispiel haben wir die 4 Wörter, welche einen Abstand von 1
         Haben. Durch die Verdreifachung haben die Wörter einen Abstand von 1 in
         jeder Sektion (Schwarz, Rot, Grün), was einen totalen Abstand von 3
         ergibt.
       </p>
-      {table}
+      <table>
+        <tbody>{table}</tbody>
+      </table>
       <p>
         Mit der Verdreifachung können wir immer eine Kodierung schaffen, mit
         Abstand 3 und das für jede Wortlänge. Das ist alllerdings nicht
@@ -84,7 +86,7 @@ function Task9() {
         Wir wollen uns dazu andere Methoden anschauen, um effizientere
         Kodierungen zu finden. Dazu fangen wir mit einer kleinen Aufgabe an.
         Gegeben ist ein 4 mal 4 Rechteck, wobei jede Zelle ein eigenes Bit
-        repräsentiert. Diese Bits sind nicht alle Zufällig gewählt. Einige von
+        repräsentiert. Diese Bits sind nicht alle zufällig gewählt. Einige von
         ihnen sind, wie wir das zu Beginn gesehen haben, Prüfbits oder auch
         Kontrollbits genannt. Das gegebene Rechteck erfüllt eine bestimmte
         Eigenschaft. Wenn ein Bit nicht mehr korrekt sein sollte, dann können
@@ -96,8 +98,9 @@ function Task9() {
         Erkennen Sie, welche Eigenschaft wir suchen? Finden Sie anhand des
         gegebenen Beispieles das falsche Bit in jedem der Rechtecke.
       </p>
-      {[...Array(numberOfTasksA)].map(() => (
+      {[...Array(numberOfTasksA)].map((e, i) => (
         <SquareExecise
+          key={i}
           onWorong={() => setWrongAnswersA(wrongAnswersA + 1)}
           onCorrect={() => setCorrectAnswersA(correctAnswersA + 1)}
         />
@@ -105,14 +108,14 @@ function Task9() {
       {wrongAnswersA >= minWrongAnswers1 &&
         correctAnswersA !== numberOfTasksA && (
           <p>
-            Hinweis 1: Denken Sie zurück an eine der Ersten Methoden, welche wir
+            Hinweis 1: Denken Sie zurück an eine der ersten Methoden, welche wir
             betrachtet haben.
           </p>
         )}
 
       {wrongAnswersA >= minWrongAnswers2 &&
         correctAnswersA !== numberOfTasksA && (
-          <p>Hinweis 2: Betrachten Sie nur die einzelnen Spalten und Zeilen.</p>
+          <p>Hinweis 2: Betrachten Sie die einzelnen Spalten und Zeilen.</p>
         )}
 
       {wrongAnswersA >= minWrongAnswers3 &&
@@ -139,7 +142,7 @@ function Task9() {
           <p>
             Die Kontrollbits sind so gesetzt, dass jede Zeile und Spalte eine
             gerade Anzahl an Einsen hat. Bei einem Fehler finden wir das
-            Fehlerhafte bit, indem wir die Zeile und Spalte finden, wo die
+            fehlerhafte Bit, indem wir die Zeile und Spalte finden, wo die
             Eigenschaft nicht mehr erfüllt ist. Dort wo diese sich kreuzen, da
             muss der Fehler vorgefallen sein.
           </p>
@@ -149,7 +152,7 @@ function Task9() {
           <p>
             Sollten zwei Fehler auftreten, so bemerken wir das zwar, allerdings
             finden wir die Fehler nicht mehr. Im gegebenen Beispiel kommen 4
-            Bits in Frage fehlerhaft zu sein, allerdings sind nur 2 falsch.
+            Bits infrage fehlerhaft zu sein, allerdings sind nur 2 falsch.
           </p>
           <div className="squareGraphics">
             <S2 />

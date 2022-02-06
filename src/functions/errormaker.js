@@ -63,6 +63,7 @@ function randomErrorMaker3(seq) {
   return;
 }
 
+// called by reference
 function errormaker(seq, x) {
   switch (x) {
     case 1:

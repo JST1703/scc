@@ -76,7 +76,7 @@ function YN({
       </button>
       {taskState === false && (
         <p>
-          <span style={{ color: "red" }}>Falsch</span>. {textOnWrong}.
+          <span style={{ color: "red" }}>Falsch</span>. {textOnWrong}
         </p>
       )}
       {taskState === true && (

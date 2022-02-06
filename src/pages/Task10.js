@@ -115,11 +115,11 @@ function Task10() {
     <div className="task">
       <h1>Aufgabe 10: Effiziente Kodierung 2</h1>
       <p>
-        Wir haben erneut unsere 9 Bits für die Nachricht und die dazugeörigen
-        Kontrollbits. Diese sind in einer Reihe angeordet, so wie ein Computer
-        die Bits lesen kann. Jedes Bit ist immernoch Teil einer imaginären Zeile
-        und imaginären Spalte, wie vorhin. Sie können hier ausprobieren, welche
-        Bits welche Kontrollbits beeinflussen und andersrum.
+        Wir haben erneut unsere 9 Bits für die Nachricht und die dazugehörigen
+        Kontrollbits. Diese sind in einer Reihe angeordnet, so wie ein Computer
+        die Bits lesen kann. Jedes Bit ist immer noch Teil einer imaginären
+        Zeile und imaginären Spalte, wie vorhin. Sie können hier ausprobieren,
+        welche Bits welche Kontrollbits beeinflussen und andersrum.
       </p>
       <div className="containerSquares">
         <div className="squareRow">{renderButtons}</div>
@@ -176,7 +176,7 @@ function Task10() {
       {stateB[2] && (
         <div>
           <p>
-            Bei einer Nachrichtlänge von n können a und b so gewählt werden,
+            Bei einer Nachrichtenlänge von n können a und b so gewählt werden,
             dass n &gt; a und n &gt; b gilt. Damit gilt auch n &gt; a + b + 1.
             Diese Rechteckmethode liefert uns somit eine recht effiziente
             Kodieren um einzelne Fehler zu korrigieren.

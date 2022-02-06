@@ -141,8 +141,13 @@ function Task7() {
     return arr;
   });
 
-  // after submission, stating whether answer was correct or not
-  const [correctAnswer, setCorrextAnswer] = useState("");
+  /*
+  variable for the task state
+  "": not answered yet
+  true: correctly answered
+  false: answered, but wrong
+  */
+  const [taskState, setTaskState] = useState("");
 
   // text displayed if answer is either correct or wrong
   const [text, setText] = useState("");
@@ -175,7 +180,7 @@ function Task7() {
         "Falsch, die Kodierung erfüllt nicht die vorgegebenen Eigenschaften."
       );
     }
-    setCorrextAnswer(sol);
+    setTaskState(sol);
   };
 
   // node render
@@ -196,7 +201,7 @@ function Task7() {
             ? "node2 nodeToggle "
             : "node2"
         }
-        disabled={correctAnswer === true}
+        disabled={taskState === true}
         onMouseOver={() => handleToggle(correlationList[i])}
         onMouseOut={() => handleToggle(correlationList[i])}
         onClick={() => changeButtonStatus(i)}
@@ -210,17 +215,17 @@ function Task7() {
     <div className="task">
       <h1>Aufgabe 7: Abstand in Kodierungen 2</h1>
       <p>
-        Gegeben sind alle möglichen binären Codewörter der länge 5. Whälen Sie
+        Gegeben sind alle möglichen binären Codewörter der Länge 5. Wählen Sie
         alle Wörter aus, so dass Ihre Auswahl an Wörter eine Kodierung ergeben,
         welche folgende Eigenschaften erfüllt:
       </p>
       <h4>{possibleTasks[taskNumber][0]}</h4>
       <p>
-        Ein Wort ist dabei bereits vorgegeben. Alle Wörter in grün sind in Ihrer
-        Auswahl. Rote und blaue Wörter sind biede nicht in der Auswahl. Rot ist
+        Ein Wort ist dabei bereits vorgegeben. Alle Wörter in Grün sind in Ihrer
+        Auswahl. Rote und blaue Wörter sind beide nicht in der Auswahl. Rot ist
         nur eine visuelle Hilfe, z.B. können Sie alle Wörter rot markieren, die
-        Sie mit sicherheit ausschliessen wollen. Es wird nur das gewerted, was
-        gürn ist. Weiter werden immer alle Wörter hervorgehoben, weleche einen
+        Sie mit Sicherheit ausschliessen wollen. Es wird nur das gewertet, was
+        grün ist. Weiter werden immer alle Wörter hervorgehoben, welche einen
         Abstand von 1 zum aktuellen Wort haben.
       </p>
       <div className="graphGrid">
@@ -264,19 +269,16 @@ function Task7() {
           {nodeRender[30]}
         </div>
         <div className="row">{nodeRender[31]}</div>
-        <button
-          disabled={correctAnswer === true}
-          onClick={() => handleAnswer()}
-        >
+        <button disabled={taskState === true} onClick={() => handleAnswer()}>
           <h2>überprüfen</h2>
         </button>
-        {correctAnswer === false && <p style={{ color: "red" }}>{text}</p>}
-        {correctAnswer === true && (
+        {taskState === false && <p style={{ color: "red" }}>{text}</p>}
+        {taskState === true && (
           <div>
             <p style={{ color: "green" }}>{text}</p>
             <p>
               Mit dieser Methode lässt sich einfach eine Kodierung finden,
-              welche eine bestimmte eigenschaft erfüllen soll. Will man eine
+              welche eine bestimmte Eigenschaft erfüllen soll. Will man eine
               Kodierung mit einem Abstand von k haben, so beginnt man bei einem
               Wort und streicht alle Wörter weg, welche einen Abstand kleiner
               als k zum Anfangswort haben. Dann sucht man sich ein neues Wort

@@ -17,30 +17,40 @@ you can detect 2 errors, but only correct one error.
 
 */
 
-// Table content
-const words = ["Hund", "Mond", "Pizza", "Auto"];
-const binaryRep = ["00", "01", "10", "11"];
-const encoding = [
-  [0, 0, 0, 0, 0, 0],
-  [0, 1, 0, 1, 0, 1],
-  [1, 0, 1, 0, 1, 0],
-  [1, 1, 1, 1, 1, 1],
-];
-
 function Task4() {
+  // Table content
+  const words = ["Hund", "Mond", "Pizza", "Auto"];
+  const binaryRep = ["00", "01", "10", "11"];
+  const encoding = [
+    [0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 1, 0, 1],
+    [1, 0, 1, 0, 1, 0],
+    [1, 1, 1, 1, 1, 1],
+  ];
+
   const numberOfTasks = 3;
 
-  // keeping track of the number of answers given in each task
+  // keeping track of the number of answers given in each task for revealing the next task
   const [answersA, setAnswersA] = useState(0);
   const [answersB, setAnswersB] = useState(0);
   const [answersC, setAnswersC] = useState(0);
+
+  // if true, next task is revealed
+  const [taskStateD, setTaskStateD] = useState(Array(5).fill(false));
+
+  // revealing next part of task D
+  const handleTaskStateD = (index) => {
+    let temp = [...taskStateD];
+    temp[index] = true;
+    setTaskStateD(temp);
+  };
 
   // Table for encoding
   const table = [];
 
   // Table Head
   table.push(
-    <tr>
+    <tr key={4}>
       <th>Wort</th>
       <th>Binäre Darstellung</th>
       <th>Kodierung</th>
@@ -50,7 +60,7 @@ function Task4() {
   // Table items
   for (let i = 0; i < 4; ++i) {
     table.push(
-      <tr>
+      <tr key={i}>
         <td>{words[i]}</td>
         <td>{binaryRep[i]}</td>
         <td>{encoding[i]}</td>
@@ -101,42 +111,45 @@ function Task4() {
 
     mc4A.push(
       <MC
+        key={i}
         callerFunction={() => setAnswersA(answersA + 1)}
         question={"Nachricht: " + seqTemp1.join("")}
         options={words}
         answerKey={key1}
-        textOnWrong={"Falsch. Die richtige Antwort lautet " + words[k1] + "."}
-        textOnCorrect="Korrekt."
+        textOnWrong={"Die richtige Antwort lautet " + words[k1] + "."}
+        textOnCorrect=""
       />
     );
 
     mc4B.push(
       <MC
+        key={i + 1}
         callerFunction={() => setAnswersB(answersB + 1)}
         question={"Nachricht: " + seqTemp2.join("")}
         options={words}
         answerKey={key2}
         textOnWrong={
-          "Falsch. Die richtige antwort lautet " +
+          "Die richtige antwort lautet " +
           words[k2] +
           ". Vergessen Sie nicht, dass es nun 2 Fehler in den Nachrichten gibt."
         }
-        textOnCorrect="Korrekt."
+        textOnCorrect=""
       />
     );
 
     mc4C.push(
       <MC
+        key={i + 2}
         callerFunction={() => setAnswersC(answersC + 1)}
         question={"Nachricht: " + seqTemp3.join("")}
         options={words}
         answerKey={key3}
         textOnWrong={
-          "Falsch. Die richtige Antwort lautet " +
+          "Die richtige Antwort lautet " +
           words[k3] +
           ". 3 Fehler sind aber fast unmöglich zu Korrigieren."
         }
-        textOnCorrect="Korrekt."
+        textOnCorrect=""
       />
     );
   }
@@ -144,24 +157,25 @@ function Task4() {
   return (
     <div className="task">
       <h1>Aufgabe 4: Kodierungen und Fehlerkorrektur 1</h1>
-      <div className="task4A">
+      <div>
         <p>
-          Wir haben verschiedene Methoden kennen gelehrnt, um Fehler erkennen zu
+          Wir haben verschiedene Methoden kennengelernt, um Fehler erkennen zu
           können. Diese waren sehr simpel, aber dafür auch sehr Limitiert.
-          Bisher konnten wir nur einzelne Fehler erkennen, allerdings nicht of
-          nicht mehr als einer, und wir können bisher auch keine Fehler
-          korrigieren. Wir wollen nun Kodierungssysteme anschauen, mit denen wir
-          auch Fehler korrigieren können.
+          Bisher konnten wir nur einzelne Fehler erkennen, und wir können bisher
+          auch keine Fehler korrigieren. Wir wollen nun Kodierungssysteme
+          anschauen, mit denen wir auch Fehler korrigieren können.
         </p>
         <p>
           Gegeben sind 4 Wörter, welche wir einer binären Darstellung zuordnen.
-          Weiter kodieren wir die binäre Darstellungen, in dem wir diese jeweils
-          3mal wiederholen. Beispielsweise wird {binaryRep[1]} zu
+          Weiter kodieren wir die binären Darstellungen, in dem wir diese
+          jeweils 3-mal wiederholen. Beispielsweise wird {binaryRep[1]} zu
           {" " + binaryRep[1]}
           <span style={{ color: "red" }}>{binaryRep[1]}</span>
           <span style={{ color: "green" }}>{binaryRep[1] + " "}</span> kodiert.
         </p>
-        <table>{table}</table>
+        <table>
+          <tbody>{table}</tbody>
+        </table>
         <p>
           Wenn Sie nun ein bestimmtes Wort kommunizieren wollen, dann versenden
           Sie die entsprechende Kodierung. Wenn Sie "{words[1]}" als Nachricht
@@ -174,7 +188,7 @@ function Task4() {
         {answersA === numberOfTasks && (
           <p>
             Gegeben sind Nachrichten, welche nun zwei Fehler beinhalten. Können
-            Sie immernoch die ursprüngliche Nachricht identifizieren? Probieren
+            Sie immer noch die ursprüngliche Nachricht identifizieren? Probieren
             Sie es aus.
           </p>
         )}
@@ -182,7 +196,7 @@ function Task4() {
         {answersB === numberOfTasks && (
           <p>
             Als letztes versuchen wir Nachrichten zu korrigieren, welche nun
-            drei Fehler beinhalten. Können Sie immernoch die ursprüngliche
+            drei Fehler beinhalten. Können Sie immer noch die ursprüngliche
             Nachricht identifizieren? Probieren Sie es aus.
           </p>
         )}
@@ -192,89 +206,99 @@ function Task4() {
           <div>
             <p>Mit der gegebenen Kodierung kann man immer...</p>
             <YN
-              callerFunction={() => {}}
+              callerFunction={() => handleTaskStateD(0)}
               question={"Fehler erkennen, wenn ein Fehler aufgetreten ist."}
               optionYes={"Ja"}
               optionNo={"Nein"}
               textOnWrong={
-                "Flasch. Wenn ein Fehler auftrit, dann ist die fehlerhafte Nachricht gar nicht eines unserer Code-Wörter."
+                "Wenn ein Fehler auftrit, dann ist die fehlerhafte Nachricht gar nicht eines unserer Code-Wörter."
               }
               textOnCorrect={
-                "Richtig. Wenn ein Fehler auftrit, dann ist die fehlerhafte Nachricht gar nicht eines unserer Code-Wörter."
+                "Wenn ein Fehler auftrit, dann ist die fehlerhafte Nachricht gar nicht eines unserer Code-Wörter."
               }
               solution={1}
             />
-            <YN
-              callerFunction={() => {}}
-              question={"Fehler korrigieren, wenn ein Fehler aufgetreten ist."}
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnWrong={
-                "Flasch. Unsere Code-Wörter unterscheiden sich in mindesten an 3 Stellen. Die fehlerhafte Nachricht unterscheidet sich mit einem Fehler nur an einer Stelle zu einem Code-Wort und zu allen anderen in mintesten zwei Stellen. Man kan somit die Feherhafte nachricht eindeutig zuordnen."
-              }
-              textOnCorrect={
-                "Richtig. Unsere Code-Wörter unterscheiden sich in mindesten an 3 Stellen. Die fehlerhafte Nachricht unterscheidet sich mit einem Fehler nur an einer Stelle zu einem Code-Wort und zu allen anderen in mintesten zwei Stellen. Man kan somit die Feherhafte nachricht eindeutig zuordnen."
-              }
-              solution={1}
-            />
-
-            <YN
-              callerFunction={() => {}}
-              question={"Fehler erkennen, wenn zwei Fehler aufgetreten sind."}
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnWrong={
-                "Falsh. Wenn zewi Fehler auftreten, dann ist die fehlerhafte Nachricht gar nicht eines unserer Code-Wörter."
-              }
-              textOnCorrect={
-                "Richtig. Wenn zewi Fehler auftreten, dann ist die fehlerhafte Nachricht gar nicht eines unserer Code-Wörter."
-              }
-              solution={1}
-            />
-            <YN
-              callerFunction={() => {}}
-              question={
-                "Fehler korrigieren, wenn zwei Fehler aufgetreten sind."
-              }
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnWrong={
-                "Flasch. Bei zwei Fehlern kann man nur erkennen, dass ein Fehler aufgetereten ist, kann ihn aber nicht Korrigieren. 101010 könnte zu 100000 umgewandelt werden mit zwei Fehlern, und man würde das fälschlicherweise zu 000000 korrigieren."
-              }
-              textOnCorrect={
-                "Richtig. Bei zwei Fehlern kann man nur erkennen, dass ein Fehler aufgetereten ist, kann ihn aber nicht Korrigieren. 101010 könnte zu 100000 umgewandelt werden mit zwei Fehlern, und man würde das fälschlicherweise zu 000000 korrigieren."
-              }
-              solution={0}
-            />
-
-            <YN
-              callerFunction={() => {}}
-              question={"Fehler erkennen, wenn drei Fehler aufgetreten sind."}
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnWrong={
-                "Falsh. 010101 könnte sich per Zufall bei 3 Fehlern zu 000000 umwandeln, was man nicht als Fehler erkennen kann."
-              }
-              textOnCorrect={
-                "Richtig. 010101 könnte sich per Zufall bei 3 Fehlern zu 000000 umwandeln, was man nicht als Fehler erkennen kann."
-              }
-              solution={0}
-            />
-            <YN
-              callerFunction={() => {}}
-              question={
-                "Fehler korrigieren, wenn drei Fehler aufgetreten sind."
-              }
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnWrong={
-                "Flasch. Man kann unter umständen die Fehler nicht erkennen und darum erst gar nicht korrigieren."
-              }
-              textOnCorrect={
-                "Richtig. Man kann unter umständen die Fehler nicht erkennen und darum erst gar nicht korrigieren."
-              }
-              solution={0}
-            />
+            {taskStateD[0] && (
+              <YN
+                callerFunction={() => handleTaskStateD(1)}
+                question={
+                  "Fehler korrigieren, wenn ein Fehler aufgetreten ist."
+                }
+                optionYes={"Ja"}
+                optionNo={"Nein"}
+                textOnWrong={
+                  "Unsere Code-Wörter unterscheiden sich in mindesten an 3 Stellen. Die fehlerhafte Nachricht unterscheidet sich mit einem Fehler nur an einer Stelle zu einem Code-Wort und zu allen anderen in mintesten zwei Stellen. Man kan somit die Feherhafte nachricht eindeutig zuordnen."
+                }
+                textOnCorrect={
+                  "Unsere Code-Wörter unterscheiden sich in mindesten an 3 Stellen. Die fehlerhafte Nachricht unterscheidet sich mit einem Fehler nur an einer Stelle zu einem Code-Wort und zu allen anderen in mintesten zwei Stellen. Man kan somit die Feherhafte nachricht eindeutig zuordnen."
+                }
+                solution={1}
+              />
+            )}
+            {taskStateD[1] && (
+              <YN
+                callerFunction={() => handleTaskStateD(2)}
+                question={"Fehler erkennen, wenn zwei Fehler aufgetreten sind."}
+                optionYes={"Ja"}
+                optionNo={"Nein"}
+                textOnWrong={
+                  "Wenn zewi Fehler auftreten, dann ist die fehlerhafte Nachricht gar nicht eines unserer Code-Wörter."
+                }
+                textOnCorrect={
+                  "Wenn zewi Fehler auftreten, dann ist die fehlerhafte Nachricht gar nicht eines unserer Code-Wörter."
+                }
+                solution={1}
+              />
+            )}
+            {taskStateD[2] && (
+              <YN
+                callerFunction={() => handleTaskStateD(3)}
+                question={
+                  "Fehler korrigieren, wenn zwei Fehler aufgetreten sind."
+                }
+                optionYes={"Ja"}
+                optionNo={"Nein"}
+                textOnWrong={
+                  "Bei zwei Fehlern kann man nur erkennen, dass ein Fehler aufgetereten ist, kann ihn aber nicht Korrigieren. 101010 könnte zu 100000 umgewandelt werden mit zwei Fehlern, und man würde das fälschlicherweise zu 000000 korrigieren."
+                }
+                textOnCorrect={
+                  "Bei zwei Fehlern kann man nur erkennen, dass ein Fehler aufgetereten ist, kann ihn aber nicht Korrigieren. 101010 könnte zu 100000 umgewandelt werden mit zwei Fehlern, und man würde das fälschlicherweise zu 000000 korrigieren."
+                }
+                solution={0}
+              />
+            )}
+            {taskStateD[3] && (
+              <YN
+                callerFunction={() => handleTaskStateD(4)}
+                question={"Fehler erkennen, wenn drei Fehler aufgetreten sind."}
+                optionYes={"Ja"}
+                optionNo={"Nein"}
+                textOnWrong={
+                  "010101 könnte sich per Zufall bei 3 Fehlern zu 000000 umwandeln, was man nicht als Fehler erkennen kann."
+                }
+                textOnCorrect={
+                  "010101 könnte sich per Zufall bei 3 Fehlern zu 000000 umwandeln, was man nicht als Fehler erkennen kann."
+                }
+                solution={0}
+              />
+            )}
+            {taskStateD[4] && (
+              <YN
+                callerFunction={() => {}}
+                question={
+                  "Fehler korrigieren, wenn drei Fehler aufgetreten sind."
+                }
+                optionYes={"Ja"}
+                optionNo={"Nein"}
+                textOnWrong={
+                  "Man kann unter umständen die Fehler nicht erkennen und darum erst gar nicht korrigieren."
+                }
+                textOnCorrect={
+                  "Man kann unter umständen die Fehler nicht erkennen und darum erst gar nicht korrigieren."
+                }
+                solution={0}
+              />
+            )}
           </div>
         )}
       </div>

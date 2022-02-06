@@ -153,10 +153,8 @@ function EncodingDistanceExercise({ callerFunction }) {
             question={"Mit dieser Kodierung kann man..."}
             options={mcQuestions}
             answerKey={mcAnswerkey}
-            textOnCorrect={"Korrekt."}
-            textOnWrong={
-              "Falsch. Betrachten Sie nochmal die gegebenen Formeln."
-            }
+            textOnCorrect={""}
+            textOnWrong={"Betrachten Sie nochmal die gegebenen Formeln."}
           />
         </div>
       )}
