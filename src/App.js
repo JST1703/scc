@@ -15,6 +15,10 @@ import Task9 from "./pages/Task9";
 import Task10 from "./pages/Task10";
 import Task11 from "./pages/Task11";
 
+/*
+Main application: just rerouting between tasks.
+*/
+
 function App() {
   return (
     <>

@@ -9,34 +9,36 @@ import NextPrevButton from "./NextPrevButton";
 import "./Menu.css";
 
 function Menu() {
-  // on and off state for either showing the menu bar or hiding it
-  const [sidebar, setSidebar] = useState(false);
-
-  // function to switch the hiding/showing state of the menu bar
-  const showSdiebar = () => setSidebar(!sidebar);
+  // on and off state for either showing the menu is visible or not
+  const [isVisible, setIsVisible] = useState(false);
 
   return (
     <div className="menuBox">
+      {/* Next-, prev- and back to top button */}
       <div className="arrows">
         <ScrollButton />
         <NextPrevButton />
       </div>
+
       {/* for changing the color of the icons in the menu bar */}
       <IconContext.Provider value={{ color: "#FFFFFF" }}>
         {/* the hamburger sign from the menu */}
         <div className="navbar">
           <Link to="#" className="menu-bars">
-            <FaIcons.FaBars onClick={showSdiebar} />
+            <FaIcons.FaBars onClick={() => setIsVisible(!isVisible)} />
           </Link>
         </div>
 
         {/* 
-          Listing the menu items, if sidebar is true.
+          Listing the menu items, if isVisible is true.
           the hiding logic is implemented in the Menu.css by setting the position value
           and the attribute "active".
           */}
-        <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
-          <ul className="nav-menu-items" onClick={showSdiebar}>
+        <nav className={isVisible ? "nav-menu active" : "nav-menu"}>
+          <ul
+            className="nav-menu-items"
+            onClick={() => setIsVisible(!isVisible)}
+          >
             <li className="navbar-toggle">
               <Link to="#" className="menu-bars">
                 <AiIcons.AiOutlineClose />

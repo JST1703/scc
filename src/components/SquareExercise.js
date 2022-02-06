@@ -18,7 +18,12 @@ reveal certain parts of the Task, i.e. the solution, if to many wrong answers
 have been given, or the next subtask, if all answers are correct.
 */
 function SquareExecise({ onWorong, onCorrect }) {
-  // used for evaluating the given answer
+  /* 
+  used for evaluating the given answer,
+  the correlation between the bits,
+  they are correlated as in a rectangle, where each row and column
+  has an even amount of ones.
+  */
   const correlationList = [
     [0, 1, 2, 9, 0, 3, 6, 12],
     [0, 1, 2, 9, 1, 4, 7, 13],
@@ -41,7 +46,7 @@ function SquareExecise({ onWorong, onCorrect }) {
   // indicator for which button has been pressed the last
   const [pressed, setPressed] = useState(Array(16).fill(false));
 
-  // data of square
+  // data of bit sequence with one error
   const [data] = useState(() => {
     let temp1 = randomBinaryString(9);
 
@@ -60,11 +65,17 @@ function SquareExecise({ onWorong, onCorrect }) {
     return temp1;
   });
 
-  // variable for showing if the answer is correct or not
-  const [correctAnswer, setCorrectAnswer] = useState("");
+  /*
+  variable for the task state
+  "": not answered yet
+  true: correctly answered
+  false: answered, but wrong
+  */
+  const [taskState, setTaskState] = useState("");
 
-  // checks the result of the user
+  // checks the answer given by the user
   const checkResult = (arr, index) => {
+    // changing the last pressed button
     let tempPressed = Array(16).fill(false);
     tempPressed[index] = true;
     setPressed(tempPressed);
@@ -72,15 +83,17 @@ function SquareExecise({ onWorong, onCorrect }) {
     let arr1 = [];
     let arr2 = [];
 
+    // separating column and row
     for (let i = 0; i < 4; ++i) {
       arr1[i] = data[arr[i]];
       arr2[i] = data[arr[i + 4]];
     }
 
+    // looking for the row and column with both an odd amount of ones
     let temp =
       binaryCheckSymbol1(arr1) === "1" && binaryCheckSymbol1(arr2) === "1";
 
-    setCorrectAnswer(temp);
+    setTaskState(temp);
 
     if (temp === true) {
       onCorrect();
@@ -89,12 +102,13 @@ function SquareExecise({ onWorong, onCorrect }) {
     }
   };
 
+  // for rendering the buttons
   let renderButtons = [];
   for (let index = 0; index < data.length; index++) {
     renderButtons.push(
       <button
         className={pressed[index] ? "squareBit1 " : "squareBit"}
-        disabled={correctAnswer}
+        disabled={taskState}
         onClick={() => checkResult(correlationList[index], index)}
       >
         {data[index]}
@@ -128,8 +142,8 @@ function SquareExecise({ onWorong, onCorrect }) {
         {renderButtons[8]}
         {renderButtons[11]}
       </div>
-      {correctAnswer === false && <h3 style={{ color: "red" }}>Falsch</h3>}
-      {correctAnswer && <h3 style={{ color: "green" }}>Korrekt</h3>}
+      {taskState === false && <h3 style={{ color: "red" }}>Falsch</h3>}
+      {taskState && <h3 style={{ color: "green" }}>Korrekt</h3>}
     </div>
   );
 }

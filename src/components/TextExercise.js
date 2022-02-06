@@ -26,18 +26,25 @@ function TextExercise({
   textOnCorrect,
   textOnWrong,
 }) {
-  const [correctState, setCorrectState] = useState("");
-
-  // variable for input field
+  // value of the input field of the user
   const [value, setValue] = useState("");
 
-  // logic for evaluating input field
+  /*
+  variable for the task state
+  "": not answered yet
+  true: correctly answered
+  false: answered, but wrong
+  */
+  const [taskState, setTaskState] = useState("");
+
+  // checks the answer given by the user
   const checkInput = () => {
+    // removing whitespace and removing caps
     let temp = value.replace(/\s/g, "");
     temp = temp.toLocaleLowerCase();
     setValue(temp);
 
-    setCorrectState(solutions.includes(temp));
+    setTaskState(solutions.includes(temp));
     callerFunction();
   };
 
@@ -48,21 +55,21 @@ function TextExercise({
       <input
         type="text"
         value={value}
-        disabled={correctState === true || correctState === false}
+        disabled={taskState === true || taskState === false}
         onChange={(event) => setValue(event.currentTarget.value)}
       />
       <button
         onClick={checkInput}
-        disabled={correctState === true || correctState === false}
+        disabled={taskState === true || taskState === false}
       >
         überprüfen
       </button>
-      {correctState === false && (
+      {taskState === false && (
         <p>
           <span style={{ color: "red" }}>Falsch</span>. {textOnWrong}.
         </p>
       )}
-      {correctState === true && (
+      {taskState === true && (
         <p>
           <span style={{ color: "green" }}>Korrekt</span>. {textOnCorrect}
         </p>

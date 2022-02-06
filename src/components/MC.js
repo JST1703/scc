@@ -29,10 +29,15 @@ function MC({
   const [values, setValues] = useState(Array(answerKey.length).fill(false));
 
   // question in useState, to avoid undesired Behavior
-  const [stateQuestion] = useState(question);
+  const [statedQuestion] = useState(question);
 
-  // this state is used to see, if the given answer is correct or not.
-  const [correct, setCorrect] = useState("");
+  /*
+  variable for the task state
+  "": not answered yet
+  true: correctly answered
+  false: answered, but wrong
+  */
+  const [taskState, setTaskState] = useState("");
 
   /* logic for checking the user's answer to the solution
   and displaying the rest*/
@@ -44,27 +49,27 @@ function MC({
       }
       temp = answerKey[i] === values[i];
     }
-    setCorrect(temp);
+    setTaskState(temp);
     callerFunction();
   };
 
   // logic to handle checkbox clicking
-  function handleChange(i) {
+  const handleValues = (i) => {
     let temp = values;
     temp[i] = !temp[i];
     setValues(temp);
-  }
+  };
 
   return (
     <div className="MC">
-      <p>{stateQuestion}</p>
+      <p>{statedQuestion}</p>
       {options.map(function (element, index) {
         return (
           <div className="mc" key={index}>
             <input
               type="checkbox"
-              disabled={correct === true || correct === false}
-              onChange={() => handleChange(index)}
+              disabled={taskState === true || taskState === false}
+              onChange={() => handleValues(index)}
             />
             <span key={index}>{element}</span>
           </div>
@@ -72,12 +77,20 @@ function MC({
       })}
       <button
         onClick={checkResult}
-        disabled={correct === true || correct === false}
+        disabled={taskState === true || taskState === false}
       >
         überprüfen
       </button>
-      {correct === true && <p>{textOnCorrect}</p>}
-      {correct === false && <p>{textOnWrong}</p>}
+      {taskState === false && (
+        <p>
+          <span style={{ color: "red" }}>Falsch</span>. {textOnWrong}.
+        </p>
+      )}
+      {taskState === true && (
+        <p>
+          <span style={{ color: "green" }}>Korrekt</span>. {textOnCorrect}
+        </p>
+      )}
     </div>
   );
 }

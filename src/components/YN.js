@@ -29,16 +29,21 @@ function YN({
   textOnCorrect,
   solution,
 }) {
-  // value is the state of the Yes or No question
+  // value is the state of the Yes or No question logged in by the user, starting with 1.
   const [value, setValue] = useState(1);
 
-  // this state is used to see, if the given answer is correct or not.
-  const [correct, setCorrect] = useState("");
+  /*
+  variable for the task state
+  "": not answered yet
+  true: correctly answered
+  false: answered, but wrong
+  */
+  const [taskState, setTaskState] = useState("");
 
   /* logic for checking the user's answer to the solution
   and displaying the rest*/
   const checkResult = () => {
-    setCorrect(value === solution);
+    setTaskState(value === solution);
     callerFunction();
   };
 
@@ -49,7 +54,7 @@ function YN({
         <input
           type="radio"
           checked={value === 1}
-          disabled={correct === true || correct === false}
+          disabled={taskState === true || taskState === false}
           onChange={() => setValue(1)}
         />
         {optionYes}
@@ -58,19 +63,27 @@ function YN({
         <input
           type="radio"
           checked={value === 0}
-          disabled={correct === true || correct === false}
+          disabled={taskState === true || taskState === false}
           onChange={() => setValue(0)}
         />
         {optionNo}
       </div>
       <button
         onClick={checkResult}
-        disabled={correct === true || correct === false}
+        disabled={taskState === true || taskState === false}
       >
         überprüfen
       </button>
-      {correct === true && <p>{textOnCorrect}</p>}
-      {correct === false && <p>{textOnWrong}</p>}
+      {taskState === false && (
+        <p>
+          <span style={{ color: "red" }}>Falsch</span>. {textOnWrong}.
+        </p>
+      )}
+      {taskState === true && (
+        <p>
+          <span style={{ color: "green" }}>Korrekt</span>. {textOnCorrect}
+        </p>
+      )}
     </div>
   );
 }

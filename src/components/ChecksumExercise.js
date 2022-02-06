@@ -17,44 +17,52 @@ reveal certain parts of the Task, i.e. the solution, if to many wrong answers
 have been given, or the next subtask, if all answers are correct.
 */
 function ChecksumExercise({ checksumFunction, onWorong, onCorrect, sequence }) {
-  // value of the input field
+  // value of the input field of the user
   const [value, setValue] = useState("");
-  // variable for showing if the answer is correct or not
-  const [correctState, setCorrectState] = useState("");
+
   // random generated sequence of numbers and their checksum
   const [data] = useState(sequence);
   const [checksum] = useState(checksumFunction(data));
 
+  /*
+  variable for the task state
+  "": not answered yet
+  true: correctly answered
+  false: answered, but wrong
+  */
+  const [taskState, setTaskState] = useState("");
+
   // logic for comparing the given answer by the user and the correct answer
   const checkResult = () => {
+    // stripping away all white spaces
     let temp = value.replace(/\s/g, "");
     setValue(temp);
 
     if (temp === checksum) {
-      setCorrectState(true);
+      setTaskState(true);
       onCorrect();
     } else {
-      setCorrectState(false);
+      setTaskState(false);
       onWorong();
     }
   };
 
   return (
-    <div className="example">
+    <div>
       {data.map(function (digit, index) {
         return <span key={index}>{digit}</span>;
       })}
       <input
         type="text"
         value={value}
-        disabled={correctState === true}
+        disabled={taskState === true}
         onChange={(event) => setValue(event.currentTarget.value)}
       />
-      <button onClick={checkResult} disabled={correctState === true}>
+      <button onClick={checkResult} disabled={taskState === true}>
         überprüfen
       </button>
-      {correctState === false && <span style={{ color: "red" }}> Falsch</span>}
-      {correctState && <span style={{ color: "green" }}> Korrekt</span>}
+      {taskState === false && <span style={{ color: "red" }}> Falsch</span>}
+      {taskState && <span style={{ color: "green" }}> Korrekt</span>}
     </div>
   );
 }

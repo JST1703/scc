@@ -1,5 +1,7 @@
 // Menu Bar items
 
+// path naming schema must be "/task{number}". This is due to the navigation logic in NextPrevButton component.
+
 export const MenuData = [
   {
     title: "Home",

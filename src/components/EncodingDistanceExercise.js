@@ -10,30 +10,19 @@ Exercise Component
 
 given an encoding, the user must first determine the Hamming Distance of the given code
 and then answer some MC questions about its properties
-
 */
-
-// used if RNG fails;
-const backupEncoding = [
-  [1, 1, 0, 1, 1, 1, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0, 1, 0, 1, 0, 0],
-  [0, 0, 1, 0, 0, 0, 1, 0, 1, 1],
-];
-
-// possible questions for the MC part
-const props = [
-  "bis zu 1 Fehler erkennen.",
-  "bis zu 1 Fehler korrigieren.",
-  "bis zu 2 Fehler erkennen.",
-  "bis zu 2 Fehler korrigieren.",
-  "bis zu 3 Fehler erkennen.",
-  "bis zu 4 Fehler erkennen.",
-];
 
 /*
 callerFunction is a function used by the caller component after this exercise has been solved
 */
 function EncodingDistanceExercise({ callerFunction }) {
+  // used if RNG fails;
+  const backupEncoding = [
+    [1, 1, 0, 1, 1, 1, 0, 1, 0, 0],
+    [0, 0, 1, 0, 0, 1, 0, 1, 0, 0],
+    [0, 0, 1, 0, 0, 0, 1, 0, 1, 1],
+  ];
+
   // Length of the code words, between 5 and 9
   const [codeLength] = useState(Math.floor(Math.random() * 5) + 5);
 
@@ -49,6 +38,16 @@ function EncodingDistanceExercise({ callerFunction }) {
 
   // hamming distance of the code
   const [hd, setHD] = useState(hammingDistance(encoding));
+
+  // possible questions for the MC part
+  const props = [
+    "bis zu 1 Fehler erkennen.",
+    "bis zu 1 Fehler korrigieren.",
+    "bis zu 2 Fehler erkennen.",
+    "bis zu 2 Fehler korrigieren.",
+    "bis zu 3 Fehler erkennen.",
+    "bis zu 4 Fehler erkennen.",
+  ];
 
   // answer key for MC part
   const [answerKey, setAnswerKey] = useState(() => {
@@ -104,15 +103,20 @@ function EncodingDistanceExercise({ callerFunction }) {
     return sol;
   };
 
-  // boolean, if true, subtask A is solved
-  const [solvedA, setSolvedA] = useState("");
+  /*
+  variable for the task state
+  "": not answered yet
+  true: correctly answered
+  false: answered, but wrong
+  */
+  const [taskState, setTaskState] = useState("");
 
   return (
     <div className="EDE">
       {encodingRender()}
       <ChecksumExercise
-        onCorrect={() => setSolvedA(true)}
-        onWorong={() => setSolvedA(false)}
+        onCorrect={() => setTaskState(true)}
+        onWorong={() => setTaskState(false)}
         sequence={[
           "H",
           "a",
@@ -135,14 +139,14 @@ function EncodingDistanceExercise({ callerFunction }) {
           return hd.toString();
         }}
       />
-      {solvedA === false && (
+      {taskState === false && (
         <div>
           <p>
             Um fortfahren zu können, müssen Sie die korrekte Antwort eintragen.
           </p>
         </div>
       )}
-      {solvedA === true && (
+      {taskState === true && (
         <div>
           <MC
             callerFunction={callerFunction}

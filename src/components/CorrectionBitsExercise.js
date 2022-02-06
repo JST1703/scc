@@ -15,7 +15,12 @@ callerFunction is the function of the calling component being called,
 if the answer given is correct.
 */
 function CorrectionBitsExercise({ callerFunction }) {
-  // used for evaluating the given answer
+  /* 
+  used for evaluating the given answer,
+  the correlation between the bits,
+  they are correlated as in a rectangle, where each row and column
+  has an even amount of ones, like the SquareExercise.
+  */
   const correlationList = [
     [0, 1, 2, 9, 0, 3, 6, 12],
     [0, 1, 2, 9, 1, 4, 7, 13],
@@ -38,7 +43,7 @@ function CorrectionBitsExercise({ callerFunction }) {
   // indicator for which button has been pressed the last
   const [pressed, setPressed] = useState(Array(16).fill(false));
 
-  // data of square
+  // data of bit sequence with one error
   const [data] = useState(() => {
     let temp1 = randomBinaryString(9);
 
@@ -57,11 +62,17 @@ function CorrectionBitsExercise({ callerFunction }) {
     return temp1;
   });
 
-  // variable for showing if the answer is correct or not
-  const [correctAnswer, setCorrectAnswer] = useState("");
+  /*
+  variable for the task state
+  "": not answered yet
+  true: correctly answered
+  false: answered, but wrong
+  */
+  const [taskState, setTaskState] = useState("");
 
-  // checks the result of the user
+  // checks the answer given by the user
   const checkResult = (arr, index) => {
+    // changing the last pressed button
     let tempPressed = Array(16).fill(false);
     tempPressed[index] = true;
     setPressed(tempPressed);
@@ -69,22 +80,27 @@ function CorrectionBitsExercise({ callerFunction }) {
     let arr1 = [];
     let arr2 = [];
 
+    // separating column and row
     for (let i = 0; i < 4; ++i) {
       arr1[i] = data[arr[i]];
       arr2[i] = data[arr[i + 4]];
     }
 
+    // looking for the row and column with both an odd amount of ones
     let temp =
       binaryCheckSymbol1(arr1) === "1" && binaryCheckSymbol1(arr2) === "1";
 
-    setCorrectAnswer(temp);
+    setTaskState(temp);
 
     if (temp === true) {
       callerFunction();
     }
   };
 
+  // for rendering the buttons
   let renderButtons = [];
+
+  // the colour of the regular bits is different than from the control bits.
   for (let index = 0; index < 9; index++) {
     renderButtons.push(
       <button
@@ -92,7 +108,7 @@ function CorrectionBitsExercise({ callerFunction }) {
         className={
           pressed[index] ? "activeSquare toggleSquare" : "activeSquare "
         }
-        disabled={correctAnswer}
+        disabled={taskState}
         onClick={() => checkResult(correlationList[index], index)}
       >
         {data[index]}
@@ -100,6 +116,7 @@ function CorrectionBitsExercise({ callerFunction }) {
     );
   }
 
+  // the colour of the regular bits is different than from the control bits.
   for (let index = 9; index < data.length; index++) {
     renderButtons.push(
       <button
@@ -107,7 +124,7 @@ function CorrectionBitsExercise({ callerFunction }) {
         className={
           pressed[index] ? "inactiveSquare toggleSquare" : "inactiveSquare"
         }
-        disabled={correctAnswer}
+        disabled={taskState}
         onClick={() => checkResult(correlationList[index], index)}
       >
         {data[index]}
@@ -120,8 +137,8 @@ function CorrectionBitsExercise({ callerFunction }) {
       <div className="squareRow">
         <p></p>
         {renderButtons}
-        {correctAnswer === false && <h3 style={{ color: "red" }}>Falsch</h3>}
-        {correctAnswer && <h3 style={{ color: "green" }}>Korrekt</h3>}
+        {taskState === false && <h3 style={{ color: "red" }}>Falsch</h3>}
+        {taskState && <h3 style={{ color: "green" }}>Korrekt</h3>}
       </div>
     </div>
   );

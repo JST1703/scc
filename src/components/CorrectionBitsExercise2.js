@@ -7,11 +7,15 @@ import errormaker from "../functions/errormaker";
 /*
 Given is a bit string with some normal bits and some control bits.
 In the exercise, the user is given sequences containing 
-exact one error that must be found.
+exact one error that must be found. It is a 7-4 Hamming Code.
 */
 
 function CorrectionBitsExercise2() {
-  // used for evaluating the given answer
+  /* 
+  used for evaluating the given answer,
+  the correlation between the bits,
+  they are correlated as in a 7-4 Hamming Code.
+  */
   const correlationList = [
     ["1", "1", "0"],
     ["1", "0", "1"],
@@ -25,7 +29,7 @@ function CorrectionBitsExercise2() {
   // indicator for which button has been pressed the last
   const [pressed, setPressed] = useState(Array(7).fill(false));
 
-  // data of square
+  // data of bit sequence with one error
   const [data, setData] = useState(() => {
     let temp1 = randomBinaryString(4);
 
@@ -41,15 +45,22 @@ function CorrectionBitsExercise2() {
     return temp1;
   });
 
-  // variable for showing if the answer is correct or not
-  const [correctAnswer, setCorrectAnswer] = useState("");
+  /*
+  variable for the task state
+  "": not answered yet
+  true: correctly answered
+  false: answered, but wrong
+  */
+  const [taskState, setTaskState] = useState("");
 
-  // checks the result of the user
+  // checks the answer given by the user
   const checkResult = (arr, index) => {
+    // changing the last pressed button
     let tempPressed = Array(7).fill(false);
     tempPressed[index] = true;
     setPressed(tempPressed);
 
+    // checking the equations of the 7-4 Hamming Code.
     let temp1 =
       arr[0] === binaryCheckSymbol1([data[0], data[1], data[3], data[4]]);
     let temp2 =
@@ -57,10 +68,13 @@ function CorrectionBitsExercise2() {
     let temp3 =
       arr[2] === binaryCheckSymbol1([data[1], data[2], data[3], data[6]]);
 
-    setCorrectAnswer(temp1 && temp2 && temp3);
+    setTaskState(temp1 && temp2 && temp3);
   };
 
+  // for rendering the buttons
   let renderButtons = [];
+
+  // the colour of the regular bits is different than from the control bits.
   for (let index = 0; index < 4; index++) {
     renderButtons.push(
       <button
@@ -68,7 +82,7 @@ function CorrectionBitsExercise2() {
         className={
           pressed[index] ? "activeSquare toggleSquare" : "activeSquare "
         }
-        disabled={correctAnswer}
+        disabled={taskState}
         onClick={() => checkResult(correlationList[index], index)}
       >
         {data[index]}
@@ -76,6 +90,7 @@ function CorrectionBitsExercise2() {
     );
   }
 
+  // the colour of the regular bits is different than from the control bits.
   for (let index = 4; index < data.length; index++) {
     renderButtons.push(
       <button
@@ -83,7 +98,7 @@ function CorrectionBitsExercise2() {
         className={
           pressed[index] ? "inactiveSquare toggleSquare" : "inactiveSquare"
         }
-        disabled={correctAnswer}
+        disabled={taskState}
         onClick={() => checkResult(correlationList[index], index)}
       >
         {data[index]}
@@ -91,8 +106,8 @@ function CorrectionBitsExercise2() {
     );
   }
 
-  // reset this whole exercise
-  const refreshString = () => {
+  // resetting this whole exercise
+  const reset = () => {
     let temp1 = randomBinaryString(4);
 
     let temp2 = [];
@@ -105,7 +120,7 @@ function CorrectionBitsExercise2() {
     errormaker(temp1, 1);
     setData(temp1);
 
-    setCorrectAnswer("");
+    setTaskState("");
     setPressed(Array(7).fill(false));
   };
 
@@ -114,11 +129,11 @@ function CorrectionBitsExercise2() {
       <div className="squareRow">
         <p></p>
         {renderButtons}
-        {correctAnswer === false && <h3 style={{ color: "red" }}>Falsch</h3>}
-        {correctAnswer && (
+        {taskState === false && <h3 style={{ color: "red" }}>Falsch</h3>}
+        {taskState && (
           <span>
             <h3 style={{ color: "green" }}>Korrekt</h3>
-            <button onClick={() => refreshString()}>Neuer String</button>
+            <button onClick={() => reset()}>Neuer String</button>
           </span>
         )}
       </div>

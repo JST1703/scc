@@ -25,30 +25,37 @@ function CompareExercise({
   textOnCorrect,
   callerFunction,
 }) {
+  // value of the input field
+  const [value, setValue] = useState("");
+
   // random generated sequence of numbers and their checksum
   const [data] = useState(sequence);
   const [checksum] = useState(() => {
     return checksumFunction(data);
   });
 
-  // this state is used to see, if the given answer is correct or not.
-  const [correct, setCorrect] = useState("");
-
-  // value of the input field
-  const [value, setValue] = useState("");
+  /*
+  variable for the task state
+  "": not answered yet
+  true: correctly answered
+  false: answered, but wrong
+  */
+  const [taskState, setTaskState] = useState("");
 
   // logic for comparing the given answer by the user and the correct answer
   const checkResult = () => {
+    // stripping away all white spaces
     let temp = value.replace(/\s/g, "");
 
     setValue(temp);
 
+    // must be an array
     let data2 = stringToArray(temp);
 
     if (comparer(data, data2, checksum, checksumFunction(data2))) {
-      setCorrect(true);
+      setTaskState(true);
     } else {
-      setCorrect(false);
+      setTaskState(false);
     }
 
     callerFunction();
@@ -56,29 +63,37 @@ function CompareExercise({
 
   return (
     <div>
-      <div className="example">
+      <div>
         {data.map(function (digit, index) {
           return <span key={index}>{digit}</span>;
         })}
         <span style={{ color: "red" }}>{checksum}</span>
       </div>
 
-      <div className="example">
+      <div>
         <input
           type="text"
           value={value}
-          disabled={correct === true || correct === false}
+          disabled={taskState === true || taskState === false}
           onChange={(event) => setValue(event.currentTarget.value)}
         />
         <button
           onClick={checkResult}
-          disabled={correct === true || correct === false}
+          disabled={taskState === true || taskState === false}
         >
           überprüfen
         </button>
 
-        {correct === true && <p>{textOnCorrect}</p>}
-        {correct === false && <p>{textOnWrong}</p>}
+        {taskState === false && (
+          <p>
+            <span style={{ color: "red" }}>Falsch</span>. {textOnWrong}.
+          </p>
+        )}
+        {taskState === true && (
+          <p>
+            <span style={{ color: "green" }}>Korrekt</span>. {textOnCorrect}
+          </p>
+        )}
       </div>
     </div>
   );

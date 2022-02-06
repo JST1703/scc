@@ -10,7 +10,7 @@ is given squares containing exact one error that must be found.
 */
 
 function SquareExeciseExample() {
-  // data of square
+  // data of bit sequence
   const [data] = useState(() => {
     let temp = randomBinaryString(9);
     temp.push(binaryCheckSymbol1([temp[0], temp[1], temp[2]]));
