@@ -323,9 +323,9 @@ function Task11() {
             }
             options={["3", "4", "5", "6"]}
             answerKey={[false, true, false, false]}
-            textOnCorrect={"Richtig."}
+            textOnCorrect={""}
             textOnWrong={
-              "Falsch. 2^3 = 8, was nicht reicht um 10 + 3 = 13 Bits abzudecken. 2^4 = 16 ist die nächst höhere Zweierpotenz und kann 10 + 4 = 14 Bits abdecken."
+              "2^3 = 8, was nicht reicht um 10 + 3 = 13 Bits abzudecken. 2^4 = 16 ist die nächst höhere Zweierpotenz und kann 10 + 4 = 14 Bits abdecken."
             }
           />
         </div>
@@ -345,8 +345,8 @@ function Task11() {
               "n > 2^(c-1)",
             ]}
             answerKey={[true, false, false, false, true]}
-            textOnCorrect={"Richtig."}
-            textOnWrong={"Falsch. 2^c >= n > 2^(c-1) müssen gelten."}
+            textOnCorrect={""}
+            textOnWrong={"2^c >= n > 2^(c-1) müssen gelten."}
           />
         </div>
       )}
@@ -426,8 +426,8 @@ function Task11() {
                 Nun haben Sie eine Methode um effiziente Kodierungen zu
                 konstruieren, welche einzelne Fehler korrigieren können. Man
                 stellt genau so eine Tabelle auf und schaut, dass jede Spalte
-                eindeutig mit den Kontrollbits korreliert, d.h. bei zwei
-                verschiedenen Spalten sind die Werte nie gleich.
+                eindeutig mit den Kontrollbits korreliert, d.h. je zwei Spalten
+                unterscheiden sich in mindestends einer Zeile in der Tabelle
               </p>
             </div>
           )}

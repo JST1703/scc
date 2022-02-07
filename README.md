@@ -73,10 +73,10 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### The App Idea
 
-The application is a interactive learining environment where students can learn the concepts of selfcorrecting codes. The application includes several exercises. The app is kept very simple. There is only one menu to navigate between tasks and the exercises to be solved.
+The application is a interactive learning environment where students can learn the concepts of self correcting codes. The application includes several exercises. The app is kept very simple. There is only one menu to navigate between tasks and the exercises to be solved.
 
 Everything is running in the frontend. This makes everything easier without the need of any backend logic and without the need to add security to the application.
 
 ### Where to find stuff
 
-Everybody working on this application should only add / work on files found in the src folder. There is an additonal doc file in the src fodler.
+Everybody working on this application should only add / work on files found in the src folder. There is an additional doc file in the src folder.
