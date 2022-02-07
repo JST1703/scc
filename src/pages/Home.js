@@ -11,28 +11,42 @@ function Home() {
       <h1>Selbstkorrigierende Kodierungen</h1>
 
       <p>
-        Computer kommunizieren mittels Codes. Die Codes sind eine Übersetzung
-        von Informationen eines Nutzers, z.B. ein Text einer E-Mail, welche dann
-        über Netzwerke von einem Computer zum nächsten gesendet wird. Diese
-        Codes können leider Fehler beinhalten. Es kann sein, dass ein Nutzer
-        einen Tippfehler macht, oder aber auch, dass beim Übermitteln sich der
-        Code verfälscht, wegen eines technischen Fehlers. Je mehr Daten man
-        senden will, desto höher ist die Wahrscheinlichkeit solcher Fehler.
-        Fehler sind unumgänglich. Deswegen hat man verschiedene Methoden
-        entwickelt um solche Fehler zu entdecken, oder sogar korrigieren zu
-        können.
+        Computer sprechen eine eigene Sprache. Diese Sprache ist Binär,
+        bestehend aus Folgen von Einsen und Nullen. Dahinter versteckt sich
+        jedoch eine Sprache, welche genauso komplex ist, wie die Sprache der
+        Menschen. Alles, was Sie im Computer absprechen, übersetzt, dieser in
+        eine binäre Folge. Das können Texte sein, z.B. von E-Mails, oder auch
+        Binder. Der Computer kann diese binären Folgen verstehen und sie in das
+        übersetzen, was der Mensch verstehen kann. Ein sehr einfaches Beispiel
+        ist die ASCII Kodierung, welche jedem Buchstaben aus dem Alphabet eine
+        Nummer zuweist und so eine direkte Übersetzung hat.
       </p>
 
       <p>
-        In diesem Kapitel lernen Sie Methoden kennen, wie man Fehler in
-        einfachen Codes erkennen kann, und wie man diese zum Teil auch behebt.
-        Sie finden links im Menu Aufgaben zu diesem Thema und Sie können auch
-        über die Navigationspfeile links die Aufgaben wechseln. Die Aufgaben
-        bauen aufeinander auf. Deswegen empfiehlt es sich, diese in der
-        gegebenen Reihenfolge zu lösen. Die Aufgaben werden beim Laden der
-        Webseite neu gestaltet. Der Aufgabentyp bleibt der gleiche, jedoch
-        wechseln die Beispiele, die Fragen und die entsprechenden Lösungen. Die
-        Übungen können somit mehrfach gelöst werden.
+        Computer kommunizieren untereinander sehr oft, z.b. wenn Sie eine E-Mail
+        versenden, und das auch nur in Binär. Diese Daten, welche man versendet,
+        sind nichts anderes als elektrische Signale. Diese kann man
+        unterschiedlich entwerfen. Vereinfacht kann man sagen, dass 1 ein
+        angeschaltetes Signal ist, etwas, was eine elektrische Spannung besitzt,
+        und 0 ein ausgeschaltetes Signal ist, etwas, was keine elektrische
+        Spannung besitzt. Beim Senden von Daten versendet man diese Signale,
+        welche vom anderen Computer aufgenommen werden. Dieser Vorgang ist nicht
+        perfekt und oft kommt es vor, dass diese Signale durch technische Fehler
+        nicht richtig versendet werden. Eine 1 kann sich der Übertragung spontan
+        in eine 0 umwandeln oder andersrum. Es kann auch sein, dass der Mensch
+        ein Fehler macht, z.B. sich vertippt. Beide Fehler kommen häufig vor. Je
+        mehr Daten man versendet, desto höher ist auch die Wahrscheinlichkeit
+        eines Fehlers.
+      </p>
+
+      <p>
+        In diesem Kapitel lernen Sie Methoden kennen, um Fehler in Daten
+        erkennen und zum Teil auch direkt korrigieren können. Dazu haben sie
+        hier einige Aufgaben. Diese können Sie über das Menü oben Links direkt
+        öffnen, oder mit den Pfeilen Links zwischen den einzelnen Aufgaben hin
+        und her blättern. Aufgaben werden jeweils neu geladen, zum Teil auch mit
+        anderen Zahlenbeispielen und Aufgabestellungen, wenn Sie die Seite neu
+        laden, oder wenn Sie eine Aufgabe wechseln.
       </p>
     </div>
   );
