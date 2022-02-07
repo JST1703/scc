@@ -23,20 +23,20 @@ function Home() {
       </p>
 
       <p>
-        Computer kommunizieren untereinander sehr oft, z.b. wenn Sie eine E-Mail
-        versenden, und das auch nur in Binär. Diese Daten, welche man versendet,
-        sind nichts anderes als elektrische Signale. Diese kann man
-        unterschiedlich entwerfen. Vereinfacht kann man sagen, dass 1 ein
-        angeschaltetes Signal ist, etwas, was eine elektrische Spannung besitzt,
-        und 0 ein ausgeschaltetes Signal ist, etwas, was keine elektrische
-        Spannung besitzt. Beim Senden von Daten versendet man diese Signale,
-        welche vom anderen Computer aufgenommen werden. Dieser Vorgang ist nicht
-        perfekt und oft kommt es vor, dass diese Signale durch technische Fehler
-        nicht richtig versendet werden. Eine 1 kann sich der Übertragung spontan
-        in eine 0 umwandeln oder andersrum. Es kann auch sein, dass der Mensch
-        ein Fehler macht, z.B. sich vertippt. Beide Fehler kommen häufig vor. Je
-        mehr Daten man versendet, desto höher ist auch die Wahrscheinlichkeit
-        eines Fehlers.
+        Computer kommunizieren untereinander sehr oft untereinander, z.b. wenn
+        Sie eine E-Mail versenden, und das auch nur in Binär. Diese Daten,
+        welche man versendet, sind nichts anderes als elektrische Signale. Diese
+        kann man unterschiedlich entwerfen. Vereinfacht kann man sagen, dass 1
+        ein angeschaltetes Signal ist, etwas, was eine elektrische Spannung
+        besitzt, und 0 ein ausgeschaltetes Signal ist, etwas, was keine
+        elektrische Spannung besitzt. Beim Senden von Daten versendet man diese
+        Signale, welche vom anderen Computer aufgenommen werden. Dieser Vorgang
+        ist nicht perfekt und oft kommt es vor, dass diese Signale durch
+        technische Fehler nicht richtig versendet werden. Eine 1 kann sich bei
+        der Übertragung spontan in eine 0 umwandeln oder andersrum. Es kann auch
+        sein, dass der Mensch ein Fehler macht, z.B. sich vertippt. Beide Fehler
+        kommen häufig vor. Je mehr Daten man versendet, desto höher ist auch die
+        Wahrscheinlichkeit eines Fehlers.
       </p>
 
       <p>
