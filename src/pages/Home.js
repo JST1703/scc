@@ -14,7 +14,7 @@ function Home() {
         Computer sprechen eine eigene Sprache. Diese Sprache ist Binär,
         bestehend aus Folgen von Einsen und Nullen. Dahinter versteckt sich
         jedoch eine Sprache, welche genauso komplex ist, wie die Sprache der
-        Menschen. Alles, was Sie im Computer absprechen, übersetzt, dieser in
+        Menschen. Alles, was Sie im Computer absprechen, übersetzt dieser in
         eine binäre Folge. Das können Texte sein, z.B. von E-Mails, oder auch
         Binder. Der Computer kann diese binären Folgen verstehen und sie in das
         übersetzen, was der Mensch verstehen kann. Ein sehr einfaches Beispiel
