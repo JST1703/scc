@@ -286,21 +286,24 @@ function Task11() {
       </p>
       <p>
         Der Hamming-Code nutzt folgende elegante Lösung: Mit 3 Bits können Sie
-        2^3 = 8 verschiedene Zahlen darstellen, von 0 bis 7. Diese 3
-        Kontrollbits können in der Kodierung mit Wortlänge 7 (4 Nachrichten- + 3
-        Kontrollbits) jede Stelle in der Nachricht eindeutig abdecken, inklusive
-        den Kontrollbits selbst. Damit ist auch klar, dass es nicht mit weniger
-        Bits funktionieren kann.
+        2^3 = 8 verschiedene Zahlen darstellen, von 0 bis 7. Das entspricht den
+        7 Stellen in der Nachricht, inklusive der Kontrollbits selber. 000 wird
+        selber nicht benutzt. Man ordnet Bits einer der Zahlen 1 bis 7 zu, z.B.
+        B4 wird mit 101 gekoppelt. Das bedeutet, dass B4, C1 und C3 zusammen
+        eine gerade Anzahl an Einsen haben muss. Würde man einem Bit 000
+        zuordnen, dann korreliert dieses Bit mit keinem Kontrollbit. Damit kann
+        man keine Fehler mehr an diesem Bit erkennen oder korrigieren können.
+        Mit 3 Bits können wir also 2^3 - 1 = 7 Bit Stellen abdecken.
       </p>
       <TextExercise
         callerFunction={() => handleStateA(0)}
         question={
-          "Wie viele Kontrollbits benötigen Sie für einen Hamming-Code, welcher eine gesammte Nachrichtenlänge (inklusive Kontrollbits) von 32 hat."
+          "Wie viele Kontrollbits benötigen Sie für einen Hamming-Code, welcher eine gesammte Nachrichtenlänge (inklusive Kontrollbits) von 31 hat."
         }
         text={"Anzahl Kontrollbits :"}
         solutions={["5"]}
         textOnCorrect={""}
-        textOnWrong={"2^5 = 32"}
+        textOnWrong={"2^5 - 1 = 31"}
       />
       {stateA[0] && (
         <div>
@@ -308,9 +311,9 @@ function Task11() {
             callerFunction={() => handleStateA(1)}
             question={"Wie viele Nachrichten sind das in der Kodierung?"}
             text={"Anzahl als Zweierpotenz (2^x) :"}
-            solutions={["2^27"]}
+            solutions={["2^26"]}
             textOnCorrect={""}
-            textOnWrong={"2^5 = 32 und 32 - 5 = 27"}
+            textOnWrong={"2^5 - 1 = 31 und 31 - 5 = 26"}
           />
         </div>
       )}
@@ -325,7 +328,7 @@ function Task11() {
             answerKey={[false, true, false, false]}
             textOnCorrect={""}
             textOnWrong={
-              "2^3 = 8, was nicht reicht um 10 + 3 = 13 Bits abzudecken. 2^4 = 16 ist die nächst höhere Zweierpotenz und kann 10 + 4 = 14 Bits abdecken."
+              "2^3 - 1 = 7, was nicht reicht um 10 + 3 = 13 Bits abzudecken. 2^4 - 1 = 15 ist die nächst höhere Zweierpotenz und kann 10 + 4 = 14 Bits abdecken."
             }
           />
         </div>
@@ -338,15 +341,15 @@ function Task11() {
               "Für eine beliebige gesammte Wortlänge n (inklusive den Kontrollbits) müssen welche Ungleichungen in einem Hamming-Code erfüllt sein, damit man die kleinst mögliche Anzahl an Kontrollbits c hat?"
             }
             options={[
-              "2^c >= n",
-              "2^c < n",
-              "n < 2^(c-1)",
-              "2^c > n",
-              "n > 2^(c-1)",
+              "2^c - 1 >= n",
+              "2^c - 1 <= n",
+              "n - 1 <= 2^(c-1)",
+              "2^c + 1 >= n",
+              "n >= 2^(c-1)",
             ]}
             answerKey={[true, false, false, false, true]}
             textOnCorrect={""}
-            textOnWrong={"2^c >= n > 2^(c-1) müssen gelten."}
+            textOnWrong={"2^c - 1 >= n > 2^(c-1) müssen gelten."}
           />
         </div>
       )}
@@ -427,7 +430,10 @@ function Task11() {
                 konstruieren, welche einzelne Fehler korrigieren können. Man
                 stellt genau so eine Tabelle auf und schaut, dass jede Spalte
                 eindeutig mit den Kontrollbits korreliert, d.h. je zwei Spalten
-                unterscheiden sich in mindestends einer Zeile in der Tabelle
+                unterscheiden sich in mindestends einer Zeile in der Tabelle.
+                Damit sollte auch klar sein, dass es keine kürzere Lösung geben
+                kann. Ein Kontrollbit weniger und dann könnte man zwei Spalten
+                nicht mehr unterscheiden.
               </p>
             </div>
           )}
