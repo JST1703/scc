@@ -315,10 +315,10 @@ function Task11() {
               "Wie viele verschiedene Wörter sind das in der Kodierung?"
             }
             text={"Anzahl als Zweierpotenz (2^x) :"}
-            solutions={["2^26. 2²⁶"]}
+            solutions={["2^26", "2²⁶"]}
             textOnCorrect={""}
             textOnWrong={
-              "Wir haben 2⁵ - 1 = 31 Bits in der nachricht, wovon 5 davon Kontrollbits sind. Damit bleiben uns 31 - 5 = 26 normale Bits übrig, was uns 2²⁶ verschiedene Wörter ergibt. "
+              "Wir haben 2⁵ - 1 = 31 Bits in der Nachricht, wobei 5 davon Kontrollbits sind. Damit bleiben uns 31 - 5 = 26 normale Bits übrig, was uns 2²⁶ verschiedene Wörter ergibt. "
             }
           />
         </div>
