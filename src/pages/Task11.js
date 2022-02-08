@@ -279,21 +279,21 @@ function Task11() {
       <p>
         Tatsächlich können wir noch kürzere Kodierungen erzeugen, mit welchen
         wir immer Fehler der Grösse 1 korrigieren können. Angenommen wir wollen
-        eine Kodierung mit 2^4 = 16 Wörtern, mit Abstand 3. Durch Verdreifachen
+        eine Kodierung mit 2⁴ = 16 Wörtern, mit Abstand 3. Durch Verdreifachen
         haben wir 8 zusätzliche Bits. Mit der Rechteckmethode haben wir 2 + 2 +
         1 = 5 zusätzliche Bits. Der sogenannte Hamming-Code benutzt nur 3
         zusätzliche Kontrollbits.
       </p>
       <p>
         Der Hamming-Code nutzt folgende elegante Lösung: Mit 3 Bits können Sie
-        2^3 = 8 verschiedene Zahlen darstellen, von 0 bis 7. Das entspricht den
-        7 Stellen in der Nachricht, inklusive der Kontrollbits selber. 000 wird
+        2³ = 8 verschiedene Zahlen darstellen, von 0 bis 7. Das entspricht den 7
+        Stellen in der Nachricht, inklusive der Kontrollbits selber. 000 wird
         selber nicht benutzt. Man ordnet Bits einer der Zahlen 1 bis 7 zu, z.B.
         B4 wird mit 101 gekoppelt. Das bedeutet, dass B4, C1 und C3 zusammen
         eine gerade Anzahl an Einsen haben muss. Würde man einem Bit 000
         zuordnen, dann korreliert dieses Bit mit keinem Kontrollbit. Damit kann
         man keine Fehler mehr an diesem Bit erkennen oder korrigieren können.
-        Mit 3 Bits können wir also 2^3 - 1 = 7 Bit Stellen abdecken.
+        Mit 3 Bits können wir also 2³ - 1 = 7 Bit Stellen abdecken.
       </p>
       <TextExercise
         callerFunction={() => handleStateA(0)}
@@ -303,17 +303,23 @@ function Task11() {
         text={"Anzahl Kontrollbits :"}
         solutions={["5"]}
         textOnCorrect={""}
-        textOnWrong={"2^5 - 1 = 31"}
+        textOnWrong={
+          "Wir brauchen 5 Kontrollbits um 2⁵ - 1 = 31 Bits abzudcken."
+        }
       />
       {stateA[0] && (
         <div>
           <TextExercise
             callerFunction={() => handleStateA(1)}
-            question={"Wie viele Nachrichten sind das in der Kodierung?"}
+            question={
+              "Wie viele verschiedene Wörter sind das in der Kodierung?"
+            }
             text={"Anzahl als Zweierpotenz (2^x) :"}
-            solutions={["2^26"]}
+            solutions={["2^26. 2²⁶"]}
             textOnCorrect={""}
-            textOnWrong={"2^5 - 1 = 31 und 31 - 5 = 26"}
+            textOnWrong={
+              "Wir haben 2⁵ - 1 = 31 Bits in der nachricht, wovon 5 davon Kontrollbits sind. Damit bleiben uns 31 - 5 = 26 normale Bits übrig, was uns 2²⁶ verschiedene Wörter ergibt. "
+            }
           />
         </div>
       )}
@@ -322,13 +328,13 @@ function Task11() {
           <MC
             callerFunction={() => handleStateA(2)}
             question={
-              "Wie viele Kontrollbits benötigen Sie mindestends für einen Hamming-Code mit 2^10 Wörtern?"
+              "Wie viele Kontrollbits benötigen Sie mindestends für einen Hamming-Code mit 2¹⁰ Wörtern?"
             }
             options={["3", "4", "5", "6"]}
             answerKey={[false, true, false, false]}
             textOnCorrect={""}
             textOnWrong={
-              "2^3 - 1 = 7, was nicht reicht um 10 + 3 = 13 Bits abzudecken. 2^4 - 1 = 15 ist die nächst höhere Zweierpotenz und kann 10 + 4 = 14 Bits abdecken."
+              "2³ - 1 = 7, was nicht reicht um 10 + 3 = 13 Bits abzudecken. 2⁴ - 1 = 15 ist die nächst höhere Zweierpotenz und kann 10 + 4 = 14 Bits abdecken. 5 und 6 sind zu viel."
             }
           />
         </div>
@@ -349,7 +355,7 @@ function Task11() {
             ]}
             answerKey={[true, false, false, false, true]}
             textOnCorrect={""}
-            textOnWrong={"2^c - 1 >= n > 2^(c-1) müssen gelten."}
+            textOnWrong={"2^c - 1 >= n >= 2^(c-1) müssen gelten."}
           />
         </div>
       )}
