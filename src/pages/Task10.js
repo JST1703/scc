@@ -148,7 +148,7 @@ function Task10() {
           <TextExercise
             callerFunction={() => handleStateB(1)}
             question={
-              "Wir können damit Fehler der grösse Eins korrigieren. Was für ein Abstand muss demnach unsere Kodierung haben?"
+              "Wir können damit Fehler der Grösse Eins korrigieren. Was für ein Abstand muss demnach unsere Kodierung haben?"
             }
             text={"Abstand :"}
             solutions={["3"]}

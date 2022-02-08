@@ -85,14 +85,18 @@ function Task7() {
   given in a triplet: task, solution of hamming distance, solution of number of code words
   */
   const possibleTasks = [
-    ["Mit der Kodierung kann man nur einzelne Fehler erkennen.", 2, 16],
     [
-      "Mit der Kodierung kann man einzelne Fehler Korrigieren und nur Fehler der grösse 2 erkennen.",
+      "Mit der Kodierung kann man nur einzelne Fehler erkennen, aber keine korrigieren.",
+      2,
+      16,
+    ],
+    [
+      "Mit der Kodierung kann man nur einzelne Fehler Korrigieren und nur Fehler bis zur Grösse 2 erkennen.",
       3,
       4,
     ],
     [
-      "Mit der Kodierung kann man zwei Fehler Korrigieren und Fehler der grösse 4 erkennen.",
+      "Mit der Kodierung kann man bis zu zwei Fehler Korrigieren und Fehler bis zur Grösse 4 erkennen.",
       5,
       2,
     ],
