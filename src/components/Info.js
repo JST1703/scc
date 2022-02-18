@@ -13,8 +13,8 @@ function Info({ text }) {
 
   return (
     <div className={isVisible ? "infoBox active" : "infoBox"}>
-      <div className="infoIcon" onClick={() => setIsVisible(!isVisible)}>
-        <FaIcons.FaInfoCircle />
+      <div className="infoIcon">
+        <FaIcons.FaInfoCircle onClick={() => setIsVisible(!isVisible)} />
       </div>
       {text}
     </div>
