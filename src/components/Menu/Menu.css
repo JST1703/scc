@@ -105,5 +105,5 @@
 }
 
 .arrows h4 {
-  font-size: 1.6vw;
+  font-size: max(1.3vw, 10pt);
 }

@@ -12,9 +12,11 @@ function Info({ text }) {
   const [isVisible, setIsVisible] = useState(false);
 
   return (
-    <div className="infobox">
-      <FaIcons.FaInfoCircle onClick={() => setIsVisible(!isVisible)} />
-      {isVisible && text}
+    <div className={isVisible ? "infoBox active" : "infoBox"}>
+      <div className="infoIcon" onClick={() => setIsVisible(!isVisible)}>
+        <FaIcons.FaInfoCircle />
+      </div>
+      {text}
     </div>
   );
 }
