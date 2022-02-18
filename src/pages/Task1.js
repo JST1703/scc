@@ -6,6 +6,7 @@ import YN from "../components/YN";
 import randomDigits from "../functions/randomDigits";
 import sumChecksum from "../functions/sumChecksum";
 import errormaker from "../functions/errormaker";
+import Info from "../components/Info";
 
 /*
 Task 1: Checksums
@@ -78,6 +79,7 @@ function Task1() {
     <div className="task">
       <h1>Aufgabe 1: Prüfziffer und Fehlererkennung 1</h1>
       <div>
+        <Info text={<p>Hi</p>} />
         <p>
           Eine Möglichkeit um Fehler in Daten zu erkennen, ist es, die Daten mit
           weiteren Prüfziffern zu ergänzen. In diesem Beispiel haben wir einige

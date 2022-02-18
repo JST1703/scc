@@ -34,6 +34,10 @@ In the exercise, the user is given sequences containing exact one error that mus
 
 An exercise type. Given a code, the user must first determine it's hamming distance and then answer some MCs about some properties.
 
+##### Info
+
+Component is used to show tips, info or theory that might be of help to the student.
+
 ##### MC
 
 This component is used for Multiple Choice Yes or No questions, which the user must solve.

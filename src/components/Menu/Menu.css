@@ -20,7 +20,7 @@
   position: absolute;
   top: 0;
   left: -100%;
-  transition: left 250ms;
+  transition: left 400ms;
 }
 
 /* hiding menu bar */
@@ -83,6 +83,10 @@
   width: 22vw;
 }
 
+.arrowTop {
+  margin-bottom: 1.5em;
+}
+
 .arrowTop,
 .arrowPN {
   width: 22vw;
@@ -98,4 +102,8 @@
 
 .opacity-0 {
   opacity: 0;
+}
+
+.arrows h4 {
+  font-size: 1.6vw;
 }
