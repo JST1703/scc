@@ -21,12 +21,10 @@ function ChecksumExample({ checksumFunction, sequence }) {
 
   return (
     <div>
-      <div>
-        {data.map(function (digit, index) {
-          return <span key={index}>{digit}</span>;
-        })}
-        <span style={{ color: "red" }}>{checksum}</span>
-      </div>
+      {data.map(function (digit, index) {
+        return <span key={index}>{digit}</span>;
+      })}
+      <span style={{ color: "red" }}>{checksum}</span>
     </div>
   );
 }

@@ -4,8 +4,7 @@
   font-family: "Lato", sans-serif;
 }
 
-.home,
-.task {
+.main {
   padding-top: 3%;
   padding-left: 23vw;
   padding-right: 10vw;
@@ -18,32 +17,79 @@
   hyphens: auto;
 }
 
-.home h1,
-.task h1 {
+.main h1 {
   font-size: max(3vw, 15pt);
 }
 
-.home p,
-.task p {
-  margin-top: 3%;
-  margin-bottom: 3%;
+.main p,
+.main span {
   font-size: max(1.3vw, 10pt);
 }
 
-.task input {
+.main input {
   margin-left: 10px;
   margin-right: 10px;
-  width: 70px;
+  width: max(3vw, 30px);
+  height: max(1.5vw, 20px);
 }
 
-.task th,
-.task td {
+.main th,
+.main td {
   padding-left: 30px;
   text-align: center;
 }
 
-.task svg {
+.main svg {
   width: 60vw;
+}
+
+.task,
+.taskLeft,
+.taskRight {
+  display: inline-block;
+}
+
+.task {
+  width: 100%;
+  margin-top: 5%;
+}
+
+.taskLeft {
+  width: 48%;
+  float: left;
+  margin-right: 2%;
+}
+
+.taskRight {
+  width: 48%;
+  margin-left: 2%;
+}
+
+.infoBox {
+  text-align: justify;
+  max-height: max(3.2vw, 34px);
+  transition: max-height 0.3s ease-out;
+  overflow: hidden;
+}
+
+.infoBox.active {
+  height: auto;
+  max-height: 600px;
+  transition: max-height 0.2s ease-in;
+}
+
+.infoIcon {
+  text-align: center;
+  height: max(3.2vw, 34px);
+  color: #2d5a9e;
+}
+
+.infoIcon svg {
+  height: max(2.8vw, 30px);
+}
+
+.CE {
+  margin-top: 3%;
 }
 
 .squareGraphics {
@@ -143,29 +189,4 @@
 .toggleSquare {
   border-width: 0.4vw;
   border-color: #2d5a9e;
-}
-
-.infoBox {
-  margin-top: 1%;
-  margin-bottom: 1%;
-  text-align: justify;
-  max-height: max(3.2vw, 34px);
-  transition: max-height 0.5s ease-out;
-  overflow: hidden;
-}
-
-.infoBox.active {
-  height: auto;
-  max-height: 1000px;
-  transition: max-height 0.5s ease-in;
-}
-
-.infoIcon {
-  text-align: center;
-  height: 40px;
-  color: #2d5a9e;
-}
-
-.infoIcon svg {
-  height: max(2.8vw, 30px);
 }

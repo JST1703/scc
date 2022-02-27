@@ -48,7 +48,7 @@ function ChecksumExercise({ checksumFunction, onWorong, onCorrect, sequence }) {
   };
 
   return (
-    <div>
+    <div className="CE">
       {data.map(function (digit, index) {
         return <span key={index}>{digit}</span>;
       })}
@@ -57,9 +57,14 @@ function ChecksumExercise({ checksumFunction, onWorong, onCorrect, sequence }) {
         value={value}
         disabled={taskState === true}
         onChange={(event) => setValue(event.currentTarget.value)}
+        onKeyPress={(event) => {
+          if (event.key === "Enter") {
+            checkResult();
+          }
+        }}
       />
       <button onClick={checkResult} disabled={taskState === true}>
-        überprüfen
+        <p>überprüfen</p>
       </button>
       {taskState === false && <span style={{ color: "red" }}> Falsch</span>}
       {taskState && <span style={{ color: "green" }}> Korrekt</span>}

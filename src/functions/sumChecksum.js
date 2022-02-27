@@ -1,4 +1,5 @@
-/* given an array of digits
+/* 
+given an array of digits
 returns the sum of the digits
 */
 function sumChecksum(arr) {
@@ -6,6 +7,11 @@ function sumChecksum(arr) {
   for (const item of arr) {
     sum += item;
   }
+
+  if (sum < 10) {
+    return "0" + sum.toString();
+  }
+
   return sum.toString();
 }
 

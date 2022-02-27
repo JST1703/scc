@@ -76,59 +76,60 @@ function Task1() {
   };
 
   return (
-    <div className="task">
+    <div className="main">
       <h1>Aufgabe 1: Prüfziffer und Fehlererkennung 1</h1>
-      <p>
-        Eine Möglichkeit um Fehler in Daten zu erkennen, ist es, die Daten mit
-        weiteren Prüfziffern zu ergänzen. In diesem Beispiel haben wir einige
-        Folgen von Zahlen gegeben (hier in Schwarz) und die dazugehörigen
-        Prüfziffern (hier in Rot). Die Prüfziffer wird durch die Folge der
-        Zahlen festgelegt. Können Sie in diesem Beispiel herausfinden, wie man
-        aus der gegebenen Zahlenfolge die Prüfziffer berechnen kann? Ergänzen
-        Sie die weiteren Prüfziffern der gegebenen Zahlenfolgen.
-      </p>
-      <Info
-        text={
+      <div className="task">
+        <div className="taskLeft">
           <p>
-            This is an Infobox exapmle. What is Lorem Ipsum? Lorem Ipsum is
-            simply dummy text of the printing and typesetting industry. Lorem
-            Ipsum has been the industry's standard dummy text ever since the
-            1500s, when an unknown printer took a galley of type and scrambled
-            it to make a type specimen book. It has survived not only five
-            centuries, but also the leap into electronic typesetting, remaining
-            essentially unchanged. It was popularised in the 1960s with the
-            release of Letraset sheets containing Lorem Ipsum passages, and more
-            recently with desktop publishing software like Aldus PageMaker
-            including versions of Lorem Ipsum
+            Gegeben sind Zahlenfolgen (hier in Schwarz) und deren Prüfziffern
+            (hier in Rot). Egänzen Sie anhand der Beipiele die fehlenden
+            Prüfziffern. Die Lösung besteht immer aus zwei Ziffern (bsp. 09
+            statt 9).
           </p>
-        }
-      />
-      {[...Array(numOfExamples)].map((e, i) => (
-        <ChecksumExample
-          key={i}
-          checksumFunction={sumChecksum}
-          sequence={randomDigits}
-        />
-      ))}
-      {[...Array(numberOfTasksA)].map((e, i) => (
-        <ChecksumExercise
-          key={i}
-          checksumFunction={sumChecksum}
-          sequence={randomDigits}
-          onWorong={() => setWrongAnswersA(wrongAnswersA + 1)}
-          onCorrect={() => setCorrectAnswersA(correctAnswersA + 1)}
-        />
-      ))}
-      {wrongAnswersA >= minWrongAnswers &&
-        correctAnswersA !== numberOfTasksA && (
-          <p>
-            Das ist leider nicht korrekt. Die Lösung der Aufgabe ist, dass die
-            Prüfziffer die Summe der einzelnen Zahlen der Zahlenfolge ist. Um
-            fortfahren zu können, müssen Sie die Aufgabe korrekt lösen.
-          </p>
-        )}
-      {correctAnswersA === numberOfTasksA && (
-        <div>
+        </div>
+        <div className="taskRight">
+          {[...Array(numOfExamples)].map((e, i) => (
+            <ChecksumExample
+              key={i}
+              checksumFunction={sumChecksum}
+              sequence={randomDigits}
+            />
+          ))}
+          <div className="task"></div>
+          {[...Array(numberOfTasksA)].map((e, i) => (
+            <ChecksumExercise
+              key={i}
+              checksumFunction={sumChecksum}
+              sequence={randomDigits}
+              onWorong={() => setWrongAnswersA(wrongAnswersA + 1)}
+              onCorrect={() => setCorrectAnswersA(correctAnswersA + 1)}
+            />
+          ))}
+        </div>
+      </div>
+      {wrongAnswersA >= minWrongAnswers && (
+        <div className="task">
+          <Info
+            text={
+              <p>
+                Eine Methode um die Prüfziffer zu bestimmen, ist es die Summe
+                der Folge zu Bilden.
+              </p>
+            }
+          />
+        </div>
+      )}
+      <div className="task">
+        <button
+          onClick={() => {
+            setCorrectAnswersA(3);
+          }}
+        >
+          <p>Aufgabe überspringen</p>
+        </button>
+      </div>
+      {correctAnswersA >= numberOfTasksA && (
+        <>
           <p>
             Beim Übermitteln von Daten, oder in unserem Beispiel von Zahlen,
             kann es vorkommen, dass die eine oder andere Ziffer falsch ist. Der
@@ -151,7 +152,7 @@ function Task1() {
               setTaskStateB(true);
             }}
           />
-        </div>
+        </>
       )}
       {taskStateB && (
         <div>
