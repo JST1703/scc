@@ -49,9 +49,7 @@ function ChecksumExercise({ checksumFunction, onWorong, onCorrect, sequence }) {
 
   return (
     <div className="CE">
-      {data.map(function (digit, index) {
-        return <span key={index}>{digit}</span>;
-      })}
+      <span>{data}</span>
       <input
         type="text"
         value={value}
@@ -66,8 +64,8 @@ function ChecksumExercise({ checksumFunction, onWorong, onCorrect, sequence }) {
       <button onClick={checkResult} disabled={taskState === true}>
         <p>überprüfen</p>
       </button>
-      {taskState === false && <span style={{ color: "red" }}> Falsch</span>}
-      {taskState && <span style={{ color: "green" }}> Korrekt</span>}
+      {taskState === false && <span style={{ color: "red" }}>Falsch</span>}
+      {taskState && <span style={{ color: "green" }}>Korrekt</span>}
     </div>
   );
 }

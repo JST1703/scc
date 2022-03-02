@@ -4,8 +4,6 @@ This component displays a multiple choice question.
 */
 
 /*
-question is the mc question text being displayed.
-
 options are the possible answers.
 
 answerKey is the solution givin in an array of booleans. 
@@ -19,7 +17,6 @@ callerFunction is a function the caller component uses, if this question gets an
 */
 function MC({
   callerFunction,
-  question,
   options,
   answerKey,
   textOnWrong,
@@ -27,9 +24,6 @@ function MC({
 }) {
   // values are the state of the Yes or No question logged by the user
   const [values, setValues] = useState(Array(answerKey.length).fill(false));
-
-  // question in useState, to avoid undesired Behavior
-  const [statedQuestion] = useState(question);
 
   /*
   variable for the task state
@@ -61,8 +55,7 @@ function MC({
   };
 
   return (
-    <div className="MC">
-      <p>{statedQuestion}</p>
+    <>
       {options.map(function (element, index) {
         return (
           <div className="mc" key={index}>
@@ -71,7 +64,7 @@ function MC({
               disabled={taskState === true || taskState === false}
               onChange={() => handleValues(index)}
             />
-            <span key={index}>{element}</span>
+            {element}
           </div>
         );
       })}
@@ -79,19 +72,21 @@ function MC({
         onClick={checkResult}
         disabled={taskState === true || taskState === false}
       >
-        überprüfen
+        <p>überprüfen</p>
       </button>
       {taskState === false && (
-        <p>
-          <span style={{ color: "red" }}>Falsch</span>. {textOnWrong}
-        </p>
+        <>
+          <span style={{ color: "red" }}>Falsch</span>
+          {textOnWrong}
+        </>
       )}
       {taskState === true && (
-        <p>
-          <span style={{ color: "green" }}>Korrekt</span>. {textOnCorrect}
-        </p>
+        <>
+          <span style={{ color: "green" }}>Korrekt</span>
+          {textOnCorrect}
+        </>
       )}
-    </div>
+    </>
   );
 }
 

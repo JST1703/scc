@@ -25,6 +25,9 @@
 .main span {
   font-size: max(1.3vw, 10pt);
 }
+.main span {
+  margin-left: 1%;
+}
 
 .main input {
   margin-left: 10px;

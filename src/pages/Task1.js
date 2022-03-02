@@ -52,7 +52,7 @@ function Task1() {
       let cs1 = sumChecksum(seq1);
       errormaker(seq1, 0);
       let cs2 = sumChecksum(seq1);
-      return [seq1.join("") + " " + cs1, cs1 !== cs2];
+      return [seq1.join(""), cs1, cs1 !== cs2];
     })
   );
 
@@ -61,8 +61,13 @@ function Task1() {
 
   for (let i = 0; i < numberOfTasksB; ++i) {
     let elemet = BTemp[i];
-    mcOptionsTaskB[i] = elemet[0];
-    mcAKTaskB[i] = elemet[1];
+    mcOptionsTaskB[i] = (
+      <>
+        <span>{elemet[0]}</span>
+        <span style={{ color: "red" }}>{elemet[1]}</span>
+      </>
+    );
+    mcAKTaskB[i] = elemet[2];
   }
 
   // if true, next task is revealed
@@ -129,139 +134,65 @@ function Task1() {
         </button>
       </div>
       {correctAnswersA >= numberOfTasksA && (
-        <>
-          <p>
-            Beim Übermitteln von Daten, oder in unserem Beispiel von Zahlen,
-            kann es vorkommen, dass die eine oder andere Ziffer falsch ist. Der
-            Fehler kann sowohl in der Zahlenfolge auftreten, oder aber auch in
-            der Prüfziffer selbst.
-          </p>
-          <MC
-            question={
-              "Gegeben sind weitere Beispiele von Zahlenfolgen und ihre Prüfsummen. Bestimmen sie die Prüfsummen, die falsch sind."
-            }
-            options={mcOptionsTaskB}
-            answerKey={mcAKTaskB}
-            textOnCorrect={
-              "Die Summe der Zahlenfolge muss immer gleich der Prüfziffer sein. Ansosten muss ein Fehler vorgefallen sein."
-            }
-            textOnWrong={
-              "Die falschen Prüfsummen sind die, welche nicht gleich der Summe der Zahlenfolge sind."
-            }
-            callerFunction={() => {
-              setTaskStateB(true);
-            }}
-          />
-        </>
+        <div className="task">
+          <div className="taskLeft">
+            <p>
+              Gegeben sind Folgen und deren Prüfziffern. Bestimmen sie
+              diejenigen Folgen, bei denen die Prüfziffer fehlerhaft ist.
+            </p>
+          </div>
+          <div className="taskRight">
+            <MC
+              options={mcOptionsTaskB}
+              answerKey={mcAKTaskB}
+              textOnCorrect={<p></p>}
+              textOnWrong={
+                <>
+                  <p className="task"></p>
+                  <p>
+                    Die Prüfziffer ist gleich der Summe der Ziffern der Folge.
+                  </p>
+                </>
+              }
+              callerFunction={() => {
+                setTaskStateB(true);
+              }}
+            />
+          </div>
+        </div>
       )}
       {taskStateB && (
-        <div>
-          <p>
-            Die Prüfsumme ist eine einfache Methode, um zu überprüfen, ob ein
-            Fehler beim Versenden von Daten aufgetreten ist. Diese Methode hat
-            einige Vor- und einige Nachteile. Belegen Sie, ob diese Aussagen
-            korrekt oder falsch sind.
-          </p>
+        <div className="task">
           <YN
             question={
-              "Wenn genau eine Ziffer in den Daten falsch ist, dann erkennt man das an der Prüfziffer."
+              <p>
+                Wenn genau eine Ziffer in der Folge falsch ist, dann erkennt man
+                das an der Prüfziffer.
+              </p>
             }
             solution={1}
-            optionYes={"Ja"}
-            optionNo={"Nein"}
+            optionYes={<span>Ja</span>}
+            optionNo={<span>Nein</span>}
             textOnCorrect={
-              "Wenn eine Ziffer falsch ist, dann stimmt die Summe nicht mehr mit der Prüfziffer überein."
+              <>
+                <p className="task"></p>
+                <p>
+                  Wenn eine Ziffer falsch ist, dann stimmt die Summe nicht mehr
+                  mit der Prüfziffer überein.
+                </p>
+              </>
             }
             textOnWrong={
-              "Wenn eine Ziffer falsch ist, dann stimmt die Summe nicht mehr mit der Prüfziffer überein."
+              <>
+                <p className="task"></p>
+                <p>
+                  Wenn eine Ziffer falsch ist, dann stimmt die Summe nicht mehr
+                  mit der Prüfziffer überein.
+                </p>
+              </>
             }
             callerFunction={() => handleTaskStateC(0)}
           />
-          {taskStateC[0] && (
-            <YN
-              question={
-                "Wenn genau eine Ziffer in der Prüfziffer falsch ist, dann sind auch die Daten falsch."
-              }
-              solution={0}
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnCorrect={
-                "Der Fehler kann in der Prüfsumme selber vorkommen, auch wenn die Daten korrekt sind. Man muss zwar davon ausgehen, dass ein Fehler vorgefallen ist und die Daten neu senden."
-              }
-              textOnWrong={
-                "Die Daten können korrekt sein, aber die Prüfsumme selber könnte einen Fehler beinhalten. Man muss zwar davon ausgehen, dass ein Fehler vorgefallen ist."
-              }
-              callerFunction={() => handleTaskStateC(1)}
-            />
-          )}
-          {taskStateC[1] && (
-            <YN
-              question={
-                "Ein häufiger Fehler ist, dass man die Ziffern in der falschen Reihenfolge aufschreib, z.B. 73 statt 37. Kann die Prüfsumme solche Fehler erkennen?"
-              }
-              solution={0}
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnCorrect={
-                "Die Prüfsumme ist die Summe der einzelnen Zahlen es spielt keine Rolle, in welcher Reihenfolge man die Zahlen addiert (7 + 3 = 3 + 7)."
-              }
-              textOnWrong={
-                "Die Prüfsumme ist die Summe der einzelnen Zahlen es spielt keine Rolle, in welcher Reihenfolge man die Zahlen addiert (7 + 3 = 3 + 7)."
-              }
-              callerFunction={() => handleTaskStateC(2)}
-            />
-          )}
-          {taskStateC[2] && (
-            <YN
-              question={
-                "Wenn genau eine Ziffer in den Daten falsch ist, kann man mit der Prüfsumme erkennen, welche Ziffer das ist."
-              }
-              solution={0}
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnCorrect={
-                "Man erkennt nur, dass ein Fehler passiert ist, aber nicht wo genau. Man kann mit der Prüfsumme nur Fehler erkennen, aber nicht korrigieren."
-              }
-              textOnWrong={
-                "Angenommen die Zahlenfolge wäre 234 und die Prüfsumme 7. Dann kann es sein, dass die korrekte Zahlenfolge 231 gewesen wäre, oder aber auch 214. Man kann mit der Prüfsumme nur Fehler erkennen, aber nicht korrigieren."
-              }
-              callerFunction={() => handleTaskStateC(3)}
-            />
-          )}
-          {taskStateC[3] && (
-            <YN
-              question={
-                "Erkennt man mit der Prüfsumme, ob die Daten falsch sind, wenn genau zwei Ziffern falsch sind?"
-              }
-              solution={0}
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnCorrect={
-                "Eine Ziffer könnte um den Betrag x höher sein und eine andere Ziffer um den gleichen Betrag x tiefer. Die Summe bleibt dennoch gleich."
-              }
-              textOnWrong={
-                "Angenommen die Zahlenfolge wäre 234 und die Prüfsumme 9. Dann kann es sein, dass die korrekte Zahlenfolge 216 gewesen wäre, oder aber auch 531."
-              }
-              callerFunction={() => handleTaskStateC(4)}
-            />
-          )}
-          {taskStateC[4] && (
-            <YN
-              question={
-                "Erkennt man den Fehler, wenn man eine Ziffer in der Zahlenfolge vergisst oder auslässt?"
-              }
-              solution={0}
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnCorrect={
-                "Die Ziffer 0 könnte weggelassen werden und die Summe bleibt gleich. Generell sagt die Prüfsumme nichts aus über die Anzahl Nullen in der Zahlenfolge. 1200000 hat die gleiche Prüfsumme wie 120."
-              }
-              textOnWrong={
-                "Die Ziffer 0 könnte weggelassen werden und die Summe bleibt gleich. Generell sagt die Prüfsumme nichts aus über die Anzahl Nullen in der Zahlenfolge. 1200000 hat die gleiche Prüfsumme wie 120. Wenn man 0 nicht erlaubt, dann hätten Sie recht."
-              }
-              callerFunction={() => {}}
-            />
-          )}
         </div>
       )}
     </div>
