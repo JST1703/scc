@@ -83,6 +83,7 @@ function Task1() {
   return (
     <div className="main">
       <h1>Aufgabe 1: Prüfziffer und Fehlererkennung 1</h1>
+      <div className="space"></div>
       <div className="task">
         <div className="taskLeft">
           <p>
@@ -100,7 +101,7 @@ function Task1() {
               sequence={randomDigits}
             />
           ))}
-          <div className="task"></div>
+          <div className="space"></div>
           {[...Array(numberOfTasksA)].map((e, i) => (
             <ChecksumExercise
               key={i}
@@ -114,6 +115,7 @@ function Task1() {
       </div>
       {wrongAnswersA >= minWrongAnswers && (
         <div className="task">
+          <div className="space"></div>
           <Info
             text={
               <p>
@@ -124,6 +126,7 @@ function Task1() {
           />
         </div>
       )}
+      <div className="space"></div>
       <div className="task">
         <button
           onClick={() => {
@@ -135,6 +138,7 @@ function Task1() {
       </div>
       {correctAnswersA >= numberOfTasksA && (
         <div className="task">
+          <div className="space"></div>
           <div className="taskLeft">
             <p>
               Gegeben sind Folgen und deren Prüfziffern. Bestimmen sie
@@ -147,12 +151,9 @@ function Task1() {
               answerKey={mcAKTaskB}
               textOnCorrect={<p></p>}
               textOnWrong={
-                <>
-                  <p className="task"></p>
-                  <p>
-                    Die Prüfziffer ist gleich der Summe der Ziffern der Folge.
-                  </p>
-                </>
+                <p>
+                  Die Prüfziffer ist gleich der Summe der Ziffern der Folge.
+                </p>
               }
               callerFunction={() => {
                 setTaskStateB(true);
@@ -163,33 +164,28 @@ function Task1() {
       )}
       {taskStateB && (
         <div className="task">
+          <div className="space"></div>
           <YN
             question={
               <p>
-                Wenn genau eine Ziffer in der Folge falsch ist, dann erkennt man
-                das an der Prüfziffer.
+                Wenn genau eine Ziffer in der Folge falsch übertragen worden
+                ist, dann erkennt man das an der Prüfziffer.
               </p>
             }
             solution={1}
             optionYes={<span>Ja</span>}
             optionNo={<span>Nein</span>}
             textOnCorrect={
-              <>
-                <p className="task"></p>
-                <p>
-                  Wenn eine Ziffer falsch ist, dann stimmt die Summe nicht mehr
-                  mit der Prüfziffer überein.
-                </p>
-              </>
+              <p>
+                Wenn eine Ziffer falsch ist, dann stimmt die Summe nicht mehr
+                mit der Prüfziffer überein.
+              </p>
             }
             textOnWrong={
-              <>
-                <p className="task"></p>
-                <p>
-                  Wenn eine Ziffer falsch ist, dann stimmt die Summe nicht mehr
-                  mit der Prüfziffer überein.
-                </p>
-              </>
+              <p>
+                Wenn eine Ziffer falsch ist, dann stimmt die Summe nicht mehr
+                mit der Prüfziffer überein.
+              </p>
             }
             callerFunction={() => handleTaskStateC(0)}
           />

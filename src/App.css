@@ -46,6 +46,14 @@
   width: 60vw;
 }
 
+.smallSpace {
+  height: 15px;
+}
+
+.space {
+  height: 50px;
+}
+
 .task,
 .taskLeft,
 .taskRight {
@@ -54,7 +62,6 @@
 
 .task {
   width: 100%;
-  margin-top: 5%;
 }
 
 .taskLeft {
@@ -89,10 +96,6 @@
 
 .infoIcon svg {
   height: max(2.8vw, 30px);
-}
-
-.CE {
-  margin-top: 3%;
 }
 
 .squareGraphics {

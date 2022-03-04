@@ -50,7 +50,6 @@ function YN({
   return (
     <>
       {question}
-      <p className="task"></p>
       <div>
         <input
           type="radio"
@@ -60,6 +59,7 @@ function YN({
         />
         {optionYes}
       </div>
+      <div className="smallSpace"></div>
       <div>
         <input
           type="radio"
@@ -69,6 +69,7 @@ function YN({
         />
         {optionNo}
       </div>
+      <div className="smallSpace"></div>
       <button
         onClick={checkResult}
         disabled={taskState === true || taskState === false}
@@ -78,12 +79,14 @@ function YN({
       {taskState === false && (
         <>
           <span style={{ color: "red" }}>Falsch</span>
+          <div className="smallSpace"></div>
           {textOnWrong}
         </>
       )}
       {taskState === true && (
         <>
           <span style={{ color: "green" }}>Korrekt</span>
+          <div className="smallSpace"></div>
           {textOnCorrect}
         </>
       )}

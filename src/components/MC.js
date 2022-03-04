@@ -68,6 +68,7 @@ function MC({
           </div>
         );
       })}
+      <div className="smallSpace"></div>
       <button
         onClick={checkResult}
         disabled={taskState === true || taskState === false}
@@ -77,12 +78,14 @@ function MC({
       {taskState === false && (
         <>
           <span style={{ color: "red" }}>Falsch</span>
+          <div className="smallSpace"></div>
           {textOnWrong}
         </>
       )}
       {taskState === true && (
         <>
           <span style={{ color: "green" }}>Korrekt</span>
+          <div className="smallSpace"></div>
           {textOnCorrect}
         </>
       )}

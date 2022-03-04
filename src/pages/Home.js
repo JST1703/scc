@@ -9,6 +9,7 @@ function Home() {
   return (
     <div className="main">
       <h1>Selbstkorrigierende Kodierungen</h1>
+      <div className="space"></div>
       <div className="task">
         <p>
           Computer sprechen eine eigene Sprache. Diese Sprache ist Binär,
@@ -22,6 +23,7 @@ function Home() {
           Alphabet eine Nummer zuweist und so eine direkte Übersetzung hat.
         </p>
       </div>
+      <div className="space"></div>
       <div className="task">
         <p>
           Computer kommunizieren untereinander sehr oft untereinander, z.b. wenn
@@ -40,6 +42,7 @@ function Home() {
           versendet, desto höher ist auch die Wahrscheinlichkeit eines Fehlers.
         </p>
       </div>
+      <div className="space"></div>
       <div className="task">
         <p>
           In diesem Kapitel lernen Sie Methoden kennen, um Fehler in Daten

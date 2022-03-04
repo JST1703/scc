@@ -48,7 +48,7 @@ function ChecksumExercise({ checksumFunction, onWorong, onCorrect, sequence }) {
   };
 
   return (
-    <div className="CE">
+    <div>
       <span>{data}</span>
       <input
         type="text"
@@ -66,6 +66,7 @@ function ChecksumExercise({ checksumFunction, onWorong, onCorrect, sequence }) {
       </button>
       {taskState === false && <span style={{ color: "red" }}>Falsch</span>}
       {taskState && <span style={{ color: "green" }}>Korrekt</span>}
+      <div className="smallSpace"></div>
     </div>
   );
 }
