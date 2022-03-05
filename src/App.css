@@ -22,7 +22,9 @@
 }
 
 .main p,
-.main span {
+.main span,
+.main th,
+.main td {
   font-size: max(1.3vw, 10pt);
 }
 
@@ -57,7 +59,8 @@
 
 .task,
 .taskLeft,
-.taskRight {
+.taskRight,
+.taskRightScroll {
   display: inline-block;
 }
 
@@ -73,6 +76,13 @@
 
 .taskRight {
   width: 48%;
+  margin-left: 2%;
+}
+
+.taskRightScroll {
+  top: 5%;
+  width: 48%;
+  position: sticky;
   margin-left: 2%;
 }
 
