@@ -90,10 +90,9 @@ function Task1() {
         <div className="taskLeft">
           <p>
             Gegeben sind Zahlenfolgen, bestehend aus den Ziffern 1 bis 9, und
-            deren <span style={{ color: "red" }}>{"Prüfziffern "}</span>.
-            Egänzen Sie anhand der gegebenen Beipielen die fehlenden
-            Prüfziffern. Die Lösung besteht immer aus zwei Ziffern (bsp. 09
-            statt 9).
+            deren <span style={{ color: "red" }}>{"Prüfziffern"}</span>. Egänzen
+            Sie anhand der gegebenen Beipielen die fehlenden Prüfziffern. Die
+            Lösung besteht immer aus zwei Ziffern (bsp. 09 statt 9).
           </p>
         </div>
         <div className="taskRight">
@@ -123,8 +122,8 @@ function Task1() {
           <Info
             text={
               <p>
-                Eine Methode um die Prüfziffer zu bestimmen, ist es die Summe
-                der Folge zu Bilden.
+                Die Prüfiffer ist die Prüfsumme. Die Ziffern werden einfach
+                addiert.
               </p>
             }
           />
@@ -135,7 +134,7 @@ function Task1() {
       <div className="task">
         <button
           onClick={() => {
-            setCorrectAnswersA(3);
+            setCorrectAnswersA(numberOfTasksA);
           }}
         >
           <p>Aufgabe überspringen</p>

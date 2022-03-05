@@ -6,6 +6,7 @@ import YN from "../components/YN";
 import randomDigits from "../functions/randomDigits";
 import nextTenChecksum from "../functions/nextTenChecksum";
 import errormaker from "../functions/errormaker";
+import Info from "../components/Info";
 
 /*
 Task 2: Different checksum
@@ -51,7 +52,7 @@ function Task2() {
       let cs1 = nextTenChecksum(seq1);
       errormaker(seq1, 0);
       let cs2 = nextTenChecksum(seq1);
-      return [seq1.join("") + cs1, cs1 !== cs2];
+      return [seq1.join(""), cs1, cs1 !== cs2];
     })
   );
 
@@ -60,8 +61,13 @@ function Task2() {
 
   for (let i = 0; i < numberOfTasksB; ++i) {
     let elemet = BTemp[i];
-    mcOptionsTaskB[i] = elemet[0];
-    mcAKTaskB[i] = elemet[1];
+    mcOptionsTaskB[i] = (
+      <>
+        <span>{elemet[0]}</span>
+        <span style={{ color: "red" }}>{elemet[1]}</span>
+      </>
+    );
+    mcAKTaskB[i] = elemet[2];
   }
 
   // if true, next task is revealed
@@ -75,191 +81,330 @@ function Task2() {
   };
 
   return (
-    <div className="task">
+    <div className="main">
       <h1>Aufgabe 2: Prüfziffer und Fehlererkennung 2</h1>
-      <div>
-        <p>
-          Hier haben wir ein anderes Beispiel einer anderen Prüfziffer. Erkennen
-          Sie, wie man aus der Zahlenfolge (hier in Schwarz) die Prüfziffer
-          (hier in Rot) berechnen kann? Ergänzen Sie, wie im Beispiel, die
-          fehlenden Prüfziffern.
-        </p>
-        {[...Array(numOfExamples)].map((e, i) => (
-          <ChecksumExample
-            key={i}
-            checksumFunction={nextTenChecksum}
-            sequence={randomDigits}
-          />
-        ))}
-        {[...Array(numberOfTasksA)].map((e, i) => (
-          <ChecksumExercise
-            key={i}
-            checksumFunction={nextTenChecksum}
-            sequence={randomDigits}
-            onWorong={() => setWrongAnswersA(wrongAnswersA + 1)}
-            onCorrect={() => setCorrectAnswersA(correctAnswersA + 1)}
-          />
-        ))}
-        {wrongAnswersA >= minWrongAnswers &&
-          correctAnswersA !== numberOfTasksA && (
-            <p>
-              Das ist leider nicht korrekt. Um die Prüfziffer ermitteln zu
-              können, muss man zuerst die Summe der Zahlenfolge berechnen. Die
-              Prüfziffer ist dann das, was zum nächsten Zehner fehlt. Anders
-              ausgedrückt: Quersumme der Zahlenfolge + Prüfziffer kann man durch
-              10 teilen, und zwar ohne Rest.
-            </p>
-          )}
-      </div>
-      {correctAnswersA === numberOfTasksA && (
-        <div>
+
+      <div className="space"></div>
+
+      <div className="task">
+        <div className="taskLeft">
           <p>
-            Beim Übermitteln von Daten, oder in unserem Beispiel von Zahlen,
-            kann es vorkommen, dass die eine oder andere Ziffer falsch ist. Der
-            Fehler kann sowohl in der Zahlenfolge auftreten, oder aber auch in
-            der Prüfziffer selbst.
+            Gegeben sind Zahlenfolgen, bestehend aus den Ziffern 1 bis 9, und
+            deren <span style={{ color: "red" }}>{"Prüfziffern"}</span>. Egänzen
+            Sie anhand der gegebenen Beipielen die fehlenden Prüfziffern.
           </p>
-          <MC
-            question={
-              "Gegeben sind weitere Beispiele von Zahlenfolgen und ihre Prüfziffer. Bestimmen sie die Prüfziffern, die falsch sind."
+        </div>
+        <div className="taskRight">
+          {[...Array(numOfExamples)].map((e, i) => (
+            <ChecksumExample
+              key={i}
+              checksumFunction={nextTenChecksum}
+              sequence={randomDigits}
+            />
+          ))}
+          <div className="space"></div>
+          {[...Array(numberOfTasksA)].map((e, i) => (
+            <ChecksumExercise
+              key={i}
+              checksumFunction={nextTenChecksum}
+              sequence={randomDigits}
+              onWorong={() => setWrongAnswersA(wrongAnswersA + 1)}
+              onCorrect={() => setCorrectAnswersA(correctAnswersA + 1)}
+            />
+          ))}
+        </div>
+      </div>
+
+      {wrongAnswersA >= minWrongAnswers && (
+        <div className="task">
+          <div className="space"></div>
+          <Info
+            text={
+              <p>
+                Die Prüfziffer ergänzt die Summe der Zahlenfolge auf den
+                nächsten 10er. Betraägt die Summe der Folge beispielsweise 67,
+                so ist die Prüfziffer 3, denn 67 + 3 = 70.
+              </p>
             }
-            options={mcOptionsTaskB}
-            answerKey={mcAKTaskB}
-            textOnCorrect={""}
-            textOnWrong={
-              "Die Quersumme der Zahlenfolge und die Prüfziffer zusammengezählt, müssen durch 10 teilbar sein."
-            }
-            callerFunction={() => {
-              setTaskStateB(true);
-            }}
           />
         </div>
       )}
+
+      <div className="space"></div>
+      <div className="task">
+        <button
+          onClick={() => {
+            setCorrectAnswersA(numberOfTasksA);
+          }}
+        >
+          <p>Aufgabe überspringen</p>
+        </button>
+      </div>
+
+      {correctAnswersA >= numberOfTasksA && (
+        <div className="task">
+          <div className="space"></div>
+          <div className="taskLeft">
+            <p>
+              Gegeben sind Folgen und deren Prüfziffern. Bestimmen sie
+              diejenigen Folgen, bei denen die Prüfziffer fehlerhaft ist.
+            </p>
+          </div>
+          <div className="taskRight">
+            <MC
+              options={mcOptionsTaskB}
+              answerKey={mcAKTaskB}
+              textOnCorrect={<p></p>}
+              textOnWrong={
+                <p>
+                  Die Prüfziffer ergänzt die Summe der Zahlenfolge auf den
+                  nächsten 10er.
+                </p>
+              }
+              callerFunction={() => {
+                setTaskStateB(true);
+              }}
+            />
+          </div>
+          <button
+            onClick={() => {
+              setTaskStateB(true);
+            }}
+          >
+            <p>Aufgabe überspringen</p>
+          </button>
+        </div>
+      )}
+
       {taskStateB && (
-        <div>
-          <p>
-            Diese Art von Prüfziffer ist eine einfache Methode, um zu
-            überprüfen, ob ein Fehler beim Versenden von Daten aufgetreten ist.
-            Diese Methode hat einige Vor- und einige Nachteile. Belegen Sie, ob
-            diese Aussagen korrekt oder falsch sind.
-          </p>
+        <div className="task">
+          <div className="space"></div>
           <YN
             question={
-              "Wenn genau eine Ziffer in den Daten falsch ist, dann erkennt man das an der Prüfziffer."
+              <p>
+                Wenn genau eine Ziffer in der Folge falsch übertragen worden
+                ist, dann erkennt man das an der Prüfziffer.
+              </p>
             }
             solution={1}
-            optionYes={"Ja"}
-            optionNo={"Nein"}
+            optionYes={<span>Ja</span>}
+            optionNo={<span>Nein</span>}
             textOnCorrect={
-              "Wenn eine Ziffer falsch ist, dann ist die Quersumme und die Prüfziffer zusammen nicht mehr durch 10 teilbar."
+              <p>
+                Wenn eine Ziffer in der Folge falsch übertragen worden ist, dann
+                ist die Summe der Folge anders. Somit ergänzt die Prüfiffer die
+                Summe nicht mehr auf den nächsten Zehner.
+              </p>
             }
             textOnWrong={
-              "Wenn eine Ziffer falsch ist, dann ist die Quersumme und die Prüfziffer zusammen nicht mehr durch 10 teilbar."
+              <p>
+                Wenn eine Ziffer in der Folge falsch übertragen worden ist, dann
+                ist die Summe der Folge anders. Somit ergänzt die Prüfziffer die
+                Summe nicht mehr auf den nächsten Zehner.
+              </p>
             }
             callerFunction={() => handleTaskStateC(0)}
           />
-          {taskStateC[0] && (
-            <YN
-              question={
-                "Wenn die Prüfziffer falsch ist, dann sind auch die Daten falsch."
-              }
-              solution={0}
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnCorrect={
-                "Die Prüfzidder selber kann falsch sein, auch wenn die Daten korrekt sind. Man muss zwar davon ausgehen, dass ein Fehler vorgefallen ist und die Daten neu senden."
-              }
-              textOnWrong={
-                "Die Daten können korrekt sein, aber die Prüfziffer selber könnte einen Fehler beinhalten. Man muss zwar davon ausgehen, dass ein Fehler vorgefallen ist."
-              }
-              callerFunction={() => handleTaskStateC(1)}
-            />
-          )}
-          {taskStateC[1] && (
-            <YN
-              question={
-                "Ein häufiger Fehler ist, dass man die Ziffern in der falschen Reihenfolge aufschreib, z.B. 72 statt 27. Kann diese Prüfziffermethode solche Fehler erkennen?"
-              }
-              solution={0}
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnCorrect={
-                "72 und 27 haben z.B. beide die Prüfziffer 1 (7 + 2 = 2 + 7)."
-              }
-              textOnWrong={
-                "72 und 27 haben z.B. beide die Prüfziffer 1 (7 + 2 = 2 + 7)."
-              }
-              callerFunction={() => handleTaskStateC(2)}
-            />
-          )}
-          {taskStateC[2] && (
-            <YN
-              question={
-                "Wenn genau eine Ziffer in den Daten falsch ist, kann man mit der Prüfziffer erkennen, welche Ziffer das ist."
-              }
-              solution={0}
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnCorrect={
-                "Man erkennt nur, dass ein Fehler passiert ist, aber nicht wo genau. Man kann mit der Prüfziffer nur Fehler erkennen, aber nicht korrigieren."
-              }
-              textOnWrong={
-                "Angenommen die Zahlenfolge wäre 234 und die Prüfziffer 2. Dann kann es sein, dass die korrekte Zahlenfolge 233 gewesen wäre, oder aber auch 224. Man kann mit der Prüfziffer nur Fehler erkennen, aber nicht korrigieren."
-              }
-              callerFunction={() => handleTaskStateC(3)}
-            />
-          )}
-          {taskStateC[3] && (
-            <YN
-              question={
-                "Erkennt man mit der Prüfziffer, ob die Daten falsch sind, wenn zwei Fehler passiert sind?"
-              }
-              solution={0}
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnCorrect={
-                "Eine Ziffer könnte um den Betrag x höher sein und eine andere Ziffer um den gleichen Betrag x tiefer. Die Summe bleibt dennoch gleich und somit auch die Prüfziffer."
-              }
-              textOnWrong={
-                "Angenommen die Zahlenfolge wäre 234 und die Prüfziffer 1. Dann kann es sein, dass die korrekte Zahlenfolge 225 gewesen wäre, oder aber auch 324."
-              }
-              callerFunction={() => handleTaskStateC(4)}
-            />
-          )}
-          {taskStateC[4] && (
-            <YN
-              question={
-                "Erkennt man den Fehler, wenn man eine Ziffer in der Zahlenfolge vergisst oder auslässt?"
-              }
-              solution={0}
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnCorrect={
-                "Die Ziffer 0 könnte weggelassen werden und die Summe bleibt gleich. Generell sagt die Prüfziffer nichts aus über die Anzahl Nullen in der Zahlenfolge. 1200000 hat die gleiche Prüfziffer wie 120."
-              }
-              textOnWrong={
-                "Die Ziffer 0 könnte weggelassen werden und die Summe bleibt gleich. Generell sagt die Prüfziffer nichts aus über die Anzahl Nullen in der Zahlenfolge. 1200000 hat die gleiche Prüfziffer wie 120. Wenn man 0 nicht erlaubt, dann hätten Sie recht."
-              }
-              callerFunction={() => handleTaskStateC(5)}
-            />
-          )}
-          {taskStateC[5] && (
-            <YN
-              question={
-                "Welche Fehlererkennungsmethode ist besser, diese Prüfiffer oder die Prüfsumme"
-              }
-              solution={1}
-              optionYes={"Prüfziffer"}
-              optionNo={"Prüfsumme"}
-              textOnCorrect={
-                "Die Prüfziffer schafft das gleiche wie die Prüfsumme und das nur mit einer zusätzlichen Ziffer. Die Prüfsumme braucht mehrere zusätzliche Ziffern."
-              }
-              textOnWrong={
-                "Die Prüfziffer schafft das gleiche wie die Prüfsumme und das nur mit einer zusätzlichen Ziffer. Die Prüfsumme braucht mehrere zusätzliche Ziffern."
-              }
-              callerFunction={() => {}}
-            />
-          )}
+        </div>
+      )}
+
+      {taskStateC[0] && (
+        <div className="task">
+          <div className="space"></div>
+          <YN
+            question={
+              <p>
+                Wenn die Prüfziffer nicht korrekt ist, dann muss die Zahlenfolge
+                einen Fehler beinhalten.
+              </p>
+            }
+            solution={0}
+            optionYes={<span>Ja</span>}
+            optionNo={<span>Nein</span>}
+            textOnCorrect={
+              <p>
+                Ein Übertragungsfehler kann auch in der Prüfziffer selbst
+                auftreten, auch wenn die Zahlenfolge fehlerfrei übertragen
+                worden ist. Man muss dennoch von einer Fehlübertragung ausgehen.
+              </p>
+            }
+            textOnWrong={
+              <p>
+                Ein Übertragungsfehler kann auch in der Prüfziffer selbst
+                auftreten, auch wenn die Zahlenfolge fehlerfrei übertragen
+                worden ist. Man muss dennoch von einer Fehlübertragung ausgehen.
+              </p>
+            }
+            callerFunction={() => handleTaskStateC(1)}
+          />
+        </div>
+      )}
+
+      {taskStateC[1] && (
+        <div className="task">
+          <div className="space"></div>
+          <YN
+            question={
+              <p>
+                Häufig geschehen auch Tippfehler beim Mensch, z.B. dass man zwei
+                Ziffern vertauscht (z.B. 73 statt 37). Kann die Prüfsu,e solche
+                fehler erkennen?
+              </p>
+            }
+            solution={0}
+            optionYes={<span>Ja</span>}
+            optionNo={<span>Nein</span>}
+            textOnCorrect={
+              <p>
+                Die Summe der folge bleibt gleich. Es spielt keine Rolle, in
+                welcher Reihenfolge man die Zahlen addiert (7 + 3 = 3 + 7).
+                Solche Fehler bleiben desswegen unerkannt.
+              </p>
+            }
+            textOnWrong={
+              <p>
+                Die Summe der folge bleibt gleich. Es spielt keine Rolle, in
+                welcher Reihenfolge man die Zahlen addiert (7 + 3 = 3 + 7).
+                Solche Fehler bleiben desswegen unerkannt.
+              </p>
+            }
+            callerFunction={() => handleTaskStateC(2)}
+          />
+        </div>
+      )}
+
+      {taskStateC[2] && (
+        <div className="task">
+          <div className="space"></div>
+          <YN
+            question={
+              <p>
+                Sollte eine Ziffer wegen einer Fehlübertragung falsch sein, dann
+                erkennen wir mit der Prüfziffer, welche Ziffer das ist.
+              </p>
+            }
+            solution={0}
+            optionYes={<span>Ja</span>}
+            optionNo={<span>Nein</span>}
+            textOnCorrect={
+              <p>
+                Die Prüfziffer kann nur erkennen, ob ein Fehler in der
+                Übertragung vorgefallen ist, allerdings nicht bei welcher
+                Ziffer.
+              </p>
+            }
+            textOnWrong={
+              <p>
+                Die Prüfziffer kann nur erkennen, ob ein Fehler in der
+                Übertragung vorgefallen ist, allerdings nicht bei welcher
+                Ziffer.
+              </p>
+            }
+            callerFunction={() => handleTaskStateC(3)}
+          />
+        </div>
+      )}
+
+      {taskStateC[3] && (
+        <div className="task">
+          <div className="space"></div>
+          <YN
+            question={
+              <p>
+                Angenommen bei der Übertragung treten zwei Fehler auf, so dass
+                nun 2 Ziffern falsch sind. Erkennt man das mit der Prüfziffer?
+              </p>
+            }
+            solution={0}
+            optionYes={<span>Ja</span>}
+            optionNo={<span>Nein</span>}
+            textOnCorrect={
+              <p>
+                Eine Ziffer könnte um den Betrag x höher sein und eine andere
+                Ziffer um den gleichen Betrag x tiefer. Die Summe der Ziffern
+                bleibt dennoch gleich, und somit auch die Prüfziffer.
+              </p>
+            }
+            textOnWrong={
+              <p>
+                Eine Ziffer könnte um den Betrag x höher sein und eine andere
+                Ziffer um den gleichen Betrag x tiefer. Die Summe der Ziffern
+                bleibt dennoch gleich, und somit auch die Prüfziffer. Angenommen
+                die ursprüungliche Zahlenfolge wäre 142 und die Prüfziffer 3.
+                Zwei Fehler in der Folge könnte uns 232 geben, wobei dessen
+                Prüfziffer auch 3 ist. Das würden wir fälschlicherweise als
+                fehlerfreie Übertragung betrachten.
+              </p>
+            }
+            callerFunction={() => handleTaskStateC(4)}
+          />
+        </div>
+      )}
+
+      {taskStateC[4] && (
+        <div className="task">
+          <div className="space"></div>
+          <YN
+            question={
+              <p>
+                Wenn durch ein Fehler in der Übertragung eine Ziffer in der
+                Folge ausgelassen wird, kann man das mit der Prüfziffer
+                erkennen?
+              </p>
+            }
+            solution={1}
+            optionYes={<span>Ja</span>}
+            optionNo={<span>Nein</span>}
+            textOnCorrect={
+              <p>
+                Die Ziffern liegen zwischen 1 und 9. Würde eine ausgelassen
+                werden, so stimmt die Summe der erhaltenen Folge nicht mit der
+                Prüfziffer überein.
+              </p>
+            }
+            textOnWrong={
+              <p>
+                Die Ziffern liegen zwischen 1 und 9. Würde eine ausgelassen
+                werden, so stimmt die Summe der erhaltenen Folge nicht mit der
+                Prüfziffer überein. Sollte 0 auch eine mögliche Ziffer sein,
+                dann haben Sie recht. Die Folgen 24104 und 2414 haben die
+                gleiche Prüfziffer. Das Entfallen der 0 würde nicht als
+                Übertragungsfehler aufgefasst werden.
+              </p>
+            }
+            callerFunction={() => handleTaskStateC(5)}
+          />
+        </div>
+      )}
+
+      {taskStateC[5] && (
+        <div className="task">
+          <div className="space"></div>
+          <YN
+            question={
+              <p>Welche der beiden Methoden zur Fehlererkennung ist besser?</p>
+            }
+            solution={0}
+            optionYes={<span>Prüfsumme</span>}
+            optionNo={<span>Prüfziffer</span>}
+            textOnCorrect={
+              <p>
+                Beide Methoden haben die gleichen Eigenschaften. Sie
+                unterscheiden sich nur in der Länge.
+              </p>
+            }
+            textOnWrong={
+              <p>
+                Beide Methoden haben die gleichen Eigenschaften. Sie
+                unterscheiden sich nur in der Länge. Die Prüfziffer ist besser,
+                da diese, egal wie lange die Zahlenfolge ist, immer genau eine
+                Ziffer gross ist. Die Prüfsumme kann, je nach Länge der
+                Zahlenfolge, beliebig lang werden. Das benötigt mehr
+                Speicherplatz gegenüber der Prüfziffer.
+              </p>
+            }
+            callerFunction={() => handleTaskStateC(5)}
+          />
         </div>
       )}
     </div>
