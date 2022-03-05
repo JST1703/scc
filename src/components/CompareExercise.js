@@ -62,40 +62,41 @@ function CompareExercise({
   };
 
   return (
-    <div>
-      <div>
-        {data.map(function (digit, index) {
-          return <span key={index}>{digit}</span>;
-        })}
-        <span style={{ color: "red" }}>{checksum}</span>
-      </div>
+    <>
+      <span>{data}</span>
+      <span style={{ color: "red" }}>{checksum}</span>
+      <div className="smallSpace"></div>
+      <input
+        type="text"
+        value={value}
+        disabled={taskState === true}
+        onChange={(event) => setValue(event.currentTarget.value)}
+        onKeyPress={(event) => {
+          if (event.key === "Enter") {
+            checkResult();
+          }
+        }}
+      />
+      <div className="smallSpace"></div>
+      <button onClick={checkResult} disabled={taskState === true}>
+        <p>überprüfen</p>
+      </button>
 
-      <div>
-        <input
-          type="text"
-          value={value}
-          disabled={taskState === true || taskState === false}
-          onChange={(event) => setValue(event.currentTarget.value)}
-        />
-        <button
-          onClick={checkResult}
-          disabled={taskState === true || taskState === false}
-        >
-          überprüfen
-        </button>
-
-        {taskState === false && (
-          <p>
-            <span style={{ color: "red" }}>Falsch</span>. {textOnWrong}
-          </p>
-        )}
-        {taskState === true && (
-          <p>
-            <span style={{ color: "green" }}>Korrekt</span>. {textOnCorrect}
-          </p>
-        )}
-      </div>
-    </div>
+      {taskState === false && (
+        <>
+          <span style={{ color: "red" }}>Falsch</span>
+          <div className="smallSpace"></div>
+          {textOnWrong}
+        </>
+      )}
+      {taskState === true && (
+        <>
+          <span style={{ color: "green" }}>Korrekt</span>
+          <div className="smallSpace"></div>
+          {textOnCorrect}
+        </>
+      )}
+    </>
   );
 }
 

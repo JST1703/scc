@@ -93,6 +93,18 @@ function Task2() {
             deren <span style={{ color: "red" }}>{"Prüfziffern"}</span>. Egänzen
             Sie anhand der gegebenen Beipielen die fehlenden Prüfziffern.
           </p>
+          <div className="space"></div>
+          {wrongAnswersA >= minWrongAnswers && (
+            <Info
+              text={
+                <p>
+                  Die Prüfziffer ergänzt die Summe der Zahlenfolge auf den
+                  nächsten 10er. Betraägt die Summe der Folge beispielsweise 67,
+                  so ist die Prüfziffer 3, denn 67 + 3 = 70.
+                </p>
+              }
+            />
+          )}
         </div>
         <div className="taskRight">
           {[...Array(numOfExamples)].map((e, i) => (
@@ -114,21 +126,6 @@ function Task2() {
           ))}
         </div>
       </div>
-
-      {wrongAnswersA >= minWrongAnswers && (
-        <div className="task">
-          <div className="space"></div>
-          <Info
-            text={
-              <p>
-                Die Prüfziffer ergänzt die Summe der Zahlenfolge auf den
-                nächsten 10er. Betraägt die Summe der Folge beispielsweise 67,
-                so ist die Prüfziffer 3, denn 67 + 3 = 70.
-              </p>
-            }
-          />
-        </div>
-      )}
 
       <div className="space"></div>
       <div className="task">

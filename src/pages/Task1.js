@@ -94,6 +94,17 @@ function Task1() {
             Sie anhand der gegebenen Beipielen die fehlenden Prüfziffern. Die
             Lösung besteht immer aus zwei Ziffern (bsp. 09 statt 9).
           </p>
+          <div className="space"></div>
+          {wrongAnswersA >= minWrongAnswers && (
+            <Info
+              text={
+                <p>
+                  Die Prüfziffer ist die Prüfsumme. Die Ziffern werden einfach
+                  addiert.
+                </p>
+              }
+            />
+          )}
         </div>
         <div className="taskRight">
           {[...Array(numOfExamples)].map((e, i) => (
@@ -115,20 +126,6 @@ function Task1() {
           ))}
         </div>
       </div>
-
-      {wrongAnswersA >= minWrongAnswers && (
-        <div className="task">
-          <div className="space"></div>
-          <Info
-            text={
-              <p>
-                Die Prüfiffer ist die Prüfsumme. Die Ziffern werden einfach
-                addiert.
-              </p>
-            }
-          />
-        </div>
-      )}
 
       <div className="space"></div>
       <div className="task">
