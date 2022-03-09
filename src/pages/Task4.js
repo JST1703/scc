@@ -2,19 +2,18 @@ import React, { useState } from "react";
 import MC from "../components/MC";
 import YN from "../components/YN";
 import errormaker from "../functions/errormaker";
+import distance from "../functions/distance";
 
 /*
-Task 4: codes and error correction
+Task 4: Given is an encoding. The user is given a few messages with errors. The user must find the original message.
 
-Task A: given an encoding. The user is given a few messages with one error. He must find the original message.
+Task A has only one error in the message.
 
-Task B: given an encoding. The user is given a few messages with two errors. He must find the original message, which he might fail.
+Task B has two errors in the message.
 
-Task C: given an encoding. The user is given a few messages with one error. He must find the original message, which he might fail.
+Task C has 3 errors, which allows for multiple solutions.
 
-Task D: Y and N questions about the property of this encoding. The user should realise after the pervious exercises that with this encoding 
-you can detect 2 errors, but only correct one error.
-
+Task D are some YN Questions about the properties of the given encoding.
 */
 
 function Task4() {
@@ -74,57 +73,72 @@ function Task4() {
   }
 
   // Temp for MC Questions
-  const [mcTemp] = useState(
-    Array.from({ length: 3 * numberOfTasks }, () => {
-      // random encoding being chosen
-      let k = Math.floor(Math.random() * 4);
-      if (k === 4) {
-        k = 3;
-      }
-      return k;
-    })
-  );
+  const [mcTemp] = useState(() => {
+    // return value of this function
+    let sol = [];
+
+    // always in pairs of 3, for each subtask 1
+    for (let i = 0; i < 3 * numberOfTasks; i += 3) {
+      // randomizing the selection of code words
+      let k1 = Math.floor(Math.random() * 4);
+      let k2 = Math.floor(Math.random() * 4);
+      let k3 = Math.floor(Math.random() * 4);
+
+      // could be 4
+      if (k1 === 4) k1 = 3;
+      if (k2 === 4) k2 = 3;
+      if (k3 === 4) k3 = 3;
+
+      // the false code word for the mc part being displayed
+      let seqTemp1 = [...encoding[k1]];
+      let seqTemp2 = [...encoding[k2]];
+      let seqTemp3 = [...encoding[k3]];
+
+      // creating some errors
+      errormaker(seqTemp1, 1);
+      errormaker(seqTemp2, 2);
+      errormaker(seqTemp3, 3);
+
+      // answer keys
+      let key1 = Array(4).fill(false);
+      key1[k1] = true;
+      let key2 = [...Array(4)].map((e, i) => {
+        return distance(seqTemp2, encoding[i]) === 2;
+      });
+      let key3 = [...Array(4)].map((e, i) => {
+        return distance(seqTemp3, encoding[i]) === 3;
+      });
+
+      // gather them all together
+      sol.push([k1, seqTemp1.join(""), key1]);
+      sol.push([k2, seqTemp2.join(""), key2]);
+      sol.push([k3, seqTemp3.join(""), key3]);
+    }
+
+    return sol;
+  });
 
   // MC Questions
   let mc4A = []; // one error
   let mc4B = []; // two errors
   let mc4C = []; // three errors
 
-  // for answer key
-  let key = Array(4).fill(false);
-
   for (let i = 0; i < 3 * numberOfTasks; i += 3) {
-    let k1 = mcTemp[i];
-    let k2 = mcTemp[i + 1];
-    let k3 = mcTemp[i + 2];
-
-    let key1 = [...key];
-    let key2 = [...key];
-    let key3 = [...key];
-
-    key1[k1] = true;
-    key2[k2] = true;
-    key3[k3] = true;
-
-    let seqTemp1 = [...encoding[k1]];
-    let seqTemp2 = [...encoding[k2]];
-    let seqTemp3 = [...encoding[k3]];
-
-    errormaker(seqTemp1, 1);
-    errormaker(seqTemp2, 2);
-    errormaker(seqTemp3, 3);
+    let element1 = mcTemp[i];
+    let element2 = mcTemp[i + 1];
+    let element3 = mcTemp[i + 2];
 
     mc4A.push(
       <>
         <div className="space"></div>
-        <p>Nachricht: {seqTemp1.join("")}</p>
+        <p>Nachricht: {element1[1]}</p>
         <div className="smallSpace"></div>
         <MC
           key={i}
           callerFunction={() => setAnswersA(answersA + 1)}
           options={words}
-          answerKey={key1}
-          textOnWrong={<p>Die richtige Antwort lautet {words[k1]}.</p>}
+          answerKey={element1[2]}
+          textOnWrong={<p>Die richtige Antwort lautet {element1[0]}.</p>}
           textOnCorrect={<p></p>}
         />
       </>
@@ -133,14 +147,14 @@ function Task4() {
     mc4B.push(
       <>
         <div className="space"></div>
-        <p>Nachricht: {seqTemp2.join("")}</p>
+        <p>Nachricht: {element2[1]}</p>
         <div className="smallSpace"></div>
         <MC
           key={i + 1}
           callerFunction={() => setAnswersB(answersB + 1)}
           options={words}
-          answerKey={key2}
-          textOnWrong={<p>Die richtige Antwort lautet {words[k2]}.</p>}
+          answerKey={element2[2]}
+          textOnWrong={<p>Die richtige Antwort lautet {element2[0]}.</p>}
           textOnCorrect={<p></p>}
         />
       </>
@@ -149,14 +163,14 @@ function Task4() {
     mc4C.push(
       <>
         <div className="space"></div>
-        <p>Nachricht: {seqTemp1.join("")}</p>
+        <p>Nachricht: {element3[1]}</p>
         <div className="smallSpace"></div>
         <MC
           key={i + 2}
           callerFunction={() => setAnswersC(answersC + 1)}
           options={words}
-          answerKey={key3}
-          textOnWrong={<p>Die richtige Antwort lautet {words[k3]}.</p>}
+          answerKey={element3[2]}
+          textOnWrong={<p>Die richtige Antwort lautet {element3[0]}.</p>}
           textOnCorrect={<p></p>}
         />
       </>
@@ -175,7 +189,7 @@ function Task4() {
             Gegeben sind 4 Wörter, welche wir einer binären Darstellung
             zuordnen. Weiter kodieren wir die binären Darstellungen, in dem wir
             diese jeweils 3-mal wiederholen. Beispielsweise wird {binaryRep[1]}{" "}
-            zu
+            mit
             {" " + binaryRep[1]}
             <span style={{ color: "red" }}>{binaryRep[1]}</span>
             <span style={{ color: "green" }}>{binaryRep[1] + " "}</span>{" "}
@@ -238,99 +252,201 @@ function Task4() {
 
       {answersC >= numberOfTasks && (
         <div className="task">
-          <p>Mit der gegebenen Kodierung kann man immer...</p>
+          <div className="space"></div>
           <YN
-            callerFunction={() => handleTaskStateD(0)}
-            question={"Fehler erkennen, wenn ein Fehler aufgetreten ist."}
-            optionYes={"Ja"}
-            optionNo={"Nein"}
-            textOnWrong={
-              "Wenn ein Fehler auftrit, dann ist die fehlerhafte Nachricht gar nicht eines unserer Code-Wörter."
+            question={
+              <p>
+                Wenn die Prüfziffer nicht korrekt ist, dann muss die Zahlenfolge
+                einen Fehler beinhalten.
+              </p>
             }
+            solution={0}
+            optionYes={<span>Ja</span>}
+            optionNo={<span>Nein</span>}
             textOnCorrect={
-              "Wenn ein Fehler auftrit, dann ist die fehlerhafte Nachricht gar nicht eines unserer Code-Wörter."
+              <p>
+                Ein Übertragungsfehler kann auch in der Prüfziffer selbst
+                auftreten, auch wenn die Zahlenfolge fehlerfrei übertragen
+                worden ist. Man muss dennoch von einer Fehlübertragung ausgehen.
+              </p>
+            }
+            textOnWrong={
+              <p>
+                Ein Übertragungsfehler kann auch in der Prüfziffer selbst
+                auftreten, auch wenn die Zahlenfolge fehlerfrei übertragen
+                worden ist. Man muss dennoch von einer Fehlübertragung ausgehen.
+              </p>
+            }
+            callerFunction={() => handleTaskStateD(0)}
+          />
+        </div>
+      )}
+
+      {taskStateD[0] && (
+        <div className="task">
+          <div className="space"></div>
+          <YN
+            question={
+              <p>
+                Häufig geschehen auch Tippfehler beim Mensch, z.B. dass man zwei
+                Ziffern vertauscht (z.B. 73 statt 37). Kann die Prüfsu,e solche
+                fehler erkennen?
+              </p>
+            }
+            solution={0}
+            optionYes={<span>Ja</span>}
+            optionNo={<span>Nein</span>}
+            textOnCorrect={
+              <p>
+                Die Summe der folge bleibt gleich. Es spielt keine Rolle, in
+                welcher Reihenfolge man die Zahlen addiert (7 + 3 = 3 + 7).
+                Solche Fehler bleiben desswegen unerkannt.
+              </p>
+            }
+            textOnWrong={
+              <p>
+                Die Summe der folge bleibt gleich. Es spielt keine Rolle, in
+                welcher Reihenfolge man die Zahlen addiert (7 + 3 = 3 + 7).
+                Solche Fehler bleiben desswegen unerkannt.
+              </p>
+            }
+            callerFunction={() => handleTaskStateD(1)}
+          />
+        </div>
+      )}
+
+      {taskStateD[1] && (
+        <div className="task">
+          <div className="space"></div>
+          <YN
+            question={
+              <p>
+                Sollte eine Ziffer wegen einer Fehlübertragung falsch sein, dann
+                erkennen wir mit der Prüfziffer, welche Ziffer das ist.
+              </p>
+            }
+            solution={0}
+            optionYes={<span>Ja</span>}
+            optionNo={<span>Nein</span>}
+            textOnCorrect={
+              <p>
+                Die Prüfziffer kann nur erkennen, ob ein Fehler in der
+                Übertragung vorgefallen ist, allerdings nicht bei welcher
+                Ziffer.
+              </p>
+            }
+            textOnWrong={
+              <p>
+                Die Prüfziffer kann nur erkennen, ob ein Fehler in der
+                Übertragung vorgefallen ist, allerdings nicht bei welcher
+                Ziffer.
+              </p>
+            }
+            callerFunction={() => handleTaskStateD(2)}
+          />
+        </div>
+      )}
+
+      {taskStateD[2] && (
+        <div className="task">
+          <div className="space"></div>
+          <YN
+            question={
+              <p>
+                Angenommen bei der Übertragung treten zwei Fehler auf, so dass
+                nun 2 Ziffern falsch sind. Erkennt man das mit der Prüfziffer?
+              </p>
+            }
+            solution={0}
+            optionYes={<span>Ja</span>}
+            optionNo={<span>Nein</span>}
+            textOnCorrect={
+              <p>
+                Eine Ziffer könnte um den Betrag x höher sein und eine andere
+                Ziffer um den gleichen Betrag x tiefer. Die Summe der Ziffern
+                bleibt dennoch gleich, und somit auch die Prüfziffer.
+              </p>
+            }
+            textOnWrong={
+              <p>
+                Eine Ziffer könnte um den Betrag x höher sein und eine andere
+                Ziffer um den gleichen Betrag x tiefer. Die Summe der Ziffern
+                bleibt dennoch gleich, und somit auch die Prüfziffer. Angenommen
+                die ursprüungliche Zahlenfolge wäre 142 und die Prüfziffer 3.
+                Zwei Fehler in der Folge könnte uns 232 geben, wobei dessen
+                Prüfziffer auch 3 ist. Das würden wir fälschlicherweise als
+                fehlerfreie Übertragung betrachten.
+              </p>
+            }
+            callerFunction={() => handleTaskStateD(3)}
+          />
+        </div>
+      )}
+
+      {taskStateD[3] && (
+        <div className="task">
+          <div className="space"></div>
+          <YN
+            question={
+              <p>
+                Wenn durch ein Fehler in der Übertragung eine Ziffer in der
+                Folge ausgelassen wird, kann man das mit der Prüfziffer
+                erkennen?
+              </p>
             }
             solution={1}
+            optionYes={<span>Ja</span>}
+            optionNo={<span>Nein</span>}
+            textOnCorrect={
+              <p>
+                Die Ziffern liegen zwischen 1 und 9. Würde eine ausgelassen
+                werden, so stimmt die Summe der erhaltenen Folge nicht mit der
+                Prüfziffer überein.
+              </p>
+            }
+            textOnWrong={
+              <p>
+                Die Ziffern liegen zwischen 1 und 9. Würde eine ausgelassen
+                werden, so stimmt die Summe der erhaltenen Folge nicht mit der
+                Prüfziffer überein. Sollte 0 auch eine mögliche Ziffer sein,
+                dann haben Sie recht. Die Folgen 24104 und 2414 haben die
+                gleiche Prüfziffer. Das Entfallen der 0 würde nicht als
+                Übertragungsfehler aufgefasst werden.
+              </p>
+            }
+            callerFunction={() => handleTaskStateD(4)}
           />
-          {taskStateD[0] && (
-            <YN
-              callerFunction={() => handleTaskStateD(1)}
-              question={"Fehler korrigieren, wenn ein Fehler aufgetreten ist."}
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnWrong={
-                "Unsere Code-Wörter unterscheiden sich in mindesten an 3 Stellen. Die fehlerhafte Nachricht unterscheidet sich mit einem Fehler nur an einer Stelle zu einem Code-Wort und zu allen anderen in mintesten zwei Stellen. Man kan somit die Feherhafte nachricht eindeutig zuordnen."
-              }
-              textOnCorrect={
-                "Unsere Code-Wörter unterscheiden sich in mindesten an 3 Stellen. Die fehlerhafte Nachricht unterscheidet sich mit einem Fehler nur an einer Stelle zu einem Code-Wort und zu allen anderen in mintesten zwei Stellen. Man kan somit die Feherhafte nachricht eindeutig zuordnen."
-              }
-              solution={1}
-            />
-          )}
-          {taskStateD[1] && (
-            <YN
-              callerFunction={() => handleTaskStateD(2)}
-              question={"Fehler erkennen, wenn zwei Fehler aufgetreten sind."}
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnWrong={
-                "Wenn zewi Fehler auftreten, dann ist die fehlerhafte Nachricht gar nicht eines unserer Code-Wörter."
-              }
-              textOnCorrect={
-                "Wenn zewi Fehler auftreten, dann ist die fehlerhafte Nachricht gar nicht eines unserer Code-Wörter."
-              }
-              solution={1}
-            />
-          )}
-          {taskStateD[2] && (
-            <YN
-              callerFunction={() => handleTaskStateD(3)}
-              question={
-                "Fehler korrigieren, wenn zwei Fehler aufgetreten sind."
-              }
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnWrong={
-                "Bei zwei Fehlern kann man nur erkennen, dass ein Fehler aufgetereten ist, kann ihn aber nicht Korrigieren. 101010 könnte zu 100000 umgewandelt werden mit zwei Fehlern, und man würde das fälschlicherweise zu 000000 korrigieren."
-              }
-              textOnCorrect={
-                "Bei zwei Fehlern kann man nur erkennen, dass ein Fehler aufgetereten ist, kann ihn aber nicht Korrigieren. 101010 könnte zu 100000 umgewandelt werden mit zwei Fehlern, und man würde das fälschlicherweise zu 000000 korrigieren."
-              }
-              solution={0}
-            />
-          )}
-          {taskStateD[3] && (
-            <YN
-              callerFunction={() => handleTaskStateD(4)}
-              question={"Fehler erkennen, wenn drei Fehler aufgetreten sind."}
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnWrong={
-                "010101 könnte sich per Zufall bei 3 Fehlern zu 000000 umwandeln, was man nicht als Fehler erkennen kann."
-              }
-              textOnCorrect={
-                "010101 könnte sich per Zufall bei 3 Fehlern zu 000000 umwandeln, was man nicht als Fehler erkennen kann."
-              }
-              solution={0}
-            />
-          )}
-          {taskStateD[4] && (
-            <YN
-              callerFunction={() => {}}
-              question={
-                "Fehler korrigieren, wenn drei Fehler aufgetreten sind."
-              }
-              optionYes={"Ja"}
-              optionNo={"Nein"}
-              textOnWrong={
-                "Man kann unter umständen die Fehler nicht erkennen und darum erst gar nicht korrigieren."
-              }
-              textOnCorrect={
-                "Man kann unter umständen die Fehler nicht erkennen und darum erst gar nicht korrigieren."
-              }
-              solution={0}
-            />
-          )}
+        </div>
+      )}
+
+      {taskStateD[4] && (
+        <div className="task">
+          <div className="space"></div>
+          <YN
+            question={
+              <p>Welche der beiden Methoden zur Fehlererkennung ist besser?</p>
+            }
+            solution={0}
+            optionYes={<span>Prüfsumme</span>}
+            optionNo={<span>Prüfziffer</span>}
+            textOnCorrect={
+              <p>
+                Beide Methoden haben die gleichen Eigenschaften. Sie
+                unterscheiden sich nur in der Länge.
+              </p>
+            }
+            textOnWrong={
+              <p>
+                Beide Methoden haben die gleichen Eigenschaften. Sie
+                unterscheiden sich nur in der Länge. Die Prüfziffer ist besser,
+                da diese, egal wie lange die Zahlenfolge ist, immer genau eine
+                Ziffer gross ist. Die Prüfsumme kann, je nach Länge der
+                Zahlenfolge, beliebig lang werden. Das benötigt mehr
+                Speicherplatz gegenüber der Prüfziffer.
+              </p>
+            }
+            callerFunction={() => {}}
+          />
         </div>
       )}
     </div>

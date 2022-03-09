@@ -56,9 +56,6 @@ function Task3() {
   const [wrongAnswersC, setWrongAnswersC] = useState(0);
   const [correctAnswersC, setCorrectAnswersC] = useState(0);
 
-  // if taskStateD === true, then last part is revealed
-  const [taskStateD, setTaskStateD] = useState(false);
-
   return (
     <div className="main">
       <h1>Aufgabe 3: Binäre Folgen und Fehlererkennung</h1>
@@ -94,7 +91,7 @@ function Task3() {
             <ChecksumExample
               key={i}
               checksumFunction={binaryCheckSymbol1}
-              sequence={randomBinaryString(0)}
+              sequence={randomBinaryString(5)}
             />
           ))}
           <div className="space"></div>
@@ -102,7 +99,7 @@ function Task3() {
             <ChecksumExercise
               key={i}
               checksumFunction={binaryCheckSymbol1}
-              sequence={randomBinaryString(0)}
+              sequence={randomBinaryString(5)}
               onWorong={() => setWrongAnswersA(wrongAnswersA + 1)}
               onCorrect={() => setCorrectAnswersA(correctAnswersA + 1)}
             />
@@ -215,7 +212,7 @@ function Task3() {
               <ChecksumExample
                 key={i}
                 checksumFunction={binaryCheckSymbol2}
-                sequence={randomBinaryString(0)}
+                sequence={randomBinaryString(6)}
               />
             ))}
             <div className="space"></div>
@@ -223,7 +220,7 @@ function Task3() {
               <ChecksumExercise
                 key={i}
                 checksumFunction={binaryCheckSymbol2}
-                sequence={randomBinaryString(0)}
+                sequence={randomBinaryString(6)}
                 onWorong={() => setWrongAnswersC(wrongAnswersC + 1)}
                 onCorrect={() => setCorrectAnswersC(correctAnswersC + 1)}
               />
