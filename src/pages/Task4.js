@@ -99,20 +99,33 @@ function Task4() {
       errormaker(seqTemp2, 2);
       errormaker(seqTemp3, 3);
 
-      // answer keys
+      // answer keys and
       let key1 = Array(4).fill(false);
       key1[k1] = true;
-      let key2 = [...Array(4)].map((e, i) => {
-        return distance(seqTemp2, encoding[i]) === 2;
-      });
-      let key3 = [...Array(4)].map((e, i) => {
-        return distance(seqTemp3, encoding[i]) === 3;
-      });
+      let key2 = Array(4).fill(false);
+      key2[k2] = true;
+
+      let key3 = [];
+      let k4 = 0;
+      for (let i = 0; i < 4; ++i) {
+        if (distance(seqTemp3, encoding[i]) === 3) {
+          key3[i] = true;
+          if (k3 != i) k4 = i;
+        } else {
+          key3[i] = false;
+        }
+      }
 
       // gather them all together
-      sol.push([k1, seqTemp1.join(""), key1]);
-      sol.push([k2, seqTemp2.join(""), key2]);
-      sol.push([k3, seqTemp3.join(""), key3]);
+      sol.push([seqTemp1.join(""), key1, words[k1]]);
+      sol.push([seqTemp2.join(""), key2, words[k2]]);
+      sol.push([
+        seqTemp3.join(""),
+        key3,
+        <span>
+          {words[k3]} und {words[k4]}
+        </span>,
+      ]);
     }
 
     return sol;
@@ -131,14 +144,14 @@ function Task4() {
     mc4A.push(
       <>
         <div className="space"></div>
-        <p>Nachricht: {element1[1]}</p>
+        <p>Erhaltene Nachricht: {element1[0]}</p>
         <div className="smallSpace"></div>
         <MC
           key={i}
           callerFunction={() => setAnswersA(answersA + 1)}
           options={words}
-          answerKey={element1[2]}
-          textOnWrong={<p>Die richtige Antwort lautet {element1[0]}.</p>}
+          answerKey={element1[1]}
+          textOnWrong={<p>Die richtige Antwort lautet {element1[2]}.</p>}
           textOnCorrect={<p></p>}
         />
       </>
@@ -147,14 +160,14 @@ function Task4() {
     mc4B.push(
       <>
         <div className="space"></div>
-        <p>Nachricht: {element2[1]}</p>
+        <p>Erhaltene Nachricht: {element2[0]}</p>
         <div className="smallSpace"></div>
         <MC
           key={i + 1}
           callerFunction={() => setAnswersB(answersB + 1)}
           options={words}
-          answerKey={element2[2]}
-          textOnWrong={<p>Die richtige Antwort lautet {element2[0]}.</p>}
+          answerKey={element2[1]}
+          textOnWrong={<p>Die richtige Antwort lautet {element2[2]}.</p>}
           textOnCorrect={<p></p>}
         />
       </>
@@ -163,14 +176,14 @@ function Task4() {
     mc4C.push(
       <>
         <div className="space"></div>
-        <p>Nachricht: {element3[1]}</p>
+        <p>Erhaltene Nachricht: {element3[0]}</p>
         <div className="smallSpace"></div>
         <MC
           key={i + 2}
           callerFunction={() => setAnswersC(answersC + 1)}
           options={words}
-          answerKey={element3[2]}
-          textOnWrong={<p>Die richtige Antwort lautet {element3[0]}.</p>}
+          answerKey={element3[1]}
+          textOnWrong={<p>Die richtige Antworten sind {element3[2]}.</p>}
           textOnCorrect={<p></p>}
         />
       </>
@@ -186,17 +199,21 @@ function Task4() {
       <div className="task">
         <div className="taskLeft">
           <p>
-            Gegeben sind 4 Wörter, welche wir einer binären Darstellung
-            zuordnen. Weiter kodieren wir die binären Darstellungen, in dem wir
-            diese jeweils 3-mal wiederholen. Beispielsweise wird {binaryRep[1]}{" "}
-            mit
+            Gegeben ist eine Kodierung von 4 Nachrichten (Siehe Tabelle rechts).
+            Die Kodierung ordnet jeder Nachricht einen String zu, welcher
+            wiederum 3-mal wiederholt wird. Beispielsweise wird hier{" "}
+            {binaryRep[1]} mit
             {" " + binaryRep[1]}
             <span style={{ color: "red" }}>{binaryRep[1]}</span>
             <span style={{ color: "green" }}>{binaryRep[1] + " "}</span>{" "}
             kodiert.
           </p>
           <div className="space"></div>
-          <p>TOD Task A</p>
+          <p>
+            Gegeben sind Nachrichten nach der Übertragung. Bestimmen Sie die
+            mögliche ursprüngliche Nachricht unter der Annahme, dass genau ein
+            Fehler vorgefallen ist.
+          </p>
           {mc4A}
 
           <div className="space"></div>
@@ -212,7 +229,11 @@ function Task4() {
 
           {answersA >= numberOfTasks && (
             <>
-              <p>TOD Task B</p>
+              <p>
+                Gegeben sind Nachrichten nach der Übertragung. Bestimmen Sie die
+                mögliche ursprüngliche Nachricht unter der Annahme, dass genau
+                zwei Fehler vorgefallen sind.
+              </p>
               {mc4B}
               <div className="space"></div>
               <button
@@ -228,7 +249,11 @@ function Task4() {
 
           {answersB >= numberOfTasks && (
             <>
-              <p>TOD Task C</p>
+              <p>
+                Gegeben sind Nachrichten nach der Übertragung. Bestimmen Sie die
+                mögliche ursprüngliche Nachricht unter der Annahme, dass genau
+                drei Fehler vorgefallen sind.
+              </p>
               {mc4C}
               <div className="space"></div>
               <button
@@ -256,25 +281,19 @@ function Task4() {
           <YN
             question={
               <p>
-                Wenn die Prüfziffer nicht korrekt ist, dann muss die Zahlenfolge
-                einen Fehler beinhalten.
+                Wenn ein Fehler in der Übertragung auftrit, dann ist der
+                erhaltene String nicht in den Codewörter enthalten.
               </p>
             }
-            solution={0}
-            optionYes={<span>Ja</span>}
-            optionNo={<span>Nein</span>}
-            textOnCorrect={
-              <p>
-                Ein Übertragungsfehler kann auch in der Prüfziffer selbst
-                auftreten, auch wenn die Zahlenfolge fehlerfrei übertragen
-                worden ist. Man muss dennoch von einer Fehlübertragung ausgehen.
-              </p>
-            }
+            solution={1}
+            optionYes={<span>Richtig</span>}
+            optionNo={<span>Falsch</span>}
+            textOnCorrect={<p></p>}
             textOnWrong={
               <p>
-                Ein Übertragungsfehler kann auch in der Prüfziffer selbst
-                auftreten, auch wenn die Zahlenfolge fehlerfrei übertragen
-                worden ist. Man muss dennoch von einer Fehlübertragung ausgehen.
+                Die Codewörter unterscheiden sich mindestends in 3 Stellen. Ein
+                Fehler reicht nicht aus, um das eine Codewort in ein anderes
+                umzuwandeln.
               </p>
             }
             callerFunction={() => handleTaskStateD(0)}
@@ -288,26 +307,20 @@ function Task4() {
           <YN
             question={
               <p>
-                Häufig geschehen auch Tippfehler beim Mensch, z.B. dass man zwei
-                Ziffern vertauscht (z.B. 73 statt 37). Kann die Prüfsu,e solche
-                fehler erkennen?
+                Wenn ein Fehler in der Übertragung auftrit, dann kann man diesen
+                korrigieren.
               </p>
             }
-            solution={0}
-            optionYes={<span>Ja</span>}
-            optionNo={<span>Nein</span>}
-            textOnCorrect={
-              <p>
-                Die Summe der folge bleibt gleich. Es spielt keine Rolle, in
-                welcher Reihenfolge man die Zahlen addiert (7 + 3 = 3 + 7).
-                Solche Fehler bleiben desswegen unerkannt.
-              </p>
-            }
+            solution={1}
+            optionYes={<span>Richtig</span>}
+            optionNo={<span>Falsch</span>}
+            textOnCorrect={<p></p>}
             textOnWrong={
               <p>
-                Die Summe der folge bleibt gleich. Es spielt keine Rolle, in
-                welcher Reihenfolge man die Zahlen addiert (7 + 3 = 3 + 7).
-                Solche Fehler bleiben desswegen unerkannt.
+                Das feherhafte Wort unterscheidet sich zu genau einem Codewort
+                um eine Stelle. Die anderen Codewörter unterscheiden sich
+                mindestends in 2 Stellen zum Fehlerhaften Sting, weil sich die
+                Codewörter sich in mindestends in 3 Stellen unterscheiden.
               </p>
             }
             callerFunction={() => handleTaskStateD(1)}
@@ -321,25 +334,19 @@ function Task4() {
           <YN
             question={
               <p>
-                Sollte eine Ziffer wegen einer Fehlübertragung falsch sein, dann
-                erkennen wir mit der Prüfziffer, welche Ziffer das ist.
+                Wenn zwei Fehler in der Übertragung auftreten, dann ist der
+                erhaltene String nicht in den Codewörter enthalten.
               </p>
             }
-            solution={0}
+            solution={1}
             optionYes={<span>Ja</span>}
             optionNo={<span>Nein</span>}
-            textOnCorrect={
-              <p>
-                Die Prüfziffer kann nur erkennen, ob ein Fehler in der
-                Übertragung vorgefallen ist, allerdings nicht bei welcher
-                Ziffer.
-              </p>
-            }
+            textOnCorrect={<p></p>}
             textOnWrong={
               <p>
-                Die Prüfziffer kann nur erkennen, ob ein Fehler in der
-                Übertragung vorgefallen ist, allerdings nicht bei welcher
-                Ziffer.
+                Die Codewörter unterscheiden sich mindestends in 3 Stellen. Zwei
+                Fehler reichen nicht aus, um das eine Codewort in ein anderes
+                umzuwandeln.
               </p>
             }
             callerFunction={() => handleTaskStateD(2)}
@@ -353,29 +360,19 @@ function Task4() {
           <YN
             question={
               <p>
-                Angenommen bei der Übertragung treten zwei Fehler auf, so dass
-                nun 2 Ziffern falsch sind. Erkennt man das mit der Prüfziffer?
+                Wenn zwei Fehler in der Übertragung auftreten, dann kann man
+                diese korrigieren.
               </p>
             }
             solution={0}
             optionYes={<span>Ja</span>}
             optionNo={<span>Nein</span>}
-            textOnCorrect={
-              <p>
-                Eine Ziffer könnte um den Betrag x höher sein und eine andere
-                Ziffer um den gleichen Betrag x tiefer. Die Summe der Ziffern
-                bleibt dennoch gleich, und somit auch die Prüfziffer.
-              </p>
-            }
+            textOnCorrect={<p></p>}
             textOnWrong={
               <p>
-                Eine Ziffer könnte um den Betrag x höher sein und eine andere
-                Ziffer um den gleichen Betrag x tiefer. Die Summe der Ziffern
-                bleibt dennoch gleich, und somit auch die Prüfziffer. Angenommen
-                die ursprüungliche Zahlenfolge wäre 142 und die Prüfziffer 3.
-                Zwei Fehler in der Folge könnte uns 232 geben, wobei dessen
-                Prüfziffer auch 3 ist. Das würden wir fälschlicherweise als
-                fehlerfreie Übertragung betrachten.
+                100000 könte ein Übertragungsfehler gewesen sein an der ersten
+                Stelle bei 000000 oder bei zwei Stellen von 101010. Deswegen
+                kann man diesen Fehler nicht korrigieren.
               </p>
             }
             callerFunction={() => handleTaskStateD(3)}
@@ -389,30 +386,16 @@ function Task4() {
           <YN
             question={
               <p>
-                Wenn durch ein Fehler in der Übertragung eine Ziffer in der
-                Folge ausgelassen wird, kann man das mit der Prüfziffer
-                erkennen?
+                Wenn drei Fehler in der Übertragung auftreten, dann ist der
+                erhaltene String nicht in den Codewörter enthalten.
               </p>
             }
-            solution={1}
+            solution={0}
             optionYes={<span>Ja</span>}
             optionNo={<span>Nein</span>}
-            textOnCorrect={
-              <p>
-                Die Ziffern liegen zwischen 1 und 9. Würde eine ausgelassen
-                werden, so stimmt die Summe der erhaltenen Folge nicht mit der
-                Prüfziffer überein.
-              </p>
-            }
+            textOnCorrect={<p></p>}
             textOnWrong={
-              <p>
-                Die Ziffern liegen zwischen 1 und 9. Würde eine ausgelassen
-                werden, so stimmt die Summe der erhaltenen Folge nicht mit der
-                Prüfziffer überein. Sollte 0 auch eine mögliche Ziffer sein,
-                dann haben Sie recht. Die Folgen 24104 und 2414 haben die
-                gleiche Prüfziffer. Das Entfallen der 0 würde nicht als
-                Übertragungsfehler aufgefasst werden.
-              </p>
+              <p>Z.B. können drei Fehler 101010 zu 000000 umwandeln.</p>
             }
             callerFunction={() => handleTaskStateD(4)}
           />
@@ -424,25 +407,19 @@ function Task4() {
           <div className="space"></div>
           <YN
             question={
-              <p>Welche der beiden Methoden zur Fehlererkennung ist besser?</p>
+              <p>
+                Wenn zwei Fehler in der Übertragung auftreten, dann kann man
+                diese korrigieren.
+              </p>
             }
             solution={0}
             optionYes={<span>Prüfsumme</span>}
             optionNo={<span>Prüfziffer</span>}
-            textOnCorrect={
-              <p>
-                Beide Methoden haben die gleichen Eigenschaften. Sie
-                unterscheiden sich nur in der Länge.
-              </p>
-            }
+            textOnCorrect={<p></p>}
             textOnWrong={
               <p>
-                Beide Methoden haben die gleichen Eigenschaften. Sie
-                unterscheiden sich nur in der Länge. Die Prüfziffer ist besser,
-                da diese, egal wie lange die Zahlenfolge ist, immer genau eine
-                Ziffer gross ist. Die Prüfsumme kann, je nach Länge der
-                Zahlenfolge, beliebig lang werden. Das benötigt mehr
-                Speicherplatz gegenüber der Prüfziffer.
+                Wenn wir 000000 erhalten, was ein Codewort ist, so gehen wir
+                nicht von einem Fehler aus und würden das nicht korrigieren.
               </p>
             }
             callerFunction={() => {}}
