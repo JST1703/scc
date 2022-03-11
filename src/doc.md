@@ -34,6 +34,10 @@ In the exercise, the user is given sequences containing exact one error that mus
 
 An exercise type. Given a code, the user must first determine it's hamming distance and then answer some MCs about some properties.
 
+##### GraphTask
+
+This component is used for task number 7. The user is given a graph of strings, where the user has to construct an encoding with certain properties by crossing out nodes step by step.
+
 ##### Info
 
 Component is used to show tips, info or theory that might be of help to the student.

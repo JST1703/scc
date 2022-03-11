@@ -24,7 +24,8 @@
 .main p,
 .main span,
 .main th,
-.main td {
+.main td,
+.main h3 {
   font-size: max(1.3vw, 10pt);
 }
 
