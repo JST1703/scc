@@ -50,6 +50,7 @@ function YN({
   return (
     <>
       {question}
+      <div className="smallSpace"></div>
       <div>
         <input
           type="radio"

@@ -326,7 +326,7 @@ function Task1() {
                 Eine Ziffer könnte um den Betrag x höher sein und eine andere
                 Ziffer um den gleichen Betrag x tiefer. Die Summe der Ziffern
                 bleibt dennoch gleich, was gleich der Prüfziffer ist. Angenommen
-                die ursprüungliche Zahlenfolge wäre 234 und die Prüfsumme 09.
+                die ursprüngliche Zahlenfolge wäre 234 und die Prüfsumme 09.
                 Zwei Fehler in der Folge könnte uns 531 geben, wobei dessen
                 Prüfsumme auch 09 ist. Das würden wir fälschlicherweise als
                 fehlerfreie Übertragung betrachten.

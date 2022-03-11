@@ -56,6 +56,7 @@ function MC({
 
   return (
     <>
+      <div className="smallSpace"></div>
       {options.map(function (element, index) {
         return (
           <div className="mc" key={index}>

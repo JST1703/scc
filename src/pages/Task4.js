@@ -201,7 +201,7 @@ function Task4() {
           <p>
             Gegeben ist eine Kodierung von 4 Nachrichten (Siehe Tabelle rechts).
             Die Kodierung ordnet jeder Nachricht einen String zu, welcher
-            wiederum 3-mal wiederholt wird. Beispielsweise wird hier{" "}
+            wiederum 2-mal wiederholt wird. Beispielsweise wird hier{" "}
             {binaryRep[1]} mit
             {" " + binaryRep[1]}
             <span style={{ color: "red" }}>{binaryRep[1]}</span>
@@ -370,7 +370,7 @@ function Task4() {
             textOnCorrect={<p></p>}
             textOnWrong={
               <p>
-                100000 könte ein Übertragungsfehler gewesen sein an der ersten
+                100000 könnte ein Übertragungsfehler gewesen sein an der ersten
                 Stelle bei 000000 oder bei zwei Stellen von 101010. Deswegen
                 kann man diesen Fehler nicht korrigieren.
               </p>
