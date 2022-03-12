@@ -3,9 +3,12 @@ import hammingDistance from "../functions/hammingDistance";
 
 // this component goes with task 7
 
-// taskNumber is either 0 or 1 for indicating what property the encoding needs to fulfill.
+/* taskNumber 
+is either 0 or 1 for indicating what property the encoding needs to fulfill.
+callerFunction is a function the caller component uses, if this question gets answered.
+*/
 
-function GraphTask({ taskNumber }) {
+function GraphTask({ taskNumber, callerFunction }) {
   // code words
   const words = [
     "00000",
@@ -121,7 +124,7 @@ function GraphTask({ taskNumber }) {
     0: neutral
     1 and 4: selected
     2: un selected
-    */
+  */
   const [buttonStatus, setButoonStatus] = useState(() => {
     let arr = Array(codeSize).fill(0);
     let randy = Math.floor(Math.random() * codeSize);
@@ -137,7 +140,7 @@ function GraphTask({ taskNumber }) {
     "": not answered yet
     true: correctly answered
     false: answered, but wrong
-    */
+  */
   const [taskState, setTaskState] = useState("");
 
   // text displayed if answer is either correct or wrong
@@ -158,20 +161,19 @@ function GraphTask({ taskNumber }) {
       return buttonStatus[index] % 3 === 1;
     });
     let sol = true;
-    setText("Korrekt.");
+    setText("");
     if (temp.length !== possibleTasks[taskNumber][2]) {
       sol = false;
-      setText(
-        "Falsch, die Kodierung beinhaltet noch nicht alle möglichen Wörter."
-      );
+      setText(". Die Kodierung beinhaltet noch nicht alle möglichen Wörter.");
     }
     if (hammingDistance(temp) !== possibleTasks[taskNumber][1]) {
       sol = false;
-      setText(
-        "Falsch, die Kodierung erfüllt nicht die vorgegebenen Eigenschaften."
-      );
+      setText(". Die Kodierung erfüllt nicht die vorgegebenen Eigenschaften.");
     }
     setTaskState(sol);
+    if (sol) {
+      callerFunction();
+    }
   };
 
   // node render
@@ -203,7 +205,7 @@ function GraphTask({ taskNumber }) {
   }
 
   return (
-    <div className="task">
+    <>
       <p>
         Gegeben sind alle möglichen binären Strings der Länge 5. Wählen Sie alle
         Strings aus, so dass Ihre Auswahl eine Kodierung ergibt, welche folgende
@@ -214,7 +216,7 @@ function GraphTask({ taskNumber }) {
       <div className="smallSpace"></div>
       <p>
         Ein Wort ist dabei bereits vorgegeben. Alle Strings in{" "}
-        <span style={{ color: "green" }}>Grün</span> sind in Ihrer Auswahl.{" "}
+        <span style={{ color: "green" }}>grün</span> sind in Ihrer Auswahl.{" "}
         <span style={{ color: "red" }}>Rote </span>
         und <span style={{ color: "blue" }}>blaue</span> Strings sind nicht in
         der Auswahl. Es wird nur das gewertet, was grün ist. Weiter werden immer
@@ -262,27 +264,20 @@ function GraphTask({ taskNumber }) {
           {nodeRender[30]}
         </div>
         <div className="row">{nodeRender[31]}</div>
+        <div className="smallSpace"></div>
         <button disabled={taskState === true} onClick={() => handleAnswer()}>
           <p>überprüfen</p>
         </button>
-        {taskState === false && <p style={{ color: "red" }}>{text}</p>}
-        {taskState === true && (
-          <div>
-            <p style={{ color: "green" }}>{text}</p>
-            <p>
-              Mit dieser Methode lässt sich einfach eine Kodierung finden,
-              welche eine bestimmte Eigenschaft erfüllen soll. Will man eine
-              Kodierung mit einem Abstand von k haben, so beginnt man bei einem
-              Wort und streicht alle Wörter weg, welche einen Abstand kleiner
-              als k zum Anfangswort haben. Dann sucht man sich ein neues Wort
-              aus und streicht von dort aus alle Wörter weg, welche einen
-              Abstand kleiner als k zu diesem Wort haben, usw., bis man keine
-              Wörter mehr streichen kann.
-            </p>
-          </div>
+        <div className="smallSpace"></div>
+        {taskState === false && (
+          <p>
+            <span style={{ color: "red" }}>Falsch</span>
+            {text}
+          </p>
         )}
+        {taskState === true && <p style={{ color: "green" }}>Korrekt</p>}
       </div>
-    </div>
+    </>
   );
 }
 
