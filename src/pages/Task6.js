@@ -256,15 +256,15 @@ function Task6() {
       {taskTracker[5] && taskTracker[6] && (
         <div className="task">
           <p>
-            Welche Eigenschaft für eine Kodierung ist entscheident um eine
+            Welche Eigenschaft ist für eine Kodierung entscheident um eine
             bestimmte Anzahl an Fehler zu erkennen oder zu korrigieren zu
             können?
           </p>
           <MC
             options={[
-              <span>Die Anzahl der Codewörter</span>,
-              <span>Der Abstand der Codewörter</span>,
-              <span>Die Länge der Codewörter</span>,
+              <span>die Anzahl der Codewörter</span>,
+              <span>der Abstand der Codewörter</span>,
+              <span>die Länge der Codewörter</span>,
             ]}
             answerKey={[false, true, false]}
             textOnCorrect={

@@ -49,32 +49,42 @@ function TextExercise({
   };
 
   return (
-    <div className="example">
-      <p>{question}</p>
-      <span>{text}</span>
+    <>
+      {question}
+      <div className="smallSpace"></div>
+      {text}
       <input
         type="text"
         value={value}
         disabled={taskState === true || taskState === false}
         onChange={(event) => setValue(event.currentTarget.value)}
+        onKeyPress={(event) => {
+          if (event.key === "Enter") {
+            checkInput();
+          }
+        }}
       />
       <button
         onClick={checkInput}
         disabled={taskState === true || taskState === false}
       >
-        überprüfen
+        <p>überprüfen</p>
       </button>
       {taskState === false && (
-        <p>
-          <span style={{ color: "red" }}>Falsch</span>. {textOnWrong}
-        </p>
+        <>
+          <span style={{ color: "red" }}>Falsch</span>
+          <div className="smallSpace"></div>
+          {textOnWrong}
+        </>
       )}
       {taskState === true && (
-        <p>
-          <span style={{ color: "green" }}>Korrekt</span>. {textOnCorrect}
-        </p>
+        <>
+          <span style={{ color: "green" }}>Korrekt</span>
+          <div className="smallSpace"></div>
+          {textOnCorrect}
+        </>
       )}
-    </div>
+    </>
   );
 }
 

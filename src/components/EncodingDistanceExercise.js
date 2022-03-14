@@ -112,7 +112,7 @@ function EncodingDistanceExercise({ callerFunction }) {
   const [taskState, setTaskState] = useState("");
 
   return (
-    <div className="EDE">
+    <>
       {encodingRender()}
       <ChecksumExercise
         onCorrect={() => setTaskState(true)}
@@ -158,7 +158,7 @@ function EncodingDistanceExercise({ callerFunction }) {
           />
         </div>
       )}
-    </div>
+    </>
   );
 }
 

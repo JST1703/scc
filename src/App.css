@@ -129,12 +129,7 @@
   height: inherit;
 }
 
-.EDE {
-  padding-top: 13px;
-}
-
 .graphGrid {
-  padding-top: 5%;
   position: relative;
   height: 900px;
   width: inherit;
@@ -154,7 +149,6 @@
   margin: 1%;
   height: 80%;
   width: 8%;
-  font-size: 80%;
   border-radius: 50%;
   color: #000000;
   border-color: #000000;
@@ -178,7 +172,7 @@
 }
 
 .nodeToggle {
-  border-width: 0.5vw;
+  border-width: 0.38vw;
 }
 
 .squareRow {
