@@ -14,32 +14,81 @@ and then answer some MC questions about its properties
 
 /*
 callerFunction is a function used by the caller component after this exercise has been solved
+
+taskNumber is the number defining the property of the encoding
 */
-function EncodingDistanceExercise({ callerFunction }) {
-  // used if RNG fails;
-  const backupEncoding = [
-    [1, 1, 0, 1, 1, 1, 0, 1, 0, 0],
-    [0, 0, 1, 0, 0, 1, 0, 1, 0, 0],
-    [0, 0, 1, 0, 0, 0, 1, 0, 1, 1],
+function EncodingDistanceExercise({ callerFunction, taskNumber }) {
+  /* 
+  encodings[x][y]: 
+  x is in {0, 1, 2, 3}, indicating if the encoding has the distance x+2
+  unless special case x = 3, which is either a code with distance of 5 or 1
+  y is in {0, 1}, being either one of two options of the length of the encoding
+  */
+  const encodings = [
+    // encodings with distance 2
+    [
+      [
+        [0, 0, 0, 0, 0],
+        [1, 1, 0, 0, 0],
+        [0, 0, 1, 1, 0],
+        [0, 1, 1, 0, 1],
+      ],
+      [
+        [0, 0, 0, 0, 0, 0],
+        [1, 1, 0, 0, 0, 0],
+        [0, 0, 1, 1, 0, 0],
+        [0, 1, 1, 0, 1, 0],
+      ],
+    ],
+
+    // encodings with distance 3
+    [
+      [
+        [0, 0, 0, 0, 0],
+        [1, 0, 1, 0, 1],
+        [0, 1, 0, 1, 1],
+        [1, 1, 1, 1, 0],
+      ],
+      [
+        [0, 0, 0, 0, 0, 0],
+        [1, 0, 1, 0, 1, 0],
+        [0, 1, 0, 1, 0, 1],
+        [1, 1, 1, 1, 1, 1],
+      ],
+    ],
+
+    // encodings with distance 4
+    [
+      [
+        [0, 0, 0, 0, 0, 0],
+        [1, 1, 1, 1, 0, 0],
+        [0, 0, 1, 1, 1, 1],
+        [1, 1, 0, 0, 1, 1],
+      ],
+      [
+        [0, 0, 0, 0, 0, 0, 0],
+        [1, 1, 1, 1, 0, 0, 0],
+        [0, 0, 1, 1, 1, 1, 0],
+        [1, 1, 0, 0, 1, 1, 1],
+      ],
+    ],
+
+    // encodings with distance 5 or 1
+    [
+      [
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 1, 1, 1, 1, 1],
+      ],
+      [
+        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+      ],
+    ],
   ];
 
-  // Length of the code words, between 5 and 9
-  const [codeLength] = useState(Math.floor(Math.random() * 5) + 5);
-
-  // Number of elements in the code, between 3 and 5
-  const [codeSize, setCodeSize] = useState(Math.floor(Math.random() * 3) + 3);
-
-  // the code
-  const [encoding, setEncoding] = useState(
-    Array.from({ length: codeSize }, () => {
-      return randomBinaryString(codeLength);
-    })
-  );
-
-  // hamming distance of the code
-  const [hd, setHD] = useState(hammingDistance(encoding));
-
-  // possible questions for the MC part
+  // possible questions for the MC part of which only 3 ar picked at random
   const props = [
     "bis zu 1 Fehler erkennen.",
     "bis zu 1 Fehler korrigieren.",
@@ -49,115 +98,35 @@ function EncodingDistanceExercise({ callerFunction }) {
     "bis zu 4 Fehler erkennen.",
   ];
 
-  // answer key for MC part
-  const [answerKey, setAnswerKey] = useState(() => {
-    switch (hd) {
-      case 1:
-        return [false, false, false, false, false, false];
-      case 2:
-        return [true, false, false, false, false, false];
-      case 3:
-        return [true, true, true, false, false, false];
-      case 4:
-        return [true, true, true, false, true, false];
-      case 5:
-        return [true, true, true, true, true, true];
-      default:
-        return [false, false, false, false, false, false];
-    }
-  });
+  // the actual encoding chosen by the task
+  // it is one of the pre-calculated encodings shifted by a random string
+  const [chosenEncoding] = useState(() => {
+    let coinFlip = Math.round(Math.random());
+    let sol = encodings[taskNumber][coinFlip];
+    let temp = randomBinaryString(sol[0].length);
 
-  // selects 3 random properties of the possible MC questions
-  const [randomPicker] = useState(() => {
-    let sol = [0, 0, 0, 0, 0, 0, 0];
-    errormaker(sol, 3);
+    for (let i = 0; i < sol.length; ++i) {
+      for (let j = 0; j < sol[0].length; ++j) {
+        if (temp[j] === 1) {
+          sol[i][j] = (sol[i][j] + 1) % 2;
+        }
+      }
+    }
+
     return sol;
   });
 
-  // effective MC questions and effective answer key
-  let mcQuestions = [];
-  let mcAnswerkey = [];
-  for (let i = 0; i < props.length; ++i) {
-    if (randomPicker[i] === 1) {
-      mcQuestions.push(props[i]);
-      mcAnswerkey.push(answerKey[i]);
-    }
-  }
-
-  /*
-  if hd === 0, then we have duplicates in the code. We fall back to backup
-  in order to save computation time.
-  */
-  if (hd === 0) {
-    setEncoding(backupEncoding);
-    setHD(5);
-    setCodeSize(3);
-    setAnswerKey([true, true, true, true, true, true]);
-  }
-
-  const encodingRender = () => {
-    let sol = [];
-    for (let i = 0; i < codeSize; ++i) {
-      sol.push(<div key={i}>{encoding[i]}</div>);
-    }
-    return sol;
+  const checkResult = () => {
+    callerFunction();
+    console.log(chosenEncoding);
+    console.log(hammingDistance(chosenEncoding));
   };
-
-  /*
-  variable for the task state
-  "": not answered yet
-  true: correctly answered
-  false: answered, but wrong
-  */
-  const [taskState, setTaskState] = useState("");
 
   return (
     <>
-      {encodingRender()}
-      <ChecksumExercise
-        onCorrect={() => setTaskState(true)}
-        onWorong={() => setTaskState(false)}
-        sequence={[
-          "H",
-          "a",
-          "m",
-          "m",
-          "i",
-          "n",
-          "g",
-          " ",
-          "A",
-          "b",
-          "s",
-          "t",
-          "a",
-          "n",
-          "d",
-          ":",
-        ]}
-        checksumFunction={(x) => {
-          return hd.toString();
-        }}
-      />
-      {taskState === false && (
-        <div>
-          <p>
-            Um fortfahren zu können, müssen Sie die korrekte Antwort eintragen.
-          </p>
-        </div>
-      )}
-      {taskState === true && (
-        <div>
-          <MC
-            callerFunction={callerFunction}
-            question={"Mit dieser Kodierung kann man..."}
-            options={mcQuestions}
-            answerKey={mcAnswerkey}
-            textOnCorrect={""}
-            textOnWrong={"Betrachten Sie nochmal die gegebenen Formeln."}
-          />
-        </div>
-      )}
+      <button onClick={checkResult}>
+        <p>überprüfen</p>
+      </button>
     </>
   );
 }

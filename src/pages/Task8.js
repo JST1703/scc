@@ -37,16 +37,28 @@ function Task8() {
     setTask(temp);
   };
 
-  const taskRender = [];
-  for (let i = 0; i < numberOfTasks; ++i) {
-    taskRender.push(
-      task[i] && (
-        <div className="task" key={i}>
-          <EncodingDistanceExercise callerFunction={() => handleTask(i + 1)} />
-        </div>
-      )
-    );
-  }
+  const [taskRender] = useState(() => {
+    let temp = [0, 1, 2, 3];
+    temp.sort(() => (Math.random() > 0.5 ? 1 : -1));
+    let sol = [];
+    for (let i = 0; i < numberOfTasks; ++i) {
+      sol.push(
+        task[i] && (
+          <>
+            <div>
+              <EncodingDistanceExercise
+                key={i}
+                callerFunction={() => handleTask(i + 1)}
+                taskNumber={temp[i]}
+              />
+            </div>
+            <div className="space"></div>
+          </>
+        )
+      );
+    }
+    return sol;
+  });
 
   return (
     <div className="main">
