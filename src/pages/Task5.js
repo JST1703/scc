@@ -80,14 +80,9 @@ function Task5() {
     // always in pairs of 3, for each subtask 1
     for (let i = 0; i < 3 * numberOfTasks; i += 3) {
       // randomizing the selection of code words
-      let k1 = Math.floor(Math.random() * 4);
-      let k2 = Math.floor(Math.random() * 4);
-      let k3 = Math.floor(Math.random() * 4);
-
-      // could be 4
-      if (k1 === 4) k1 = 3;
-      if (k2 === 4) k2 = 3;
-      if (k3 === 4) k3 = 3;
+      let k1 = Math.round(Math.random() * 3);
+      let k2 = Math.round(Math.random() * 3);
+      let k3 = Math.round(Math.random() * 3);
 
       // the false code word for the mc part being displayed
       let seqTemp1 = [...encoding[k1]];

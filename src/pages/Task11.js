@@ -227,8 +227,6 @@ function Task11() {
 
   // for checking the matrix solution
   const checkMartix = () => {
-    console.log(matrixValues);
-
     let sumR1 = sumChecksum([...matrixValues[1]].splice(1, 4));
     let sumR2 = sumChecksum([...matrixValues[2]].splice(1, 4));
     let sumR3 = sumChecksum([...matrixValues[3]].splice(1, 4));

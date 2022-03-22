@@ -26,8 +26,7 @@ function Task8() {
 
   // if true, next task is revealed
   const [task, setTask] = useState(() => {
-    let sol = Array(numberOfTasks + 1).fill(false);
-    sol[0] = true;
+    let sol = Array(numberOfTasks).fill(false);
     return sol;
   });
 
@@ -37,28 +36,23 @@ function Task8() {
     setTask(temp);
   };
 
-  const [taskRender] = useState(() => {
-    let temp = [0, 1, 2, 3];
-    temp.sort(() => (Math.random() > 0.5 ? 1 : -1));
-    let sol = [];
-    for (let i = 0; i < numberOfTasks; ++i) {
-      sol.push(
-        task[i] && (
-          <>
-            <div>
-              <EncodingDistanceExercise
-                key={i}
-                callerFunction={() => handleTask(i + 1)}
-                taskNumber={temp[i]}
-              />
-            </div>
-            <div className="space"></div>
-          </>
-        )
-      );
-    }
-    return sol;
-  });
+  const [taskShuffle] = useState(
+    [0, 1, 2, 3].sort(() => (Math.random() > 0.5 ? 1 : -1))
+  );
+
+  let taskRender = [];
+  for (let i = 0; i < numberOfTasks; ++i) {
+    taskRender.push(
+      <>
+        <EncodingDistanceExercise
+          key={i}
+          callerFunction={() => handleTask(i)}
+          taskNumber={taskShuffle[i]}
+        />
+        <div className="space"></div>
+      </>
+    );
+  }
 
   return (
     <div className="main">
@@ -145,6 +139,17 @@ function Task8() {
         </div>
       </div>
 
+      <div className="task">
+        <button
+          onClick={() => {
+            setState1(true);
+            setState2(true);
+          }}
+        >
+          <p>Aufgabe überspringen</p>
+        </button>
+      </div>
+
       {state2 && (
         <div className="task">
           <div className="space"></div>
@@ -154,7 +159,15 @@ function Task8() {
           </p>
           <div className="space"></div>
 
-          {taskRender}
+          <div className="taskLeft">
+            {taskRender[0]}
+            {task[1] && taskRender[2]}
+          </div>
+
+          <div className="taskRight">
+            {task[0] && taskRender[1]}
+            {task[2] && taskRender[3]}
+          </div>
         </div>
       )}
     </div>

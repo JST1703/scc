@@ -4,7 +4,7 @@ function randomBinaryString(n) {
   let length = n;
   if (length <= 0) {
     // length is between 3 and 7
-    length = Math.floor(Math.random() * 4) + 3;
+    length = Math.round(Math.random() * 4) + 3;
   }
 
   const sol = [];

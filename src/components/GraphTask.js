@@ -127,10 +127,7 @@ function GraphTask({ taskNumber, callerFunction }) {
   */
   const [buttonStatus, setButoonStatus] = useState(() => {
     let arr = Array(codeSize).fill(0);
-    let randy = Math.floor(Math.random() * codeSize);
-    if (randy === codeSize) {
-      randy = 31;
-    }
+    let randy = Math.round(Math.random() * (codeSize - 1));
     arr[randy] = 4;
     return arr;
   });
@@ -160,8 +157,6 @@ function GraphTask({ taskNumber, callerFunction }) {
     let temp = words.filter((element, index) => {
       return buttonStatus[index] % 3 === 1;
     });
-
-    console.log(temp);
 
     let sol = true;
     setText("");

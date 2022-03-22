@@ -20,26 +20,26 @@ function changeNumber(n) {
   } else if (temp === 1) {
     temp = 0;
   } else if (temp <= 6) {
-    temp = temp + Math.floor(Math.random() * 2) + 1;
+    temp = temp + Math.round(Math.random() * 2) + 1;
   } else {
-    temp = Math.floor(Math.random() * 5) + 1;
+    temp = Math.round(Math.random() * 5) + 1;
   }
   return temp;
 }
 
 // makes one random change in the sequence
 function randomErrorMaker1(seq) {
-  let randomPos = Math.floor(Math.random() * (seq.length - 1));
+  let randomPos = Math.round(Math.random() * (seq.length - 1));
   seq[randomPos] = changeNumber(seq[randomPos]);
   return;
 }
 
 // makes two random changes in the sequence
 function randomErrorMaker2(seq) {
-  let randomPos1 = Math.floor(Math.random() * (seq.length - 1));
-  let randomPos2 = Math.floor(Math.random() * (seq.length - 1));
+  let randomPos1 = Math.round(Math.random() * (seq.length - 1));
+  let randomPos2 = Math.round(Math.random() * (seq.length - 1));
   while (randomPos2 === randomPos1) {
-    randomPos2 = Math.floor(Math.random() * (seq.length - 1));
+    randomPos2 = Math.round(Math.random() * (seq.length - 1));
   }
   seq[randomPos1] = changeNumber(seq[randomPos1]);
   seq[randomPos2] = changeNumber(seq[randomPos2]);
@@ -48,14 +48,14 @@ function randomErrorMaker2(seq) {
 
 // makes three random changes in the sequence
 function randomErrorMaker3(seq) {
-  let randomPos1 = Math.floor(Math.random() * (seq.length - 1));
-  let randomPos2 = Math.floor(Math.random() * (seq.length - 1));
-  let randomPos3 = Math.floor(Math.random() * (seq.length - 1));
+  let randomPos1 = Math.round(Math.random() * (seq.length - 1));
+  let randomPos2 = Math.round(Math.random() * (seq.length - 1));
+  let randomPos3 = Math.round(Math.random() * (seq.length - 1));
   while (randomPos2 === randomPos1) {
-    randomPos2 = Math.floor(Math.random() * (seq.length - 1));
+    randomPos2 = Math.round(Math.random() * (seq.length - 1));
   }
   while (randomPos3 === randomPos1 || randomPos3 === randomPos2) {
-    randomPos3 = Math.floor(Math.random() * (seq.length - 1));
+    randomPos3 = Math.round(Math.random() * (seq.length - 1));
   }
   seq[randomPos1] = changeNumber(seq[randomPos1]);
   seq[randomPos2] = changeNumber(seq[randomPos2]);
