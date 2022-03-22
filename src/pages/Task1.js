@@ -90,9 +90,10 @@ function Task1() {
         <div className="taskLeft">
           <p>
             Gegeben sind Zahlenfolgen, bestehend aus den Ziffern 1 bis 9, und
-            deren <span style={{ color: "red" }}>{"Prüfziffern"}</span>. Egänzen
-            Sie anhand der gegebenen Beipielen die fehlenden Prüfziffern. Die
-            Lösung besteht immer aus zwei Ziffern (bsp. 09 statt 9).
+            deren <span style={{ color: "red" }}>{"Prüfziffern"}</span>.
+            Ergänzen Sie anhand der gegebenen Beispielen die fehlenden
+            Prüfziffern. Die Lösung besteht immer aus zwei Ziffern (Bsp. 07
+            statt 7).
           </p>
           <div className="space"></div>
           {wrongAnswersA >= minWrongAnswers && (
@@ -143,7 +144,7 @@ function Task1() {
           <div className="space"></div>
           <div className="taskLeft">
             <p>
-              Gegeben sind Folgen und deren Prüfziffern. Bestimmen sie
+              Gegeben sind Folgen und deren Prüfziffern. Bestimmen Sie
               diejenigen Folgen, bei denen die Prüfziffer fehlerhaft ist.
             </p>
           </div>
@@ -179,7 +180,7 @@ function Task1() {
             question={
               <p>
                 Wenn genau eine Ziffer in der Folge falsch übertragen worden
-                ist, dann erkennt man das an der Prüfziffer.
+                ist, dann erkennt man das an der Prüfsumme.
               </p>
             }
             solution={1}
@@ -189,14 +190,14 @@ function Task1() {
               <p>
                 Wenn eine Ziffer in der Folge falsch übertragen worden ist, dann
                 stimmt die Summe nicht mehr mit der Prüfziffer überein. Das ist
-                die Idee der Prüfziffer.
+                die Idee der Prüfsumme.
               </p>
             }
             textOnWrong={
               <p>
                 Wenn eine Ziffer in der Folge falsch übertragen worden ist, dann
                 stimmt die Summe nicht mehr mit der Prüfziffer überein. Das ist
-                die Idee der Prüfziffer.
+                die Idee der Prüfsumme.
               </p>
             }
             callerFunction={() => handleTaskStateC(0)}
@@ -210,7 +211,7 @@ function Task1() {
           <YN
             question={
               <p>
-                Wenn die Prüfziffer nicht korrekt ist, dann muss die Zahlenfolge
+                Wenn die Prüfsumme nicht korrekt ist, dann muss die Zahlenfolge
                 einen Fehler beinhalten.
               </p>
             }
@@ -219,14 +220,14 @@ function Task1() {
             optionNo={<span>Nein</span>}
             textOnCorrect={
               <p>
-                Ein Übertragungsfehler kann auch in der Prüfziffer selbst
+                Ein Übertragungsfehler kann auch in der Prüfsumme selbst
                 auftreten, auch wenn die Zahlenfolge fehlerfrei übertragen
                 worden ist. Man muss dennoch von einer Fehlübertragung ausgehen.
               </p>
             }
             textOnWrong={
               <p>
-                Ein Übertragungsfehler kann auch in der Prüfziffer selbst
+                Ein Übertragungsfehler kann auch in der Prüfsumme selbst
                 auftreten, auch wenn die Zahlenfolge fehlerfrei übertragen
                 worden ist. Man muss dennoch von einer Fehlübertragung ausgehen.
               </p>
@@ -242,9 +243,9 @@ function Task1() {
           <YN
             question={
               <p>
-                Häufig geschehen auch Tippfehler beim Mensch, z.B. dass man zwei
-                Ziffern vertauscht (z.B. 73 statt 37). Kann die Prüfsu,e solche
-                fehler erkennen?
+                Tippfehler von Menschen kommen häufig vor, z.B. dass man zwei
+                Ziffern vertauscht (z.B. 73 statt 37). Können Sie mit der
+                Prüfsumme solche Fehler erkennen?
               </p>
             }
             solution={0}
@@ -254,14 +255,14 @@ function Task1() {
               <p>
                 Die Prüfsumme ist die Summe der einzelnen Zahlen. Es spielt
                 keine Rolle, in welcher Reihenfolge man die Zahlen addiert (7 +
-                3 = 3 + 7). Solche Fehler bleiben desswegen unerkannt.
+                3 = 3 + 7). Solche Fehler bleiben deswegen unerkannt.
               </p>
             }
             textOnWrong={
               <p>
                 Die Prüfsumme ist die Summe der einzelnen Zahlen. Es spielt
                 keine Rolle, in welcher Reihenfolge man die Zahlen addiert (7 +
-                3 = 3 + 7). Solche Fehler bleiben desswegen unerkannt.
+                3 = 3 + 7). Solche Fehler bleiben deswegen unerkannt.
               </p>
             }
             callerFunction={() => handleTaskStateC(2)}
@@ -275,8 +276,9 @@ function Task1() {
           <YN
             question={
               <p>
-                Sollte eine Ziffer wegen einer Fehlübertragung falsch sein, dann
-                erkennen wir mit der Prüfsumme, welche Ziffer das ist.
+                Sollte wegen einer Fehlübertragung eine Ziffer in der Folge
+                fehlerhaft sein, dann können wir diese fehlerhafte Ziffer mit
+                der Prüfsumme identifizieren.
               </p>
             }
             solution={0}
@@ -307,7 +309,7 @@ function Task1() {
           <YN
             question={
               <p>
-                Angenommen bei der Übertragung treten zwei Fehler auf, so dass
+                Angenommen bei der Übertragung treten zwei Fehler auf, sodass
                 nun 2 Ziffern falsch sind. Erkennt man das mit der Prüfsumme?
               </p>
             }
@@ -316,20 +318,22 @@ function Task1() {
             optionNo={<span>Nein</span>}
             textOnCorrect={
               <p>
-                Eine Ziffer könnte um den Betrag x höher sein und eine andere
-                Ziffer um den gleichen Betrag x tiefer. Die Summe der Ziffern
-                bleibt dennoch gleich, was gleich der Prüfziffer ist.
+                Eine der Ziffern könnte um den Betrag x höher sein und die
+                andere Ziffer um den gleichen Betrag x tiefer. Die Summe der
+                Ziffern bleibt somit dennoch gleich und damit auch die
+                Prüfsumme. Der Fehler bleibt somit unbemerkt.
               </p>
             }
             textOnWrong={
               <p>
-                Eine Ziffer könnte um den Betrag x höher sein und eine andere
-                Ziffer um den gleichen Betrag x tiefer. Die Summe der Ziffern
-                bleibt dennoch gleich, was gleich der Prüfziffer ist. Angenommen
-                die ursprüngliche Zahlenfolge wäre 234 und die Prüfsumme 09.
-                Zwei Fehler in der Folge könnte uns 531 geben, wobei dessen
-                Prüfsumme auch 09 ist. Das würden wir fälschlicherweise als
-                fehlerfreie Übertragung betrachten.
+                Eine der Ziffern könnte um den Betrag x höher sein und die
+                andere Ziffer um den gleichen Betrag x tiefer. Die Summe der
+                Ziffern bleibt somit dennoch gleich und damit auch die
+                Prüfsumme. Der Fehler bleibt somit unbemerkt. Angenommen die
+                ursprüngliche Zahlenfolge wäre 234 und die Prüfsumme 09. Zwei
+                Fehler in der Folge könnte 531 ergeben, wobei dessen Prüfsumme
+                auch 09 ist. Das würden wir fälschlicherweise als fehlerfreie
+                Übertragung betrachten.
               </p>
             }
             callerFunction={() => handleTaskStateC(4)}
@@ -344,8 +348,7 @@ function Task1() {
             question={
               <p>
                 Wenn durch ein Fehler in der Übertragung eine Ziffer in der
-                Folge ausgelassen wird, kann man das mit der Prüfziffer
-                erkennen?
+                Folge ausgelassen wird, kann man das mit der Prüfsumme erkennen.
               </p>
             }
             solution={1}
