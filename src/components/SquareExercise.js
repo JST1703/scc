@@ -107,17 +107,17 @@ function SquareExecise({ onWorong, onCorrect }) {
   for (let index = 0; index < data.length; index++) {
     renderButtons.push(
       <button
-        className={pressed[index] ? "squareBit1 " : "squareBit"}
+        className={pressed[index] ? "squareBitA" : "squareBit"}
         disabled={taskState}
         onClick={() => checkResult(correlationList[index], index)}
       >
-        {data[index]}
+        <h2>{data[index]}</h2>
       </button>
     );
   }
 
   return (
-    <div className="example1">
+    <>
       <div className="squareRow">
         {renderButtons[12]}
         {renderButtons[13]}
@@ -142,9 +142,11 @@ function SquareExecise({ onWorong, onCorrect }) {
         {renderButtons[8]}
         {renderButtons[11]}
       </div>
+      <div className="smallSpace"></div>
       {taskState === false && <h3 style={{ color: "red" }}>Falsch</h3>}
       {taskState && <h3 style={{ color: "green" }}>Korrekt</h3>}
-    </div>
+      <div className="space"></div>
+    </>
   );
 }
 

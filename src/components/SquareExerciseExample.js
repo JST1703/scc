@@ -24,32 +24,64 @@ function SquareExeciseExample() {
   });
 
   return (
-    <div>
+    <>
       <div className="squareRow">
-        <button className="squareBit">{data[12]}</button>
-        <button className="squareBit">{data[13]}</button>
-        <button className="squareBit">{data[14]}</button>
-        <button className="squareBit">{data[15]}</button>
+        <button className="squareBit">
+          <h2>{data[12]}</h2>
+        </button>
+        <button className="squareBit">
+          <h2>{data[13]}</h2>
+        </button>
+        <button className="squareBit">
+          <h2>{data[14]}</h2>
+        </button>
+        <button className="squareBit">
+          <h2>{data[15]}</h2>
+        </button>
       </div>
       <div className="squareRow">
-        <button className="squareBit">{data[0]}</button>
-        <button className="squareBit">{data[1]}</button>
-        <button className="squareBit">{data[2]}</button>
-        <button className="squareBit">{data[9]}</button>
+        <button className="squareBit">
+          <h2>{data[0]}</h2>
+        </button>
+        <button className="squareBit">
+          <h2>{data[1]}</h2>
+        </button>
+        <button className="squareBit">
+          <h2>{data[2]}</h2>
+        </button>
+        <button className="squareBit">
+          <h2>{data[3]}</h2>
+        </button>
       </div>
       <div className="squareRow">
-        <button className="squareBit">{data[3]}</button>
-        <button className="squareBit">{data[4]}</button>
-        <button className="squareBit">{data[5]}</button>
-        <button className="squareBit">{data[10]}</button>
+        <button className="squareBit">
+          <h2>{data[4]}</h2>
+        </button>
+        <button className="squareBit">
+          <h2>{data[5]}</h2>
+        </button>
+        <button className="squareBit">
+          <h2>{data[6]}</h2>
+        </button>
+        <button className="squareBit">
+          <h2>{data[7]}</h2>
+        </button>
       </div>
       <div className="squareRow">
-        <button className="squareBit">{data[6]}</button>
-        <button className="squareBit">{data[7]}</button>
-        <button className="squareBit">{data[8]}</button>
-        <button className="squareBit">{data[11]}</button>
+        <button className="squareBit">
+          <h2>{data[8]}</h2>
+        </button>
+        <button className="squareBit">
+          <h2>{data[9]}</h2>
+        </button>
+        <button className="squareBit">
+          <h2>{data[10]}</h2>
+        </button>
+        <button className="squareBit">
+          <h2>{data[11]}</h2>
+        </button>
       </div>
-    </div>
+    </>
   );
 }
 

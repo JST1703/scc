@@ -320,20 +320,20 @@ function Task1() {
               <p>
                 Eine der Ziffern könnte um den Betrag x höher sein und die
                 andere Ziffer um den gleichen Betrag x tiefer. Die Summe der
-                Ziffern bleibt somit dennoch gleich und damit auch die
-                Prüfsumme. Der Fehler bleibt somit unbemerkt.
+                Folge bleibt somit dennoch gleich und damit auch die Prüfsumme.
+                Der Fehler bleibt somit unbemerkt.
               </p>
             }
             textOnWrong={
               <p>
                 Eine der Ziffern könnte um den Betrag x höher sein und die
                 andere Ziffer um den gleichen Betrag x tiefer. Die Summe der
-                Ziffern bleibt somit dennoch gleich und damit auch die
-                Prüfsumme. Der Fehler bleibt somit unbemerkt. Angenommen die
-                ursprüngliche Zahlenfolge wäre 234 und die Prüfsumme 09. Zwei
-                Fehler in der Folge könnte 531 ergeben, wobei dessen Prüfsumme
-                auch 09 ist. Das würden wir fälschlicherweise als fehlerfreie
-                Übertragung betrachten.
+                Folge bleibt somit dennoch gleich und damit auch die Prüfsumme.
+                Der Fehler bleibt somit unbemerkt. Angenommen die ursprüngliche
+                Zahlenfolge wäre 234 und die Prüfsumme 09. Zwei Fehler in der
+                Folge könnte 531 ergeben, wobei dessen Prüfsumme auch 09 ist.
+                Das würde man fälschlicherweise als fehlerfreie Übertragung
+                betrachten.
               </p>
             }
             callerFunction={() => handleTaskStateC(4)}

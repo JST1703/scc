@@ -17,7 +17,8 @@
   hyphens: auto;
 }
 
-.main h1 {
+.main h1,
+.main h2 {
   font-size: max(3vw, 15pt);
 }
 
@@ -176,39 +177,29 @@
 }
 
 .squareRow {
-  width: inherit;
-  height: 15%;
+  width: 100%;
+  margin-bottom: 1%;
   text-align: center;
 }
 
 .squareBit,
-.squareBit1 {
-  border-width: 1px;
-  height: inherit;
-  width: 10%;
-  font-size: 100%;
+.squareBitA,
+.squareBitC {
+  border-width: 3px;
+  width: 20%;
+  padding-top: 3%;
+  padding-bottom: 3%;
   color: #000000;
   border-color: #000000;
 }
 
-.activeSquare,
-.inactiveSquare {
-  border-width: 1px;
-  height: 30%;
-  width: 6%;
-  font-size: 1.6vw;
-  color: #000000;
-  border-color: #000000;
-}
-
-.activeSquare,
 .squareBit {
-  background-color: #e9e9e9;
+  background-color: hsl(0, 0%, 94%);
 }
 
-.inactiveSquare,
-.squareBit1 {
-  background-color: #2d5a9e52;
+.squareBitA {
+  color: white;
+  background-color: #2d5a9e;
 }
 
 .toggleSquare {

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SquareExeciseExample from "../components/SquareExerciseExample";
 import SquareExecise from "../components/SquareExercise";
+import Info from "../components/Info";
 import { ReactComponent as S0 } from "../graphics/Square_0_T9.svg";
 import { ReactComponent as S1 } from "../graphics/Square_1_T9.svg";
 import { ReactComponent as S2 } from "../graphics/Square_2_T9.svg";
@@ -13,39 +14,11 @@ is given squares containing exact one error that must be found.
 */
 
 function Task9() {
-  // used for theory at the beginning
-  const binaryRep = ["00", "01", "10", "11"];
-
   // number of questions for subtasks to solve
   const numberOfTasksA = 3;
   const minWrongAnswers1 = 3;
   const minWrongAnswers2 = 5;
   const minWrongAnswers3 = 7;
-
-  // Table for encoding
-  const table = [];
-
-  // Table Head
-  table.push(
-    <tr key={4}>
-      <th>Binäre Darstellung</th>
-      <th>Kodierung</th>
-    </tr>
-  );
-
-  // Table items
-  for (let i = 0; i < 4; ++i) {
-    table.push(
-      <tr key={i}>
-        <td>{binaryRep[i]}</td>
-        <td>
-          {binaryRep[i]}
-          <span style={{ color: "red" }}>{binaryRep[i]}</span>
-          <span style={{ color: "green" }}>{binaryRep[i] + " "}</span>
-        </td>
-      </tr>
-    );
-  }
 
   /* 
   Keeping track of number of correct solutions or wrong answers
@@ -58,77 +31,90 @@ function Task9() {
   const [correctAnswersA, setCorrectAnswersA] = useState(0);
 
   return (
-    <div className="task">
+    <div className="main">
       <h1>Aufgabe 9: Effiziente Kodierung 1</h1>
-      <p>
-        Bei der Konstruktion einer Kodierung ist uns der Abstand sehr wichtig.
-        Der Abstand ist massgebend, wie viele Fehler wir erkennen oder
-        korrigieren können. Wenn wir z.B. eine Kodierung mit 4 Wörtern und einem
-        Abstand von 3 haben wollen, sodass wir einzelne Fehler korrigieren
-        können, dann können wir ganz einfach die Wörter verdreifachen. Im
-        gegebenen Beispiel haben wir die 4 Wörter, welche einen Abstand von 1
-        Haben. Durch die Verdreifachung haben die Wörter einen Abstand von 1 in
-        jeder Sektion (Schwarz, Rot, Grün), was einen totalen Abstand von 3
-        ergibt.
-      </p>
-      <table>
-        <tbody>{table}</tbody>
-      </table>
-      <p>
-        Mit der Verdreifachung können wir immer eine Kodierung schaffen, mit
-        Abstand 3 und das für jede Wortlänge. Das ist alllerdings nicht
-        effizient. Die Nachrichten werden somit 3 mal so lang, wobei wir jeweils
-        nur Fehler korrigieren können, wenn maximal einer auftritt. Werden die
-        Nachrichten zu Lang, dann erhöt sich die Wahrscheinlichkeit, dass
-        mehrere Fehler auftreten.
-      </p>
-      <p>
-        Wir wollen uns dazu andere Methoden anschauen, um effizientere
-        Kodierungen zu finden. Dazu fangen wir mit einer kleinen Aufgabe an.
-        Gegeben ist ein 4 mal 4 Rechteck, wobei jede Zelle ein eigenes Bit
-        repräsentiert. Diese Bits sind nicht alle zufällig gewählt. Einige von
-        ihnen sind, wie wir das zu Beginn gesehen haben, Prüfbits oder auch
-        Kontrollbits genannt. Das gegebene Rechteck erfüllt eine bestimmte
-        Eigenschaft. Wenn ein Bit nicht mehr korrekt sein sollte, dann können
-        wir es dank dieser Eigenschaft finden und auch korrigieren.
-      </p>
-      <SquareExeciseExample />
-      <p>
-        Hier sind nun einige andere Rechtecke, bei denen ein Bit falsch ist.
-        Erkennen Sie, welche Eigenschaft wir suchen? Finden Sie anhand des
-        gegebenen Beispieles das falsche Bit in jedem der Rechtecke.
-      </p>
-      {[...Array(numberOfTasksA)].map((e, i) => (
-        <SquareExecise
-          key={i}
-          onWorong={() => setWrongAnswersA(wrongAnswersA + 1)}
-          onCorrect={() => setCorrectAnswersA(correctAnswersA + 1)}
-        />
-      ))}
-      {wrongAnswersA >= minWrongAnswers1 &&
-        correctAnswersA !== numberOfTasksA && (
-          <p>
-            Hinweis 1: Denken Sie zurück an eine der ersten Methoden, welche wir
-            betrachtet haben.
-          </p>
-        )}
 
-      {wrongAnswersA >= minWrongAnswers2 &&
-        correctAnswersA !== numberOfTasksA && (
-          <p>Hinweis 2: Betrachten Sie die einzelnen Spalten und Zeilen.</p>
-        )}
+      <div className="space"></div>
+      <p>
+        Gegeben sind Magische Quadrate, welche aus kleineren Quadrate bestehen,
+        mit jeweils einem Bit 1 oder 0. Die Bits in einem Quadrat erfüllen eine
+        Eigenschaft. Alle Bits im linken Quadrat sind korrekt, bei den rechts
+        ist jeweils genau ein Bit falsch. Finden Sie das felerhafte Bit in den
+        jeweiligen Quadraten. Die Eigenschaft, welche die Quadrate erfüllen
+        sollen, kann Ihnen dabei helfen.
+      </p>
 
-      {wrongAnswersA >= minWrongAnswers3 &&
-        correctAnswersA !== numberOfTasksA && (
-          <p>
-            Lösung: Die Anzahl Einsen in jeder Zeile und jeder Spalte muss
-            gerade sein. Der Fehler lieg da, wo sich die Spalte und die Zeile
-            kreuzen, welche fehlerhaft sind. Um fortfahren zu können, müssen Sie
-            die Aufgabe fertig lösen.
-          </p>
-        )}
+      <div className="space"></div>
 
-      {correctAnswersA === numberOfTasksA && (
+      <div className="task">
+        <div className="taskLeftScroll">
+          {wrongAnswersA >= minWrongAnswers1 && (
+            <>
+              <Info
+                text={
+                  <p>
+                    Hinweis 1: Betrachten Sie die einzelnen Spalten und Zeilen.
+                  </p>
+                }
+              />
+              <div className="space"></div>
+            </>
+          )}
+
+          {wrongAnswersA >= minWrongAnswers2 && (
+            <>
+              <Info
+                text={
+                  <p>
+                    Hinweis 2: Denken Sie zurück an eine der ersten Methoden,
+                    welche wir betrachtet haben.
+                  </p>
+                }
+              />
+              <div className="space"></div>
+            </>
+          )}
+
+          {wrongAnswersA >= minWrongAnswers3 && (
+            <>
+              <Info
+                text={
+                  <p>
+                    Lösung: Die Anzahl Einsen in jeder Spalte und in jeder Zeile
+                    ist gerade.
+                  </p>
+                }
+              />
+              <div className="space"></div>
+            </>
+          )}
+
+          <SquareExeciseExample />
+        </div>
+
+        <div className="taskRight">
+          {[...Array(numberOfTasksA)].map((e, i) => (
+            <SquareExecise
+              key={i}
+              onWorong={() => setWrongAnswersA(wrongAnswersA + 1)}
+              onCorrect={() => setCorrectAnswersA(correctAnswersA + 1)}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="space"></div>
+      <div className="task">
+        <button
+          onClick={() => {
+            setCorrectAnswersA(numberOfTasksA);
+          }}
+        >
+          <p>Aufgabe überspringen</p>
+        </button>
+      </div>
+
+      {correctAnswersA >= numberOfTasksA && (
         <div>
           <p>
             Wir haben zwei arten von Bits. Die einen sind die normalen Bits B
