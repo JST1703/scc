@@ -66,6 +66,10 @@ This component always goes with the component squareExerciseExample. Given is a 
 
 This component always goes with the component squareExercise as the example to follow.
 
+###### SquareColorExample
+
+This component is made for exercise 9 for the MC part. It is a 4x4 square where each row and column has an even number of ones, which is achieved via control bits. One changes the Bit value by clicking on the button. This also triggers a chain reaction indicating all the rows and columns that are now wrong. This helps to answer some MC questions to have a visual comparison.
+
 ##### TextExercise
 
 simple text exercise where the answer is of the form of a small input field from the user.

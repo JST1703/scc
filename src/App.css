@@ -184,22 +184,39 @@
 
 .squareBit,
 .squareBitA,
-.squareBitC {
+.squareBitC,
+.squareBitRR,
+.squareBitRB,
+.squareBitBR {
   border-width: 3px;
   width: 20%;
   padding-top: 3%;
   padding-bottom: 3%;
-  color: #000000;
-  border-color: #000000;
 }
 
 .squareBit {
+  color: #000000;
   background-color: hsl(0, 0%, 94%);
 }
 
 .squareBitA {
   color: white;
   background-color: #2d5a9e;
+}
+
+.squareBitRR {
+  color: rgb(255, 0, 0);
+  background-color: hsla(0, 100%, 50%, 0.26);
+}
+
+.squareBitBR {
+  color: rgb(0, 0, 0);
+  background-color: hsla(0, 100%, 50%, 0.26);
+}
+
+.squareBitRB {
+  color: rgb(255, 0, 0);
+  background-color: hsl(0, 0%, 94%);
 }
 
 .toggleSquare {

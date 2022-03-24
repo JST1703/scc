@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import SquareExeciseExample from "../components/SquareExerciseExample";
+import SquareColorExample from "../components/SquareColorExample";
 import SquareExecise from "../components/SquareExercise";
 import Info from "../components/Info";
-import { ReactComponent as S0 } from "../graphics/Square_0_T9.svg";
-import { ReactComponent as S1 } from "../graphics/Square_1_T9.svg";
-import { ReactComponent as S2 } from "../graphics/Square_2_T9.svg";
-import { ReactComponent as S3 } from "../graphics/Square_3_T9.svg";
 
 /*
 Task 9: Given are 4x4 squares where each square has a digit 0 or 1.
@@ -38,10 +35,10 @@ function Task9() {
       <p>
         Gegeben sind Magische Quadrate, welche aus kleineren Quadrate bestehen,
         mit jeweils einem Bit 1 oder 0. Die Bits in einem Quadrat erfüllen eine
-        Eigenschaft. Alle Bits im linken Quadrat sind korrekt, bei den rechts
-        ist jeweils genau ein Bit falsch. Finden Sie das felerhafte Bit in den
-        jeweiligen Quadraten. Die Eigenschaft, welche die Quadrate erfüllen
-        sollen, kann Ihnen dabei helfen.
+        bestimmte Eigenschaft. Alle Bits im linken Quadrat sind korrekt, bei den
+        rechts ist jeweils genau ein Bit falsch. Finden Sie das felerhafte Bit
+        in den jeweiligen Quadraten. Die Eigenschaft, welche die Quadrate
+        erfüllen sollen, kann Ihnen dabei helfen.
       </p>
 
       <div className="space"></div>
@@ -113,43 +110,14 @@ function Task9() {
           <p>Aufgabe überspringen</p>
         </button>
       </div>
+      <div className="space"></div>
 
       {correctAnswersA >= numberOfTasksA && (
-        <div>
-          <p>
-            Wir haben zwei arten von Bits. Die einen sind die normalen Bits B
-            und die Kontrollbits C. Die eigentliche Nachricht ist
-            B1-B2-B3-B4-B5-B6-B7-B8-B9 und die anderen Bits dienen zur
-            Fehlererkennung und Korrektur.
-          </p>
-          <div className="squareGraphics">
-            <S0 />
+        <div className="task">
+          <div className="taskLeftScroll">
+            <SquareColorExample />
           </div>
-          <p>
-            Die Kontrollbits sind so gesetzt, dass jede Zeile und Spalte eine
-            gerade Anzahl an Einsen hat. Bei einem Fehler finden wir das
-            fehlerhafte Bit, indem wir die Zeile und Spalte finden, wo die
-            Eigenschaft nicht mehr erfüllt ist. Dort wo diese sich kreuzen, da
-            muss der Fehler vorgefallen sein.
-          </p>
-          <div className="squareGraphics">
-            <S1 />
-          </div>
-          <p>
-            Sollten zwei Fehler auftreten, so bemerken wir das zwar, allerdings
-            finden wir die Fehler nicht mehr. Im gegebenen Beispiel kommen 4
-            Bits infrage fehlerhaft zu sein, allerdings sind nur 2 falsch.
-          </p>
-          <div className="squareGraphics">
-            <S2 />
-          </div>
-          <p>
-            Dieses Beispiel zeigt, dass 3 Fehler unter Umständen nicht mehr
-            erkannt werden können.
-          </p>
-          <div className="squareGraphics">
-            <S3 />
-          </div>
+          <div className="taskRight"></div>
         </div>
       )}
     </div>
