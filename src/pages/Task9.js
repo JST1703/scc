@@ -129,7 +129,10 @@ function Task9() {
       {correctAnswersA >= numberOfTasksA && (
         <div className="task">
           <div className="taskLeftScroll">
-            <h3>Zum cklicken und probieren:</h3>
+            <div className="squareRow">
+              <h3>Beispiel Quadrat</h3>
+              <p>(zum Klicken und Probieren)</p>
+            </div>
             <div className="smallSpace"></div>
             <SquareColorExample />
           </div>
@@ -170,9 +173,9 @@ function Task9() {
                   textOnCorrect={<p></p>}
                   textOnWrong={
                     <p>
-                      Egal welche 2 Bits felerhaft sind, diese dauraus
-                      reusltieren fehlerhaften Spalten oder Zeilen können auch
-                      durch ein anderes Paar Bits verursacht werden.
+                      Egal welche 2 Bits felerhaft sind, die dauraus reusltieren
+                      fehlerhaften Spalten oder Zeilen können auch durch ein
+                      anderes Paar Bits verursacht werden.
                     </p>
                   }
                   callerFunction={() => handleTaskState(1)}
@@ -200,11 +203,11 @@ function Task9() {
                   textOnCorrect={<p></p>}
                   textOnWrong={
                     <p>
-                      4 ist Korrekt. Egal welche 2 Bits felerhaft sind, diese
+                      4 ist Korrekt. Egal welche 2 Bits felerhaft sind, die
                       dauraus reusltieren fehlerhaften Spalten oder Zeilen
                       können auch durch ein anderes Paar Bits verursacht werden.
-                      Das andere Paar müsste man auch noch flippen, so dass die
-                      gleichen Zeilen und Spalten wieder korrekt sind.
+                      Wenn wir genau diese Bits flippen, dann sind die
+                      petroffenen Zeilen und Spalten wieder korrekt.
                     </p>
                   }
                   callerFunction={() => handleTaskState(2)}
@@ -216,8 +219,9 @@ function Task9() {
               <>
                 <div className="space"></div>
                 <p>
-                  Betrachten wir diese magischen Quadrate als Kodierung. Was ist
-                  der Abstand von zwei gültingen Quadraten?
+                  Betrachten wir diese magischen Quadrate als Nachrichte einer
+                  Kodierung. Was ist der Abstand zwischen zwei gültingen
+                  Quadraten?
                 </p>
                 <MC
                   options={[

@@ -79,13 +79,11 @@ function CorrectionBitsExercise2() {
     renderButtons.push(
       <button
         key={index}
-        className={
-          pressed[index] ? "activeSquare toggleSquare" : "activeSquare "
-        }
+        className={pressed[index] ? "squareBit4 toggleSquare" : "squareBit4"}
         disabled={taskState}
         onClick={() => checkResult(correlationList[index], index)}
       >
-        {data[index]}
+        <h3>{data[index]}</h3>
       </button>
     );
   }
@@ -95,13 +93,11 @@ function CorrectionBitsExercise2() {
     renderButtons.push(
       <button
         key={index}
-        className={
-          pressed[index] ? "inactiveSquare toggleSquare" : "inactiveSquare"
-        }
+        className={pressed[index] ? "squareBit5 toggleSquare" : "squareBit5"}
         disabled={taskState}
         onClick={() => checkResult(correlationList[index], index)}
       >
-        {data[index]}
+        <h3>{data[index]}</h3>
       </button>
     );
   }
@@ -125,18 +121,19 @@ function CorrectionBitsExercise2() {
   };
 
   return (
-    <div className="containerSquares">
-      <div className="squareRow">
-        <p></p>
-        {renderButtons}
-        {taskState === false && <h3 style={{ color: "red" }}>Falsch</h3>}
-        {taskState && (
-          <span>
-            <h3 style={{ color: "green" }}>Korrekt</h3>
-            <button onClick={() => reset()}>Neuer String</button>
-          </span>
-        )}
-      </div>
+    <div className="squareRow">
+      {renderButtons}
+      <div className="smallSpace"> </div>
+      {taskState === false && <h3 style={{ color: "red" }}>Falsch</h3>}
+      {taskState && (
+        <>
+          <h3 style={{ color: "green" }}>Korrekt</h3>
+          <div className="smallSpace"> </div>
+          <button onClick={() => reset()}>
+            <p>Neuer String</p>
+          </button>
+        </>
+      )}
     </div>
   );
 }

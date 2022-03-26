@@ -13,8 +13,11 @@ exact one error that must be found.
 /*
 callerFunction is the function of the calling component being called,
 if the answer given is correct.
+
+functionOnWrong is the function of the calling component being called,
+if the answer given is false.
 */
-function CorrectionBitsExercise({ callerFunction }) {
+function CorrectionBitsExercise({ callerFunction, functionOnWrong }) {
   /* 
   used for evaluating the given answer,
   the correlation between the bits,
@@ -94,6 +97,8 @@ function CorrectionBitsExercise({ callerFunction }) {
 
     if (temp === true) {
       callerFunction();
+    } else {
+      functionOnWrong();
     }
   };
 
@@ -105,13 +110,11 @@ function CorrectionBitsExercise({ callerFunction }) {
     renderButtons.push(
       <button
         key={index}
-        className={
-          pressed[index] ? "activeSquare toggleSquare" : "activeSquare "
-        }
+        className={pressed[index] ? "squareBit2 toggleSquare" : "squareBit2"}
         disabled={taskState}
         onClick={() => checkResult(correlationList[index], index)}
       >
-        {data[index]}
+        <h3>{data[index]}</h3>
       </button>
     );
   }
@@ -121,26 +124,25 @@ function CorrectionBitsExercise({ callerFunction }) {
     renderButtons.push(
       <button
         key={index}
-        className={
-          pressed[index] ? "inactiveSquare toggleSquare" : "inactiveSquare"
-        }
+        className={pressed[index] ? "squareBit3 toggleSquare" : "squareBit3"}
         disabled={taskState}
         onClick={() => checkResult(correlationList[index], index)}
       >
-        {data[index]}
+        <h3>{data[index]}</h3>
       </button>
     );
   }
 
   return (
-    <div className="containerSquares">
+    <>
       <div className="squareRow">
         <p></p>
         {renderButtons}
+        <div className="smallSpace"></div>
         {taskState === false && <h3 style={{ color: "red" }}>Falsch</h3>}
         {taskState && <h3 style={{ color: "green" }}>Korrekt</h3>}
       </div>
-    </div>
+    </>
   );
 }
 

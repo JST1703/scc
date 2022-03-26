@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import CorrectionBitsExercise from "../components/CorrectionBitsExercise";
 import TextExercise from "../components/TextExercise";
+import { ReactComponent as S0 } from "../graphics/Square_0_T10.svg";
+import { ReactComponent as S1 } from "../graphics/Square_1_T10.svg";
+import { ReactComponent as S2 } from "../graphics/Square_2_T10.svg";
+import Info from "../components/Info";
+import YN from "../components/YN";
 
 /*
 Task 10
 
 Task A: Given is a bit string with some normal bits and some control bits.
-In the exercise, the user is given sequences containing 
-exact one error that must be found.
+In the exercise, the user is given sequences containing exact one error that must be found.
 
 Task B: Some questions about general properties of these kind of control bit codes.
 */
@@ -67,9 +71,9 @@ function Task10() {
         onClick={() => handleValues(correlationList[i])}
         onMouseOver={() => handleToggle(correlationList[i])}
         onMouseOut={() => handleToggle(correlationList[i])}
-        className={toggle[i] ? "activeSquare toggleSquare" : "activeSquare"}
+        className={toggle[i] ? "squareBit2 toggleSquare" : "squareBit2"}
       >
-        {values[i]}
+        <h3>{values[i]}</h3>
       </button>
     );
   }
@@ -79,9 +83,9 @@ function Task10() {
         key={i}
         onMouseOver={() => handleToggle(correlationList[i])}
         onMouseOut={() => handleToggle(correlationList[i])}
-        className={toggle[i] ? "inactiveSquare toggleSquare" : "inactiveSquare"}
+        className={toggle[i] ? "squareBit3 toggleSquare" : "squareBit3"}
       >
-        {values[i]}
+        <h3>{values[i]}</h3>
       </button>
     );
   }
@@ -89,16 +93,26 @@ function Task10() {
   // number of tasks in A
   const numberOfTasksA = 3;
 
+  // number of times to fail before hint is revealed
+  const numberOfFails = 3;
+
   // keeping track if task A is solved or not
   const [stateA, setStateA] = useState(0);
+
+  // keeping track if task A is solved wrongly
+  const [stateAF, setStateAF] = useState(0);
 
   let taskArender = [];
   for (let i = 0; i < numberOfTasksA; ++i) {
     taskArender.push(
-      <CorrectionBitsExercise
-        key={i}
-        callerFunction={() => setStateA(stateA + 1)}
-      />
+      <>
+        <CorrectionBitsExercise
+          key={i}
+          callerFunction={() => setStateA(stateA + 1)}
+          functionOnWrong={() => setStateAF(stateAF + 1)}
+        />
+        <div className="smallSpace"></div>
+      </>
     );
   }
 
@@ -112,77 +126,207 @@ function Task10() {
   };
 
   return (
-    <div className="task">
+    <div className="main">
       <h1>Aufgabe 10: Effiziente Kodierung 2</h1>
-      <p>
-        Wir haben erneut unsere 9 Bits für die Nachricht und die dazugehörigen
-        Kontrollbits. Diese sind in einer Reihe angeordnet, so wie ein Computer
-        die Bits lesen kann. Jedes Bit ist immer noch Teil einer imaginären
-        Zeile und imaginären Spalte, wie vorhin. Sie können hier ausprobieren,
-        welche Bits welche Kontrollbits beeinflussen und andersrum.
-      </p>
-      <div className="containerSquares">
+
+      <div className="space"></div>
+
+      <Info
+        text={
+          <div className="task">
+            <div className="taskLeft">
+              <S0 />
+              <div className="squareRow">
+                <h3>Code-Wort angeortnet im Quadrat</h3>
+              </div>
+              <div className="space"></div>
+              <S2 />
+              <div className="squareRow">
+                <h3>Fehlermeldungstabelle</h3>
+              </div>
+            </div>
+            <div className="taskRight">
+              <S1 />
+              <div className="squareRow">
+                <h3>Code-Wort angeortnet im Array</h3>
+              </div>
+              <div className="space"></div>
+              <p>
+                Die Nachrichtenbits B1 bis B9 werden durch die{" "}
+                <span style={{ color: "blue" }}>Kontrollbits</span>{" "}
+                <span style={{ color: "blue" }}>C1</span> bis{" "}
+                <span style={{ color: "blue" }}>C7</span> kontrolliert. Die{" "}
+                <span style={{ color: "blue" }}>Kontrollbits</span> werden so
+                gesetzt, dass die Spalten und Zeilen eine gerade Anzahl an
+                Einsen besitzt. Sollte ein Bit felerhaft sein, wrid dies durch
+                die <span style={{ color: "blue" }}>Kontrollbits</span> erkannt.
+                Die Fehlermeldungstabelle zeigt an, welche{" "}
+                <span style={{ color: "blue" }}>Kontrollbits</span> welche
+                Nachrichtenbits kontrollieren.
+              </p>
+            </div>
+          </div>
+        }
+      />
+
+      <div className="space"></div>
+
+      <div className="task">
+        <div className="squareRow">
+          <h3>Code-Wort Generator</h3>
+          <p>(zum Klicken und Probieren)</p>
+        </div>
+        <div className="smallSpace"></div>
+
         <div className="squareRow">{renderButtons}</div>
+
+        <div className="space"></div>
+
+        <p>
+          Gegeben ist eine Kodierung, wobei die Codewörter aus 9 Nachrichtenbits
+          und 7 <span style={{ color: "blue" }}>Kontrollbits</span> bestehen.
+          Die <span style={{ color: "blue" }}>Kontrollbits</span> korrellieren
+          mit den Nachrichtenbits wie in den magischen Quadraten. Weiter sind
+          Stings gegeben, welche entstanden sind durch einen Fehler in einem
+          Code-Wort. Finden Sie in den gegebenen Strings das fehlerhafte Bit.
+        </p>
+        <div className="space"></div>
+        {taskArender}
       </div>
-      <p>
-        Gegeben sind einige solcher Nachrichten, wobei ein Fehler aufgetreten
-        ist. Finden Sie diese Fehler.
-      </p>
-      {taskArender}
-      {stateA === numberOfTasksA && (
-        <div>
+
+      {stateAF >= numberOfFails && (
+        <>
+          <Info
+            text={
+              <p>
+                Hinweis: Kopieren Sie am besten die Nachrichtenbits im Code-Wort
+                Generator und überprüfen Sie mit den{" "}
+                <span style={{ color: "blue" }}>Kontrollbits</span>, welche
+                nicht mit derjenigen vom Generator übereinstimmen, welches Bit
+                felerhaft sein könnte. Es können auch{" "}
+                <span style={{ color: "blue" }}>Kontrollbits</span> falsch sein.
+              </p>
+            }
+          />
+          <div className="space"></div>
+        </>
+      )}
+
+      <div className="task">
+        <button
+          onClick={() => {
+            setStateA(numberOfTasksA);
+          }}
+        >
+          <p>Aufgabe überspringen</p>
+        </button>
+      </div>
+
+      <div className="space"></div>
+
+      <div className="task">
+        {stateA >= numberOfTasksA && (
           <TextExercise
             callerFunction={() => handleStateB(0)}
             question={
-              "Wie viele Nachrichten können wir mit so vielen Bits und Kontrollbits Kodieren?"
+              <p>
+                Wie viele verschiedene Code-Wörter sind in diesem Fall in der
+                Kodierung enthalten?
+              </p>
             }
-            text={"In zweier Potenz (2^x) :"}
-            solutions={["2^9"]}
-            textOnCorrect={"Wir haben 9 Bits, welche die Nachricht ausmachen."}
-            textOnWrong={"Wir haben 9 Bits, welche die Nachricht ausmachen."}
+            text={
+              <p>
+                Antwort als Zweierpotenz (2<sup>x</sup>):{" "}
+              </p>
+            }
+            solutions={["2⁹", "2^9"]}
+            textOnCorrect={<p></p>}
+            textOnWrong={
+              <p>
+                Bei 9 Nachrichten Bits können wir 2⁹ verschiedene Nachrichten
+                konstruieren.
+              </p>
+            }
           />
-        </div>
-      )}
-      {stateB[0] && (
-        <div>
+        )}
+        <div className="space"></div>
+        {stateB[0] && (
           <TextExercise
             callerFunction={() => handleStateB(1)}
             question={
-              "Wir können damit Fehler der Grösse Eins korrigieren. Was für ein Abstand muss demnach unsere Kodierung haben?"
+              <p>
+                Angenommen wir haben eine Kodierung mit n Nachrichtenbits mit
+                einem Abstand von 3. Wie viele zusätzliche Bits benötigen wir,
+                wenn wir die Nachrichtenlänge Verdreifachen?
+              </p>
             }
-            text={"Abstand :"}
-            solutions={["3"]}
-            textOnCorrect={""}
-            textOnWrong={"3 ist die richtige Lösung."}
+            text={<p></p>}
+            solutions={["2n", "2*n"]}
+            textOnCorrect={<p></p>}
+            textOnWrong={
+              <p>
+                Wenn wir n Nachrichtenbits haben und die gesammte nachricht
+                Verdreifachen, dann haben wir 2n zusätzliche Bits.
+              </p>
+            }
           />
-        </div>
-      )}
-      {stateB[1] && (
-        <div>
+        )}
+        <div className="space"></div>
+        {stateB[1] && (
           <TextExercise
             callerFunction={() => handleStateB(2)}
             question={
-              "Wir wollen 2^n Wörter kodieren mit abstand 3. Wir haben bereits gesehen, dass wir dafür die Wörter verdreifachen können. Das wären 2n Kontrollbits. Wie viele Kontrollbits brauchen wir bei n = a ⋅ b bits? Hinweis: denken Sie an die Rechtecke aus der letzten Aufgabe."
+              <p>
+                Betrachten wir die selbe Kodierung mit n Nachrichtenbits und
+                einem Abstand von 3. Wenn Sie an die Methode der Kontrollbits
+                der magischen Quadrate denken, wie viele zusätzliche Bits
+                benötigen Sie für die Kodierung, wenn n = a ⋅ b gilt?
+              </p>
             }
-            text={"Anzahl Kontrollbits :"}
-            solutions={["a+b+1", "a+1+b", "b+1+a", "b+a+1", "1+a+b", "1+b+a"]}
-            textOnCorrect={""}
+            text={<p></p>}
+            solutions={["1+a+b", "1+b+a", "a+1+b", "a+b+1", "b+a+1", "b+1+a"]}
+            textOnCorrect={<p></p>}
             textOnWrong={
-              "a + b + 1 ist die richtige Lösung. Wir haben die Länge und die Breite des Rechteckes + 1. Unser Rechteck hat 9 Bits, das macht a = 3, b = 3 und Anzahl Kontrollbits = 7"
+              <p>
+                a + b + 1 ist die richtige Lösung. Die Anzahl Spalten des
+                Quadrates mit Nachrichtenbits ist a und die Anzahl zeilen ist b.
+                Für jede Spalte und jede Zeile braucht es ein{" "}
+                <span style={{ color: "blue" }}>Kontrollbits</span>. Das
+                zusätzliche Bit ist dasjenige oben rechts im Quadrat.
+              </p>
             }
           />
-        </div>
-      )}
-      {stateB[2] && (
-        <div>
-          <p>
-            Bei einer Nachrichtenlänge von n können a und b so gewählt werden,
-            dass n &gt; a und n &gt; b gilt. Damit gilt auch n &gt; a + b + 1.
-            Diese Rechteckmethode liefert uns somit eine recht effiziente
-            Kodieren um einzelne Fehler zu korrigieren.
-          </p>
-        </div>
-      )}
+        )}
+        <div className="space"></div>
+        {stateB[2] && (
+          <YN
+            callerFunction={() => {}}
+            question={
+              <p>
+                Welche der beiden genannten Methoden benötigt weniger
+                zusätzliche Bits?
+              </p>
+            }
+            optionYes={<span>Die Anzahl Nachrichtenbits Verdreifachen</span>}
+            optionNo={
+              <span>
+                Nach der Methode der Quadraten die Kontrollbits beifügen
+              </span>
+            }
+            solution={0}
+            textOnCorrect={<p></p>}
+            textOnWrong={
+              <p>
+                a und b sind die Höhe und die Breite des Quadrats (oder des
+                Rechtecks, wenn n keine Quadratzahl ist). a und b kann man so
+                wählen, dass n &gt; a und n &gt; b ist, z.B. die nächst grössere
+                und keinere Zahl von &radic;n und folglich gillt 2n &gt; a + b +
+                1.
+              </p>
+            }
+          />
+        )}
+      </div>
     </div>
   );
 }

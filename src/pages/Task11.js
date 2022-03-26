@@ -3,6 +3,7 @@ import TextExercise from "../components/TextExercise";
 import MC from "../components/MC";
 import CorrectionBitsExercise2 from "../components/CorrectionBitsExercise2";
 import sumChecksum from "../functions/sumChecksum";
+import Info from "../components/Info";
 
 /*
 Task 11: Hamming-Codes
@@ -16,7 +17,7 @@ function Task11() {
   // used for checking if answer by the user to the matrix was correct or not
   const [matrixSolution, setMatrixSolution] = useState("");
 
-  // keeping track if task B is solved or not
+  // keeping track if subtasks of A are solved or not
   const [stateA, setStateA] = useState(Array(4).fill(false));
 
   const handleStateA = (index) => {
@@ -25,6 +26,13 @@ function Task11() {
     setStateA(temp);
   };
 
+  // number of fails after which the hint is revealed
+  const maxFails = 3;
+
+  // current number of fails of subtask B
+  const [numberOfFails, setNumberOfFails] = useState(0);
+
+  // bits of our 7-4 Hamming Code
   const numButtons = 7;
 
   // used for toggle and setting the values for the control bits
@@ -67,9 +75,9 @@ function Task11() {
         onClick={() => handleValues(correlationList[i])}
         onMouseOver={() => handleToggle(correlationList[i])}
         onMouseOut={() => handleToggle(correlationList[i])}
-        className={toggle[i] ? "activeSquare toggleSquare" : "activeSquare"}
+        className={toggle[i] ? "squareBit4 toggleSquare" : "squareBit4"}
       >
-        {values[i]}
+        <h3>{values[i]}</h3>
       </button>
     );
   }
@@ -80,9 +88,9 @@ function Task11() {
         key={i}
         onMouseOver={() => handleToggle(correlationList[i])}
         onMouseOut={() => handleToggle(correlationList[i])}
-        className={toggle[i] ? "inactiveSquare toggleSquare" : "inactiveSquare"}
+        className={toggle[i] ? "squareBit5 toggleSquare" : "squareBit5"}
       >
-        {values[i]}
+        <h3>{values[i]}</h3>
       </button>
     );
   }
@@ -126,19 +134,34 @@ function Task11() {
   // Matrix Buttons
   let matrixButtons = [];
 
+  matrixButtons.push(
+    <button key={0} disabled className={"squareBit5"}>
+      <h3>{matrixValues[0][0]}</h3>
+    </button>
+  );
+
   // deko Buttons
-  for (let i = 0; i < 8; ++i) {
+  for (let i = 1; i < 5; ++i) {
     matrixButtons.push(
-      <button key={i} disabled className={"inactiveSquare"}>
-        {matrixValues[0][i]}
+      <button key={i} disabled className={"squareBit4"}>
+        <h3>{matrixValues[0][i]}</h3>
+      </button>
+    );
+  }
+
+  // deko Buttons
+  for (let i = 5; i < 8; ++i) {
+    matrixButtons.push(
+      <button key={i} disabled className={"squareBit5"}>
+        <h3>{matrixValues[0][i]}</h3>
       </button>
     );
   }
 
   // c1 deko button
   matrixButtons.push(
-    <button key={8} disabled className={"inactiveSquare"}>
-      {matrixValues[1][0]}
+    <button key={8} disabled className={"squareBit5"}>
+      <h3>{matrixValues[1][0]}</h3>
     </button>
   );
 
@@ -148,10 +171,10 @@ function Task11() {
       <button
         key={i + 8}
         disabled={matrixSolution === true}
-        className={"activeSquare"}
+        className={"squareBit4"}
         onClick={() => handleMatrixValue(1, i)}
       >
-        {matrixValues[1][i]}
+        <h3>{matrixValues[1][i]}</h3>
       </button>
     );
   }
@@ -159,16 +182,16 @@ function Task11() {
   // deko buttons row 1
   for (let i = 5; i < 8; ++i) {
     matrixButtons.push(
-      <button key={i + 8} disabled className={"inactiveSquare"}>
-        {matrixValues[1][i]}
+      <button key={i + 8} disabled className={"squareBit5"}>
+        <h3>{matrixValues[1][i]}</h3>
       </button>
     );
   }
 
   // c2 deko button
   matrixButtons.push(
-    <button key={16} disabled className={"inactiveSquare"}>
-      {matrixValues[2][0]}
+    <button key={16} disabled className={"squareBit5"}>
+      <h3>{matrixValues[2][0]}</h3>
     </button>
   );
 
@@ -178,10 +201,10 @@ function Task11() {
       <button
         key={i + 16}
         disabled={matrixSolution === true}
-        className={"activeSquare"}
+        className={"squareBit4"}
         onClick={() => handleMatrixValue(2, i)}
       >
-        {matrixValues[2][i]}
+        <h3>{matrixValues[2][i]}</h3>
       </button>
     );
   }
@@ -189,16 +212,16 @@ function Task11() {
   // deko buttons row 2
   for (let i = 5; i < 8; ++i) {
     matrixButtons.push(
-      <button key={i + 16} disabled className={"inactiveSquare"}>
-        {matrixValues[2][i]}
+      <button key={i + 16} disabled className={"squareBit5"}>
+        <h3>{matrixValues[2][i]}</h3>
       </button>
     );
   }
 
   // c3 deko button
   matrixButtons.push(
-    <button key={24} disabled className={"inactiveSquare"}>
-      {matrixValues[3][0]}
+    <button key={24} disabled className={"squareBit5"}>
+      <h3>{matrixValues[3][0]}</h3>
     </button>
   );
 
@@ -208,10 +231,10 @@ function Task11() {
       <button
         key={i + 24}
         disabled={matrixSolution === true}
-        className={"activeSquare"}
+        className={"squareBit4"}
         onClick={() => handleMatrixValue(3, i)}
       >
-        {matrixValues[3][i]}
+        <h3>{matrixValues[3][i]}</h3>
       </button>
     );
   }
@@ -219,8 +242,8 @@ function Task11() {
   // deko buttons row 2
   for (let i = 5; i < 8; ++i) {
     matrixButtons.push(
-      <button key={i + 24} disabled className={"inactiveSquare"}>
-        {matrixValues[3][i]}
+      <button key={i + 24} disabled className={"squareBit5"}>
+        <h3>{matrixValues[3][i]}</h3>
       </button>
     );
   }
@@ -253,125 +276,194 @@ function Task11() {
     ]);
 
     // all rows must add up to 3
-    let temp1 = sumR1 === "3" && sumR2 === "3" && sumR3 === "3";
+    let temp1 = sumR1 === "03" && sumR2 === "03" && sumR3 === "03";
 
     // all rows add up to 2 except one adds to 3
     let temp2 =
-      sumC1 === "2" && sumC2 === "2" && sumC3 === "2" && sumC4 === "3";
+      sumC1 === "02" && sumC2 === "02" && sumC3 === "02" && sumC4 === "03";
     let temp3 =
-      sumC1 === "2" && sumC2 === "2" && sumC3 === "3" && sumC4 === "2";
+      sumC1 === "02" && sumC2 === "02" && sumC3 === "03" && sumC4 === "02";
     let temp4 =
-      sumC1 === "2" && sumC2 === "3" && sumC3 === "2" && sumC4 === "2";
+      sumC1 === "02" && sumC2 === "03" && sumC3 === "02" && sumC4 === "02";
     let temp5 =
-      sumC1 === "3" && sumC2 === "2" && sumC3 === "2" && sumC4 === "2";
+      sumC1 === "03" && sumC2 === "02" && sumC3 === "02" && sumC4 === "02";
 
     let temp6 = temp2 || temp3 || temp4 || temp5;
     let tempFinal = temp1 && temp6;
 
     setMatrixSolution(tempFinal);
+
+    if (!tempFinal) {
+      setNumberOfFails(numberOfFails + 1);
+    }
   };
 
   return (
-    <div className="task">
+    <div className="main">
       <h1>Aufgabe 11: Effiziente Kodierung 3</h1>
+
+      <div className="space"></div>
+
       <p>
-        Tatsächlich können wir noch kürzere Kodierungen erzeugen, mit welchen
-        wir immer Fehler der Grösse 1 korrigieren können. Angenommen wir wollen
-        eine Kodierung mit 2⁴ = 16 Wörtern, mit Abstand 3. Durch Verdreifachen
-        haben wir 8 zusätzliche Bits. Mit der Rechteckmethode haben wir 2 + 2 +
-        1 = 5 zusätzliche Bits. Der sogenannte Hamming-Code benutzt nur 3
-        zusätzliche Kontrollbits.
+        Der Hamming-Code nutzt die effizienteste Methode um eine Kodierung zu
+        konstruieren, welche einen Mindestendabstand zwischen den Code-Wörter
+        von 3 hat, unter der Nutzung der wenigsten Kontrollbits.
       </p>
-      <p>
-        Der Hamming-Code nutzt folgende elegante Lösung: Mit 3 Bits können Sie
-        2³ = 8 verschiedene Zahlen darstellen, von 0 bis 7. Das entspricht den 7
-        Stellen in der Nachricht, inklusive der Kontrollbits selber. 000 wird
-        selber nicht benutzt. Man ordnet Bits einer der Zahlen 1 bis 7 zu, z.B.
-        B4 wird mit 101 gekoppelt. Das bedeutet, dass B4, C1 und C3 zusammen
-        eine gerade Anzahl an Einsen haben muss. Würde man einem Bit 000
-        zuordnen, dann korreliert dieses Bit mit keinem Kontrollbit. Damit kann
-        man keine Fehler mehr an diesem Bit erkennen oder korrigieren können.
-        Mit 3 Bits können wir also 2³ - 1 = 7 Bit Stellen abdecken.
-      </p>
+
+      <div className="space"></div>
+
+      <Info
+        text={
+          <p>
+            Jede Stelle in einem String kann man Binär darstellen, z.B. die
+            Stelle 4 mit 100. Mit n Kontrollbits kann man 2<sup>n</sup> Zahlen
+            darstellen. Allerdings fällt die Zahl 0 weg, weil jedes Bit (oder
+            jede Stelle), mit einem der Kontrollbits in verbindung stehen muss.
+            Man ordnet jeder Stelle einer der 2<sup>n</sup> - 1 mögliche Zahlen
+            zu, so dass bei einem Fehler im String die Stelle eindeutig erkannt
+            werden kann.
+          </p>
+        }
+      />
+
+      <div className="space"></div>
+
       <TextExercise
         callerFunction={() => handleStateA(0)}
         question={
-          "Wie viele Kontrollbits benötigen Sie für einen Hamming-Code, welcher eine gesammte Nachrichtenlänge (inklusive Kontrollbits) von 31 hat."
+          <p>
+            Wie viele Kontrollbits benötigen Sie für einen Hamming-Code, welcher
+            eine gesammte Nachrichtenlänge (inklusive Kontrollbits) von 31 hat.
+          </p>
         }
-        text={"Anzahl Kontrollbits :"}
+        text={<p></p>}
         solutions={["5"]}
         textOnCorrect={""}
         textOnWrong={
-          "Wir brauchen 5 Kontrollbits um 2⁵ - 1 = 31 Bits abzudcken."
+          <p>Man benötigt 5 Kontrollbits um 2⁵ - 1 = 31 Bits abzudecken.</p>
         }
       />
+
       {stateA[0] && (
-        <div>
+        <>
+          {" "}
+          <div className="space"></div>
           <TextExercise
             callerFunction={() => handleStateA(1)}
             question={
-              "Wie viele verschiedene Wörter sind das in der Kodierung?"
+              <p>
+                Wie viele verschiedene Code-Wörter sind das in der Kodierung?
+              </p>
             }
-            text={"Anzahl als Zweierpotenz (2^x) :"}
+            text={
+              <p>
+                Anzahl als Zweierpotenz (2<sup>x</sup>) :
+              </p>
+            }
             solutions={["2^26", "2²⁶"]}
             textOnCorrect={""}
             textOnWrong={
-              "Wir haben 2⁵ - 1 = 31 Bits in der Nachricht, wobei 5 davon Kontrollbits sind. Damit bleiben uns 31 - 5 = 26 normale Bits übrig, was uns 2²⁶ verschiedene Wörter ergibt. "
+              <p>
+                Es sind insgesammt 2⁵ - 1 = 31 Bits, wobei 5 davon Kontrollbits
+                sind. Damit bleiben 31 - 5 = 26 Nachrichtenbits übrig, was 2²⁶
+                verschiedene Code-Wörter sind.
+              </p>
             }
           />
-        </div>
+        </>
       )}
+
       {stateA[1] && (
-        <div>
+        <>
+          <div className="space"></div>
+          <p>
+            Wie viele Kontrollbits benötigen Sie mindestends für einen
+            Hamming-Code mit 2¹⁰ Code-Wörtern?
+          </p>
           <MC
             callerFunction={() => handleStateA(2)}
-            question={
-              "Wie viele Kontrollbits benötigen Sie mindestends für einen Hamming-Code mit 2¹⁰ Wörtern?"
-            }
-            options={["3", "4", "5", "6"]}
+            options={[
+              <span>3</span>,
+              <span>4</span>,
+              <span>5</span>,
+              <span>6</span>,
+            ]}
             answerKey={[false, true, false, false]}
             textOnCorrect={""}
             textOnWrong={
-              "2³ - 1 = 7, was nicht reicht um 10 + 3 = 13 Bits abzudecken. 2⁴ - 1 = 15 ist die nächst höhere Zweierpotenz und kann 10 + 4 = 14 Bits abdecken. 5 und 6 sind zu viel."
+              <p>
+                2³ - 1 = 7, was nicht reicht um 10 + 3 = 13 Bits abzudecken. 2⁴
+                - 1 = 15 ist die nächst höhere Möglichkeit und kann 10 + 4 = 14
+                Bits abdecken. 5 und 6 sind zu viel.
+              </p>
             }
           />
-        </div>
+        </>
       )}
+
       {stateA[2] && (
-        <div>
+        <>
+          <div className="space"></div>
+          <p>
+            Für eine beliebige gesammte Wortlänge n (inklusive Kontrollbits)
+            müssen welche Ungleichungen in einem Hamming-Code erfüllt sein,
+            damit man die kleinst mögliche Anzahl an Kontrollbits c hat?
+          </p>
           <MC
             callerFunction={() => handleStateA(3)}
-            question={
-              "Für eine beliebige gesammte Wortlänge n (inklusive den Kontrollbits) müssen welche Ungleichungen in einem Hamming-Code erfüllt sein, damit man die kleinst mögliche Anzahl an Kontrollbits c hat?"
-            }
             options={[
-              "2^c - 1 >= n",
-              "2^c - 1 <= n",
-              "n - 1 <= 2^(c-1)",
-              "2^c + 1 >= n",
-              "n >= 2^(c-1)",
+              <span>
+                2<sup>c</sup> - n ≥ 1
+              </span>,
+              <span>
+                2<sup>c</sup> - 1 ≤ n
+              </span>,
+              <span>
+                n - 2<sup>c-1</sup> ≤ 1
+              </span>,
+              <span>
+                2<sup>c</sup> + 1 ≥ n
+              </span>,
+              <span>
+                n - 1 ≥ 2<sup>c-1</sup> - 1
+              </span>,
             ]}
             answerKey={[true, false, false, false, true]}
             textOnCorrect={""}
-            textOnWrong={"2^c - 1 >= n >= 2^(c-1) müssen gelten."}
+            textOnWrong={
+              <p>
+                2<sup>c</sup> - 1 ≥ n ≥ 2<sup>c - 1</sup> müssen gelten, was
+                glleich den Antworten 1 und 5 ist.
+              </p>
+            }
           />
-        </div>
+        </>
       )}
+
+      <div className="space"></div>
+      <div className="task">
+        <button
+          onClick={() => {
+            setStateA(Array(4).fill(true));
+          }}
+        >
+          <p>Aufgabe überspringen</p>
+        </button>
+      </div>
+
+      <div className="space"></div>
+
       {stateA[3] && (
-        <div>
+        <div className="task">
           <p>
-            Gegeben ist eine Tabelle, bei welcher Sie die Korrelationen setzen
-            müssen, damit Sie einen Hamming-Code haben, mit welchem Sie in der
-            Lage sind, Fehler der Grösse 1 zu korrigieren. Alles, was Sie in die
-            Tabelle einfügen, wird vom Code unten direkt übernommen. Sie können
-            zur Überprüfung Ihrer Lösung schauen, ob Sie die Nachricht mit einem
-            Fehler korrigieren können. Für diese Aufgabe gibt es verschiedene
-            Lösungen. Es kann sein, dass Ihre Lösung nicht mit derjenigen
-            übereinstimmt, welche zum Generieren den fehlerhaften Wörtern
-            genutzt wird.
+            Ergänzen Sie die Fehlermeldungstabelle für einen Hamming-Code der
+            Länge 7 mit der möglichkeit einzelne Fehler korrigieren zu können.
+            Die Tabelle wird im Code-Wort Generator direckt umgesetzt. Mehrere
+            Antworten sind möglich. Der Beispielstinrg folgt nur einer dieser
+            Antworten.
           </p>
-          <h4>Korrelations-Tabelle:</h4>
-          <div>
+          <div className="space"></div>
+          <>
             <div className="squareRow">
               {matrixButtons[0]}
               {matrixButtons[1]}
@@ -412,43 +504,56 @@ function Task11() {
               {matrixButtons[30]}
               {matrixButtons[31]}
             </div>
-          </div>
-          <div>
+          </>
+          <div className="smallSpace"></div>
+          <div className="squareRow">
             <button
               disabled={matrixSolution === true}
               onClick={() => checkMartix()}
             >
-              überprüfe Tabelle
+              <p>überprüfe Tabelle</p>
             </button>
           </div>
+
           {matrixSolution === false && (
-            <div className="containerSquares">
+            <div className="squareRow">
               <h3 style={{ color: "red" }}>Falsch</h3>
             </div>
           )}
+
           {matrixSolution && (
-            <div className="containerSquares">
+            <div className="squareRow">
               <h3 style={{ color: "green" }}>Korrekt</h3>
-              <p>
-                Nun haben Sie eine Methode um effiziente Kodierungen zu
-                konstruieren, welche einzelne Fehler korrigieren können. Man
-                stellt genau so eine Tabelle auf und schaut, dass jede Spalte
-                eindeutig mit den Kontrollbits korreliert, d.h. je zwei Spalten
-                unterscheiden sich in mindestends einer Zeile in der Tabelle.
-                Damit sollte auch klar sein, dass es keine kürzere Lösung geben
-                kann. Ein Kontrollbit weniger und dann könnte man zwei Spalten
-                nicht mehr unterscheiden.
-              </p>
             </div>
           )}
-          <p></p>
-          <h4>Kodierung nach der Tabelle:</h4>
-          <p></p>
-          <div className="containerSquares">
-            <div className="squareRow">{renderButtons}</div>
+
+          {numberOfFails >= maxFails && (
+            <>
+              <div className="smallSpace"></div>
+              <Info
+                text={
+                  <p>
+                    Jede Spalte in der Fehlermeldungstabelle muss eine
+                    eindeutige Kombination der Kontrollbits haben.
+                  </p>
+                }
+              />
+              <div className="smallSpace"></div>
+            </>
+          )}
+
+          <div className="smallSpace"></div>
+          <div className="squareRow">
+            <h3>Code-Wort Generator nach der Tabelle</h3>
           </div>
-          <p></p>
-          <h4>Wort mit einem Fehler:</h4>
+          <div className="smallSpace"></div>
+
+          <div className="squareRow">{renderButtons}</div>
+
+          <div className="smallSpace"></div>
+          <div className="squareRow">
+            <h3>Beispiel String mit einem Fehler</h3>
+          </div>
           <CorrectionBitsExercise2 />
         </div>
       )}

@@ -77,7 +77,6 @@ function SquareColorExample({}) {
 
     // change bit
     temp = [...data];
-    console.log(temp[index]);
     if (temp[index] === 0) {
       temp[index] = 1;
     } else {

@@ -99,14 +99,14 @@
 .infoBox {
   text-align: justify;
   max-height: max(3.2vw, 34px);
-  transition: max-height 0.3s ease-out;
+  transition: max-height 0.4s ease-out;
   overflow: hidden;
 }
 
 .infoBox.active {
   height: auto;
-  max-height: 600px;
-  transition: max-height 0.2s ease-in;
+  max-height: 5000px;
+  transition: max-height 1s ease-in;
 }
 
 .infoIcon {
@@ -194,7 +194,32 @@
   padding-bottom: 3%;
 }
 
-.squareBit {
+.squareBit2,
+.squareBit3 {
+  border-width: 5px;
+  width: 5%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  border-color: rgb(240, 240, 240);
+}
+
+.squareBit4,
+.squareBit5 {
+  border-width: 5px;
+  width: 7%;
+  padding-top: 1.5%;
+  padding-bottom: 1.5%;
+  border-color: rgb(240, 240, 240);
+}
+
+.squareBit3,
+.squareBit5 {
+  color: #0066ff;
+}
+
+.squareBit,
+.squareBit2,
+.squareBit4 {
   color: #000000;
   background-color: hsl(0, 0%, 94%);
 }
@@ -220,6 +245,6 @@
 }
 
 .toggleSquare {
-  border-width: 0.4vw;
+  border-width: 5px;
   border-color: #2d5a9e;
 }
