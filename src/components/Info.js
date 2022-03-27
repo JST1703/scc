@@ -16,6 +16,7 @@ function Info({ text }) {
       <div className="infoIcon">
         <FaIcons.FaInfoCircle onClick={() => setIsVisible(!isVisible)} />
       </div>
+      <div className="smallSpace"></div>
       {text}
     </div>
   );

@@ -137,51 +137,48 @@ function Task4() {
     let element3 = mcTemp[i + 2];
 
     mc4A.push(
-      <>
+      <div key={i}>
         <div className="space"></div>
         <p>Erhaltene Nachricht: {element1[0]}</p>
         <div className="smallSpace"></div>
         <MC
-          key={i}
           callerFunction={() => setAnswersA(answersA + 1)}
           options={words}
           answerKey={element1[1]}
           textOnWrong={<p>Die richtige Antwort lautet {element1[2]}.</p>}
           textOnCorrect={<p></p>}
         />
-      </>
+      </div>
     );
 
     mc4B.push(
-      <>
+      <div key={i + 1}>
         <div className="space"></div>
         <p>Erhaltene Nachricht: {element2[0]}</p>
         <div className="smallSpace"></div>
         <MC
-          key={i + 1}
           callerFunction={() => setAnswersB(answersB + 1)}
           options={words}
           answerKey={element2[1]}
           textOnWrong={<p>Die richtige Antwort lautet {element2[2]}.</p>}
           textOnCorrect={<p></p>}
         />
-      </>
+      </div>
     );
 
     mc4C.push(
-      <>
+      <div key={i + 2}>
         <div className="space"></div>
         <p>Erhaltene Nachricht: {element3[0]}</p>
         <div className="smallSpace"></div>
         <MC
-          key={i + 2}
           callerFunction={() => setAnswersC(answersC + 1)}
           options={words}
           answerKey={element3[1]}
-          textOnWrong={<p>Die richtige Antworten sind {element3[2]}.</p>}
+          textOnWrong={<p>Die richtigen Antworten sind {element3[2]}.</p>}
           textOnCorrect={<p></p>}
         />
-      </>
+      </div>
     );
   }
 
@@ -194,7 +191,7 @@ function Task4() {
       <div className="task">
         <div className="taskLeft">
           <p>
-            Gegeben ist eine Kodierung von 4 Nachrichten (Siehe Tabelle rechts).
+            Gegeben ist eine Kodierung von 4 Nachrichten (siehe Tabelle rechts).
             Die Kodierung ordnet jeder Nachricht einen String zu, welcher
             wiederum 2-mal wiederholt wird. Beispielsweise wird hier{" "}
             {binaryRep[1]} mit
@@ -205,9 +202,9 @@ function Task4() {
           </p>
           <div className="space"></div>
           <p>
-            Gegeben sind Nachrichten nach der Übertragung. Bestimmen Sie die
+            Gegeben sind Nachrichten nach einer Übertragung. Bestimmen Sie die
             mögliche ursprüngliche Nachricht unter der Annahme, dass genau ein
-            Fehler vorgefallen ist.
+            Übertragungsfehler vorgefallen ist.
           </p>
           {mc4A}
 
@@ -225,9 +222,9 @@ function Task4() {
           {answersA >= numberOfTasks && (
             <>
               <p>
-                Gegeben sind Nachrichten nach der Übertragung. Bestimmen Sie die
-                mögliche ursprüngliche Nachricht unter der Annahme, dass genau
-                zwei Fehler vorgefallen sind.
+                Gegeben sind Nachrichten nach einer Übertragung. Bestimmen Sie
+                die mögliche ursprüngliche Nachricht unter der Annahme, dass
+                genau zwei Übertragungsfehler vorgefallen sind.
               </p>
               {mc4B}
               <div className="space"></div>
@@ -245,9 +242,9 @@ function Task4() {
           {answersB >= numberOfTasks && (
             <>
               <p>
-                Gegeben sind Nachrichten nach der Übertragung. Bestimmen Sie die
-                mögliche ursprüngliche Nachricht unter der Annahme, dass genau
-                drei Fehler vorgefallen sind.
+                Gegeben sind Nachrichten nach einer Übertragung. Bestimmen Sie
+                die möglichen ursprünglichen Nachrichten unter der Annahme, dass
+                genau drei Übertragungsfehler vorgefallen sind.
               </p>
               {mc4C}
               <div className="space"></div>
@@ -276,8 +273,8 @@ function Task4() {
           <YN
             question={
               <p>
-                Wenn ein Fehler in der Übertragung auftrit, dann ist der
-                erhaltene String nicht in den Codewörter enthalten.
+                Wenn genau ein Fehler in der Übertragung auftritt, dann ist der
+                erhaltene String nicht Teil der Code-Wörter.
               </p>
             }
             solution={1}
@@ -286,8 +283,8 @@ function Task4() {
             textOnCorrect={<p></p>}
             textOnWrong={
               <p>
-                Die Codewörter unterscheiden sich mindestends in 3 Stellen. Ein
-                Fehler reicht nicht aus, um das eine Codewort in ein anderes
+                Die Code-Wörter unterscheiden sich mindestens in 3 Stellen. Ein
+                Fehler reicht nicht aus, um das eine Code-Wort in ein anderes
                 umzuwandeln.
               </p>
             }
@@ -302,8 +299,8 @@ function Task4() {
           <YN
             question={
               <p>
-                Wenn ein Fehler in der Übertragung auftrit, dann kann man diesen
-                korrigieren.
+                Wenn genau ein Fehler in der Übertragung auftrit, dann kann man
+                diesen korrigieren.
               </p>
             }
             solution={1}
@@ -312,10 +309,11 @@ function Task4() {
             textOnCorrect={<p></p>}
             textOnWrong={
               <p>
-                Das feherhafte Wort unterscheidet sich zu genau einem Codewort
-                um eine Stelle. Die anderen Codewörter unterscheiden sich
-                mindestends in 2 Stellen zum Fehlerhaften Sting, weil sich die
-                Codewörter sich in mindestends in 3 Stellen unterscheiden.
+                Das fehlerhafte Wort unterscheidet sich zu genau einem Code-Wort
+                in einer Stelle. Die anderen Code-Wörter unterscheiden sich
+                mindestens in 2 Stellen zum Fehlerhaften Sting, weil sich die
+                Code-Wörter in mindestens 3 Stellen unterscheiden. Damit kann
+                man den Fehler eindeutig korrigieren.
               </p>
             }
             callerFunction={() => handleTaskStateD(1)}
@@ -330,17 +328,17 @@ function Task4() {
             question={
               <p>
                 Wenn zwei Fehler in der Übertragung auftreten, dann ist der
-                erhaltene String nicht in den Codewörter enthalten.
+                erhaltene String nicht Teil der Code-Wörter.
               </p>
             }
             solution={1}
-            optionYes={<span>Ja</span>}
-            optionNo={<span>Nein</span>}
+            optionYes={<span>Richtig</span>}
+            optionNo={<span>Falsch</span>}
             textOnCorrect={<p></p>}
             textOnWrong={
               <p>
-                Die Codewörter unterscheiden sich mindestends in 3 Stellen. Zwei
-                Fehler reichen nicht aus, um das eine Codewort in ein anderes
+                Die Code-Wörter unterscheiden sich mindestens in 3 Stellen. Zwei
+                Fehler reicht nicht aus, um das eine Code-Wort in ein anderes
                 umzuwandeln.
               </p>
             }
@@ -360,14 +358,16 @@ function Task4() {
               </p>
             }
             solution={0}
-            optionYes={<span>Ja</span>}
-            optionNo={<span>Nein</span>}
+            optionYes={<span>Richtig</span>}
+            optionNo={<span>Falsch</span>}
             textOnCorrect={<p></p>}
             textOnWrong={
               <p>
-                100000 könnte ein Übertragungsfehler gewesen sein an der ersten
-                Stelle bei 000000 oder bei zwei Stellen von 101010. Deswegen
-                kann man diesen Fehler nicht korrigieren.
+                Erhält man den String 100000, dann könnte das ein Fehler an der
+                ersten Stelle gewesen sein im Wort 000000 oder zwei Fehler im
+                Wort 101010. Man kann sich deswegen bei zwei Fehlern nicht
+                sicher sein, was das ursprüngliche Code-Wort war und somit ist
+                keine Korrektur möglich.
               </p>
             }
             callerFunction={() => handleTaskStateD(3)}
@@ -382,15 +382,15 @@ function Task4() {
             question={
               <p>
                 Wenn drei Fehler in der Übertragung auftreten, dann ist der
-                erhaltene String nicht in den Codewörter enthalten.
+                erhaltene String nicht Teil der Code-Wörter.
               </p>
             }
             solution={0}
-            optionYes={<span>Ja</span>}
-            optionNo={<span>Nein</span>}
+            optionYes={<span>Richtig</span>}
+            optionNo={<span>Falsch</span>}
             textOnCorrect={<p></p>}
             textOnWrong={
-              <p>Z.B. können drei Fehler 101010 zu 000000 umwandeln.</p>
+              <p>Z. B. können drei Fehler 101010 zu 000000 umwandeln.</p>
             }
             callerFunction={() => handleTaskStateD(4)}
           />
@@ -403,18 +403,18 @@ function Task4() {
           <YN
             question={
               <p>
-                Wenn zwei Fehler in der Übertragung auftreten, dann kann man
+                Wenn drei Fehler in der Übertragung auftreten, dann kann man
                 diese korrigieren.
               </p>
             }
             solution={0}
-            optionYes={<span>Prüfsumme</span>}
-            optionNo={<span>Prüfziffer</span>}
+            optionYes={<span>Richtig</span>}
+            optionNo={<span>Falsch</span>}
             textOnCorrect={<p></p>}
             textOnWrong={
               <p>
-                Wenn wir 000000 erhalten, was ein Codewort ist, so gehen wir
-                nicht von einem Fehler aus und würden das nicht korrigieren.
+                Wenn man 000000 erhält, was ein Code-Wort ist, geht man nicht
+                von einem Fehler aus und kann deswegen auch nichts korrigieren.
               </p>
             }
             callerFunction={() => {}}

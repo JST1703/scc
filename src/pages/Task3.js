@@ -65,22 +65,22 @@ function Task3() {
       <div className="task">
         <div className="taskLeft">
           <p>
-            Gegeben sind Bitfolgen, bestehend aus den Ziffern 0 und 1, und deren{" "}
-            <span style={{ color: "red" }}>{"Prüfbits"}</span>. Egänzen Sie
-            anhand der gegebenen Beipielen die fehlenden Prüfbits.
+            Gegeben sind Bitfolgen, bestehend aus den Ziffern 0 und 1, und deren
+            einstellitgen <span style={{ color: "red" }}>{" Prüfbits"}</span>.
+            Ergänzen Sie anhand der gegebenen Beispielen die fehlenden Prüfbits.
           </p>
           <div className="space"></div>
           {wrongAnswersA >= minWrongAnswers && (
             <Info
               text={
                 <p>
-                  Das Prüfbit wird so gewählt, dass die Anzahl Einsen in der
+                  Das Prüfbit wird so gesetzt, dass die Anzahl Einsen in der
                   gesamten Folge (inklusive Prüfbit) gerade ist. Zum Beispiel
                   hat die Folge 11001 das Prüfbit{" "}
-                  <span style={{ color: "red" }}>{1}</span>, denn die gesammte
-                  Folge hat eine gerade Anzahl Einsen. Anders hat die Folge 1001
-                  bereits eine gerade Anzahl Einsen und somit das Prüfbit{" "}
-                  <span style={{ color: "red" }}>{0}</span>.
+                  <span style={{ color: "red" }}>{1}</span>, ddamit die Folge
+                  inklusive Prüfbit eine gerade Anzahl Einsen hat. Anders hat
+                  die Folge 1001 bereits eine gerade Anzahl Einsen und somit das
+                  Prüfbit <span style={{ color: "red" }}>{0}</span>.
                 </p>
               }
             />
@@ -123,10 +123,10 @@ function Task3() {
           <div className="space"></div>
           <div className="taskLeft">
             <p>
-              Gegeben ist eine weitere binäre Folge und deren Prüfbit. Ändern
-              sie die gegebene Folge an genau zwei Stellen ab, sodass das
-              Prüfbit immer noch gültig ist. Geben Sie die neue Folge ohne
-              Prüfbit an.
+              Gegeben ist eine weitere binäre Folge mit{" "}
+              <span style={{ color: "red" }}>{" Prüfbit"}</span>. Ändern Sie die
+              gegebene Folge an genau zwei Stellen, sodass das Prüfbit immer
+              noch gültig ist. Geben Sie die neue Folge ohne Prüfbit an.
             </p>
           </div>
           <div className="taskRight">
@@ -136,8 +136,8 @@ function Task3() {
               textOnCorrect={<p></p>}
               textOnWrong={
                 <p>
-                  Ihre Angegebene Folge hat entweder mehr als 2 Änderungen oder
-                  erfüllt nicht mehr das gegebe Prüfbit.
+                  Ihre Lösung beinhaltet entweder mehr als 2 Änderungen oder
+                  stimmt nicht mit dem vorgegebenen Prüfbit überein.
                 </p>
               }
               comparer={(a, b, c, d) => {
@@ -171,9 +171,11 @@ function Task3() {
                 Diese Prüfbit Methode ist sehr simpel und deswegen auch
                 limitiert. Genau wie die Methoden aus den vorherigen Aufgaben
                 kann man mit dem Prüfbit nur Übertragungsfehler erkennen, wenn
-                diese nur an einer Stelle auftreten. Das fehlerhafte Bit lässt
-                sich nicht ermitteln. Diese Methode ist aber sehr effizient, da
-                man nur ein weiteres Bit zur Überprüfung benötigt.
+                diese nur an einer Stelle auftreten. Wenn mehr Fehler auftreten,
+                kann dies unerkannt bleiben. Das fehlerhafte Bit lässt sich auch
+                nicht ermitteln und deswegen auch nicht korrigieren. Diese
+                Methode ist aber sehr effizient, da man nur ein zusätzliches Bit
+                benötigt und nicht mehrere.
               </p>
             }
           />
@@ -182,8 +184,9 @@ function Task3() {
           <div className="taskLeft">
             <p>
               Gegeben sind weitere Bitfolgen, bestehend aus den Ziffern 0 und 1,
-              und deren <span style={{ color: "red" }}>{"Prüfbits"}</span>.
-              Egänzen Sie anhand der gegebenen Beipielen die fehlenden Prüfbits.
+              und deren nun zweistelligen{" "}
+              <span style={{ color: "red" }}>{" Prüfbits"}</span>. Ergänzen Sie
+              anhand der gegebenen Beispielen die fehlenden Prüfbits.
             </p>
             <div className="space"></div>
             {wrongAnswersC >= minWrongAnswers && (
@@ -191,14 +194,14 @@ function Task3() {
                 text={
                   <p>
                     Um die Prüfbits bestimmen zu können, nutzt man die gleiche
-                    Methode wie vorhin, jeweils angewandt auf jedes zweite Bit.
+                    Methode wie vorhin, allerdings nur auf jedes zweite Bit.
                     Beispielsweise sei die Folge{" "}
                     <span style={{ color: "red" }}>{1}</span>
                     <span style={{ color: "green" }}>{1}</span>
                     <span style={{ color: "red" }}>{1}</span>
                     <span style={{ color: "green" }}>{0}</span> gegeben, dann
                     sind die Prüfbits <span style={{ color: "red" }}>{0}</span>
-                    <span style={{ color: "green" }}>{1}</span>. Das erste
+                    <span style={{ color: "green" }}>{1}</span>. Das erste{" "}
                     Prüfbit ergibt sich aus den Bits an den ungeraden Stellen
                     der Folge und das zweite Prüfbit aus den Bits an den geraden
                     Stellen.
@@ -244,9 +247,10 @@ function Task3() {
           <div className="space"></div>
           <div className="taskLeft">
             <p>
-              Ändern sie die gegebene Folge an genau zwei Stellen ab, sodass die
-              Prüfbits immer noch gültig sind. Geben Sie die neue Folge ohne
-              Prüfbit an.
+              Ändern Sie die gegebene Folge an genau zwei Stellen ab, sodass
+              diese mit den gegebenen{" "}
+              <span style={{ color: "red" }}>{" Prüfbits"}</span> immer noch
+              übereinstimmt. Geben Sie die neue Folge ohne Prüfbits an.
             </p>
           </div>
           <div className="taskRight">
@@ -256,8 +260,8 @@ function Task3() {
               textOnCorrect={<p></p>}
               textOnWrong={
                 <p>
-                  Ihre Angegebene Folge hat entweder mehr als 2 Änderungen oder
-                  erfüllt nicht mehr die gegeben Prüfbits.
+                  Ihre Lösung beinhaltet entweder mehr als 2 Änderungen oder
+                  stimmt nicht mit den vorgegebenen Prüfbits überein.
                 </p>
               }
               comparer={(a, b, c, d) => {
@@ -272,14 +276,12 @@ function Task3() {
           <Info
             text={
               <p>
-                Diese Methode ist leicht besser. Im Allgemeinen kann man nur
-                Fehler in einer Übertragung erkennen, wenn diese nur an einer
-                Stelle auftreten oder maximal zwei Fehler, aber nur wenn diese
-                in der einen Gruppe der Bits (den ungeraden Stellen) und der
-                anderen Gruppe (den geraden Stellen) auftreten und nicht in der
-                selben Gruppe. Damit kann man auch Fehler erkennen, sollte man
-                die Bits vertauschen. Welche Bits falsch übertragen worden sind,
-                kann man nicht bestimmen.
+                Diese Methode ist leicht besser. Man kann damit das Auftreten
+                von bis zu 2 Fehlern erkennen, allerdings nur, wenn diese in den
+                verschiedenen Positionsgruppen auftreten. Sonst kann man nur
+                einzelne Fehler erkennen. In allen Fällen kann man immer noch
+                nicht herausfinden, welche der Bits den Fehler beinhaltet und
+                deswegen kann man auch hier keine Fehler korrigieren.
               </p>
             }
           />

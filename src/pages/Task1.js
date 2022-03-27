@@ -100,8 +100,8 @@ function Task1() {
             <Info
               text={
                 <p>
-                  Die Prüfziffer ist die Prüfsumme. Die Ziffern werden einfach
-                  addiert.
+                  Die Prüfziffer ist die Prüfsumme. Die Prüfsumme ist die Summe
+                  der einzelnen Ziffern der Zahlenfolge.
                 </p>
               }
             />
