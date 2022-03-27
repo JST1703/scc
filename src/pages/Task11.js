@@ -305,8 +305,8 @@ function Task11() {
       <div className="space"></div>
 
       <p>
-        Der Hamming-Code nutzt die effizienteste Methode um eine Kodierung zu
-        konstruieren, welche einen Mindestendabstand zwischen den Code-Wörter
+        Der Hamming-Code nutzt die effizienteste Methode, um eine Kodierung zu
+        konstruieren, welche einen Mindestendabstand zwischen den Code-Wörtern
         von 3 hat, unter der Nutzung der wenigsten Kontrollbits.
       </p>
 
@@ -315,12 +315,12 @@ function Task11() {
       <Info
         text={
           <p>
-            Jede Stelle in einem String kann man Binär darstellen, z.B. die
+            Jede Stelle in einem String kann man binär darstellen, z. B. die
             Stelle 4 mit 100. Mit n Kontrollbits kann man 2<sup>n</sup> Zahlen
             darstellen. Allerdings fällt die Zahl 0 weg, weil jedes Bit (oder
-            jede Stelle), mit einem der Kontrollbits in verbindung stehen muss.
+            jede Stelle), mit einem der Kontrollbits in Verbindung stehen muss.
             Man ordnet jeder Stelle einer der 2<sup>n</sup> - 1 mögliche Zahlen
-            zu, so dass bei einem Fehler im String die Stelle eindeutig erkannt
+            zu, sodass bei einem Fehler im String die Stelle eindeutig erkannt
             werden kann.
           </p>
         }
@@ -333,14 +333,14 @@ function Task11() {
         question={
           <p>
             Wie viele Kontrollbits benötigen Sie für einen Hamming-Code, welcher
-            eine gesammte Nachrichtenlänge (inklusive Kontrollbits) von 31 hat.
+            eine gesamte Nachrichtenlänge (inklusive Kontrollbits) von 31 hat.
           </p>
         }
         text={<p></p>}
         solutions={["5"]}
         textOnCorrect={""}
         textOnWrong={
-          <p>Man benötigt 5 Kontrollbits um 2⁵ - 1 = 31 Bits abzudecken.</p>
+          <p>Man benötigt 5 Kontrollbits, um 2⁵ - 1 = 31 Bits abzudecken.</p>
         }
       />
 
@@ -364,7 +364,7 @@ function Task11() {
             textOnCorrect={""}
             textOnWrong={
               <p>
-                Es sind insgesammt 2⁵ - 1 = 31 Bits, wobei 5 davon Kontrollbits
+                Es sind insgesamt 2⁵ - 1 = 31 Bits, wobei 5 davon Kontrollbits
                 sind. Damit bleiben 31 - 5 = 26 Nachrichtenbits übrig, was 2²⁶
                 verschiedene Code-Wörter sind.
               </p>
@@ -377,7 +377,7 @@ function Task11() {
         <>
           <div className="space"></div>
           <p>
-            Wie viele Kontrollbits benötigen Sie mindestends für einen
+            Wie viele Kontrollbits benötigen Sie mindestens für einen
             Hamming-Code mit 2¹⁰ Code-Wörtern?
           </p>
           <MC
@@ -392,9 +392,10 @@ function Task11() {
             textOnCorrect={""}
             textOnWrong={
               <p>
-                2³ - 1 = 7, was nicht reicht um 10 + 3 = 13 Bits abzudecken. 2⁴
-                - 1 = 15 ist die nächst höhere Möglichkeit und kann 10 + 4 = 14
-                Bits abdecken. 5 und 6 sind zu viel.
+                4 ist korrekt. 2³ - 1 = 7, was nicht reicht, um 10 + 3 = 13
+                Nachrichten- und Kontrollbits abzudecken. 2⁴ - 1 = 15 ist die
+                nächst höhere Möglichkeit und kann 10 + 4 = 14 Bits abdecken. 5
+                und 6 sind zu viel.
               </p>
             }
           />
@@ -433,7 +434,7 @@ function Task11() {
             textOnWrong={
               <p>
                 2<sup>c</sup> - 1 ≥ n ≥ 2<sup>c - 1</sup> müssen gelten, was
-                glleich den Antworten 1 und 5 ist.
+                gleich den Antworten 1 und 5 ist.
               </p>
             }
           />
@@ -457,9 +458,9 @@ function Task11() {
         <div className="task">
           <p>
             Ergänzen Sie die Fehlermeldungstabelle für einen Hamming-Code der
-            Länge 7 mit der möglichkeit einzelne Fehler korrigieren zu können.
-            Die Tabelle wird im Code-Wort Generator direckt umgesetzt. Mehrere
-            Antworten sind möglich. Der Beispielstinrg folgt nur einer dieser
+            Länge 7, mit der Möglichkeit einzelne Fehler korrigieren zu können.
+            Die Tabelle wird im Code-Wort Generator direkt umgesetzt. Mehrere
+            Antworten sind möglich. Der Beispielstring folgt nur einer dieser
             Antworten.
           </p>
           <div className="space"></div>

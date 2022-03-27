@@ -45,10 +45,10 @@ function Task9() {
 
       <div className="space"></div>
       <p>
-        Gegeben sind Magische Quadrate, welche aus kleineren Quadrate bestehen,
+        Gegeben sind magische Quadrate, welche aus kleineren Quadrate bestehen,
         mit jeweils einem Bit 1 oder 0. Die Bits in einem Quadrat erfüllen eine
         bestimmte Eigenschaft. Alle Bits im linken Quadrat sind korrekt, bei den
-        rechts ist jeweils genau ein Bit falsch. Finden Sie das felerhafte Bit
+        rechts ist jeweils genau ein Bit falsch. Finden Sie das fehlerhafte Bit
         in den jeweiligen Quadraten. Die Eigenschaft, welche die Quadrate
         erfüllen sollen, kann Ihnen dabei helfen.
       </p>
@@ -150,7 +150,7 @@ function Task9() {
               textOnCorrect={<p></p>}
               textOnWrong={
                 <p>
-                  Bei zwei Ferlerhaften Bits ist mindestends eine Zeile oder
+                  Bei zwei fehlerhaften Bits ist mindestens eine Zeile oder
                   Spalte fehlerhaft.
                 </p>
               }
@@ -173,7 +173,7 @@ function Task9() {
                   textOnCorrect={<p></p>}
                   textOnWrong={
                     <p>
-                      Egal welche 2 Bits felerhaft sind, die dauraus reusltieren
+                      Egal welche 2 Bits fehlerhaft sind, die daraus resultieren
                       fehlerhaften Spalten oder Zeilen können auch durch ein
                       anderes Paar Bits verursacht werden.
                     </p>
@@ -187,7 +187,7 @@ function Task9() {
               <>
                 <div className="space"></div>
                 <p>
-                  Wie viele Fehler müssen mindestends auftreten, so dass dennoch
+                  Wie viele Fehler müssen mindestens auftreten, sodass dennoch
                   jede Zeile und Spalte korrekt ist?
                 </p>
                 <MC
@@ -203,11 +203,11 @@ function Task9() {
                   textOnCorrect={<p></p>}
                   textOnWrong={
                     <p>
-                      4 ist Korrekt. Egal welche 2 Bits felerhaft sind, die
-                      dauraus reusltieren fehlerhaften Spalten oder Zeilen
-                      können auch durch ein anderes Paar Bits verursacht werden.
-                      Wenn wir genau diese Bits flippen, dann sind die
-                      petroffenen Zeilen und Spalten wieder korrekt.
+                      4 ist korrekt. Egal welche 2 Bits fehlerhaft sind, die
+                      daraus resultieren fehlerhaften Spalten oder Zeilen können
+                      auch durch ein anderes Paar Bits verursacht werden. Wenn
+                      wir genau diese Bits flippen, dann sind die betroffenen
+                      Zeilen und Spalten wieder korrekt.
                     </p>
                   }
                   callerFunction={() => handleTaskState(2)}
@@ -219,8 +219,8 @@ function Task9() {
               <>
                 <div className="space"></div>
                 <p>
-                  Betrachten wir diese magischen Quadrate als Nachrichte einer
-                  Kodierung. Was ist der Abstand zwischen zwei gültingen
+                  Betrachten wir diese magischen Quadrate als Code-Wörter einer
+                  Kodierung. Was ist der Abstand zwischen zwei gültigen
                   Quadraten?
                 </p>
                 <MC
@@ -234,7 +234,9 @@ function Task9() {
                   ]}
                   answerKey={[false, false, false, true, false, false]}
                   textOnCorrect={<p></p>}
-                  textOnWrong={<p>4 ist Korrekt. Siehe letzte MC Aufgabe.</p>}
+                  textOnWrong={
+                    <p>4 ist korrekt. Siehe letzte Multiple-Choice-Aufgabe.</p>
+                  }
                   callerFunction={() => {}}
                 />
               </>

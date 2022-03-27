@@ -42,7 +42,7 @@ function Home() {
             text={
               <p>
                 Diese Hinweisboxen beinhalten einige Informationen, Hinweise
-                oder Lösungen, die Ihnen beim Lösen der Aufgabe behilflich sein
+                oder Lösungen, die Ihnen beim Lösen der Aufgaben behilflich sein
                 können.
               </p>
             }

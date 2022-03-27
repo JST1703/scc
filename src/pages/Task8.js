@@ -70,7 +70,7 @@ function Task8() {
               <p>
                 Angenommen, wir wollen eine Kodierungen haben, die bis zu k
                 Fehler erkennen kann. Wie gross muss der dafür Abstand d
-                midestends sein abhängig von k?
+                mindestens sein in Abhängigkeit von k?
               </p>
             }
             text={<span>d =</span>}
@@ -86,21 +86,21 @@ function Task8() {
                 text={
                   <p>
                     Wenn wir einen String erhalten, welcher nicht teil unseren
-                    Codewörter ist, dann muss ein Übertragungsfehler vorgefallen
-                    sein. Haben alle unser Codewörter einen Abstand von k + 1
-                    beduetet das, dass wir k + 1 Stellen an einem Codewort
-                    ändern müssen, damit wir ein anderes Codewort erhalten.
-                    Werden weniger Stellen abgeändert, dann erreichen wir damit
-                    kein Codewort. Deswegen können wir mit einem Abstand von k +
-                    1 bis zu k Fehler erkennen.
+                    Code-Wörtern ist, dann muss ein Übertragungsfehler
+                    vorgefallen sein. Haben alle unsere Code-Wörter einen
+                    Abstand von k + 1 bedeutet das, dass wir k + 1 Stellen an
+                    einem Codewort ändern müssen, damit wir ein anderes
+                    Code-Wort erhalten. Werden weniger Stellen abgeändert, dann
+                    erreichen wir damit kein Code-Wort. Deswegen kann man mit
+                    einem Abstand von k + 1 bis zu k Fehler erkennen.
                   </p>
                 }
               />
               <div className="space"></div>
               <p>
                 Angenommen, wir wollen eine Kodierungen haben, die bis zu k
-                Fehler korrigieren kann. Wie gross muss dafür der Abstand d
-                midestends sein abhängig von k?
+                Fehler korrigieren kann. Wie gross muss der dafür Abstand d
+                mindestens sein in Abhängigkeit von k?
               </p>
               <MC
                 callerFunction={() => setState2(true)}
@@ -121,15 +121,16 @@ function Task8() {
               <Info
                 text={
                   <p>
-                    Um einen erhaltenen String s, welcher nicht zu den
-                    Codewörter gehört, korrigieren zu können, ordnen wir diesen
-                    dem nächstgelegenen Codewort zu, mit dem kleinsetn abstand
-                    zu s. Wenn alle Codewörter einen Abstand von 2k + 1 haben,
-                    kann ein beliebeger String s nicht gleich weit entfehrnt von
-                    den beiden Codewörter sein. Sollte der Abstand zu einem
-                    Codewort k sein, muss zwingend der Abstand zum anderen k + 1
-                    sein, sonst wäre der Abstand der Codewörter nicht
-                    mindestends 2k + 1.
+                    Damit man einen beliebigen String korrigieren kann, muss
+                    dieser eindeutig näher an einem Code-Wort sein, als zu den
+                    restlichen Code-Wörtern. Liegt dieser gleich weit von 2
+                    Codewörtern entfernt, ist keine Korrektur möglich. Damit man
+                    bis zu k Fehler korrigieren kann, muss sich der fehlerhafte
+                    String vom ursprünglichen Code-Wort in k stellen
+                    unterscheiden und zu allen anderen Code Wörter in mindesten
+                    k+1 stellen, damit wir eine eindeutige Zuordnung haben. Das
+                    ist ein gerammter Abstand von 2k + 1 zwischen den
+                    Code-Wörtern.
                   </p>
                 }
               />
@@ -154,7 +155,7 @@ function Task8() {
         <div className="task">
           <div className="space"></div>
           <p>
-            Gegeben sind enige Kodierungen. Bestimmen Sie jeweils den Abstand
+            Gegeben sind einige Kodierungen. Bestimmen Sie jeweils den Abstand
             der Kodierung und deren Eigenschaften.
           </p>
           <div className="space"></div>

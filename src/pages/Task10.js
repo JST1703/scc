@@ -158,7 +158,7 @@ function Task10() {
                 <span style={{ color: "blue" }}>C7</span> kontrolliert. Die{" "}
                 <span style={{ color: "blue" }}>Kontrollbits</span> werden so
                 gesetzt, dass die Spalten und Zeilen eine gerade Anzahl an
-                Einsen besitzt. Sollte ein Bit felerhaft sein, wrid dies durch
+                Einsen besitzt. Sollte ein Bit fehlerhaft sein, wird dies über
                 die <span style={{ color: "blue" }}>Kontrollbits</span> erkannt.
                 Die Fehlermeldungstabelle zeigt an, welche{" "}
                 <span style={{ color: "blue" }}>Kontrollbits</span> welche
@@ -185,9 +185,9 @@ function Task10() {
         <p>
           Gegeben ist eine Kodierung, wobei die Codewörter aus 9 Nachrichtenbits
           und 7 <span style={{ color: "blue" }}>Kontrollbits</span> bestehen.
-          Die <span style={{ color: "blue" }}>Kontrollbits</span> korrellieren
+          Die <span style={{ color: "blue" }}>Kontrollbits</span> kkorrelieren
           mit den Nachrichtenbits wie in den magischen Quadraten. Weiter sind
-          Stings gegeben, welche entstanden sind durch einen Fehler in einem
+          Strings gegeben, welche entstanden sind durch einen Fehler in einem
           Code-Wort. Finden Sie in den gegebenen Strings das fehlerhafte Bit.
         </p>
         <div className="space"></div>
@@ -203,7 +203,7 @@ function Task10() {
                 Generator und überprüfen Sie mit den{" "}
                 <span style={{ color: "blue" }}>Kontrollbits</span>, welche
                 nicht mit derjenigen vom Generator übereinstimmen, welches Bit
-                felerhaft sein könnte. Es können auch{" "}
+                fehlerhaft sein könnte. Es können auch{" "}
                 <span style={{ color: "blue" }}>Kontrollbits</span> falsch sein.
               </p>
             }
@@ -243,7 +243,7 @@ function Task10() {
             textOnCorrect={<p></p>}
             textOnWrong={
               <p>
-                Bei 9 Nachrichten Bits können wir 2⁹ verschiedene Nachrichten
+                Bei 9 Nachrichtenbits können wir 2⁹ verschiedene Nachrichten
                 konstruieren.
               </p>
             }
@@ -257,7 +257,7 @@ function Task10() {
               <p>
                 Angenommen wir haben eine Kodierung mit n Nachrichtenbits mit
                 einem Abstand von 3. Wie viele zusätzliche Bits benötigen wir,
-                wenn wir die Nachrichtenlänge Verdreifachen?
+                wenn wir die Nachrichtenlänge verdreifachen?
               </p>
             }
             text={<p></p>}
@@ -265,8 +265,8 @@ function Task10() {
             textOnCorrect={<p></p>}
             textOnWrong={
               <p>
-                Wenn wir n Nachrichtenbits haben und die gesammte nachricht
-                Verdreifachen, dann haben wir 2n zusätzliche Bits.
+                Wenn wir n Nachrichtenbits haben und die gesamte Nachricht
+                verdreifachen, dann haben wir 2n zusätzliche Bits.
               </p>
             }
           />
@@ -277,7 +277,7 @@ function Task10() {
             callerFunction={() => handleStateB(2)}
             question={
               <p>
-                Betrachten wir die selbe Kodierung mit n Nachrichtenbits und
+                Betrachten wir dieselbe Kodierung mit n Nachrichtenbits und
                 einem Abstand von 3. Wenn Sie an die Methode der Kontrollbits
                 der magischen Quadrate denken, wie viele zusätzliche Bits
                 benötigen Sie für die Kodierung, wenn n = a ⋅ b gilt?
@@ -289,7 +289,7 @@ function Task10() {
             textOnWrong={
               <p>
                 a + b + 1 ist die richtige Lösung. Die Anzahl Spalten des
-                Quadrates mit Nachrichtenbits ist a und die Anzahl zeilen ist b.
+                Quadrates mit Nachrichtenbits ist a und die Anzahl Zeilen ist b.
                 Für jede Spalte und jede Zeile braucht es ein{" "}
                 <span style={{ color: "blue" }}>Kontrollbits</span>. Das
                 zusätzliche Bit ist dasjenige oben rechts im Quadrat.
@@ -319,9 +319,9 @@ function Task10() {
               <p>
                 a und b sind die Höhe und die Breite des Quadrats (oder des
                 Rechtecks, wenn n keine Quadratzahl ist). a und b kann man so
-                wählen, dass n &gt; a und n &gt; b ist, z.B. die nächst grössere
-                und keinere Zahl von &radic;n und folglich gillt 2n &gt; a + b +
-                1.
+                wählen, dass n &gt; a und n &gt; b gelten (z. B. die nächst
+                grössere und kleinere Zahl von &radic;n) und folglich gilt 2n
+                &gt; a + b + 1.
               </p>
             }
           />

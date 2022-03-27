@@ -193,8 +193,8 @@ function Task4() {
           <p>
             Gegeben ist eine Kodierung von 4 Nachrichten (siehe Tabelle rechts).
             Die Kodierung ordnet jeder Nachricht einen String zu, welcher
-            wiederum 2-mal wiederholt wird. Beispielsweise wird hier{" "}
-            {binaryRep[1]} mit
+            wiederum 2-mal wiederholt wird. Beispielsweise wird {binaryRep[1]}{" "}
+            mit
             {" " + binaryRep[1]}
             <span style={{ color: "red" }}>{binaryRep[1]}</span>
             <span style={{ color: "green" }}>{binaryRep[1] + " "}</span>{" "}
@@ -363,8 +363,8 @@ function Task4() {
             textOnCorrect={<p></p>}
             textOnWrong={
               <p>
-                Erhält man den String 100000, dann könnte das ein Fehler an der
-                ersten Stelle gewesen sein im Wort 000000 oder zwei Fehler im
+                Erhält man den String 100000, dann könnte das ein Fehler im Wort
+                000000 an der ersten Stelle gewesen sein oder zwei Fehler im
                 Wort 101010. Man kann sich deswegen bei zwei Fehlern nicht
                 sicher sein, was das ursprüngliche Code-Wort war und somit ist
                 keine Korrektur möglich.

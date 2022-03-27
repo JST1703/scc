@@ -3,12 +3,15 @@ import hammingDistance from "../functions/hammingDistance";
 
 // this component goes with task 7
 
-/* taskNumber 
-is either 0 or 1 for indicating what property the encoding needs to fulfill.
+/* 
+taskNumber is either 0 or 1 for indicating what property the encoding needs to fulfill.
+
 callerFunction is a function the caller component uses, if this question gets answered.
+
+failFunction is a function the caller component uses, if this question gets answered wrongly.
 */
 
-function GraphTask({ taskNumber, callerFunction }) {
+function GraphTask({ taskNumber, callerFunction, failFunction }) {
   // code words
   const words = [
     "00000",
@@ -84,18 +87,18 @@ function GraphTask({ taskNumber, callerFunction }) {
   // all possible task, selected by the taskNumber of the caller
   const possibleTasks = [
     [
-      <h3>
-        Mit der Kodierung kann man nur einzelne Fehler erkennen, aber keine
-        korrigieren.
-      </h3>,
+      <p>
+        Erstellen Sie eine Kodierung, mit der man nur einzelne Fehler erkennen,
+        aber keine korrigieren kann.
+      </p>,
       2,
       16,
     ],
     [
-      <h3>
-        Mit der Kodierung kann man nur einzelne Fehler Korrigieren und Fehler
-        bis zur Grösse 2 erkennen.
-      </h3>,
+      <p>
+        Erstellen Sie eine Kodierung, mit der man einzelne Fehler korrigieren
+        kann, und auch bis zu 2 Fehler erkennen kann.
+      </p>,
       3,
       4,
     ],
@@ -173,6 +176,8 @@ function GraphTask({ taskNumber, callerFunction }) {
     setTaskState(sol);
     if (sol) {
       callerFunction();
+    } else {
+      failFunction();
     }
   };
 
@@ -206,23 +211,10 @@ function GraphTask({ taskNumber, callerFunction }) {
 
   return (
     <>
-      <p>
-        Gegeben sind alle möglichen binären Strings der Länge 5. Wählen Sie alle
-        Strings aus, so dass Ihre Auswahl eine Kodierung ergibt, welche folgende
-        Eigenschaften erfüllt:
-      </p>
       <div className="smallSpace"></div>
       {possibleTasks[taskNumber][0]}
       <div className="smallSpace"></div>
-      <p>
-        Ein Wort ist dabei bereits vorgegeben. Alle Strings in{" "}
-        <span style={{ color: "green" }}>grün</span> sind in Ihrer Auswahl.{" "}
-        <span style={{ color: "red" }}>Rote </span>
-        und <span style={{ color: "blue" }}>blaue</span> Strings sind nicht in
-        der Auswahl. Es wird nur das gewertet, was grün ist. Weiter werden immer
-        alle Strings hervorgehoben, welche einen Abstand von 1 zum aktuellen
-        String haben.
-      </p>
+
       <div className="graphGrid">
         <div className="row">{nodeRender[0]}</div>
         <div className="row">
@@ -264,7 +256,6 @@ function GraphTask({ taskNumber, callerFunction }) {
           {nodeRender[30]}
         </div>
         <div className="row">{nodeRender[31]}</div>
-        <div className="smallSpace"></div>
         <button disabled={taskState === true} onClick={() => handleAnswer()}>
           <p>überprüfen</p>
         </button>
