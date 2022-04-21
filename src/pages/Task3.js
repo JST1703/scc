@@ -65,9 +65,10 @@ function Task3() {
       <div className="task">
         <div className="taskLeft">
           <p>
-            Gegeben sind Bitfolgen, bestehend aus den Ziffern 0 und 1, und deren
-            einstellitgen <span style={{ color: "red" }}>{" Prüfbits"}</span>.
-            Ergänzen Sie anhand der gegebenen Beispielen die fehlenden Prüfbits.
+            <b>3.1)</b> Gegeben sind Bitfolgen, bestehend aus den Ziffern 0 und
+            1, und deren einstellitgen{" "}
+            <span style={{ color: "red" }}>{" Prüfbits"}</span>. Ergänzen Sie
+            anhand der gegebenen Beispielen die fehlenden Prüfbits.
           </p>
           <div className="space"></div>
           {wrongAnswersA >= minWrongAnswers && (
@@ -123,7 +124,7 @@ function Task3() {
           <div className="space"></div>
           <div className="taskLeft">
             <p>
-              Gegeben ist eine weitere binäre Folge mit{" "}
+              <b>3.2)</b> Gegeben ist eine weitere binäre Folge mit{" "}
               <span style={{ color: "red" }}>{" Prüfbit"}</span>. Ändern Sie die
               gegebene Folge an genau zwei Stellen, sodass das Prüfbit immer
               noch gültig ist. Geben Sie die neue Folge ohne Prüfbit an.
@@ -183,8 +184,8 @@ function Task3() {
           <div className="space"></div>
           <div className="taskLeft">
             <p>
-              Gegeben sind weitere Bitfolgen, bestehend aus den Ziffern 0 und 1,
-              und deren nun zweistelligen{" "}
+              <b>3.3)</b> Gegeben sind weitere Bitfolgen, bestehend aus den
+              Ziffern 0 und 1, und deren nun zweistelligen{" "}
               <span style={{ color: "red" }}>{" Prüfbits"}</span>. Ergänzen Sie
               anhand der gegebenen Beispielen die fehlenden Prüfbits.
             </p>
@@ -247,8 +248,8 @@ function Task3() {
           <div className="space"></div>
           <div className="taskLeft">
             <p>
-              Ändern Sie die gegebene Folge an genau zwei Stellen ab, sodass
-              diese mit den gegebenen{" "}
+              <b>3.4)</b> Ändern Sie die gegebene Folge an genau zwei Stellen
+              ab, sodass diese mit den gegebenen{" "}
               <span style={{ color: "red" }}>{" Prüfbits"}</span> immer noch
               übereinstimmt. Geben Sie die neue Folge ohne Prüfbits an.
             </p>

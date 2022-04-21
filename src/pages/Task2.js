@@ -89,10 +89,10 @@ function Task2() {
       <div className="task">
         <div className="taskLeft">
           <p>
-            Gegeben sind Zahlenfolgen, bestehend aus den Ziffern 1 bis 9, und
-            deren <span style={{ color: "red" }}>{"Prüfziffern"}</span>.
-            Ergänzen Sie anhand der gegebenen Beispielen die fehlenden
-            Prüfziffern.
+            <b>2.1)</b> Gegeben sind Zahlenfolgen, bestehend aus den Ziffern 1
+            bis 9, und deren{" "}
+            <span style={{ color: "red" }}>{"Prüfziffern"}</span>. Ergänzen Sie
+            anhand der gegebenen Beispielen die fehlenden Prüfziffern.
           </p>
           <div className="space"></div>
           {wrongAnswersA >= minWrongAnswers && (
@@ -144,8 +144,8 @@ function Task2() {
           <div className="space"></div>
           <div className="taskLeft">
             <p>
-              Gegeben sind Folgen und deren Prüfziffern. Bestimmen Sie
-              diejenigen Folgen, bei denen die Prüfziffer fehlerhaft ist.
+              <b>2.2)</b> Gegeben sind Folgen und deren Prüfziffern. Bestimmen
+              Sie diejenigen Folgen, bei denen die Prüfziffer fehlerhaft ist.
             </p>
           </div>
           <div className="taskRight">
@@ -180,8 +180,8 @@ function Task2() {
           <YN
             question={
               <p>
-                Wenn genau eine Ziffer in der Folge falsch übertragen worden
-                ist, dann erkennt man das an der Prüfziffer.
+                <b>2.3)</b> Wenn genau eine Ziffer in der Folge falsch
+                übertragen worden ist, dann erkennt man das an der Prüfziffer.
               </p>
             }
             solution={1}
@@ -212,8 +212,8 @@ function Task2() {
           <YN
             question={
               <p>
-                Wenn die Prüfziffer nicht korrekt ist, dann muss die Zahlenfolge
-                einen Fehler beinhalten.
+                <b>2.4)</b> Wenn die Prüfziffer nicht korrekt ist, dann muss die
+                Zahlenfolge einen Fehler beinhalten.
               </p>
             }
             solution={0}
@@ -244,9 +244,9 @@ function Task2() {
           <YN
             question={
               <p>
-                Tippfehler von Menschen kommen häufig vor, z.B. dass man zwei
-                Ziffern vertauscht (z.B. 73 statt 37). Können Sie mit der
-                Prüfsumme solche Fehler erkennen?
+                <b>2.5)</b> Tippfehler von Menschen kommen häufig vor, z.B. dass
+                man zwei Ziffern vertauscht (z.B. 73 statt 37). Können Sie mit
+                der Prüfsumme solche Fehler erkennen?
               </p>
             }
             solution={0}
@@ -279,9 +279,9 @@ function Task2() {
           <YN
             question={
               <p>
-                Sollte wegen einer Fehlübertragung eine Ziffer in der Folge
-                fehlerhaft sein, dann können wir diese fehlerhafte Ziffer mit
-                der Prüfziffer identifizieren.
+                <b>2.6)</b> Sollte wegen einer Fehlübertragung eine Ziffer in
+                der Folge fehlerhaft sein, dann können wir diese fehlerhafte
+                Ziffer mit der Prüfziffer identifizieren.
               </p>
             }
             solution={0}
@@ -312,8 +312,9 @@ function Task2() {
           <YN
             question={
               <p>
-                Angenommen bei der Übertragung treten zwei Fehler auf, sodass
-                nun 2 Ziffern falsch sind. Erkennt man das mit der Prüfziffer?
+                <b>2.7)</b> Angenommen bei der Übertragung treten zwei Fehler
+                auf, sodass nun 2 Ziffern falsch sind. Erkennt man das mit der
+                Prüfziffer?
               </p>
             }
             solution={0}
@@ -350,8 +351,8 @@ function Task2() {
           <YN
             question={
               <p>
-                Wenn durch ein Fehler in der Übertragung eine Ziffer in der
-                Folge ausgelassen wird, kann man das mit der Prüfziffer
+                <b>2.8)</b> Wenn durch ein Fehler in der Übertragung eine Ziffer
+                in der Folge ausgelassen wird, kann man das mit der Prüfziffer
                 erkennen.
               </p>
             }
@@ -385,7 +386,11 @@ function Task2() {
           <div className="space"></div>
           <YN
             question={
-              <p>Welche der beiden Methoden zur Fehlererkennung ist besser?</p>
+              <p>
+                {" "}
+                <b>2.9)</b> Welche der beiden Methoden zur Fehlererkennung ist
+                besser?
+              </p>
             }
             solution={0}
             optionYes={<span>Prüfsumme</span>}

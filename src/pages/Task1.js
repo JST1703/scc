@@ -89,11 +89,11 @@ function Task1() {
       <div className="task">
         <div className="taskLeft">
           <p>
-            Gegeben sind Zahlenfolgen, bestehend aus den Ziffern 1 bis 9, und
-            deren <span style={{ color: "red" }}>{"Prüfziffern"}</span>.
-            Ergänzen Sie anhand der gegebenen Beispielen die fehlenden
-            Prüfziffern. Die Lösung besteht immer aus zwei Ziffern (Bsp. 07
-            statt 7).
+            <b>1.1)</b> Gegeben sind Zahlenfolgen, bestehend aus den Ziffern 1
+            bis 9, und deren{" "}
+            <span style={{ color: "red" }}>{"Prüfziffern"}</span>. Ergänzen Sie
+            anhand der gegebenen Beispielen die fehlenden Prüfziffern. Die
+            Lösung besteht immer aus zwei Ziffern (Bsp. 07 statt 7).
           </p>
           <div className="space"></div>
           {wrongAnswersA >= minWrongAnswers && (
@@ -144,8 +144,8 @@ function Task1() {
           <div className="space"></div>
           <div className="taskLeft">
             <p>
-              Gegeben sind Folgen und deren Prüfziffern. Bestimmen Sie
-              diejenigen Folgen, bei denen die Prüfziffer fehlerhaft ist.
+              <b>1.2)</b> Gegeben sind Folgen und deren Prüfziffern. Bestimmen
+              Sie diejenigen Folgen, bei denen die Prüfziffer fehlerhaft ist.
             </p>
           </div>
           <div className="taskRight">
@@ -179,8 +179,8 @@ function Task1() {
           <YN
             question={
               <p>
-                Wenn genau eine Ziffer in der Folge falsch übertragen worden
-                ist, dann erkennt man das an der Prüfsumme.
+                <b>1.3)</b> Wenn genau eine Ziffer in der Folge falsch
+                übertragen worden ist, dann erkennt man das an der Prüfsumme.
               </p>
             }
             solution={1}
@@ -211,8 +211,8 @@ function Task1() {
           <YN
             question={
               <p>
-                Wenn die Prüfsumme nicht korrekt ist, dann muss die Zahlenfolge
-                einen Fehler beinhalten.
+                <b>1.4)</b> Wenn die Prüfsumme nicht korrekt ist, dann muss die
+                Zahlenfolge einen Fehler beinhalten.
               </p>
             }
             solution={0}
@@ -243,9 +243,9 @@ function Task1() {
           <YN
             question={
               <p>
-                Tippfehler von Menschen kommen häufig vor, z.B. dass man zwei
-                Ziffern vertauscht (z.B. 73 statt 37). Können Sie mit der
-                Prüfsumme solche Fehler erkennen?
+                <b>1.5)</b> Tippfehler von Menschen kommen häufig vor, z.B. dass
+                man zwei Ziffern vertauscht (z.B. 73 statt 37). Können Sie mit
+                der Prüfsumme solche Fehler erkennen?
               </p>
             }
             solution={0}
@@ -276,9 +276,9 @@ function Task1() {
           <YN
             question={
               <p>
-                Sollte wegen einer Fehlübertragung eine Ziffer in der Folge
-                fehlerhaft sein, dann können wir diese fehlerhafte Ziffer mit
-                der Prüfsumme identifizieren.
+                <b>1.6)</b> Sollte wegen einer Fehlübertragung eine Ziffer in
+                der Folge fehlerhaft sein, dann können wir diese fehlerhafte
+                Ziffer mit der Prüfsumme identifizieren.
               </p>
             }
             solution={0}
@@ -309,8 +309,9 @@ function Task1() {
           <YN
             question={
               <p>
-                Angenommen bei der Übertragung treten zwei Fehler auf, sodass
-                nun 2 Ziffern falsch sind. Erkennt man das mit der Prüfsumme?
+                <b>1.7)</b> Angenommen bei der Übertragung treten zwei Fehler
+                auf, sodass nun 2 Ziffern falsch sind. Erkennt man das mit der
+                Prüfsumme?
               </p>
             }
             solution={0}
@@ -347,8 +348,9 @@ function Task1() {
           <YN
             question={
               <p>
-                Wenn durch ein Fehler in der Übertragung eine Ziffer in der
-                Folge ausgelassen wird, kann man das mit der Prüfsumme erkennen.
+                <b>1.8)</b> Wenn durch ein Fehler in der Übertragung eine Ziffer
+                in der Folge ausgelassen wird, kann man das mit der Prüfsumme
+                erkennen.
               </p>
             }
             solution={1}
