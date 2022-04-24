@@ -97,15 +97,24 @@ function Task5() {
       // answer keys and
       let key1 = Array(4).fill(false);
       key1[k1] = true;
-      let key2 = Array(4).fill(false);
-      key2[k2] = true;
+
+      let key2 = [];
+      let show2 = [];
+      for (let i = 0; i < 4; ++i) {
+        if (distance(seqTemp2, encoding[i]) < 3) {
+          key2[i] = true;
+          show2.push(<span>{words[i]} </span>);
+        } else {
+          key2[i] = false;
+        }
+      }
 
       let key3 = [];
-      let k4 = 0;
+      let show3 = [];
       for (let i = 0; i < 4; ++i) {
-        if (distance(seqTemp3, encoding[i]) === 3) {
+        if (distance(seqTemp3, encoding[i]) <= 3) {
           key3[i] = true;
-          if (k3 != i) k4 = i;
+          show3.push(<span>{words[i]} </span>);
         } else {
           key3[i] = false;
         }
@@ -113,14 +122,8 @@ function Task5() {
 
       // gather them all together
       sol.push([seqTemp1.join(""), key1, words[k1]]);
-      sol.push([seqTemp2.join(""), key2, words[k2]]);
-      sol.push([
-        seqTemp3.join(""),
-        key3,
-        <span>
-          {words[k3]} und {words[k4]}
-        </span>,
-      ]);
+      sol.push([seqTemp2.join(""), key2, show2]);
+      sol.push([seqTemp3.join(""), key3, show3]);
     }
 
     return sol;
@@ -145,7 +148,7 @@ function Task5() {
           callerFunction={() => setAnswersA(answersA + 1)}
           options={words}
           answerKey={element1[1]}
-          textOnWrong={<p>Die richtige Antwort lautet {element1[2]}.</p>}
+          textOnWrong={<p>Lösung: {element1[2]}</p>}
           textOnCorrect={<p></p>}
         />
       </div>
@@ -160,7 +163,12 @@ function Task5() {
           callerFunction={() => setAnswersB(answersB + 1)}
           options={words}
           answerKey={element2[1]}
-          textOnWrong={<p>Die richtige Antwort lautet {element2[2]}.</p>}
+          textOnWrong={
+            <p>
+              Lösung: {element2[2]}- Beachten Sie, dass es bis zu 2 Fehler sein
+              können.
+            </p>
+          }
           textOnCorrect={<p></p>}
         />
       </div>
@@ -175,7 +183,12 @@ function Task5() {
           callerFunction={() => setAnswersC(answersC + 1)}
           options={words}
           answerKey={element3[1]}
-          textOnWrong={<p>Die richtigen Antworten sind {element3[2]}.</p>}
+          textOnWrong={
+            <p>
+              Lösung: {element3[2]}- Beachten Sie, dass es bis zu 3 Fehler sein
+              können.
+            </p>
+          }
           textOnCorrect={<p></p>}
         />
       </div>
@@ -203,9 +216,9 @@ function Task5() {
           </p>
           <div className="space"></div>
           <p>
-            Gegeben sind Nachrichten nach einer Übertragung. Bestimmen Sie die
-            mögliche ursprüngliche Nachricht unter der Annahme, dass genau ein
-            Übertragungsfehler vorgefallen ist.
+            <b>5.1)</b> Gegeben sind Nachrichten nach einer Übertragung.
+            Bestimmen Sie die mögliche ursprüngliche Nachricht unter der
+            Annahme, dass genau ein Übertragungsfehler vorgefallen ist.
           </p>
           {mc4A}
 
@@ -223,9 +236,10 @@ function Task5() {
           {answersA >= numberOfTasks && (
             <>
               <p>
-                Gegeben sind Nachrichten nach einer Übertragung. Bestimmen Sie
-                die mögliche ursprüngliche Nachricht unter der Annahme, dass
-                genau zwei Übertragungsfehler vorgefallen sind.
+                <b>5.2)</b> Gegeben sind Nachrichten nach einer Übertragung.
+                Bestimmen Sie die möglichen ursprünglichen Nachrichten unter der
+                Annahme, dass bis zu zwei Übertragungsfehler vorgefallen sein
+                könnten. Mehrere Antworten sind möglich.
               </p>
               {mc4B}
               <div className="space"></div>
@@ -243,9 +257,10 @@ function Task5() {
           {answersB >= numberOfTasks && (
             <>
               <p>
-                Gegeben sind Nachrichten nach einer Übertragung. Bestimmen Sie
-                die möglichen ursprünglichen Nachrichten unter der Annahme, dass
-                genau drei Übertragungsfehler vorgefallen sind.
+                <b>5.3)</b> Gegeben sind Nachrichten nach einer Übertragung.
+                Bestimmen Sie die möglichen ursprünglichen Nachrichten unter der
+                Annahme, dass bis zu drei Übertragungsfehler vorgefallen sein
+                könnten. Mehrere Antworten sind möglich.
               </p>
               {mc4C}
               <div className="space"></div>
@@ -274,8 +289,8 @@ function Task5() {
           <YN
             question={
               <p>
-                Wenn genau ein Fehler in der Übertragung auftritt, dann ist der
-                erhaltene String nicht Teil der Code-Wörter.
+                <b>5.4)</b> Wenn genau ein Fehler in der Übertragung auftritt,
+                dann ist der erhaltene String nicht Teil der Code-Wörter.
               </p>
             }
             solution={1}
@@ -300,8 +315,8 @@ function Task5() {
           <YN
             question={
               <p>
-                Wenn genau ein Fehler in der Übertragung auftrit, dann kann man
-                diesen korrigieren.
+                <b>5.5)</b> Wenn genau ein Fehler in der Übertragung auftrit,
+                dann kann man diesen korrigieren.
               </p>
             }
             solution={1}
@@ -328,8 +343,8 @@ function Task5() {
           <YN
             question={
               <p>
-                Wenn zwei Fehler in der Übertragung auftreten, dann ist der
-                erhaltene String nicht Teil der Code-Wörter.
+                <b>5.6)</b> Wenn zwei Fehler in der Übertragung auftreten, dann
+                ist der erhaltene String nicht Teil der Code-Wörter.
               </p>
             }
             solution={1}
@@ -354,8 +369,8 @@ function Task5() {
           <YN
             question={
               <p>
-                Wenn zwei Fehler in der Übertragung auftreten, dann kann man
-                diese korrigieren.
+                <b>5.7)</b> Wenn zwei Fehler in der Übertragung auftreten, dann
+                kann man diese korrigieren.
               </p>
             }
             solution={0}
@@ -382,8 +397,8 @@ function Task5() {
           <YN
             question={
               <p>
-                Wenn drei Fehler in der Übertragung auftreten, dann ist der
-                erhaltene String nicht Teil der Code-Wörter.
+                <b>5.8)</b> Wenn drei Fehler in der Übertragung auftreten, dann
+                ist der erhaltene String nicht Teil der Code-Wörter.
               </p>
             }
             solution={0}
@@ -404,8 +419,8 @@ function Task5() {
           <YN
             question={
               <p>
-                Wenn drei Fehler in der Übertragung auftreten, dann kann man
-                diese korrigieren.
+                <b>5.9)</b> Wenn drei Fehler in der Übertragung auftreten, dann
+                kann man diese korrigieren.
               </p>
             }
             solution={0}
@@ -427,7 +442,11 @@ function Task5() {
         <div className="task">
           <div className="space"></div>
           <YN
-            question={<p>Welche Kodierung ist besser?</p>}
+            question={
+              <p>
+                <b>5.10)</b> Welche Kodierung ist besser?
+              </p>
+            }
             solution={0}
             optionYes={<span>Die aus Aufgabe 4</span>}
             optionNo={<span>Die aus Aufgabe 5</span>}
