@@ -38,11 +38,12 @@ function Task6() {
           <YN
             question={
               <p>
-                Wir betrachten mögliche Kodierungen für die Nachrichten "Ja" und
-                "Nein". Die <span style={{ color: "green" }}>Code-Wörter</span>{" "}
-                bestehen in diesem Beispiel nur aus einem Bit. Angenommen wir
-                haben einen Übertragungsfehler an einer Stelle beim Versenden
-                einer Nachricht. Kann man das mit dieser Kodierung erkennen?
+                <b>6.1)</b> Wir betrachten mögliche Kodierungen für die
+                Nachrichten "Ja" und "Nein". Die{" "}
+                <span style={{ color: "green" }}>Code-Wörter</span> bestehen in
+                diesem Beispiel nur aus einem Bit. Angenommen wir haben einen
+                Übertragungsfehler an einer Stelle beim Versenden einer
+                Nachricht. Kann man das mit dieser Kodierung erkennen?
               </p>
             }
             solution={0}
@@ -72,7 +73,7 @@ function Task6() {
             <YN
               question={
                 <p>
-                  Wir nutzen nun Strings der Länge 2 für die{" "}
+                  <b>6.2)</b> Wir nutzen nun Strings der Länge 2 für die{" "}
                   <span style={{ color: "green" }}>Code-Wörter</span>.
                   Angenommen wir haben einen Übertragungsfehler an einer Stelle
                   beim Versenden einer Nachricht. Kann man das mit dieser
@@ -97,8 +98,8 @@ function Task6() {
             <YN
               question={
                 <p>
-                  Können wir diesen Übertragungsfehler korrigieren mit der
-                  gegebenen Kodierung?
+                  <b>6.3)</b> Können wir diesen Übertragungsfehler korrigieren
+                  mit der gegebenen Kodierung?
                 </p>
               }
               solution={0}
@@ -127,10 +128,11 @@ function Task6() {
 
           <div className="taskRight">
             <p>
-              Wir nutzen nun Strings der Länge 4 für die{" "}
+              <b>6.4)</b> Wir nutzen nun Strings der Länge 4 für die{" "}
               <span style={{ color: "green" }}>Code-Wörter</span>. Wie viele
-              Fehler können bei der Übertragung auftreten, damit man eine
-              Fehlübertragung erkennen kann? Mehrere Antworten sind möglich.
+              Fehler können bei der Übertragung auftreten, damit man garantiert
+              eine Fehlübertragung erkennen kann? Mehrere Antworten sind
+              möglich.
             </p>
             <MC
               options={[
@@ -154,8 +156,8 @@ function Task6() {
             />
             <div className="space"></div>
             <p>
-              Wie viele Fehler können bei der Übertragung auftreten, damit man
-              eine Fehlübertragung korrigieren kann?
+              <b>6.5)</b> Wie viele Fehler können bei der Übertragung auftreten,
+              damit man eine Fehlübertragung in jedem Fall korrigieren kann?
             </p>
             <MC
               options={[
@@ -194,10 +196,11 @@ function Task6() {
 
           <div className="taskRight">
             <p>
-              Wir nutzen nun Strings der Länge 5 für die{" "}
+              <b>6.6)</b> Wir nutzen nun Strings der Länge 5 für die{" "}
               <span style={{ color: "green" }}>Code-Wörter</span>. Wie viele
               Fehler können bei der Übertragung auftreten, damit man eine
-              Fehlübertragung erkennen kann? Mehrere Antworten sind möglich.
+              Fehlübertragung garantiert erkennen kann? Mehrere Antworten sind
+              möglich.
             </p>
             <MC
               options={[
@@ -222,9 +225,9 @@ function Task6() {
             />
             <div className="space"></div>
             <p>
-              Wie viele Fehler können bei der Übertragung auftreten, damit man
-              eine Fehlübertragung korrigieren kann? Mehrere Antworten sind
-              möglich.
+              <b>6.7)</b> Wie viele Fehler können bei der Übertragung auftreten,
+              damit man eine Fehlübertragung in jedem Fall korrigieren kann?
+              Mehrere Antworten sind möglich.
             </p>
             <MC
               options={[
@@ -256,9 +259,9 @@ function Task6() {
       {taskTracker[5] && taskTracker[6] && (
         <div className="task">
           <p>
-            WWelche Eigenschaft ist für eine Kodierung entscheidend, um eine
-            bestimmte Anzahl an Fehler zu erkennen oder zu korrigieren zu
-            können?
+            <b>6.8)</b> WWelche Eigenschaft ist für eine Kodierung entscheidend,
+            um eine bestimmte Anzahl an Fehler zu erkennen oder zu korrigieren
+            zu können?
           </p>
           <MC
             options={[

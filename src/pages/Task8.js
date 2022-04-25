@@ -68,9 +68,9 @@ function Task8() {
             callerFunction={() => setState1(true)}
             question={
               <p>
-                Angenommen, wir wollen eine Kodierungen haben, die bis zu k
-                Fehler erkennen kann. Wie gross muss der dafür Abstand d
-                mindestens sein in Abhängigkeit von k?
+                <b>8.1)</b> Angenommen, wir wollen eine Kodierungen haben, die
+                bis zu k Fehler erkennen kann. Wie gross muss der dafür Abstand
+                d mindestens sein in Abhängigkeit von k?
               </p>
             }
             text={<span>d =</span>}
@@ -98,9 +98,9 @@ function Task8() {
               />
               <div className="space"></div>
               <p>
-                Angenommen, wir wollen eine Kodierungen haben, die bis zu k
-                Fehler korrigieren kann. Wie gross muss der dafür Abstand d
-                mindestens sein in Abhängigkeit von k?
+                <b>8.2)</b> Angenommen, wir wollen eine Kodierungen haben, die
+                bis zu k Fehler korrigieren kann. Wie gross muss der dafür
+                Abstand d mindestens sein in Abhängigkeit von k?
               </p>
               <MC
                 callerFunction={() => setState2(true)}
@@ -155,8 +155,8 @@ function Task8() {
         <div className="task">
           <div className="space"></div>
           <p>
-            Gegeben sind einige Kodierungen. Bestimmen Sie jeweils den Abstand
-            der Kodierung und deren Eigenschaften.
+            <b>8.3)</b> Gegeben sind einige Kodierungen. Bestimmen Sie jeweils
+            den Abstand der Kodierung und deren Eigenschaften.
           </p>
           <div className="space"></div>
 

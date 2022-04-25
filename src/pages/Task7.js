@@ -38,9 +38,11 @@ function Task7() {
         Gegeben sind Aufgaben mit allen möglichen binären Strings der Länge 5.
         Ihre Aufgabe ist es, eine Kodierung zusammenzustellen, mit allen
         möglichen Code-Wörtern, welche bestimmte Eigenschaften erfüllen muss.
-        Ein Code-Wort ist dabei bereits vorgegeben. Alle Strings in{" "}
-        <span style={{ color: "green" }}>Grün</span> sind in Ihrer Auswahl.{" "}
-        <span style={{ color: "red" }}>Rote </span>
+        Die Anzahl der Wörter in der Kodierung muss maximal sein, d.h. es ist
+        nicht mehr möglich ein weiteres Wort beizufügen, ohne die gegebenen
+        Eigenschaften zu verletzen. Ein Code-Wort ist dabei bereits vorgegeben.
+        Alle Strings in <span style={{ color: "green" }}>Grün</span> sind in
+        Ihrer Auswahl. <span style={{ color: "red" }}>Rote </span>
         und <span style={{ color: "blue" }}>blaue</span> Strings sind nicht in
         der Auswahl. Es wird nur das gewertet, was grün ist. Weiter werden immer
         alle Strings hervorgehoben, welche einen Abstand von 1 zum aktuellen

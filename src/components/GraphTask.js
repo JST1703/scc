@@ -88,16 +88,16 @@ function GraphTask({ taskNumber, callerFunction, failFunction }) {
   const possibleTasks = [
     [
       <p>
-        Erstellen Sie eine Kodierung, mit der man nur einzelne Fehler erkennen,
-        aber keine korrigieren kann.
+        <b>7.1)</b> Erstellen Sie eine Kodierung, mit der man nur einzelne
+        Fehler erkennen, aber keine korrigieren kann.
       </p>,
       2,
       16,
     ],
     [
       <p>
-        Erstellen Sie eine Kodierung, mit der man einzelne Fehler korrigieren
-        kann, und auch bis zu 2 Fehler erkennen kann.
+        <b>7.2)</b> Erstellen Sie eine Kodierung, mit der man einzelne Fehler
+        korrigieren kann, und auch bis zu 2 Fehler erkennen kann.
       </p>,
       3,
       4,
