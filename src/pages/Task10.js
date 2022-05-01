@@ -131,43 +131,46 @@ function Task10() {
 
       <div className="space"></div>
 
-      <Info
-        text={
-          <div className="task">
-            <div className="taskLeft">
-              <S0 />
-              <div className="squareRow">
-                <h3>Code-Wort angeortnet im Quadrat</h3>
-              </div>
-              <div className="space"></div>
-              <S2 />
-              <div className="squareRow">
-                <h3>Fehlermeldungstabelle</h3>
-              </div>
-            </div>
-            <div className="taskRight">
-              <S1 />
-              <div className="squareRow">
-                <h3>Code-Wort angeortnet im Array</h3>
-              </div>
-              <div className="space"></div>
-              <p>
-                Die Nachrichtenbits B1 bis B9 werden durch die{" "}
-                <span style={{ color: "blue" }}>Kontrollbits</span>{" "}
-                <span style={{ color: "blue" }}>C1</span> bis{" "}
-                <span style={{ color: "blue" }}>C7</span> kontrolliert. Die{" "}
-                <span style={{ color: "blue" }}>Kontrollbits</span> werden so
-                gesetzt, dass die Spalten und Zeilen eine gerade Anzahl an
-                Einsen besitzt. Sollte ein Bit fehlerhaft sein, wird dies über
-                die <span style={{ color: "blue" }}>Kontrollbits</span> erkannt.
-                Die Fehlermeldungstabelle zeigt an, welche{" "}
-                <span style={{ color: "blue" }}>Kontrollbits</span> welche
-                Nachrichtenbits kontrollieren.
-              </p>
-            </div>
+      <p>
+        Gegeben ist eine Kodierung, wobei die Code-Wörter aus 9 Nachrichtenbits
+        und 7 <span style={{ color: "blue" }}>Kontrollbits</span> bestehen. Die{" "}
+        <span style={{ color: "blue" }}>Kontrollbits</span> korrelieren mit den
+        Nachrichtenbits wie in den magischen Rechtecken.
+      </p>
+
+      <div className="task">
+        <div className="taskLeft">
+          <S0 />
+          <div className="squareRow">
+            <h3>Code-Wort angeortnet im Quadrat</h3>
           </div>
-        }
-      />
+          <div className="space"></div>
+          <S2 />
+          <div className="squareRow">
+            <h3>Fehlermeldungstabelle</h3>
+          </div>
+        </div>
+        <div className="taskRight">
+          <S1 />
+          <div className="squareRow">
+            <h3>Code-Wort angeortnet im Array</h3>
+          </div>
+          <div className="space"></div>
+          <p>
+            Die Nachrichtenbits B1 bis B9 werden durch die{" "}
+            <span style={{ color: "blue" }}>Kontrollbits</span>{" "}
+            <span style={{ color: "blue" }}>C1</span> bis{" "}
+            <span style={{ color: "blue" }}>C7</span> kontrolliert. Die{" "}
+            <span style={{ color: "blue" }}>Kontrollbits</span> werden so
+            gesetzt, dass die Spalten und Zeilen eine gerade Anzahl an Einsen
+            besitzt. Sollte ein Bit fehlerhaft sein, wird dies über die{" "}
+            <span style={{ color: "blue" }}>Kontrollbits</span> erkannt. Die
+            Fehlermeldungstabelle zeigt an, welche{" "}
+            <span style={{ color: "blue" }}>Kontrollbits</span> welche
+            Nachrichtenbits kontrollieren.
+          </p>
+        </div>
+      </div>
 
       <div className="space"></div>
 
@@ -183,13 +186,11 @@ function Task10() {
         <div className="space"></div>
 
         <p>
-          Gegeben ist eine Kodierung, wobei die Codewörter aus 9 Nachrichtenbits
-          und 7 <span style={{ color: "blue" }}>Kontrollbits</span> bestehen.
-          Die <span style={{ color: "blue" }}>Kontrollbits</span> kkorrelieren
-          mit den Nachrichtenbits wie in den magischen Quadraten. Weiter sind
-          Strings gegeben, welche entstanden sind durch einen Fehler in einem
-          Code-Wort. Finden Sie in den gegebenen Strings das fehlerhafte Bit.
+          <b>10.1)</b> Gegeben sind Strings, welche entstanden sind durch einen
+          Fehler in einem Code-Wort. Finden Sie in den gegebenen Strings das
+          fehlerhafte Bit.
         </p>
+
         <div className="space"></div>
         {taskArender}
       </div>
@@ -230,20 +231,17 @@ function Task10() {
             callerFunction={() => handleStateB(0)}
             question={
               <p>
-                Wie viele verschiedene Code-Wörter sind in diesem Fall in der
-                Kodierung enthalten?
+                <b>10.2)</b> Wie viele verschiedene Code-Wörter sind in diesem
+                Fall in der Kodierung enthalten? Geben Sie die Pontenz an, z.B.
+                bei 2<sup>3</sup> Code-Wörter lautet Ihre Lösung 3.
               </p>
             }
-            text={
-              <p>
-                Antwort als Zweierpotenz (2<sup>x</sup>):{" "}
-              </p>
-            }
-            solutions={["2⁹", "2^9"]}
+            text={<p></p>}
+            solutions={["9", "2⁹", "2^9"]}
             textOnCorrect={<p></p>}
             textOnWrong={
               <p>
-                Bei 9 Nachrichtenbits können wir 2⁹ verschiedene Nachrichten
+                Bei 9 Nachrichtenbits können wir 2⁹ verschiedene Code-Wörter
                 konstruieren.
               </p>
             }
@@ -255,9 +253,9 @@ function Task10() {
             callerFunction={() => handleStateB(1)}
             question={
               <p>
-                Angenommen wir haben eine Kodierung mit n Nachrichtenbits mit
-                einem Abstand von 3. Wie viele zusätzliche Bits benötigen wir,
-                wenn wir die Nachrichtenlänge verdreifachen?
+                <b>10.3)</b> Angenommen wir haben eine Kodierung mit n
+                Nachrichtenbits mit einem Abstand von 3. Wie viele zusätzliche
+                Bits benötigen wir, wenn wir die Nachrichtenlänge verdreifachen?
               </p>
             }
             text={<p></p>}
@@ -277,10 +275,12 @@ function Task10() {
             callerFunction={() => handleStateB(2)}
             question={
               <p>
-                Betrachten wir dieselbe Kodierung mit n Nachrichtenbits und
-                einem Abstand von 3. Wenn Sie an die Methode der Kontrollbits
-                der magischen Quadrate denken, wie viele zusätzliche Bits
-                benötigen Sie für die Kodierung, wenn n = a ⋅ b gilt?
+                <b>10.4)</b> Betrachten wir dieselbe Kodierung mit n
+                Nachrichtenbits und einem Abstand von 3. Ordenen wir die
+                Nachrichtenbits in einem Rechteck an mit den Dimensionen a x b
+                (z.B. bei n = 6 ist a = 3 und b = 2), wie viele zusäzlichen
+                Kontrollbits benötigen wir in diesem Fall in Abhängigkeit von a
+                und b?
               </p>
             }
             text={<p></p>}
@@ -288,11 +288,10 @@ function Task10() {
             textOnCorrect={<p></p>}
             textOnWrong={
               <p>
-                a + b + 1 ist die richtige Lösung. Die Anzahl Spalten des
-                Quadrates mit Nachrichtenbits ist a und die Anzahl Zeilen ist b.
-                Für jede Spalte und jede Zeile braucht es ein{" "}
-                <span style={{ color: "blue" }}>Kontrollbits</span>. Das
-                zusätzliche Bit ist dasjenige oben rechts im Quadrat.
+                a + b + 1 ist die richtige Lösung. Für jede Spalte und jede
+                Zeile braucht es ein{" "}
+                <span style={{ color: "blue" }}>Kontrollbit</span>. Das
+                zusätzliche Bit ist dasjenige oben rechts im Rechteck.
               </p>
             }
           />
@@ -303,25 +302,23 @@ function Task10() {
             callerFunction={() => {}}
             question={
               <p>
-                Welche der beiden genannten Methoden benötigt weniger
-                zusätzliche Bits?
+                <b>10.5)</b> Welche der beiden genannten Methoden benötigt
+                weniger zusätzliche Bits?
               </p>
             }
-            optionYes={<span>Die Anzahl Nachrichtenbits Verdreifachen</span>}
+            optionYes={<span>Die Anzahl Nachrichtenbits verdreifachen</span>}
             optionNo={
               <span>
-                Nach der Methode der Quadraten die Kontrollbits beifügen
+                Nach der Methode der Rechtecke die Kontrollbits beifügen
               </span>
             }
             solution={0}
             textOnCorrect={<p></p>}
             textOnWrong={
               <p>
-                a und b sind die Höhe und die Breite des Quadrats (oder des
-                Rechtecks, wenn n keine Quadratzahl ist). a und b kann man so
-                wählen, dass n &gt; a und n &gt; b gelten (z. B. die nächst
-                grössere und kleinere Zahl von &radic;n) und folglich gilt 2n
-                &gt; a + b + 1.
+                a und b sind die Höhe und die Breite des Rechtecks. a und b kann
+                man so wählen, dass n &gt; a und n &gt; b gelten und folglich
+                gilt 2n &gt; a + b + 1.
               </p>
             }
           />

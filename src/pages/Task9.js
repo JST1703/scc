@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import SquareExeciseExample from "../components/SquareExerciseExample";
 import SquareColorExample from "../components/SquareColorExample";
-import SquareExecise1 from "../components/SquareExercise1";
-import SquareExecise2 from "../components/SquareExercise2";
-import SquareExecise3 from "../components/SquareExercise3";
+import SquareExecise1 from "../components/SquareExercise3";
+import SquareExecise2 from "../components/SquareExercise1";
+import SquareExecise3 from "../components/SquareExercise2";
 import Info from "../components/Info";
 import MC from "../components/MC";
 import YN from "../components/YN";
@@ -47,12 +47,12 @@ function Task9() {
 
       <div className="space"></div>
       <p>
-        Gegeben sind magische Quadrate, welche aus kleineren Quadrate bestehen,
-        mit jeweils einem Bit 1 oder 0. Die Bits in einem Quadrat erfüllen eine
-        bestimmte Eigenschaft. Alle Bits im linken Quadrat sind korrekt, bei den
-        rechts ist jeweils genau ein Bit falsch. Finden Sie das fehlerhafte Bit
-        in den jeweiligen Quadraten. Die Eigenschaft, welche die Quadrate
-        erfüllen sollen, kann Ihnen dabei helfen.
+        <b>9.1)</b> Gegeben sind magische Rechtecke, welche aus kleineren
+        Quadrate bestehen, mit jeweils einem Bit 1 oder 0. Die Bits im Rechteck
+        erfüllen eine bestimmte Eigenschaft. Alle Bits im linken Rechteck sind
+        korrekt, bei den rechts ist jeweils genau ein Bit falsch. Finden Sie das
+        fehlerhafte Bit in den jeweiligen Rechtecken. Die Eigenschaft, welche
+        die Rechtecke erfüllen sollen, kann Ihnen dabei helfen.
       </p>
 
       <div className="space"></div>
@@ -147,8 +147,8 @@ function Task9() {
             <YN
               question={
                 <p>
-                  Erkennt man, dass ein Fehler aufgetreten ist, wenn zwei Bits
-                  falsch sind?
+                  <b>9.2)</b> Erkennt man immer, dass ein Fehler aufgetreten
+                  ist, wenn zwei Bits falsch sind?
                 </p>
               }
               solution={1}
@@ -170,8 +170,8 @@ function Task9() {
                 <YN
                   question={
                     <p>
-                      Erkennt man, welche Bits falsch sind, wenn zwei Fehler
-                      aufgetreten sind?
+                      <b>9.3)</b> Erkennt man, welche Bits falsch sind, wenn
+                      zwei Fehler aufgetreten sind?
                     </p>
                   }
                   solution={0}
@@ -194,8 +194,8 @@ function Task9() {
               <>
                 <div className="space"></div>
                 <p>
-                  Wie viele Fehler müssen mindestens auftreten, sodass dennoch
-                  jede Zeile und Spalte korrekt ist?
+                  <b>9.4)</b> Wie viele Fehler müssen mindestens auftreten,
+                  sodass dennoch jede Zeile und Spalte korrekt ist?
                 </p>
                 <MC
                   options={[
@@ -226,9 +226,9 @@ function Task9() {
               <>
                 <div className="space"></div>
                 <p>
-                  Betrachten wir diese magischen Quadrate als Code-Wörter einer
-                  Kodierung. Was ist der Abstand zwischen zwei gültigen
-                  Quadraten?
+                  <b>9.5)</b> Betrachten wir diese magischen Rechtecke als
+                  Code-Wörter einer Kodierung. Was ist der Abstand zwischen zwei
+                  gültigen Quadraten?
                 </p>
                 <MC
                   options={[

@@ -332,8 +332,9 @@ function Task11() {
         callerFunction={() => handleStateA(0)}
         question={
           <p>
-            Wie viele Kontrollbits benötigen Sie für einen Hamming-Code, welcher
-            eine gesamte Nachrichtenlänge (inklusive Kontrollbits) von 31 hat.
+            <b>11.1)</b> Wie viele Kontrollbits benötigen Sie für einen
+            Hamming-Code, welcher eine gesamte Nachrichtenlänge (inklusive
+            Kontrollbits) von 31 hat.
           </p>
         }
         text={<p></p>}
@@ -352,15 +353,13 @@ function Task11() {
             callerFunction={() => handleStateA(1)}
             question={
               <p>
-                Wie viele verschiedene Code-Wörter sind das in der Kodierung?
+                <b>11.2)</b> Wie viele verschiedene Code-Wörter sind das in der
+                Kodierung? Geben Sie die Pontenz an, z.B. bei 2<sup>3</sup>{" "}
+                Code-Wörter lautet Ihre Lösung 3.
               </p>
             }
-            text={
-              <p>
-                Anzahl als Zweierpotenz (2<sup>x</sup>) :
-              </p>
-            }
-            solutions={["2^26", "2²⁶"]}
+            text={<p></p>}
+            solutions={["26", "2^26", "2²⁶"]}
             textOnCorrect={""}
             textOnWrong={
               <p>
@@ -377,8 +376,8 @@ function Task11() {
         <>
           <div className="space"></div>
           <p>
-            Wie viele Kontrollbits benötigen Sie mindestens für einen
-            Hamming-Code mit 2¹⁰ Code-Wörtern?
+            <b>11.3)</b> Was ist die kleinstmögliche Anzahl an Kontrollbits für
+            einen Hamming-Code mit 2¹⁰ Code-Wörtern?
           </p>
           <MC
             callerFunction={() => handleStateA(2)}
@@ -395,7 +394,7 @@ function Task11() {
                 4 ist korrekt. 2³ - 1 = 7, was nicht reicht, um 10 + 3 = 13
                 Nachrichten- und Kontrollbits abzudecken. 2⁴ - 1 = 15 ist die
                 nächst höhere Möglichkeit und kann 10 + 4 = 14 Bits abdecken. 5
-                und 6 sind zu viel.
+                und 6 sind beide nicht kleinstmöglich.
               </p>
             }
           />
@@ -406,9 +405,10 @@ function Task11() {
         <>
           <div className="space"></div>
           <p>
-            Für eine beliebige gesammte Wortlänge n (inklusive Kontrollbits)
-            müssen welche Ungleichungen in einem Hamming-Code erfüllt sein,
-            damit man die kleinst mögliche Anzahl an Kontrollbits c hat?
+            <b>11.4)</b> Für eine beliebige gesammte Wortlänge n (inklusive
+            Kontrollbits) müssen welche Ungleichungen in einem Hamming-Code
+            erfüllt sein, damit man die kleinst mögliche Anzahl an Kontrollbits
+            c hat?
           </p>
           <MC
             callerFunction={() => handleStateA(3)}
@@ -457,11 +457,11 @@ function Task11() {
       {stateA[3] && (
         <div className="task">
           <p>
-            Ergänzen Sie die Fehlermeldungstabelle für einen Hamming-Code der
-            Länge 7, mit der Möglichkeit einzelne Fehler korrigieren zu können.
-            Die Tabelle wird im Code-Wort Generator direkt umgesetzt. Mehrere
-            Antworten sind möglich. Der Beispielstring folgt nur einer dieser
-            Antworten.
+            <b>11.5)</b> Ergänzen Sie die Fehlermeldungstabelle für einen
+            Hamming-Code der Länge 7, mit der Möglichkeit einzelne Fehler
+            korrigieren zu können. Die Tabelle wird im Code-Wort Generator
+            direkt umgesetzt. Mehrere Antworten sind möglich. Der Beispielstring
+            folgt nur einer dieser Antworten.
           </p>
           <div className="space"></div>
           <>
