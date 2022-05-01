@@ -58,9 +58,9 @@ This is used for switching between pages, but only back and forth.
 
 This is used for scrolling back to top, if the user has scrolled a certain distance down.
 
-###### SquareExercise
+###### SquareExercise (1, 2, or 3)
 
-This component always goes with the component squareExerciseExample. Given is a 4x4 square where each square has a digit 0 or 1. Some squares serve as control bits. The number of ones is always even in each row and column. In the exercise, the user is given squares containing exact one error that must be found.
+This component always goes with the component squareExerciseExample. Given is a 4x4 square where each square has a digit 0 or 1. Some squares serve as control bits. The number of ones is always even in each row and column. In the exercise, the user is given squares containing exact one error that must be found. There are 3 different square types, 1 is a 3 times 4 rectangle, 2 is a 4 times 3 rectangle and 3 is a 4 times 4 square.
 
 ###### SquareExerciseExample
 

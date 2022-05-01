@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import SquareExeciseExample from "../components/SquareExerciseExample";
 import SquareColorExample from "../components/SquareColorExample";
-import SquareExecise from "../components/SquareExercise";
+import SquareExecise1 from "../components/SquareExercise1";
+import SquareExecise2 from "../components/SquareExercise2";
+import SquareExecise3 from "../components/SquareExercise3";
 import Info from "../components/Info";
 import MC from "../components/MC";
 import YN from "../components/YN";
@@ -104,13 +106,18 @@ function Task9() {
         </div>
 
         <div className="taskRight">
-          {[...Array(numberOfTasksA)].map((e, i) => (
-            <SquareExecise
-              key={i}
-              onWorong={() => setWrongAnswersA(wrongAnswersA + 1)}
-              onCorrect={() => setCorrectAnswersA(correctAnswersA + 1)}
-            />
-          ))}
+          <SquareExecise1
+            onWorong={() => setWrongAnswersA(wrongAnswersA + 1)}
+            onCorrect={() => setCorrectAnswersA(correctAnswersA + 1)}
+          />
+          <SquareExecise2
+            onWorong={() => setWrongAnswersA(wrongAnswersA + 1)}
+            onCorrect={() => setCorrectAnswersA(correctAnswersA + 1)}
+          />
+          <SquareExecise3
+            onWorong={() => setWrongAnswersA(wrongAnswersA + 1)}
+            onCorrect={() => setCorrectAnswersA(correctAnswersA + 1)}
+          />
         </div>
       </div>
 

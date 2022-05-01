@@ -17,7 +17,7 @@ onWorng and onCorrect are methods of the caller Component. These are used to
 reveal certain parts of the Task, i.e. the solution, if to many wrong answers
 have been given, or the next subtask, if all answers are correct.
 */
-function SquareExecise({ onWorong, onCorrect }) {
+function SquareExecise3({ onWorong, onCorrect }) {
   /* 
   used for evaluating the given answer,
   the correlation between the bits,
@@ -150,4 +150,4 @@ function SquareExecise({ onWorong, onCorrect }) {
   );
 }
 
-export default SquareExecise;
+export default SquareExecise3;
